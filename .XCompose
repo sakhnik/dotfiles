@@ -1,0 +1,33 @@
+include "/usr/share/X11/locale/en_US.UTF-8/Compose"
+
+# Змодельовано з диграфів редактора Vim
+
+<Multi_key> <3> <underscore> : "…" U2026 # HORIZONTAL ELLIPSIS
+<Multi_key> <asciitilde> <asciitilde> : "́" U0301 # COMBINING ACUTE
+
+<Multi_key> <Ukrainian_ie> <6> : "‘" U2018 # LEFT SINGLE QUOTATION MARK
+<Multi_key> <apostrophe> <6> : "‘" U2018 # LEFT SINGLE QUOTATION MARK
+<Multi_key> <Ukrainian_ie> <9> : "’" U2019 # RIGHT SINGLE QUOTATION MARK
+<Multi_key> <apostrophe> <9> : "’" U2019 # RIGHT SINGLE QUOTATION MARK
+<Multi_key> <Ukrainian_IE> <6> : "“" U201C # LEFT DOUBLE QUOTATION MARK
+<Multi_key> <quotedbl> <6> : "“" U201C # LEFT DOUBLE QUOTATION MARK
+<Multi_key> <Ukrainian_IE> <9> : "”" U201D # RIGHT DOUBLE QUOTATION MARK
+<Multi_key> <quotedbl> <9> : "”" U201D # RIGHT DOUBLE QUOTATION MARK
+
+# Гривня
+<Multi_key> <Cyrillic_ghe> <Cyrillic_er> : "₴" # HRYVNIA SIGN
+<Multi_key> <Cyrillic_GHE> <Cyrillic_ER> : "₴" # HRYVNIA SIGN
+# Номер
+<Multi_key> <N> <0> : "№" # NUMERO SIGN
+<Multi_key> <Cyrillic_TE> <0> : "№" # NUMERO SIGN
+
+# Російські літери
+
+<Multi_key> <equal> <Ukrainian_I> : "Ы" U042B # CYRILLIC CAPITAL LETTER YERU
+<Multi_key> <equal> <Ukrainian_i> : "ы" U044B # CYRILLIC SMALL LETTER YERU
+<Multi_key> <equal> <Ukrainian_IE> : "Э" U042D # CYRILLIC CAPITAL LETTER E
+<Multi_key> <equal> <Ukrainian_ie> : "э" U044D # CYRILLIC SMALL LETTER E
+<Multi_key> <equal> <asciitilde> : "Ё" U0401 # CYRILLIC CAPITAL LETTER IO
+<Multi_key> <equal> <apostrophe> : "ё" U0451 # CYRILLIC SMALL LETTER IO
+<Multi_key> <equal> <Ukrainian_YI> : "Ъ" U042A # CYRILLIC CAPITAL LETTER HARD SIGN
+<Multi_key> <equal> <Ukrainian_yi> : "ъ" U044A # CYRILLIC SMALL LETTER HARD SIGN

@@ -1,0 +1,62 @@
+*rndm.txt*	Pseudo-Random Number Generator		May 28, 2004
+
+Author:  Charles E. Campbell, Jr.  <cec@NgrOyphSon.gPsfAc.nMasa.gov>
+	  (remove NOSPAM from Campbell's email first)
+Copyright: (c) 2004-2005 by Charles E. Campbell, Jr.	*rndm-copyright*
+           The VIM LICENSE applies to Rndm.vim and Rndm.txt
+           (see |copyright|) except use "Rndm" instead of "Vim"
+	   No warranty, express or implied.  Use At-Your-Own-Risk.
+
+==============================================================================
+1. Contents						*rndm* *rndm-contents*
+
+	1. Contents......................: |rndm-contents|
+	2. Rndm Manual...................: |rndm-manual|
+	3. History.......................: |rndm-history|
+
+==============================================================================
+
+2. Rndm Manual			*rndmman* *rndmmanual* *rndm-manual*
+
+	To Enable: put <Rndm.vim> into your .vim/plugin
+
+ /=============+============================================================\
+ || Commands   |      Explanation                                          ||
+ ++------------+-----------------------------------------------------------++
+ || RndmInit() |  RndmInit(m1,m2,m3)                                       ||
+ ||            +-----------------------------------------------------------++
+ ||            | RndmInit takes three integers between [0-100,000,000)     ||
+ ||            | to initialize the pseudo-random number generator          ||
+ ||            |                                                           ||
+ ++============+===========================================================++
+ || Rndm()     |  Rndm()                                                   ||
+ ||            +-----------------------------------------------------------++
+ ||            | Generates a pseudo-random variable on [0 - 100,000,000)   ||
+ ||            |                                                           ||
+ ++============+===========================================================++
+ || Urndm()    |  Urndm(a,b)                                               ||
+ ||            +-----------------------------------------------------------++
+ ||            | Generates a uniformly distributed pseudo-random variable  ||
+ ||            | on the interval [a,b]                                     ||
+ ||            |                                                           ||
+ ++============+===========================================================++
+ || Dice()     |  Dice(qty,sides)                                          ||
+ ||            +-----------------------------------------------------------++
+ ||            | Assumes one is rolling a quantity "qty" of dice, each     ||
+ ||            | having "sides" sides.                                     ||
+ ||            | Example: dice(5,4) returns a variate based on rolling     ||
+ ||            |          5 4-sided dice and summing the results           ||
+ ||            |                                                           ||
+ \==========================================================================/
+
+==============================================================================
+
+3. History							*rndm-history*
+
+   4 May 23, 2005 : * cpo use standardized while loading
+   3 May 28, 2004 : * now supports initial "extra randomization" by using the
+                      localtime() clock.
+
+==============================================================================
+
+vim:tw=78:ts=8:ft=help
