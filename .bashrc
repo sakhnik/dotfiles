@@ -51,6 +51,8 @@ bind -m vi-insert "\C-p":dynamic-complete-history
 bind -m vi-insert "\C-n":menu-complete
 # ^l clear screen
 bind -m vi-insert "\C-l":clear-screen
+# Don't rewrite non-empty files
+set -o noclobber
 
 shopt -s histappend
 shopt -s cdspell
@@ -82,8 +84,7 @@ alias timidity='timidity -Os'
 
 vman()
 {
-    text=`man $*` && \
-    echo "$text" | col -b | vim -c 'set ft=man nomod nolist' - ;
+    man $* | col -b | vim -c 'set ft=man nomod nolist' -
 }
 
 export MANPAGER="/bin/sh -c \"unset MANPAGER;col -b -x | \

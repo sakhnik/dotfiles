@@ -47,6 +47,20 @@ if &t_Co > 2 || has("gui_running")
     set hlsearch
 endif
 
+func <SID>LoadTemplate(name)
+    exe '0r' . a:name
+    let var = getreg('')
+    let var_mode = getregtype('')
+    exec 'normal Gdd'
+    let fname = fnamemodify(bufname('%'), ":t")
+    exe 'silent %s/$(fname)/' . fname . '/ge'
+    exe 'silent %s/$(date)/' . strftime("%d.%m.%Y") . '/ge'
+    let guard = toupper(fname) . '_'
+    let guard = substitute(guard, '\.', '_', 'g')
+    exe 'silent %s/$(guard)/' . guard . '/ge'
+    call setreg('', var, var_mode)
+endf
+
 if has("autocmd")
 
     filetype plugin indent on
@@ -72,6 +86,10 @@ if has("autocmd")
     " Don't preserve a buffer when reading from stdin
     " This is useful for "svn diff | vim -"
     autocmd StdinReadPost * setlocal buftype=nofile
+
+    " Read source file skeletons
+    autocmd BufNewFile *.cc     call <SID>LoadTemplate($HOME . '/.vim/skel.cc')
+    autocmd BufNewFile *.hh     call <SID>LoadTemplate($HOME . '/.vim/skel.hh')
 
 else
 
@@ -99,7 +117,6 @@ endif
 set path+=../include
 set listchars=tab:>-,trail:·,nbsp:%
 set list
-set tags=tags,$HOME/.vim/tags/tags.glibc,$HOME/.vim/tags/tags.stl,$HOME/.vim/tags/tags.ace,$HOME/.vim/tags/tags.linux
 set guioptions-=T
 set mousehide
 set scrolloff=3
