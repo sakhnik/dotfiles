@@ -1,0 +1,11 @@
+LANG=utf-8
+/* vim: noet ts=4 sw=4:
+ */
+
+#include <ru_RU/calendar.orthodox>
+/*#include <calendar.history>*/
+#include <calendar.computer>
+#include <calendar.debian>
+#include "birhdays"
+
+/*Thursday	Написати звіт*/
