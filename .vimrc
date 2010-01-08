@@ -47,20 +47,6 @@ if &t_Co > 2 || has("gui_running")
     set hlsearch
 endif
 
-func <SID>LoadTemplate(name)
-    exe '0r' . a:name
-    let var = getreg('')
-    let var_mode = getregtype('')
-    exec 'normal Gdd'
-    let fname = fnamemodify(bufname('%'), ":t")
-    exe 'silent %s/$(fname)/' . fname . '/ge'
-    exe 'silent %s/$(date)/' . strftime("%d.%m.%Y") . '/ge'
-    let guard = toupper(fname) . '_'
-    let guard = substitute(guard, '\.', '_', 'g')
-    exe 'silent %s/$(guard)/' . guard . '/ge'
-    call setreg('', var, var_mode)
-endf
-
 if has("autocmd")
 
     filetype plugin indent on
@@ -87,10 +73,15 @@ if has("autocmd")
     " This is useful for "svn diff | vim -"
     autocmd StdinReadPost * setlocal buftype=nofile
 
-    " Read source file skeletons
-    autocmd BufNewFile *.cc     call <SID>LoadTemplate($HOME . '/.vim/skel.cc')
-    autocmd BufNewFile *.hh     call <SID>LoadTemplate($HOME . '/.vim/skel.hh')
+    augroup templates
+        au!
+        " Read source file skeletons
+        autocmd BufNewFile *.*  silent! execute '0r $HOME/.vim/templates/skeleton.'.expand("<afile>:e")
+    augroup END
 
+    " Substitute everything between [:VIM_EVAL:] and [:END_EVAL:]
+    " with the result of expression in it
+    autocmd BufNewFile *    %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 else
 
     set autoindent      " always set autoindenting on
@@ -232,4 +223,4 @@ if has("autocmd")
     autocmd BufWinEnter *.{cc,hh} let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
-let $PAGER=''
+"let $PAGER=''
