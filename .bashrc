@@ -84,7 +84,8 @@ alias timidity='timidity -Os'
 
 vman()
 {
-    man $* | col -b | vim -c 'set ft=man nomod nolist' -
+    text=`man $*` || return $?
+    echo "$text" | col -b | vim -c 'set ft=man nomod nolist' -
 }
 
 #export MANPAGER="/bin/sh -c \"unset MANPAGER;col -b -x | \
