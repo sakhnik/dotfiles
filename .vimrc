@@ -223,4 +223,10 @@ if has("autocmd")
     autocmd BufWinEnter *.{cc,hh} let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
+" Viki settings
+let g:vikiNameSuffix=".viki"
+if has("autocmd")
+    autocmd! BufRead,BufNewFile *.viki set filetype=viki
+endif
+
 "let $PAGER=''
