@@ -105,8 +105,9 @@ fi
 
 if [ -n "$PS1" ]; then
     echo
-    /usr/games/fortune -e
-    echo
+    if fortune -e 2>/dev/null; then
+        echo
+    fi
     todo=$(calendar)
     if [ ! -z "$todo" ]; then
         echo "$todo"
@@ -125,3 +126,5 @@ ruler()
         echo $str
     done
 }
+
+export EDITOR=vim
