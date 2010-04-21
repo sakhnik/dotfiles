@@ -23,6 +23,7 @@
 :TRequire	tlib.txt	/*:TRequire*
 :TScratch	tlib.txt	/*:TScratch*
 :TVarArg	tlib.txt	/*:TVarArg*
+:UB	histwin.txt	/*:UB*
 :VikiDefine	viki.txt	/*:VikiDefine*
 :VikiEdit	viki.txt	/*:VikiEdit*
 :VikiFilesCall	viki.txt	/*:VikiFilesCall*
@@ -147,6 +148,16 @@ g:vikiTypewriterFont	viki.txt	/*g:vikiTypewriterFont*
 g:vikiUpperCharacters	viki.txt	/*g:vikiUpperCharacters*
 g:vikiUseParentSuffix	viki.txt	/*g:vikiUseParentSuffix*
 g:viki_intervikis	viki.txt	/*g:viki_intervikis*
+histwin-browse	histwin.txt	/*histwin-browse*
+histwin-color	histwin.txt	/*histwin-color*
+histwin-config	histwin.txt	/*histwin-config*
+histwin-contents	histwin.txt	/*histwin-contents*
+histwin-copyright	histwin.txt	/*histwin-copyright*
+histwin-history	histwin.txt	/*histwin-history*
+histwin-keys	histwin.txt	/*histwin-keys*
+histwin-plugin	histwin.txt	/*histwin-plugin*
+histwin-var	histwin.txt	/*histwin-var*
+histwin.txt	histwin.txt	/*histwin.txt*
 hookcursormoved#Enable()	hookcursormoved.txt	/*hookcursormoved#Enable()*
 hookcursormoved#Register()	hookcursormoved.txt	/*hookcursormoved#Register()*
 hookcursormoved#Test_linechange()	hookcursormoved.txt	/*hookcursormoved#Test_linechange()*
