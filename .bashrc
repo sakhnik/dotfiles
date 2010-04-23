@@ -108,11 +108,6 @@ if [ -n "$PS1" ]; then
     if fortune -e 2>/dev/null; then
         echo
     fi
-    todo=$(calendar)
-    if [ ! -z "$todo" ]; then
-        echo "$todo"
-        echo
-    fi
 fi
 
 ruler()

@@ -229,4 +229,6 @@ if has("autocmd")
     autocmd! BufRead,BufNewFile *.viki set filetype=viki
 endif
 
+let g:EclimSgmlCompleteEndTag=0
+
 "let $PAGER=''
