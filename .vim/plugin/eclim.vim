@@ -88,9 +88,15 @@ function! s:Validate()
   echohl None
 endfunction " }}}
 
+function! s:IsEclimdRunning()
+  let instances = expand('~/.eclim/.eclimd_instances')
+  return filereadable(instances)
+endfunction
+
 " exit early if unsupported vim version, compatible is set, or eclim is
 " disabled.
-if v:version < 700 || &compatible || exists("g:EclimDisabled")
+if v:version < 700 || &compatible || exists("g:EclimDisabled") ||
+            \ !<SID>IsEclimdRunning()
   finish
 endif
 
