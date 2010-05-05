@@ -153,6 +153,7 @@ histwin-color	histwin.txt	/*histwin-color*
 histwin-config	histwin.txt	/*histwin-config*
 histwin-contents	histwin.txt	/*histwin-contents*
 histwin-copyright	histwin.txt	/*histwin-copyright*
+histwin-feedback	histwin.txt	/*histwin-feedback*
 histwin-history	histwin.txt	/*histwin-history*
 histwin-keys	histwin.txt	/*histwin-keys*
 histwin-plugin	histwin.txt	/*histwin-plugin*
