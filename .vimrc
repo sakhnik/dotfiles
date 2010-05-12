@@ -231,4 +231,16 @@ endif
 
 let g:EclimSgmlCompleteEndTag=0
 
+let OmniCpp_MayCompleteDot = 0
+let OmniCpp_MayCompleteArrow = 0
+let OmniCpp_MayCompleteScope = 0
+
+if isdirectory($HOME.'/.tags')
+    let tagfiles = globpath('~/.tags', '*.tags')
+    if !empty(&tags)
+        let &tags .= ','
+    endif
+    let &tags .= substitute(tagfiles, "\n", ",", "g")
+endif
+
 "let $PAGER=''
