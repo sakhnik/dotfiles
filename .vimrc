@@ -67,8 +67,6 @@ if has("autocmd")
 
     augroup END
 
-    "au GUIEnter * simalt ~x
-    autocmd VimEnter * set vb t_vb=
     " Don't preserve a buffer when reading from stdin
     " This is useful for "svn diff | vim -"
     autocmd StdinReadPost * setlocal buftype=nofile
@@ -200,6 +198,7 @@ let g:Tex_SmartKeyDot = 0
 runtime! plugin/*.vim
 runtime ftplugin/man.vim
 
+set vb t_vb=      " Не бікати взагалі ніколи
 set keymap=uk     " Завантажити українську мапу клавіш
 set iminsert=0    " Встановити англійську (i_ctrl-^)
 set imsearch=0
