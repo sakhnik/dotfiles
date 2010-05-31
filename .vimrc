@@ -204,6 +204,8 @@ set iminsert=0    " Встановити англійську (i_ctrl-^)
 set imsearch=0
 set showbreak=>
 set modeline
+set undofile
+set undodir=/tmp
 
 "if filereadable("Jamfile") || filereadable("Jamroot")
 "    set makeprg=bjam
