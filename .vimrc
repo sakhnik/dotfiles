@@ -22,12 +22,11 @@ if v:progname =~? "evim"
     finish
 endif
 
-set nocompatible
-
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
 
+set nocompatible
 set backspace=indent,eol,start
 set nobackup
 set history=50
@@ -175,11 +174,6 @@ let g:netrw_sort_sequence='[\/]$,*,\.bak$,\.o$,\.info$,\.swp$,\.obj$'
 
 let b:match_words = '\s*#\s*region.*$:\s*#\s*endregion'
 
-if exists("+digraph")
-    " трикрапка
-    digraph 3_ 8230
-endif
-
 noremap <silent> <f11> :call VimCommanderToggle()<cr>
 inoremap <silent> <f11> <esc>:call VimCommanderToggle()<cr>
 noremap <silent> <c-f11> :call VimCommanderToggle()<cr>
@@ -198,17 +192,6 @@ let g:Tex_SmartKeyDot = 0
 runtime! plugin/*.vim
 runtime ftplugin/man.vim
 
-set vb t_vb=      " Не бікати взагалі ніколи
-set keymap=uk     " Завантажити українську мапу клавіш
-set iminsert=0    " Встановити англійську (i_ctrl-^)
-set imsearch=0
-set showbreak=>
-set modeline
-if has('persistent_undo')
-    set undofile
-    set undodir=/tmp
-endif
-
 "if filereadable("Jamfile") || filereadable("Jamroot")
 "    set makeprg=bjam
 "endif
@@ -221,9 +204,6 @@ if has("autocmd")
         \ nnoremap <buffer> <space> <c-f> |
         \ nnoremap <buffer> <bs> <c-b> |
         \ nnoremap <buffer> q ZQ
-
-    autocmd BufWinEnter *.{cc,hh} let w:m1=matchadd('Search', '\%<81v.\%>79v', -1)
-    autocmd BufWinEnter *.{cc,hh} let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
 " Viki settings
@@ -245,6 +225,17 @@ if isdirectory($HOME.'/.tags')
         let &tags .= ','
     endif
     let &tags .= substitute(tagfiles, "\n", ",", "g")
+endif
+
+set vb t_vb=      " Не бікати взагалі ніколи
+set keymap=uk     " Завантажити українську мапу клавіш
+set iminsert=0    " Встановити англійську (i_ctrl-^)
+set imsearch=0
+set showbreak=>
+set modeline
+if has('persistent_undo')
+    set undofile
+    set undodir=/tmp
 endif
 
 "let $PAGER=''
