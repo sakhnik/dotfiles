@@ -208,6 +208,7 @@ endif
 
 " Viki settings
 let g:vikiNameSuffix=".viki"
+let g:vikiNameTypes="sSeuixwf"
 if has("autocmd")
     autocmd! BufRead,BufNewFile *.viki set filetype=viki
 endif
