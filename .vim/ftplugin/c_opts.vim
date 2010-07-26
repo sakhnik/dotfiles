@@ -1,6 +1,6 @@
 " This file is run automatically from ftplugin/c.vim
 
-set textwidth=78
+"set textwidth=78
 if exists('+colorcolumn')
     set colorcolumn=+1
 endif
