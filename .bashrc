@@ -54,18 +54,32 @@ bind -m vi-insert "\C-l":clear-screen
 # Don't rewrite non-empty files
 set -o noclobber
 
+# append to the history file, don't overwrite it
 shopt -s histappend
 shopt -s cdspell
 shopt -s cmdhist
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 shopt -s nocaseglob
 PROMPT_COMMAND='history -a; [[ $TERM == "linux" ]] && echo -en "\e[?81;0;112c"'
+HISTCONTROL=ignoredups:ignorespace
 export HISTIGNORE="&:ls:[bf]g:exit"
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 export HISTSIZE=3000
 export HISTTIMEFORMAT="%d.%m.%Y %H:%M:%S  "
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
 
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
@@ -93,7 +107,7 @@ vman()
 #        -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
 #        -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
 
-export BOOST_BUILD_PATH="/usr/share/boost-build"
+export BOOST_BUILD_PATH="$HOME/work/BBv2"
 export STARDICT_DATA_DIR="/usr/local/share/stardict"
 export SDCV_PAGER="/bin/more"
 
@@ -103,11 +117,9 @@ if [ -f /etc/bash_completion ]; then
     complete -F _man $filenames vman
 fi
 
-if [ -n "$PS1" ]; then
+echo
+if fortune -e 2>/dev/null; then
     echo
-    if fortune -e 2>/dev/null; then
-        echo
-    fi
 fi
 
 ruler()
