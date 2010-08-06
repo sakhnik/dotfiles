@@ -235,7 +235,10 @@ set showbreak=>
 set modeline
 if has('persistent_undo')
     set undofile
-    set undodir=/tmp
+    set undodir=/tmp/vim_undo
+    if exists("*mkdir") && !isdirectory(&undodir)
+        call mkdir(&undodir,"p")
+    endif
 endif
 
 "let $PAGER=''
