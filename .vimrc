@@ -210,7 +210,7 @@ endif
 let g:vikiNameSuffix=".viki"
 let g:vikiNameTypes="sSeuixwf"
 if has("autocmd")
-    autocmd! BufRead,BufNewFile *.viki set filetype=viki
+    autocmd! BufRead,BufNewFile *.viki setlocal filetype=viki foldlevel=99
 endif
 
 let g:EclimSgmlCompleteEndTag=0
