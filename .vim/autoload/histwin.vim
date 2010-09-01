@@ -1,14 +1,20 @@
 " histwin.vim - Vim global plugin for browsing the undo tree
 " -------------------------------------------------------------
-" Last Change: Tue, 04 May 2010 22:42:22 +0200
+" Last Change: Tue, 31 Aug 2010 13:58:01 +0200
 " Maintainer:  Christian Brabandt <cb@256bit.org>
-" Version:     0.12
+" Version:     0.13
 " Copyright:   (c) 2009, 2010 by Christian Brabandt
 "              The VIM LICENSE applies to histwin.vim 
 "              (see |copyright|) except use "histwin.vim" 
 "              instead of "Vim".
 "              No warranty, express or implied.
 "    *** ***   Use At-Your-Own-Risk!   *** ***
+"    TODO:     - make tags permanent
+"			   - rewrite script and make use of undotree() functionality
+"			     that is available since Vim 7.3
+"              - Bugfix: Sometimes the histwin window contains invalid data,
+"                        not sure how to reproduce it. Closing and reoping is
+"                        the workaround.
 "
 
 " Init: {{{1
@@ -27,7 +33,7 @@ let s:undo_tree_dtl   = (exists('g:undo_tree_dtl')   ? g:undo_tree_dtl   :   (ex
 
 " Functions:
 " 
-fun! s:WarningMsg(msg)"{{{1
+fun! histwin#WarningMsg(msg)"{{{1
 	echohl WarningMsg
 	let msg = "histwin: " . a:msg
 	if exists(":unsilent") == 2
@@ -101,14 +107,15 @@ fun! s:ReturnHistList(winnr)"{{{1
 "	else
 "    if !has_key(b:undo_tagdict, '0')
 		"let b:undo_customtags['0'] = {'number': 0, 'change': 0, 'time': '00:00:00', 'tag': 'Start Editing'}
-	let histdict[0] = {'number': 0, 'change': 0, 'time': '00:00:00', 'tag': 'Start Editing'}
+	let histdict[0] = {'number': 0, 'change': 0, 'time': '00:00:00', 'tag': 'Start Editing' ,'save':0}
 "	endif
 
 	let i=1
 	for item in templist
 		let change	=  matchstr(item, '^\s\+\zs\d\+') + 0
 		let nr		=  matchstr(item, '^\s\+\d\+\s\+\zs\d\+') + 0
-		let time	=  matchstr(item, '^\%(\s\+\d\+\)\{2}\s\+\zs.*$')
+		let time	=  matchstr(item, '^\%(\s\+\d\+\)\{2}\s\+\zs.\{-}\ze\s*\d*$')
+		let save	=  matchstr(item, '\s\+\zs\d\+$') + 0
 		if time !~ '\d\d:\d\d:\d\d'
 		   let time=matchstr(time, '^\d\+')
 		   let time=strftime('%H:%M:%S', localtime()-time)
@@ -119,7 +126,7 @@ fun! s:ReturnHistList(winnr)"{{{1
 		else
 			let tag=''
 		endif
-	   let histdict[change]={'change': change, 'number': nr, 'time': time, 'tag': tag}
+	   let histdict[change]={'change': change, 'number': nr, 'time': time, 'tag': tag, 'save': save}
 	   let i+=1
 	endfor
 	return extend(histdict,customtags,"force")
@@ -156,7 +163,7 @@ fun! s:HistWin()"{{{1
 	endif
 	" for the detail view, we need more space
 	if (!s:undo_tree_dtl) 
-		let s:undo_tree_wdth = s:undo_tree_wdth_orig + 6
+		let s:undo_tree_wdth = s:undo_tree_wdth_orig + 10
 	else
 		let s:undo_tree_wdth = s:undo_tree_wdth_orig
 	endif
@@ -193,7 +200,7 @@ fun! s:PrintUndoTree(winnr)"{{{1
 	if s:undo_tree_dtl
 		call append('$', printf("%-*s %-9s %s", strlen(len(histdict)), "Nr", "  Time", "Tag"))
 	else
-		call append('$', printf("%-*s %-9s %-6s %s", strlen(len(histdict)), "Nr", "  Time", "Change", "Tag"))
+		call append('$', printf("%-*s %-9s %-6s %-4s %s", strlen(len(histdict)), "Nr", "  Time", "Change", "Save", "Tag"))
 	endif
 
 	let i=1
@@ -210,13 +217,13 @@ fun! s:PrintUndoTree(winnr)"{{{1
 		let tag = (empty(tag) ? tag : '/'.tag.'/')
 		if !s:undo_tree_dtl
 			call append('$', 
-			\ printf("%0*d) %8s %6d %s", 
-			\ strlen(len(histdict)), i, line['time'], line['change'],
+			\ printf("%0*d) %8s %6d %4d %s", 
+			\ strlen(len(histdict)), i, line['time'], line['change'], line['save'], 
 			\ tag))
 		else
 			call append('$', 
-			\ printf("%0*d) %8s %s", 
-			\ strlen(len(histdict)), i, line['time'], 
+			\ printf("%0*d) %8s %1s %s", 
+			\ strlen(len(histdict)), i, line['time'], (line['save'] ? '*' : ' '),
 			\ tag))
 		endif
 		let i+=1
@@ -274,6 +281,7 @@ fun! s:DiffUndoBranch(change)"{{{1
 	let buffer=getline(1,'$')
 	try
 		exe ':u ' . prevchangenr
+		setl modifiable
 	catch /Vim(undo):Undo number \d\+ not found/
 		call s:WarningMsg("Undo Change not found!")
 	    "echohl WarningMsg | unsilent echo "Undo Change not found." |echohl Normal
@@ -458,7 +466,7 @@ fun! histwin#UndoBrowse()"{{{1
 		echoerr "Histwin: Undo has been disabled. Check your undolevel setting!"
 	endif
 endfun "}}}
-" Restore: {{{1
+" Modeline and Finish stuff: {{{1
 let &cpo=s:cpo
 unlet s:cpo
-" vim: ts=4 sts=4 fdm=marker com+=l\:\"
+" vim: ts=4 sts=4 fdm=marker com+=l\:\" fdl=0
