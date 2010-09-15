@@ -4,8 +4,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-06-30.
-" @Last Change: 2010-02-06.
-" @Revision:    0.0.686
+" @Last Change: 2010-09-05.
+" @Revision:    0.0.788
 
 
 " :filedoc:
@@ -93,8 +93,9 @@ function! tlib#input#List(type, ...) "{{{3
         let filter                 = tlib#list#Find(handlers, 'has_key(v:val, "filter")', '', 'v:val.filter')
         if !empty(filter)
             " let world.initial_filter = [[''], [filter]]
-            let world.initial_filter = [[filter]]
+            " let world.initial_filter = [[filter]]
             " TLogVAR world.initial_filter
+            call world.SetInitialFilter(filter)
         endif
     endif
     return tlib#input#ListW(world)
@@ -116,6 +117,7 @@ function! tlib#input#ListW(world, ...) "{{{3
     TVarArg 'cmd'
     let world = a:world
     let world.filetype = &filetype
+    let world.fileencoding = &fileencoding
     call world.SetMatchMode(tlib#var#Get('tlib_inputlist_match', 'wb'))
     call s:Init(world, cmd)
     " TLogVAR world.state, world.sticky, world.initial_index
@@ -123,10 +125,23 @@ function! tlib#input#ListW(world, ...) "{{{3
     if stridx(world.type, 'm') != -1
         call extend(key_agents, g:tlib_keyagents_InputList_m, 'force')
     endif
+    if has('menu')
+        amenu ]TLibInputListPopupMenu.Pick\ selected\ item <cr>
+        amenu ]TLibInputListPopupMenu.Select #
+        amenu ]TLibInputListPopupMenu.Select\ all <c-a>
+        amenu ]TLibInputListPopupMenu.Reset\ list <c-r>
+        amenu ]TLibInputListPopupMenu.Cancel <esc>
+        amenu ]TLibInputListPopupMenu.-StandardEntries- :
+    endif
     for handler in world.key_handlers
         let k = get(handler, 'key', '')
         if !empty(k)
             let key_agents[k] = handler.agent
+            if has('menu') && has_key(handler, 'help') && !empty(handler.help)
+                exec 'amenu ]TLibInputListPopupMenu.'. escape(handler.help, ' .\')
+                            \ .' '. handler.key_name
+                let world.has_menu = 1
+            endif
         endif
     endfor
     " let statusline  = &l:statusline
@@ -292,7 +307,11 @@ function! tlib#input#ListW(world, ...) "{{{3
                         let world.initial_display = 0
                         " TLogDBG 9
                     endif
-                    let world.state = ''
+                    if world.state =~ '\<hibernate\>'
+                        let world.state = 'suspend'
+                    else
+                        let world.state = ''
+                    endif
                 else
                     " if world.state == 'scroll'
                     "     let world.prefidx = world.offset
@@ -326,6 +345,7 @@ function! tlib#input#ListW(world, ...) "{{{3
                 elseif has_key(key_agents, c)
                     let sr = @/
                     silent! let @/ = lastsearch
+                    " TLogVAR c, key_agents[c]
                     " TLog "Agent: ". string(key_agents[c])
                     let world = call(key_agents[c], [world, world.GetSelectedItems(world.CurrentItem())])
                     call s:CheckAgentReturnValue(c, world)
@@ -336,10 +356,9 @@ function! tlib#input#ListW(world, ...) "{{{3
                 elseif c == 27
                     let world.state = 'exit empty'
                 elseif c == "\<LeftMouse>"
-                    let line = getline(v:mouse_lnum)
-                    let world.prefidx = substitute(matchstr(line, '^\d\+\ze[*:]'), '^0\+', '', '')
+                    let world.prefidx = world.GetLineIdx(v:mouse_lnum)
                     " let world.offset  = world.prefidx
-                    " TLogVAR v:mouse_lnum, line, world.prefidx
+                    " TLogVAR v:mouse_lnum, world.prefidx
                     if empty(world.prefidx)
                         " call feedkeys(c, 't')
                         let c = tlib#char#Get(world.timeout)
@@ -347,6 +366,22 @@ function! tlib#input#ListW(world, ...) "{{{3
                         continue
                     endif
                     throw 'pick'
+                elseif c == "\<RightMouse>"
+                    if has('menu')
+                        " if v:mouse_lnum != line('.')
+                        " endif
+                        let world.prefidx = world.GetLineIdx(v:mouse_lnum)
+                        let world.state = 'redisplay'
+                        call world.DisplayList('')
+                        if line('w$') - v:mouse_lnum < 6
+                            popup ]TLibInputListPopupMenu
+                        else
+                            popup! ]TLibInputListPopupMenu
+                        endif
+                    else
+                        let world.state = 'redisplay'
+                    endif
+                    " TLogVAR world.prefidx, world.state
                 elseif c >= 32
                     let world.state = 'display'
                     let numbase = get(world.numeric_chars, c, -99999)
@@ -485,11 +520,16 @@ function! tlib#input#ListW(world, ...) "{{{3
         " let &l:statusline = statusline
         " let &laststatus = laststatus
         silent! let @/  = lastsearch
+        if has('menu') && world.has_menu
+            silent! aunmenu ]TLibInputListPopupMenu
+        endif
+
         " TLogDBG 'finally 2'
         " TLogDBG string(world.Methods())
         " TLogVAR world.state
         " TLogDBG string(tlib#win#List())
         if world.state !~ '\<suspend\>'
+            " redraw
             " TLogVAR world.sticky
             if world.sticky
                 " TLogDBG "sticky"
@@ -513,7 +553,7 @@ function! tlib#input#ListW(world, ...) "{{{3
         "     call getchar(0)
         " endfor
         echo
-        " redraw
+        redraw!
     endtry
 endf
 
@@ -537,6 +577,9 @@ function! s:Init(world, cmd) "{{{3
         let a:world.initialized = 1
         call a:world.SetOrigin(1)
         call a:world.Reset(1)
+        if !empty(a:cmd)
+            let a:world.state .= ' '. a:cmd
+        endif
     endif
     " TLogVAR a:world.state, a:world.sticky
 endf
@@ -581,6 +624,8 @@ function! tlib#input#Resume(name, pick) "{{{3
         endfor
         unlet b:tlib_suspend
     endif
+    call tlib#autocmdgroup#Init()
+    autocmd! TLib InsertEnter,InsertChange <buffer>
     let b:tlib_{a:name}.state = 'display'
     " call tlib#input#List('resume '. a:name)
     let cmd = 'resume '. a:name
@@ -700,5 +745,29 @@ function! s:EditCallback(...) "{{{3
     let args = b:tlib_scratch_edit_args
     call tlib#scratch#CloseScratch(b:tlib_scratch_edit_scratch)
     call call(cb, args + [ok, text])
+endf
+
+
+function! tlib#input#Dialog(text, options, default) "{{{3
+    if has('dialog_con') || has('dialog_gui')
+        let opts = join(map(a:options, '"&". v:val'), "\n")
+        let val = confirm(a:text, opts)
+        if val
+            let yn = a:options[val - 1]
+        else
+            let yn = a:default
+        endif
+    else
+        let oi = index(a:options, a:default)
+        if oi == -1
+            let opts = printf("(%s|%s)", join(a:options, '/'), a:default)
+        else
+            let options = copy(a:options)
+            let options[oi] = toupper(options[oi])
+            let opts = printf("(%s)", join(a:options, '/'))
+        endif
+        let yn = inputdialog(a:text .' '. opts)
+    endif
+    return yn
 endf
 

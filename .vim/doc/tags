@@ -23,6 +23,7 @@
 :TLet	tlib.txt	/*:TLet*
 :TRequire	tlib.txt	/*:TRequire*
 :TScratch	tlib.txt	/*:TScratch*
+:TTimeCommand	tlib.txt	/*:TTimeCommand*
 :TVarArg	tlib.txt	/*:TVarArg*
 :UB	histwin.txt	/*:UB*
 :VikiDefine	viki.txt	/*:VikiDefine*
@@ -150,6 +151,15 @@ g:hookcursormoved_parenthesis_round_open	hookcursormoved.txt	/*g:hookcursormoved
 g:hookcursormoved_syntaxchange	hookcursormoved.txt	/*g:hookcursormoved_syntaxchange*
 g:hookcursormoved_syntaxleave	hookcursormoved.txt	/*g:hookcursormoved_syntaxleave*
 g:hookcursormoved_syntaxleave_oneline	hookcursormoved.txt	/*g:hookcursormoved_syntaxleave_oneline*
+g:tlib#cache#dont_purge	tlib.txt	/*g:tlib#cache#dont_purge*
+g:tlib#cache#purge_days	tlib.txt	/*g:tlib#cache#purge_days*
+g:tlib#cache#purge_every_days	tlib.txt	/*g:tlib#cache#purge_every_days*
+g:tlib#cache#run_script	tlib.txt	/*g:tlib#cache#run_script*
+g:tlib#cache#script_encoding	tlib.txt	/*g:tlib#cache#script_encoding*
+g:tlib#vim#simalt_maximize	tlib.txt	/*g:tlib#vim#simalt_maximize*
+g:tlib#vim#simalt_restore	tlib.txt	/*g:tlib#vim#simalt_restore*
+g:tlib#vim#use_vimtweak	tlib.txt	/*g:tlib#vim#use_vimtweak*
+g:tlib#vim#use_wmctrl	tlib.txt	/*g:tlib#vim#use_wmctrl*
 g:tlib_cache	tlib.txt	/*g:tlib_cache*
 g:tlib_filename_sep	tlib.txt	/*g:tlib_filename_sep*
 g:tlib_handlers_EditList	tlib.txt	/*g:tlib_handlers_EditList*
@@ -297,6 +307,7 @@ tlib#Filter_cnf#New()	tlib.txt	/*tlib#Filter_cnf#New()*
 tlib#Filter_cnfd#New()	tlib.txt	/*tlib#Filter_cnfd#New()*
 tlib#Filter_fuzzy#New()	tlib.txt	/*tlib#Filter_fuzzy#New()*
 tlib#Filter_seq#New()	tlib.txt	/*tlib#Filter_seq#New()*
+tlib#Object#Methods()	tlib.txt	/*tlib#Object#Methods()*
 tlib#Object#New()	tlib.txt	/*tlib#Object#New()*
 tlib#World#New()	tlib.txt	/*tlib#World#New()*
 tlib#agent#AND()	tlib.txt	/*tlib#agent#AND()*
@@ -347,6 +358,9 @@ tlib#arg#Key()	tlib.txt	/*tlib#arg#Key()*
 tlib#arg#Let()	tlib.txt	/*tlib#arg#Let()*
 tlib#arg#StringAsKeyArgs()	tlib.txt	/*tlib#arg#StringAsKeyArgs()*
 tlib#autocmdgroup#Init()	tlib.txt	/*tlib#autocmdgroup#Init()*
+tlib#balloon#Expr()	tlib.txt	/*tlib#balloon#Expr()*
+tlib#balloon#Register()	tlib.txt	/*tlib#balloon#Register()*
+tlib#balloon#Remove()	tlib.txt	/*tlib#balloon#Remove()*
 tlib#buffer#BufDo()	tlib.txt	/*tlib#buffer#BufDo()*
 tlib#buffer#CurrentByte()	tlib.txt	/*tlib#buffer#CurrentByte()*
 tlib#buffer#DeleteRange()	tlib.txt	/*tlib#buffer#DeleteRange()*
@@ -363,8 +377,12 @@ tlib#buffer#ScratchEnd()	tlib.txt	/*tlib#buffer#ScratchEnd()*
 tlib#buffer#ScratchStart()	tlib.txt	/*tlib#buffer#ScratchStart()*
 tlib#buffer#Set()	tlib.txt	/*tlib#buffer#Set()*
 tlib#buffer#ViewLine()	tlib.txt	/*tlib#buffer#ViewLine()*
+tlib#cache#Dir()	tlib.txt	/*tlib#cache#Dir()*
 tlib#cache#Filename()	tlib.txt	/*tlib#cache#Filename()*
 tlib#cache#Get()	tlib.txt	/*tlib#cache#Get()*
+tlib#cache#ListFilesInCache()	tlib.txt	/*tlib#cache#ListFilesInCache()*
+tlib#cache#MaybePurge()	tlib.txt	/*tlib#cache#MaybePurge()*
+tlib#cache#Purge()	tlib.txt	/*tlib#cache#Purge()*
 tlib#cache#Save()	tlib.txt	/*tlib#cache#Save()*
 tlib#char#Get()	tlib.txt	/*tlib#char#Get()*
 tlib#char#GetWithTimeout()	tlib.txt	/*tlib#char#GetWithTimeout()*
@@ -374,6 +392,8 @@ tlib#cmd#OutputAsList()	tlib.txt	/*tlib#cmd#OutputAsList()*
 tlib#cmd#Time()	tlib.txt	/*tlib#cmd#Time()*
 tlib#cmd#UseVertical()	tlib.txt	/*tlib#cmd#UseVertical()*
 tlib#comments#Comments()	tlib.txt	/*tlib#comments#Comments()*
+tlib#date#DiffInDays()	tlib.txt	/*tlib#date#DiffInDays()*
+tlib#date#SecondsSince1970()	tlib.txt	/*tlib#date#SecondsSince1970()*
 tlib#dir#CD()	tlib.txt	/*tlib#dir#CD()*
 tlib#dir#CanonicName()	tlib.txt	/*tlib#dir#CanonicName()*
 tlib#dir#Ensure()	tlib.txt	/*tlib#dir#Ensure()*
@@ -388,6 +408,7 @@ tlib#file#Split()	tlib.txt	/*tlib#file#Split()*
 tlib#file#With()	tlib.txt	/*tlib#file#With()*
 tlib#hook#Run()	tlib.txt	/*tlib#hook#Run()*
 tlib#input#CommandSelect()	tlib.txt	/*tlib#input#CommandSelect()*
+tlib#input#Dialog()	tlib.txt	/*tlib#input#Dialog()*
 tlib#input#Edit()	tlib.txt	/*tlib#input#Edit()*
 tlib#input#EditList()	tlib.txt	/*tlib#input#EditList()*
 tlib#input#List()	tlib.txt	/*tlib#input#List()*
@@ -456,11 +477,14 @@ tlib#var#EGet()	tlib.txt	/*tlib#var#EGet()*
 tlib#var#Get()	tlib.txt	/*tlib#var#Get()*
 tlib#var#Let()	tlib.txt	/*tlib#var#Let()*
 tlib#var#List()	tlib.txt	/*tlib#var#List()*
+tlib#vim#Maximize()	tlib.txt	/*tlib#vim#Maximize()*
+tlib#vim#RestoreWindow()	tlib.txt	/*tlib#vim#RestoreWindow()*
 tlib#win#GetLayout()	tlib.txt	/*tlib#win#GetLayout()*
 tlib#win#List()	tlib.txt	/*tlib#win#List()*
 tlib#win#Set()	tlib.txt	/*tlib#win#Set()*
 tlib#win#SetLayout()	tlib.txt	/*tlib#win#SetLayout()*
 tlib#win#Width()	tlib.txt	/*tlib#win#Width()*
+tlib#win#WinDo()	tlib.txt	/*tlib#win#WinDo()*
 tlib.txt	tlib.txt	/*tlib.txt*
 utl	utl_usr.txt	/*utl*
 utl-#idref	utl_ref.txt	/*utl-#idref*
