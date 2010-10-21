@@ -200,6 +200,7 @@ g:vikiTypewriterFont	viki.txt	/*g:vikiTypewriterFont*
 g:vikiUpperCharacters	viki.txt	/*g:vikiUpperCharacters*
 g:vikiUseParentSuffix	viki.txt	/*g:vikiUseParentSuffix*
 g:viki_intervikis	viki.txt	/*g:viki_intervikis*
+histwin	histwin.txt	/*histwin*
 histwin-browse	histwin.txt	/*histwin-browse*
 histwin-color	histwin.txt	/*histwin-color*
 histwin-config	histwin.txt	/*histwin-config*
@@ -209,6 +210,9 @@ histwin-feedback	histwin.txt	/*histwin-feedback*
 histwin-history	histwin.txt	/*histwin-history*
 histwin-keys	histwin.txt	/*histwin-keys*
 histwin-plugin	histwin.txt	/*histwin-plugin*
+histwin-prev	histwin.txt	/*histwin-prev*
+histwin-tags	histwin.txt	/*histwin-tags*
+histwin-ut	histwin.txt	/*histwin-ut*
 histwin-var	histwin.txt	/*histwin-var*
 histwin.txt	histwin.txt	/*histwin.txt*
 hookcursormoved#Enable()	hookcursormoved.txt	/*hookcursormoved#Enable()*
