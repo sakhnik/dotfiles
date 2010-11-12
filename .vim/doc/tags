@@ -413,6 +413,7 @@ tlib#cmd#Time()	tlib.txt	/*tlib#cmd#Time()*
 tlib#cmd#UseVertical()	tlib.txt	/*tlib#cmd#UseVertical()*
 tlib#comments#Comments()	tlib.txt	/*tlib#comments#Comments()*
 tlib#date#DiffInDays()	tlib.txt	/*tlib#date#DiffInDays()*
+tlib#date#Parse()	tlib.txt	/*tlib#date#Parse()*
 tlib#date#SecondsSince1970()	tlib.txt	/*tlib#date#SecondsSince1970()*
 tlib#dir#CD()	tlib.txt	/*tlib#dir#CD()*
 tlib#dir#CanonicName()	tlib.txt	/*tlib#dir#CanonicName()*
