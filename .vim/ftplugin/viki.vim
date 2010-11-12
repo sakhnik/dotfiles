@@ -2,12 +2,8 @@
 " @Author:      Tom Link (micathom AT gmail com?subject=vim)
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     12-Jдn-2004.
-" @Last Change: 2010-02-28.
-" @Revision: 418
-
-" if !g:vikiEnabled
-"     finish
-" endif
+" @Last Change: 2010-10-26.
+" @Revision: 433
 
 if exists("b:did_ftplugin") "{{{2
     finish
@@ -31,7 +27,7 @@ if !exists("b:vikiInverseFold")  | let b:vikiInverseFold  = 0 | endif "{{{2
 if !exists("g:vikiFoldBodyLevel")   | let g:vikiFoldBodyLevel = 6        | endif "{{{2
 
 " Choose folding method version
-if !exists("g:vikiFoldMethodVersion") | let g:vikiFoldMethodVersion = 4  | endif "{{{2
+if !exists("g:vikiFoldMethodVersion") | let g:vikiFoldMethodVersion = 7  | endif "{{{2
 
 " What is considered for folding.
 " This variable is only used if g:vikiFoldMethodVersion is 1.
@@ -55,9 +51,8 @@ setlocal expandtab
 setlocal iskeyword+={
 setlocal iskeyword-=_
 
-if has('balloon_eval') && has('balloon_multiline') && empty(&balloonexpr)
-    setlocal ballooneval
-    setlocal balloonexpr=viki#Balloon()
+if has('balloon_multiline')
+    call tlib#balloon#Register('viki#Balloon()')
 endif
 
 let &include='\(^\s*#INC.\{-}\(\sfile=\|:\)\)'
@@ -153,7 +148,27 @@ function! s:SetMaxLevel() "{{{3
     call winrestview(view)
 endf
 
-if g:vikiFoldMethodVersion == 5
+if g:vikiFoldMethodVersion == 7
+
+    function VikiFoldLevel(lnum)
+        let cline = getline(a:lnum)
+        let level = matchend(cline, '^\*\+')
+        " TLogVAR level, cline
+        if level == -1
+            return "="
+        else
+            return ">". level
+        endif
+    endf
+
+elseif g:vikiFoldMethodVersion == 6
+
+    " Fold paragraphs (see :help fold-expr)
+    function VikiFoldLevel(lnum)
+        return getline(a:lnum) =~ '^\\s*$' && getline(a:lnum + 1) =~ '\\S' ? '<1' : 1
+    endf
+
+elseif g:vikiFoldMethodVersion == 5
 
     function! VikiFoldLevel(lnum) "{{{3
         " TLogVAR a:lnum

@@ -74,6 +74,7 @@ OmniCpp_SelectFirstItem	omnicppcomplete.txt	/*OmniCpp_SelectFirstItem*
 OmniCpp_ShowAccess	omnicppcomplete.txt	/*OmniCpp_ShowAccess*
 OmniCpp_ShowPrototypeInAbbr	omnicppcomplete.txt	/*OmniCpp_ShowPrototypeInAbbr*
 OmniCpp_ShowScopeInAbbr	omnicppcomplete.txt	/*OmniCpp_ShowScopeInAbbr*
+VikiDefine()	viki.txt	/*VikiDefine()*
 VikiMinorMode()	viki.txt	/*VikiMinorMode()*
 VikiMode()	viki.txt	/*VikiMode()*
 VikiOpenSpecialFile()	viki.txt	/*VikiOpenSpecialFile()*
@@ -195,6 +196,7 @@ g:tlib_viewline_position	tlib.txt	/*g:tlib_viewline_position*
 g:vikiCacheInexistent	viki.txt	/*g:vikiCacheInexistent*
 g:vikiCommentStart	viki.txt	/*g:vikiCommentStart*
 g:vikiExplorer	viki.txt	/*g:vikiExplorer*
+g:vikiFoldMethodVersion	viki.txt	/*g:vikiFoldMethodVersion*
 g:vikiFreeMarker	viki.txt	/*g:vikiFreeMarker*
 g:vikiHeadingFont	viki.txt	/*g:vikiHeadingFont*
 g:vikiHide	viki.txt	/*g:vikiHide*
@@ -595,7 +597,6 @@ v_]%	matchit.txt	/*v_]%*
 v_a%	matchit.txt	/*v_a%*
 v_g%	matchit.txt	/*v_g%*
 v_sp	tlib.txt	/*v_sp*
-viki#Define()	viki.txt	/*viki#Define()*
 viki#FindAnchor()	viki.txt	/*viki#FindAnchor()*
 viki#GoBack()	viki.txt	/*viki#GoBack()*
 viki#GoParent()	viki.txt	/*viki#GoParent()*
@@ -607,7 +608,6 @@ viki-commands	viki.txt	/*viki-commands*
 viki-comments	viki.txt	/*viki-comments*
 viki-compile	viki.txt	/*viki-compile*
 viki-customization	viki.txt	/*viki-customization*
-viki-description	viki.txt	/*viki-description*
 viki-descriptions	viki.txt	/*viki-descriptions*
 viki-extended-names	viki.txt	/*viki-extended-names*
 viki-files	viki.txt	/*viki-files*
