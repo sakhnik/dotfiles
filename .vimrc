@@ -94,7 +94,7 @@ if exists("+mouse")
 endif
 if has("gui_running")
     if has("gui_gtk2")
-        set guifont=Monospace\ 16
+        set guifont=Monospace\ 14
     elseif has("x11")
     " Also for GTK 1
         set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
