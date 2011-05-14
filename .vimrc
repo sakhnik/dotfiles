@@ -113,6 +113,7 @@ set statusline=%<%f\ %H%M%R%=%-7.k%-14.(%l,%c%V%)\ %P
 set laststatus=2
 set viminfo='100,f1,<500,h,s10
 set clipboard=unnamed
+set completeopt=menu,longest,preview
 
 nnoremap <f2> :confirm w<cr>
 inoremap <f2> <c-o>:confirm w<cr>
