@@ -1,4 +1,6 @@
 :ErrorAtCursor	errormarker.txt	/*:ErrorAtCursor*
+:Histwin	histwin.txt	/*:Histwin*
+:ID	histwin.txt	/*:ID*
 :MSAdd	multiselect.txt	/*:MSAdd*
 :MSClear	multiselect.txt	/*:MSClear*
 :MSDelete	multiselect.txt	/*:MSDelete*
@@ -211,6 +213,7 @@ histwin-config	histwin.txt	/*histwin-config*
 histwin-contents	histwin.txt	/*histwin-contents*
 histwin-copyright	histwin.txt	/*histwin-copyright*
 histwin-feedback	histwin.txt	/*histwin-feedback*
+histwin-highl	histwin.txt	/*histwin-highl*
 histwin-history	histwin.txt	/*histwin-history*
 histwin-keys	histwin.txt	/*histwin-keys*
 histwin-plugin	histwin.txt	/*histwin-plugin*
