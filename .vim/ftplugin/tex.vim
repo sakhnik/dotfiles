@@ -12,7 +12,7 @@ let b:did_ftplugin = 1
 let s:save_cpo = &cpo
 set cpo-=C
 
-set makeprg=pdflatex\ %
+set makeprg=xelatex\ %
 
 " Restore the saved compatibility options.
 let &cpo = s:save_cpo
