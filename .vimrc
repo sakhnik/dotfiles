@@ -34,7 +34,7 @@ set ruler
 set noshowcmd
 set incsearch
 set wildmenu
-set wildmode=longest,list,full
+set wildmode=longest,list
 if has("win32")
     set shellpipe=2>&1\ \|\ tee
 endif
