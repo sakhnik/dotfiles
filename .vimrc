@@ -244,7 +244,7 @@ set showbreak=>
 set modeline
 if has('persistent_undo')
     set undofile
-    set undodir=/tmp/vim_undo
+    set undodir=/tmp/vim_undo-$USER
     if exists("*mkdir") && !isdirectory(&undodir)
         call mkdir(&undodir,"p")
     endif
