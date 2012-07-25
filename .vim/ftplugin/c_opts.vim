@@ -6,5 +6,5 @@ if exists('+colorcolumn')
 endif
 
 " Highlight too long lines
-let w:m1=matchadd('Search', '\%<81v.\%>79v', -1)
-let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
+"let w:m1=matchadd('Search', '\%<81v.\%>79v', -1)
+"let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
