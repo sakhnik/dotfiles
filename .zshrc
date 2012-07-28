@@ -36,3 +36,5 @@ alias timidity='timidity -Os'
 if fortune -e 2>/dev/null; then
     echo
 fi
+
+export EDITOR=vim
