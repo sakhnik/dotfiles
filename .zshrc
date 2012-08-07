@@ -7,6 +7,10 @@ bindkey -e
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/sakhnik/.zshrc'
 
+setopt AUTO_LIST
+unsetopt AUTO_MENU
+unsetopt MENU_COMPLETE
+
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
