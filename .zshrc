@@ -36,6 +36,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias cal='cal -m'
 alias timidity='timidity -Os'
+alias urldecode='python2 -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
 
 if fortune -e 2>/dev/null; then
     echo
