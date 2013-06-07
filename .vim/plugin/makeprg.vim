@@ -1,3 +1,39 @@
+"
+"
+"
+
+let s:loaded_makeprg_plugin = '0.1'
+
+if exists("loaded_makeprg_plugin")
+  finish
+endif
+let loaded_makeprg_plugin = 1
+
+" Find directory upwards
+function! s:find_builddir(expr)
+  let s:build_dir = getcwd()
+  while s:build_dir != '/'
+    let res = globpath(s:build_dir, a:expr)
+    if res != ""
+        return split(res)[0]
+    endif
+    let s:build_dir = fnamemodify(s:build_dir, ':h')
+  endwhile
+  return ""
+endfunction
+
+" Public Interface:
+command! -nargs=? Make call s:cmake(<f-args>)
+
+function! s:cmake(...)
+
+  let s:build_dir = s:find_builddir('BUILD*')
+  if s:build_dir != ""
+    let &makeprg='make --directory=' . s:build_dir
+    make
+  endif
+
+endfunction
 " Choose build method
 function! <SID>SetMakePrg()
     let makeprgs = ['make', 'bjam', 'g++ %']

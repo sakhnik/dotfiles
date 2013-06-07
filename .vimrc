@@ -85,10 +85,11 @@ else
 
 endif " has("autocmd")
 
-set expandtab
-set tabstop=8
+set noexpandtab
+set tabstop=4
 set cindent shiftwidth=4
 set cinoptions=:0,=1s,g0,(1s,M1
+set autochdir
 if exists("+mouse")
     set mouse=a
 endif
@@ -104,7 +105,7 @@ if has("gui_running")
 endif
 set path+=../include
 set listchars=tab:>-,trail:·,nbsp:%
-set list
+set nolist
 set guioptions-=T
 set mousehide
 set scrolloff=3
@@ -125,6 +126,7 @@ nnoremap <f10> :confirm qa<cr>
 inoremap <f10> <c-o>:confirm qa<cr>
 nnoremap <c-f8> :FencView<cr>
 inoremap <c-f8> <esc>:FencView<cr>
+nnoremap <c-n> :NERDTreeToggle<cr>
 
 vnoremap * y/\V<C-R>=substitute(escape(@@,"/\\"),"\n","\\\\n","ge")<CR><CR>
 vnoremap # y?\V<C-R>=substitute(escape(@@,"?\\"),"\n","\\\\n","ge")<CR><CR>
