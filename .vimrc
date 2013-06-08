@@ -195,6 +195,9 @@ let g:Tex_SmartKeyDot = 0
 runtime! plugin/*.vim
 runtime ftplugin/man.vim
 
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+
 "if filereadable("Jamfile") || filereadable("Jamroot")
 "    set makeprg=bjam
 "endif
