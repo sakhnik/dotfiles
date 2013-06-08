@@ -212,35 +212,6 @@ if has("autocmd")
         \ nnoremap <buffer> q ZQ
 endif
 
-" Viki settings
-let g:vikiNameSuffix=".viki"
-let g:vikiNameTypes="sSeuixwf"
-if has("autocmd")
-    autocmd! BufRead,BufNewFile *.viki setlocal filetype=viki foldlevel=99
-endif
-
-let g:EclimSgmlCompleteEndTag=0
-
-let OmniCpp_MayCompleteDot = 0
-let OmniCpp_MayCompleteArrow = 0
-let OmniCpp_MayCompleteScope = 0
-
-set tags=tags;/
-let kernel_ver=system('uname -r')
-let kernel_ver=substitute(kernel_ver, '\n$', '', '')
-let kernel_tags='/lib/modules/' . kernel_ver . '/build/tags'
-if filereadable(kernel_tags)
-    let &tags .= ',' . kernel_tags
-endif
-
-if isdirectory($HOME.'/.tags')
-    let tagfiles = globpath('~/.tags', '*.tags')
-    if !empty(&tags)
-        let &tags .= ','
-    endif
-    let &tags .= substitute(tagfiles, "\n", ",", "g")
-endif
-
 set vb t_vb=      " Не бікати взагалі ніколи
 set keymap=uk     " Завантажити українську мапу клавіш
 set iminsert=0    " Встановити англійську (i_ctrl-^)

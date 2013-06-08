@@ -1,2 +1,1 @@
 histwin-0.23.vba: call delete('/home/sakhnik/.vim/plugin/histwinPlugin.vim')|call delete('/home/sakhnik/.vim/autoload/histwin.vim')|call delete('/home/sakhnik/.vim/doc/histwin.txt')
-screen.vba: call delete('/home/sakhnik/.vim/autoload/screen.vim')|call delete('/home/sakhnik/.vim/doc/screen.txt')|call delete('/home/sakhnik/.vim/plugin/screen.vim')
