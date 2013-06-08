@@ -1,6 +1,4 @@
 :ErrorAtCursor	errormarker.txt	/*:ErrorAtCursor*
-:Histwin	histwin.txt	/*:Histwin*
-:ID	histwin.txt	/*:ID*
 :MSAdd	multiselect.txt	/*:MSAdd*
 :MSClear	multiselect.txt	/*:MSClear*
 :MSDelete	multiselect.txt	/*:MSDelete*
@@ -20,7 +18,6 @@
 :MSVMatchAddByDiffHlGroup	multiselect.txt	/*:MSVMatchAddByDiffHlGroup*
 :MSVMatchAddBySynGroup	multiselect.txt	/*:MSVMatchAddBySynGroup*
 :MatchDebug	matchit.txt	/*:MatchDebug*
-:UB	histwin.txt	/*:UB*
 AN	alternate.txt	/*AN*
 AS	alternate.txt	/*AS*
 AT	alternate.txt	/*AT*
@@ -89,22 +86,6 @@ gundo_preview_statusline	gundo.txt	/*gundo_preview_statusline*
 gundo_right	gundo.txt	/*gundo_right*
 gundo_tree_statusline	gundo.txt	/*gundo_tree_statusline*
 gundo_width	gundo.txt	/*gundo_width*
-histwin	histwin.txt	/*histwin*
-histwin-browse	histwin.txt	/*histwin-browse*
-histwin-color	histwin.txt	/*histwin-color*
-histwin-config	histwin.txt	/*histwin-config*
-histwin-contents	histwin.txt	/*histwin-contents*
-histwin-copyright	histwin.txt	/*histwin-copyright*
-histwin-feedback	histwin.txt	/*histwin-feedback*
-histwin-highl	histwin.txt	/*histwin-highl*
-histwin-history	histwin.txt	/*histwin-history*
-histwin-keys	histwin.txt	/*histwin-keys*
-histwin-plugin	histwin.txt	/*histwin-plugin*
-histwin-prev	histwin.txt	/*histwin-prev*
-histwin-tags	histwin.txt	/*histwin-tags*
-histwin-ut	histwin.txt	/*histwin-ut*
-histwin-var	histwin.txt	/*histwin-var*
-histwin.txt	histwin.txt	/*histwin.txt*
 im_1	imaps.txt	/*im_1*
 imaps-usage	imaps.txt	/*imaps-usage*
 imaps.txt	imaps.txt	/*imaps.txt*

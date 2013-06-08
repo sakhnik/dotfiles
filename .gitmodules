@@ -10,3 +10,6 @@
 [submodule ".vim/bundle/screen"]
 	path = .vim/bundle/screen
 	url = git://github.com/ervandew/screen.git
+[submodule ".vim/bundle/histwin"]
+	path = .vim/bundle/histwin
+	url = git://github.com/chrisbra/histwin.vim.git
