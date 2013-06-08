@@ -127,6 +127,7 @@ inoremap <f10> <c-o>:confirm qa<cr>
 nnoremap <c-f8> :FencView<cr>
 inoremap <c-f8> <esc>:FencView<cr>
 nnoremap <c-n> :NERDTreeToggle<cr>
+nnoremap <f5> :GundoToggle<cr>
 
 vnoremap * y/\V<C-R>=substitute(escape(@@,"/\\"),"\n","\\\\n","ge")<CR><CR>
 vnoremap # y?\V<C-R>=substitute(escape(@@,"?\\"),"\n","\\\\n","ge")<CR><CR>
