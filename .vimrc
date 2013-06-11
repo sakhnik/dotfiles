@@ -89,7 +89,7 @@ set noexpandtab
 set tabstop=4
 set cindent shiftwidth=4
 set cinoptions=:0,=1s,g0,(1s,M1
-set autochdir
+"set autochdir
 if exists("+mouse")
     set mouse=a
 endif
@@ -115,6 +115,7 @@ set laststatus=2
 set viminfo='100,f1,<500,h,s10
 set clipboard=unnamed
 set completeopt=menu,longest,preview
+set tags=./tags,tags,tags;/
 
 nnoremap <f2> :confirm w<cr>
 inoremap <f2> <c-o>:confirm w<cr>
@@ -192,6 +193,8 @@ let g:Tex_ViewRule_dvi = 'evince'
 let g:Tex_SmartKeyBS = 0
 let g:Tex_SmartKeyQuote = 0
 let g:Tex_SmartKeyDot = 0
+
+let g:clang_jumpto_declaration_key = '<C-}>'
 
 runtime! plugin/*.vim
 runtime ftplugin/man.vim
