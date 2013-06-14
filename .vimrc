@@ -104,8 +104,8 @@ if has("gui_running")
     endif
 endif
 set path+=../include
-set listchars=tab:>-,trail:·,nbsp:%
-set nolist
+set listchars=tab:»\ ,trail:·,nbsp:%
+set list
 set guioptions-=T
 set mousehide
 set scrolloff=3
@@ -144,7 +144,7 @@ if exists(":vnew") && exists(":diffthis")
         diffthis
         exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
     endfunction
-    com! Diff call s:DiffWithSaved() 
+    com! Diff call s:DiffWithSaved()
 endif
 
 if exists('+shellslash')
@@ -206,16 +206,6 @@ execute pathogen#infect()
 "    set makeprg=bjam
 "endif
 
-if has("autocmd")
-    " Переносити довгі рядки у текстових файлах по словах
-    autocmd BufRead *\.txt* setlocal lbr
-    " More convenient man navigation
-    autocmd FileType man
-        \ nnoremap <buffer> <space> <c-f> |
-        \ nnoremap <buffer> <bs> <c-b> |
-        \ nnoremap <buffer> q ZQ
-endif
-
 set vb t_vb=      " Не бікати взагалі ніколи
 set keymap=uk     " Завантажити українську мапу клавіш
 set iminsert=0    " Встановити англійську (i_ctrl-^)
@@ -229,5 +219,9 @@ if has('persistent_undo')
         call mkdir(&undodir,"p")
     endif
 endif
+
+match ErrorMsg '\s\+$\| \+\ze\t'
+nnoremap <Leader><space> /\s\+$\\| \+\ze\t<cr>
+
 
 "let $PAGER=''
