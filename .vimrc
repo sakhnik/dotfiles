@@ -223,5 +223,9 @@ endif
 match ErrorMsg '\s\+$\| \+\ze\t'
 nnoremap <Leader><space> /\s\+$\\| \+\ze\t<cr>
 
+" Ignore timestamp lines in Google Test output
+let gtest_efm = '%E%f:%l:\ Failure'
+let gtest_efm .= ',%Z%m'
+let &efm = gtest_efm . ',' . &efm
 
 "let $PAGER=''
