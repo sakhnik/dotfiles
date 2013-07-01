@@ -34,13 +34,17 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+chroot='${debian_chroot:+($debian_chroot)}'
+user_host='\u@\h'
+path='$(p=${PWD/#"$HOME"/~};((${#p}>30))&&echo "${p::10}…${p:(-19)}"||echo "\w")'
+git_branch='$(git branch 2>/dev/null | awk "/^*/ { printf \" [%s]\", \$2 }" 2>/dev/null)'
 if [ "$color_prompt" = yes ]; then
-    branch=`__git_ps1 " [%s]" 2>/dev/null`
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w`__git_ps1 " [%s]" 2>/dev/null`\[\033[00m\] \$ '
+    PS1=${chroot}'\[\033[01;32m\]'${user_host}'\[\033[00m\]:\[\033[01;34m\]'${path}'\[\033[00m\]'${git_branch}'\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1=${chroot}${user_host}':'${path}${git_branch}'\$ '
 fi
 unset color_prompt force_color_prompt
+unset chroot user_host path git_branch
 
 # User specific aliases and functions
 
@@ -137,3 +141,4 @@ ruler()
 
 export EDITOR=vim
 
+alias gpush='git push origin $(git branch | awk "/^*/ { print \$2; }"):refs/for/master'
