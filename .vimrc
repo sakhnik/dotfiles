@@ -86,9 +86,10 @@ else
 endif " has("autocmd")
 
 set noexpandtab
+set smarttab
 set tabstop=4
 set cindent shiftwidth=4
-set cinoptions=:0,=1s,g0,(1s,M1
+set cinoptions=:0,=1s,g0,(0,M1,U0,u0
 "set autochdir
 if exists("+mouse")
     set mouse=a
