@@ -13,9 +13,13 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+if [ -n "$DISPLAY" -a "$TERM" == "xterm" ]; then
+    export TERM=xterm-256color
+fi
+
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-*color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -100,6 +104,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias cal='cal -m'
 alias timidity='timidity -Os'
+alias youtube-viewer='perl -X /usr/bin/youtube-viewer'
 
 vman()
 {

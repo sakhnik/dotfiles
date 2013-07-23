@@ -36,7 +36,7 @@ function! s:cmake(...)
 endfunction
 " Choose build method
 function! <SID>SetMakePrg()
-    let makeprgs = ['make', 'bjam', 'g++ %']
+    let makeprgs = ['make', 'bjam', 'g++ -std=c++11 %']
     let prompt_makeprgs = []
     let index = 0
     while index < len(makeprgs)
