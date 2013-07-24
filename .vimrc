@@ -129,6 +129,7 @@ inoremap <f10> <c-o>:confirm qa<cr>
 nnoremap <c-f8> :FencView<cr>
 inoremap <c-f8> <esc>:FencView<cr>
 nnoremap <c-n> :NERDTreeToggle<cr>
+nnoremap <f4> :MRU<cr>
 nnoremap <f5> :GundoToggle<cr>
 
 vnoremap * y/\V<C-R>=substitute(escape(@@,"/\\"),"\n","\\\\n","ge")<CR><CR>
@@ -136,6 +137,9 @@ vnoremap # y?\V<C-R>=substitute(escape(@@,"?\\"),"\n","\\\\n","ge")<CR><CR>
 nnoremap <Leader>; :<c-u>ls!<Bar>sleep <c-r>=v:count1<cr><cr><cr>
 vnoremap <Leader>/ <esc>/\%V
 vnoremap <Leader>? <esc>?\%V
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
 
 if exists(":vnew") && exists(":diffthis")
     function! s:DiffWithSaved()
@@ -170,10 +174,6 @@ noremap <C-Tab> <C-W>w
 inoremap <C-Tab> <C-O><C-W>w
 cnoremap <C-Tab> <C-C><C-W>w
 onoremap <C-Tab> <C-C><C-W>w
-
-" SelectBuf shortcut
-nmap <unique> <silent> <f4> <Plug>SelectBuf
-imap <unique> <silent> <f4> <esc><Plug>SelectBuf
 
 " headers shouldn't be ignored!
 let g:netrw_sort_sequence='[\/]$,*,\.bak$,\.o$,\.info$,\.swp$,\.obj$'

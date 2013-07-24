@@ -40,7 +40,7 @@ fi
 
 chroot='${debian_chroot:+($debian_chroot)}'
 user_host='\u@\h'
-path='$(p=${PWD/#"$HOME"/~};((${#p}>30))&&echo "${p::10}…${p:(-19)}"||echo "\w")'
+path='$(p=${PWD/#"$HOME"/~};((${#p}>30))&&echo "${p::10}*${p:(-19)}"||echo "\w")'
 git_branch='$(git branch 2>/dev/null | grep "^*" | sed "s/^* \(.*\)/ [\1]/")'
 if [ "$color_prompt" = yes ]; then
     PS1=${chroot}'\[\033[01;32m\]'${user_host}'\[\033[00m\]:\[\033[01;34m\]'${path}'\[\033[00m\]'${git_branch}'\$ '
