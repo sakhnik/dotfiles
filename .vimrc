@@ -76,6 +76,8 @@ if has("autocmd")
         autocmd BufNewFile *.*  silent! execute '0r $HOME/.vim/templates/skeleton.'.expand("<afile>:e")
     augroup END
 
+    autocmd bufwritepost .vimrc source $MYVIMRC
+
     " Substitute everything between [:VIM_EVAL:] and [:END_EVAL:]
     " with the result of expression in it
     autocmd BufNewFile *    %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
@@ -120,10 +122,6 @@ set tags=./tags,tags,tags;/
 
 nnoremap <f2> :confirm w<cr>
 inoremap <f2> <c-o>:confirm w<cr>
-nnoremap <f3> :cn<cr>
-inoremap <f3> <c-o>:cn<cr>
-nnoremap <s-f3> :cp<cr>
-inoremap <s-f3> <c-o>:cp<cr>
 nnoremap <f10> :confirm qa<cr>
 inoremap <f10> <c-o>:confirm qa<cr>
 nnoremap <c-f8> :FencView<cr>
