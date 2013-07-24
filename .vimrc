@@ -197,6 +197,13 @@ let g:Tex_SmartKeyDot = 0
 
 let g:clang_jumpto_declaration_key = '<C-}>'
 
+let g:airline_theme='dark'
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+"let g:airline_linecolumn_prefix = '¶ '
+let g:airline_fugitive_prefix = '⎇ '
+let g:airline_paste_symbol = 'ρ'
+
 runtime! plugin/*.vim
 runtime ftplugin/man.vim
 
