@@ -207,7 +207,7 @@ let g:airline_paste_symbol = 'ρ'
 runtime! plugin/*.vim
 runtime ftplugin/man.vim
 
-runtime bundle/vim-pathogen/autoload/pathogen.vim
+runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 set vb t_vb=      " Не бікати взагалі ніколи
