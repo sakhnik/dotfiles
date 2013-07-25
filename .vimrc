@@ -1,25 +1,25 @@
 set nocompatible
 " Let's parse $VIMINIT, which is like "source path"
 if $VIMINIT =~ 'source\s\+.*'
-    let f1 = substitute($VIMINIT, 'source\s\+\(.*\)', '\1', "")
-    let f2 = fnamemodify(f1, ":p:h").'/runtime'
-    let &runtimepath=f2.','.$VIMRUNTIME
+	let f1 = substitute($VIMINIT, 'source\s\+\(.*\)', '\1', "")
+	let f2 = fnamemodify(f1, ":p:h").'/runtime'
+	let &runtimepath=f2.','.$VIMRUNTIME
 endif
 let &termencoding=&encoding
 if &term == "win32"
-    set termencoding=cp866
+	set termencoding=cp866
 elseif &termencoding == "koi8-r"
-    set termencoding=koi8-u
+	set termencoding=koi8-u
 endif
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp1251,default
 runtime $VIMRUNTIME/vimrc_example.vim
 if &term == "linux"
-    set t_ve+=[?81;0;112c
+	set t_ve+=[?81;0;112c
 endif
 
 if v:progname =~? "evim"
-    finish
+	finish
 endif
 
 " Make shift-insert work like in Xterm
@@ -42,48 +42,51 @@ endif
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
-    syntax on
-    set hlsearch
+	syntax on
+	set hlsearch
 endif
 
 if has("autocmd")
 
-    filetype plugin indent on
+	filetype plugin indent on
 
-    augroup vimrcEx
-        au!
+	augroup vimrcEx
+		au!
 
-        " For all text files set 'textwidth' to 78 characters.
-        autocmd FileType text setlocal textwidth=78 lbr
+		" For all text files set 'textwidth' to 78 characters.
+		autocmd FileType text setlocal textwidth=78 lbr
 
-        " When editing a file, always jump to the last known cursor position.
-        " Don't do it when the position is invalid or when inside an event handler
-        " (happens when dropping a file on gvim).
-        autocmd BufReadPost *
-                    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                    \   exe "normal g`\"" |
-                    \ endif
+		" When editing a file, always jump to the last known cursor position.
+		" Don't do it when the position is invalid or when inside an event handler
+		" (happens when dropping a file on gvim).
+		autocmd BufReadPost *
+		    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+		    \   exe "normal g`\"" |
+		    \ endif
 
-    augroup END
+	augroup END
 
-    " Don't preserve a buffer when reading from stdin
-    " This is useful for "svn diff | vim -"
-    autocmd StdinReadPost * setlocal buftype=nofile
+	" Don't preserve a buffer when reading from stdin
+	" This is useful for "svn diff | vim -"
+	autocmd StdinReadPost * setlocal buftype=nofile
 
-    augroup templates
-        au!
-        " Read source file skeletons
-        autocmd BufNewFile *.*  silent! execute '0r $HOME/.vim/templates/skeleton.'.expand("<afile>:e")
-    augroup END
+	augroup templates
+		au!
+		" Read source file skeletons
+		autocmd BufNewFile *.*  silent! execute '0r $HOME/.vim/templates/skeleton.'.expand("<afile>:e")
+	augroup END
 
-    autocmd bufwritepost .vimrc source $MYVIMRC
+	augroup reload_vimrc
+		au!
+		autocmd bufwritepost $MYVIMRC source $MYVIMRC
+	augroup END
 
-    " Substitute everything between [:VIM_EVAL:] and [:END_EVAL:]
-    " with the result of expression in it
-    autocmd BufNewFile *    %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+	" Substitute everything between [:VIM_EVAL:] and [:END_EVAL:]
+	" with the result of expression in it
+	autocmd BufNewFile *    %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 else
 
-    set autoindent      " always set autoindenting on
+	set autoindent      " always set autoindenting on
 
 endif " has("autocmd")
 
@@ -94,17 +97,17 @@ set cindent shiftwidth=4
 set cinoptions=:0,=1s,g0,(0,M1,U0,u0
 "set autochdir
 if exists("+mouse")
-    set mouse=a
+	set mouse=a
 endif
 if has("gui_running")
-    if has("gui_gtk2")
-        set guifont=Monospace\ 14
-    elseif has("x11")
-    " Also for GTK 1
-        set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
-    elseif has("gui_win32")
-        set guifont=Courier_New:h12:cRUSSIAN
-    endif
+	if has("gui_gtk2")
+		set guifont=Monospace\ 14
+	elseif has("x11")
+		" Also for GTK 1
+		set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
+	elseif has("gui_win32")
+		set guifont=Courier_New:h12:cRUSSIAN
+	endif
 endif
 set path+=../include
 set listchars=tab:»\ ,trail:·,nbsp:%
@@ -140,22 +143,22 @@ vnoremap <Leader>? <esc>?\%V
 cmap w!! w !sudo tee > /dev/null %
 
 if exists(":vnew") && exists(":diffthis")
-    function! s:DiffWithSaved()
-        let filetype=&ft
-        diffthis
-        vnew | r # | normal 1Gdd
-        diffthis
-        exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-    endfunction
-    com! Diff call s:DiffWithSaved()
+	function! s:DiffWithSaved()
+		let filetype=&ft
+		diffthis
+		vnew | r # | normal 1Gdd
+		diffthis
+		exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+	endfunction
+	com! Diff call s:DiffWithSaved()
 endif
 
 if exists('+shellslash')
-    set shellslash
+	set shellslash
 endif
 
 if exists(":colors")
-    colors incognito
+	colors incognito
 endif
 
 " MRU plugin settings
@@ -208,10 +211,6 @@ runtime ftplugin/man.vim
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
-"if filereadable("Jamfile") || filereadable("Jamroot")
-"    set makeprg=bjam
-"endif
-
 set vb t_vb=      " Не бікати взагалі ніколи
 set keymap=uk     " Завантажити українську мапу клавіш
 set iminsert=0    " Встановити англійську (i_ctrl-^)
@@ -219,11 +218,11 @@ set imsearch=0
 set showbreak=>
 set modeline
 if has('persistent_undo')
-    set undofile
-    set undodir=/tmp/vim_undo-$USER
-    if exists("*mkdir") && !isdirectory(&undodir)
-        call mkdir(&undodir,"p")
-    endif
+	set undofile
+	set undodir=/tmp/vim_undo-$USER
+	if exists("*mkdir") && !isdirectory(&undodir)
+		call mkdir(&undodir,"p")
+	endif
 endif
 
 match ErrorMsg '\s\+$\| \+\ze\t'
@@ -235,3 +234,4 @@ let gtest_efm .= ',%Z%m'
 let &efm = gtest_efm . ',' . &efm
 
 "let $PAGER=''
+"vim: set noet ts=4 sw=4:
