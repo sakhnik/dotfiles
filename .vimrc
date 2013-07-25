@@ -129,7 +129,6 @@ nnoremap <f10> :confirm qa<cr>
 inoremap <f10> <c-o>:confirm qa<cr>
 nnoremap <c-f8> :FencView<cr>
 inoremap <c-f8> <esc>:FencView<cr>
-nnoremap <c-n> :NERDTreeToggle<cr>
 nnoremap <f4> :MRU<cr>
 nnoremap <f5> :GundoToggle<cr>
 
@@ -215,7 +214,7 @@ set vb t_vb=      " Не бікати взагалі ніколи
 set keymap=uk     " Завантажити українську мапу клавіш
 set iminsert=0    " Встановити англійську (i_ctrl-^)
 set imsearch=0
-set showbreak=>
+set showbreak=↪
 set modeline
 if has('persistent_undo')
 	set undofile
