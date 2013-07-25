@@ -1,0 +1,24 @@
+[user]
+	name = Anatolii Sakhnik
+	email = anatolii.sakhnik@lge.com
+[alias]
+	review = push origin HEAD:refs/for/master
+	ctags = !.git/hooks/ctags
+[color]
+	ui = true
+[commit]
+	template = /home/sakhnik/.git-templates/commit-template.txt
+[init]
+	templatedir = /home/sakhnik/.git-templates/skel
+[url "git://172.31.149.237/git/g2g/"]
+	insteadOf = ssh://g2g.palm.com/
+[url "ssh://g2g.palm.com/"]
+	pushInsteadOf = ssh://g2g.palm.com/
+[url "git://172.31.149.237/git/gpro/"]
+	insteadOf = ssh://gpro.palm.com/
+[url "ssh://gpro.palm.com/"]
+	pushInsteadOf = ssh://gpro.palm.com/
+[push]
+	default = simple
+[core]
+	excludesfile = /home/sakhnik/.git-templates/ignore

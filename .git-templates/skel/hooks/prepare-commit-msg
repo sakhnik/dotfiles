@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# Install into your local repository's .git/hooks/prepare-commit-msg
+# Then enable by running `chmod +x .git/hooks/prepare-commit-msg`
+
+DCO=$(git var GIT_AUTHOR_IDENT | sed -n 's/^\(.*>\).*$/Open-webOS-DCO-1.0-Signed-off-by: \1/p')
+grep -qs "^$DCO" "$1" || echo "$DCO" >> "$1"

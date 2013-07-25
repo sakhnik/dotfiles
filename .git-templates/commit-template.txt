@@ -1,0 +1,102 @@
+# For all commits
+# ---------------
+# The summary line:
+# - Should not contain a trailing period
+# - Restrict to 50 characters.
+# - Must be followed by a blank line.
+#
+# For commits to components
+# -------------------------
+# The summary line should be in the present tense and imperative voice.
+# On its own, it should read like a command. It should also make sense
+# when inserted into the following sentence:
+#
+#     "This commit will <summary line>."
+#
+# For commits to meta-* layers
+# ----------------------------
+# Conform to the guidelines on the wiki, at
+#
+# http://wiki.lgsvl.com/display/TechDoc/Component+naming+and+commit+message+conventions
+#
+#
+# The ruler below acts as a visual cue to the maximum summary line length
+#-------------------------------------------------
+<Summary Line>
+
+# The ruler below acts as a visual cue to the maximum content line length
+#-----------------------------------------------------------------------
+:Release Notes:
+# Enter an english language description of what this commit
+# implements. These will be extracted to form the release notes
+# for the official build.
+#
+# Do not make any attempt to format this  section. It will be
+# reflowed to form a paragraph in the release notes.
+
+:Detailed Notes:
+# Describe the problem this commit addresses, and how it fixes it.
+#
+# - Don't assume the reader knows the original problem
+# - Don't assume the reader has access to external websites
+# - Don't assume the code is self-documenting
+# - Describe why the change is being made
+# - Ensure there is sufficient information for a useful review
+# - Describe any limitations in the commit (e.g. stub behavior)
+#
+# This section can be formatted. It is inserted into the release notes
+# as preformatted text
+
+:Testing Performed:
+# Insert a detailed description of the testing you performed before
+# committing this change for review.
+#
+# If you didn't test it, you shouldn't be committing it. Otherwise,
+# you know what you did, so write it down.
+#
+# This section can be formatted. It is inserted into the release notes
+# as preformatted text
+
+:QA Notes:
+# If the commit requires special attention from QA, insert them here.
+# This may cover special testing they will need to perform, or other
+# dependencies etc.
+#
+# If no notes are required, leave the section empty (but do not delete
+# the tag or blank line)
+#
+# This section can be formatted. It is inserted into the release notes
+# as preformatted text
+
+:Issues Addressed:
+# For each JIRA ticket this change addresses, insert line containing
+# the JIRA reference and summary line. There should be a JIRA for
+# any work you spend time on. These lines will be used in future for
+# automating the JIRA workflow. These lines may exceed 72 characters
+#
+# Replace the line below.
+[GF-9999] Summary
+
+#
+# This template lays out the required form for all commit messages. At a
+# future time, gerrit will automatically verify the format and reject
+# commits which do not conform.
+#
+# Observe the following general rules.
+#
+# - DO visit https://wiki.openstack.org/wiki/GitCommitMessages for an
+#      excellent commentary on commit message content.
+# - DO leave all comment lines (beginning with a '#') in place. They
+#      will not appear in the commit message. Feel free to delete the
+#      comments once you are comfortable with the format.
+# - DO Wrap all lines other than the summary line, an possibly JIRA
+#      refrences, at 72 characters.
+# - DO Reference all JIRAs. There are two formats you can use to
+#      reference JIRA. References in the form [GF-9999] will be picked
+#      up in the  release notes. References in the form GF-9999 will not.
+#
+# - DO NOT delete blank lines in the template
+# - DO NOT delete lines containing section markers (:<text>:)
+# - DO NOT put waffle in any section. It will appear in the release
+#          notes, probably with your name attached.
+#
