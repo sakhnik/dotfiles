@@ -204,6 +204,8 @@ let g:airline_right_sep = ''
 let g:airline_fugitive_prefix = '⎇ '
 let g:airline_paste_symbol = 'ρ'
 
+let g:ctrlp_extensions = ['tag']
+
 runtime! plugin/*.vim
 runtime ftplugin/man.vim
 
