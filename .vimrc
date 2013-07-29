@@ -205,6 +205,13 @@ let g:airline_fugitive_prefix = '⎇ '
 let g:airline_paste_symbol = 'ρ'
 
 let g:ctrlp_extensions = ['tag']
+let g:ctrlp_show_hidden = 1
+"let g:ctrlp_use_caching = 1
+"let g:ctrlp_cache_dir = '/tmp/ctrlp-'.$USER
+"set wildignore+=*/BUILD*/*
+let g:ctrlp_custom_ignore = {
+	\ 'dir':  '\v[\/](\.git|BUILD.*)$'
+	\ }
 
 runtime! plugin/*.vim
 runtime ftplugin/man.vim
