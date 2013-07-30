@@ -1,9 +1,6 @@
 [submodule ".vim/bundle/pathogen"]
 	path = .vim/bundle/pathogen
 	url = https://github.com/tpope/vim-pathogen.git
-[submodule ".vim/bundle/clang_complete"]
-	path = .vim/bundle/clang_complete
-	url = git://github.com/Rip-Rip/clang_complete.git
 [submodule ".vim/bundle/screen"]
 	path = .vim/bundle/screen
 	url = git://github.com/ervandew/screen.git
@@ -31,3 +28,6 @@
 [submodule ".vim/bundle/unimpaired"]
 	path = .vim/bundle/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+[submodule ".vim/bundle/ycm"]
+	path = .vim/bundle/ycm
+	url = https://github.com/Valloric/YouCompleteMe.git
