@@ -115,7 +115,6 @@ set list
 set guioptions-=T
 set mousehide
 set scrolloff=3
-let Tlist_Inc_Winwidth=0
 set statusline=%<%f\ %H%M%R%=%-7.k%-14.(%l,%c%V%)\ %P
 set laststatus=2
 set viminfo='100,f1,<500,h,s10
@@ -206,7 +205,7 @@ let g:ctrlp_show_hidden = 1
 "let g:ctrlp_cache_dir = '/tmp/ctrlp-'.$USER
 "set wildignore+=*/BUILD*/*
 let g:ctrlp_custom_ignore = {
-	\ 'dir':  '\v[\/](\.git|\CBUILD[-a-z0-9]*)$'
+	\ 'dir':  '\v[\/](\.git|\CBUILD[-_a-z0-9]*)$'
 	\ }
 
 let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
