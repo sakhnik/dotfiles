@@ -174,16 +174,12 @@ noremap <C-Tab> <C-W>w
 inoremap <C-Tab> <C-O><C-W>w
 cnoremap <C-Tab> <C-C><C-W>w
 onoremap <C-Tab> <C-C><C-W>w
+nnoremap <silent> \' :e $MYVIMRC<cr>
 
 " headers shouldn't be ignored!
 let g:netrw_sort_sequence='[\/]$,*,\.bak$,\.o$,\.info$,\.swp$,\.obj$'
 
 let b:match_words = '\s*#\s*region.*$:\s*#\s*endregion'
-
-noremap <silent> <f11> :call VimCommanderToggle()<cr>
-inoremap <silent> <f11> <esc>:call VimCommanderToggle()<cr>
-noremap <silent> <c-f11> :call VimCommanderToggle()<cr>
-inoremap <silent> <c-f11> <esc>:call VimCommanderToggle()<cr>
 
 let g:alternateExtensions_cc = "hh,h,hpp"
 let g:alternateExtensions_hh = "cc,cpp,C"
@@ -210,7 +206,7 @@ let g:ctrlp_show_hidden = 1
 "let g:ctrlp_cache_dir = '/tmp/ctrlp-'.$USER
 "set wildignore+=*/BUILD*/*
 let g:ctrlp_custom_ignore = {
-	\ 'dir':  '\v[\/](\.git|BUILD.*)$'
+	\ 'dir':  '\v[\/](\.git|\CBUILD[-a-z0-9]*)$'
 	\ }
 
 let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
