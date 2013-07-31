@@ -8,4 +8,4 @@
 #pragma once
 
 
-// vim: set et ts=4 sw=4 tw=80:
+// vim: set noet ts=4 sw=4 tw=80:
