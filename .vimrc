@@ -213,6 +213,8 @@ let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/](\.git|BUILD.*)$'
 	\ }
 
+let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
+
 runtime! plugin/*.vim
 runtime ftplugin/man.vim
 
