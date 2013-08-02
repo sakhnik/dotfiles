@@ -205,7 +205,7 @@ let g:ctrlp_show_hidden = 1
 "let g:ctrlp_cache_dir = '/tmp/ctrlp-'.$USER
 "set wildignore+=*/BUILD*/*
 let g:ctrlp_custom_ignore = {
-	\ 'dir':  '\v[\/](\.git|\CBUILD[-_a-z0-9]*)$'
+	\ 'dir':  '\v[\/](\.git|\CBUILD[-_a-z0-9]*|sstate-cache)$'
 	\ }
 
 let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
