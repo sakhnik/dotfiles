@@ -128,7 +128,6 @@ nnoremap <f10> :confirm qa<cr>
 inoremap <f10> <c-o>:confirm qa<cr>
 nnoremap <c-f8> :FencView<cr>
 inoremap <c-f8> <esc>:FencView<cr>
-nnoremap <f4> :MRU<cr>
 nnoremap <f5> :GundoToggle<cr>
 
 vnoremap * y/\V<C-R>=substitute(escape(@@,"/\\"),"\n","\\\\n","ge")<CR><CR>
@@ -158,15 +157,6 @@ endif
 if exists(":colors")
 	colors incognito
 endif
-
-" MRU plugin settings
-let MRU_File = $HOME.'/.vim_mru_files'
-let MRU_Max_Entries = 20
-"       let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*'  " For Unix
-"       let MRU_Exclude_Files = '^c:\\temp\\.*'           " For MS-Windows
-"       let MRU_Window_Height = 15
-"       let MRU_Use_Current_Window = 1
-let MRU_Auto_Close = 1
 
 " CTRL-Tab is Next window
 noremap <C-Tab> <C-W>w
