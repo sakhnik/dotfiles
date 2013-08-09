@@ -220,7 +220,6 @@ if has('persistent_undo')
 	endif
 endif
 
-match ErrorMsg '\s\+$\| \+\ze\t'
 nnoremap <Leader><space> /\s\+$\\| \+\ze\t<cr>
 
 " Ignore timestamp lines in Google Test output
