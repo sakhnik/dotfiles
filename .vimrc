@@ -227,6 +227,8 @@ nnoremap <Leader><space> /\s\+$\\| \+\ze\t<cr>
 let gtest_efm = '%E%f:%l:\ Failure'
 let gtest_efm .= ',%Z%m'
 let &efm = gtest_efm . ',' . &efm
+let glib_efm = '%[%^:]%#:%[A-Z]%#:%f:%l:%m'
+let &efm = glib_efm . ',' . &efm
 
 "let $PAGER=''
 "vim: set noet ts=4 sw=4:
