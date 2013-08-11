@@ -200,6 +200,8 @@ let g:ctrlp_custom_ignore = {
 
 let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
 
+let g:ConqueTerm_StartMessages = 0
+
 runtime! plugin/*.vim
 runtime ftplugin/man.vim
 
@@ -207,6 +209,7 @@ runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 set vb t_vb=      " Не бікати взагалі ніколи
+set t_ti= t_te=   " Не очищувати екран після виходу
 set keymap=uk     " Завантажити українську мапу клавіш
 set iminsert=0    " Встановити англійську (i_ctrl-^)
 set imsearch=0
