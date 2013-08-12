@@ -28,3 +28,6 @@
 [submodule ".vim/bundle/conque-gdb"]
 	path = .vim/bundle/conque-gdb
 	url = https://github.com/vim-scripts/Conque-GDB.git
+[submodule ".vim/bundle/bitbake"]
+	path = .vim/bundle/bitbake
+	url = https://github.com/kergoth/vim-bitbake.git
