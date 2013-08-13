@@ -155,7 +155,7 @@ if exists('+shellslash')
 endif
 
 if exists(":colors")
-	colors desert
+	colors pablo
 endif
 
 " CTRL-Tab is Next window
