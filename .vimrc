@@ -155,7 +155,7 @@ if exists('+shellslash')
 endif
 
 if exists(":colors")
-	colors incognito
+	colors desert
 endif
 
 " CTRL-Tab is Next window
