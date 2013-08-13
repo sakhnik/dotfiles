@@ -31,3 +31,9 @@
 [submodule ".vim/bundle/bitbake"]
 	path = .vim/bundle/bitbake
 	url = https://github.com/kergoth/vim-bitbake.git
+[submodule ".vim/bundle/kolor"]
+	path = .vim/bundle/kolor
+	url = https://github.com/zeis/vim-kolor.git
+[submodule ".vim/bundle/zenburn"]
+	path = .vim/bundle/zenburn
+	url = https://github.com/jnurmine/Zenburn.git

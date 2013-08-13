@@ -154,10 +154,6 @@ if exists('+shellslash')
 	set shellslash
 endif
 
-if exists(":colors")
-	colors pablo
-endif
-
 " CTRL-Tab is Next window
 noremap <C-Tab> <C-W>w
 inoremap <C-Tab> <C-O><C-W>w
@@ -240,6 +236,10 @@ let &efm .= ',%E' . 'CMake Error at %f:%l (message):'
 let &efm .= ',%Z' . 'Call Stack (most recent call first):'
 " Continuation is message
 let &efm .= ',%C' . ' %m'
+
+if &t_Co > 2 || has("gui_running")
+	colors zenburn
+endif
 
 "let $PAGER=''
 "vim: set noet ts=4 sw=4:
