@@ -37,3 +37,6 @@
 [submodule ".vim/bundle/zenburn"]
 	path = .vim/bundle/zenburn
 	url = https://github.com/jnurmine/Zenburn.git
+[submodule ".vim/bundle/csapprox"]
+	path = .vim/bundle/csapprox
+	url = https://github.com/godlygeek/csapprox.git

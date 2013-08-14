@@ -238,6 +238,7 @@ let &efm .= ',%Z' . 'Call Stack (most recent call first):'
 let &efm .= ',%C' . ' %m'
 
 if &t_Co > 2 || has("gui_running")
+	let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 	colors zenburn
 endif
 
