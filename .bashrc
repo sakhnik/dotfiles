@@ -13,8 +13,12 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-if [ -n "$DISPLAY" -a "$TERM" == "xterm" ]; then
-    export TERM=xterm-256color
+if [ -n "$DISPLAY" ]; then
+    if [ "$TERM" == "xterm" ]; then
+        export TERM=rxvt-unicode-256color
+    elif [ "$TERM" == "screen" ]; then
+        export TERM=screen-256color
+    fi
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
