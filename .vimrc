@@ -205,7 +205,7 @@ runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 set vb t_vb=      " Не бікати взагалі ніколи
-set t_ti= t_te=   " Не очищувати екран після виходу
+"set t_ti= t_te=   " Не очищувати екран після виходу
 set keymap=uk     " Завантажити українську мапу клавіш
 set iminsert=0    " Встановити англійську (i_ctrl-^)
 set imsearch=0
