@@ -124,6 +124,7 @@ set tags=./tags,tags,tags;/
 
 nnoremap <f2> :confirm w<cr>
 inoremap <f2> <c-o>:confirm w<cr>
+nnoremap <f3> :setlocal list!<cr>
 nnoremap <f10> :confirm qa<cr>
 inoremap <f10> <c-o>:confirm qa<cr>
 nnoremap <c-f8> :FencView<cr>
@@ -195,6 +196,13 @@ let g:ctrlp_custom_ignore = {
 	\ }
 
 let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
+let g:ycm_filetype_blacklist = {
+	\ 'notes' : 1,
+	\ 'markdown' : 1,
+	\ 'text' : 1,
+	\ 'unite' : 1,
+	\ 'conque_term' : 1,
+	\}
 
 let g:ConqueTerm_StartMessages = 0
 
