@@ -149,5 +149,7 @@ ruler()
 }
 
 export EDITOR=vim
+[[ -f $HOME/.sakhnik/pystartup.py ]] &&
+	export PYTHONSTARTUP=$HOME/.sakhnik/pystartup.py
 
 alias gpush='git push origin HEAD:refs/for/master'
