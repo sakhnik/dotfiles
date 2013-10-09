@@ -43,7 +43,7 @@ endif
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
 	syntax on
-	set hlsearch
+	"set hlsearch
 endif
 
 if has("autocmd")
@@ -138,7 +138,9 @@ vnoremap <Leader>/ <esc>/\%V
 vnoremap <Leader>? <esc>?\%V
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee > /dev/null %
+cnoremap w!! w !sudo tee > /dev/null %
+" Expand %% to the directory of the current buffer
+cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 if exists(":vnew") && exists(":diffthis")
 	function! s:DiffWithSaved()

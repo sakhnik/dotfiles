@@ -171,4 +171,6 @@ _gen_ChangeId() {
 }
 
 
+git remote show origin | grep 'Push\s\+URL' | grep -q palm.com || exit 0
+
 add_ChangeId

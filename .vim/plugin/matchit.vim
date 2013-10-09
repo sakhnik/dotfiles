@@ -1,7 +1,7 @@
 "  matchit.vim: (global plugin) Extended "%" matching
-"  Last Change: Sun Sep 09 09:00 AM 2007 EDT
+"  Last Change: Fri Jan 25 10:00 AM 2008 EST
 "  Maintainer:  Benji Fisher PhD   <benji@member.AMS.org>
-"  Version:     1.13.1, for Vim 6.3+
+"  Version:     1.13.2, for Vim 6.3+
 "  URL:		http://www.vim.org/script.php?script_id=39
 
 " Documentation:
@@ -131,7 +131,7 @@ function! s:Match_wrapper(word, forward, mode) range
     " let default = substitute(escape(&mps, '[$^.*~\\/?]'), '[,:]\+',
     "  \ '\\|', 'g').'\|\/\*\|\*\/\|#if\>\|#ifdef\>\|#else\>\|#elif\>\|#endif\>'
     let default = escape(&mps, '[$^.*~\\/?]') . (strlen(&mps) ? "," : "") .
-      \ '\/\*:\*\/,#if\%(def\)\=:#else\>:#elif\>:#endif\>'
+      \ '\/\*:\*\/,#\s*if\%(def\)\=:#\s*else\>:#\s*elif\>:#\s*endif\>'
     " s:all = pattern with all the keywords
     let match_words = match_words . (strlen(match_words) ? "," : "") . default
     if match_words !~ s:notslash . '\\\d'
@@ -357,7 +357,7 @@ fun! s:InsertRefs(groupBR, prefix, group, suffix, matchline)
       execute s:Ref(ini, d, "start", "len")
       let ini = strpart(ini, 0, start) . backref . strpart(ini, start+len)
       let tailBR = substitute(tailBR, s:notslash . '\zs\\' . d,
-	\ escape(backref, '\\'), 'g')
+	\ escape(backref, '\\&'), 'g')
     endif
     let d = d-1
   endwhile
@@ -398,6 +398,7 @@ fun! s:ParseWords(groups)
     endwhile " Now, tail has been used up.
     let parsed = parsed . ","
   endwhile " groups =~ '[^,:]'
+  let parsed = substitute(parsed, ',$', '', '')
   return parsed
 endfun
 
@@ -648,7 +649,7 @@ fun! s:MultiMatch(spflag, mode)
   "   s:all	regexp based on s:pat and the default groups
   " This part is copied and slightly modified from s:Match_wrapper().
   let default = escape(&mps, '[$^.*~\\/?]') . (strlen(&mps) ? "," : "") .
-    \ '\/\*:\*\/,#if\%(def\)\=:#else\>:#elif\>:#endif\>'
+    \ '\/\*:\*\/,#\s*if\%(def\)\=:#\s*else\>:#\s*elif\>:#\s*endif\>'
   " Allow b:match_words = "GetVimMatchWords()" .
   if b:match_words =~ ":"
     let match_words = b:match_words
@@ -807,5 +808,6 @@ fun! s:ParseSkip(str)
 endfun
 
 let &cpo = s:save_cpo
+unlet s:save_cpo
 
 " vim:sts=2:sw=2:
