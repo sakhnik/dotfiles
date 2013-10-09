@@ -124,7 +124,6 @@ set tags=./tags,tags,tags;/
 
 nnoremap <f2> :confirm w<cr>
 inoremap <f2> <c-o>:confirm w<cr>
-nnoremap <f3> :setlocal list!<cr>
 nnoremap <f10> :confirm qa<cr>
 inoremap <f10> <c-o>:confirm qa<cr>
 nnoremap <c-f8> :FencView<cr>
@@ -136,6 +135,9 @@ vnoremap # y?\V<C-R>=substitute(escape(@@,"?\\"),"\n","\\\\n","ge")<CR><CR>
 nnoremap <Leader>; :<c-u>ls!<Bar>sleep <c-r>=v:count1<cr><cr><cr>
 vnoremap <Leader>/ <esc>/\%V
 vnoremap <Leader>? <esc>?\%V
+nnoremap <f3> :setlocal list!<cr>
+nnoremap <Leader>l :setlocal list!<cr>
+nnoremap <Leader>L :set list!<cr>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cnoremap w!! w !sudo tee > /dev/null %
