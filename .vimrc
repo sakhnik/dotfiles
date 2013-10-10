@@ -113,11 +113,12 @@ set path+=../include
 set listchars=tab:»\ ,trail:·,nbsp:%
 set list
 set guioptions-=T
+set guioptions-=m
 set mousehide
 set scrolloff=3
 set statusline=%<%f\ %H%M%R%=%-7.k%-14.(%l,%c%V%)\ %P
 set laststatus=2
-set viminfo='100,f1,<500,h,s10
+set viminfo='100,f1,<1024,h,s128
 set clipboard=unnamed
 set completeopt=menu,longest,preview
 set tags=./tags,tags,tags;/
