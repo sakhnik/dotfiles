@@ -49,3 +49,6 @@
 [submodule ".vim/bundle/surround"]
 	path = .vim/bundle/surround
 	url = http://github.com/tpope/vim-surround
+[submodule ".vim/bundle/fontsize"]
+	path = .vim/bundle/fontsize
+	url = https://github.com/drmikehenry/vim-fontsize

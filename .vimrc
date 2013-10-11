@@ -36,7 +36,7 @@ set incsearch
 set wildmenu
 set wildmode=longest,list
 if has("win32")
-    set shellpipe=2>&1\ \|\ tee
+	set shellpipe=2>&1\ \|\ tee
 endif
 
 " Switch syntax highlighting on, when the terminal has colors
@@ -101,7 +101,7 @@ if exists("+mouse")
 endif
 if has("gui_running")
 	if has("gui_gtk2")
-		set guifont=Monospace\ 14
+		set guifont=Monospace\ 11
 	elseif has("x11")
 		" Also for GTK 1
 		set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
@@ -122,6 +122,7 @@ set viminfo='100,f1,<1024,h,s128
 set clipboard=unnamed
 set completeopt=menu,longest,preview
 set tags=./tags,tags,tags;/
+set timeout timeoutlen=3000 ttimeoutlen=100
 
 nnoremap <f2> :confirm w<cr>
 inoremap <f2> <c-o>:confirm w<cr>
@@ -217,7 +218,7 @@ runtime ftplugin/man.vim
 runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
-set vb t_vb=      " Не бікати взагалі ніколи
+set novb t_vb=    " Не бікати взагалі ніколи
 "set t_ti= t_te=   " Не очищувати екран після виходу
 set keymap=uk     " Завантажити українську мапу клавіш
 set iminsert=0    " Встановити англійську (i_ctrl-^)
