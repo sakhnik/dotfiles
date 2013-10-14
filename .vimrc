@@ -43,7 +43,7 @@ endif
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
 	syntax on
-	"set hlsearch
+	set hlsearch
 endif
 
 if has("autocmd")
@@ -92,6 +92,7 @@ endif " has("autocmd")
 
 set noexpandtab
 set smarttab
+set ignorecase smartcase
 set tabstop=4
 set cindent shiftwidth=4
 set cinoptions=:0,=1s,g0,(0,M1,U0,u0
@@ -132,14 +133,13 @@ nnoremap <c-f8> :FencView<cr>
 inoremap <c-f8> <esc>:FencView<cr>
 nnoremap <f5> :GundoToggle<cr>
 
-vnoremap * y/\V<C-R>=substitute(escape(@@,"/\\"),"\n","\\\\n","ge")<CR><CR>
-vnoremap # y?\V<C-R>=substitute(escape(@@,"?\\"),"\n","\\\\n","ge")<CR><CR>
 nnoremap <Leader>; :<c-u>ls!<Bar>sleep <c-r>=v:count1<cr><cr><cr>
 vnoremap <Leader>/ <esc>/\%V
 vnoremap <Leader>? <esc>?\%V
 nnoremap <f3> :setlocal list!<cr>
 nnoremap <Leader>l :setlocal list!<cr>
 nnoremap <Leader>L :set list!<cr>
+nnoremap <silent> <c-l> :<c-u>nohlsearch<cr><c-l>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cnoremap w!! w !sudo tee > /dev/null %
