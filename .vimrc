@@ -257,10 +257,10 @@ let &efm .= ',%C' . ' %m'
 
 if &t_Co > 2 || has("gui_running")
 	let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : 'italic', 'sp' : 'fg' }
-	if &term =~ 'rxvt-unicode.*'
-		let g:CSApprox_hook_post = 'hi Comment cterm=italic'
-	endif
 	colors zenburn
+	if &term =~ 'rxvt-unicode.*'
+		hi Comment cterm=italic
+	endif
 endif
 
 "let $PAGER=''
