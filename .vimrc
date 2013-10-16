@@ -101,13 +101,15 @@ if exists("+mouse")
 	set mouse=a
 endif
 if has("gui_running")
-	if has("gui_gtk2")
-		set guifont=Monospace\ 11
-	elseif has("x11")
-		" Also for GTK 1
-		set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
-	elseif has("gui_win32")
-		set guifont=Courier_New:h12:cRUSSIAN
+	if &guifont == ''
+		if has("gui_gtk2")
+			set guifont=Monospace\ 11
+		elseif has("x11")
+			" Also for GTK 1
+			set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
+		elseif has("gui_win32")
+			set guifont=Courier_New:h12:cRUSSIAN
+		endif
 	endif
 endif
 set path+=../include
@@ -140,6 +142,8 @@ nnoremap <f3> :setlocal list!<cr>
 nnoremap <Leader>l :setlocal list!<cr>
 nnoremap <Leader>L :set list!<cr>
 nnoremap <silent> <c-l> :<c-u>nohlsearch<cr><c-l>
+nnoremap & :&&<cr>
+xnoremap & :&&<cf>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cnoremap w!! w !sudo tee > /dev/null %
