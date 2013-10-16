@@ -31,7 +31,7 @@ set backspace=indent,eol,start
 set nobackup
 set history=50
 set ruler
-set noshowcmd
+set showcmd
 set incsearch
 set wildmenu
 set wildmode=longest,list
@@ -180,15 +180,6 @@ let b:match_words = '\s*#\s*region.*$:\s*#\s*endregion'
 let g:alternateExtensions_cc = "hh,h,hpp"
 let g:alternateExtensions_hh = "cc,cpp,C"
 
-let g:Tex_DefaultTargetFormat = 'pdf'
-let g:Tex_ViewRule_pdf = 'evince'
-let g:Tex_ViewRule_dvi = 'evince'
-let g:Tex_SmartKeyBS = 0
-let g:Tex_SmartKeyQuote = 0
-let g:Tex_SmartKeyDot = 0
-
-let g:clang_jumpto_declaration_key = '<C-}>'
-
 let g:airline_theme='dark'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
@@ -198,9 +189,6 @@ let g:airline_paste_symbol = 'ρ'
 
 let g:ctrlp_extensions = ['tag']
 let g:ctrlp_show_hidden = 1
-"let g:ctrlp_use_caching = 1
-"let g:ctrlp_cache_dir = '/tmp/ctrlp-'.$USER
-"set wildignore+=*/BUILD*/*
 let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/](\.git|\CBUILD[-_a-z0-9]*|sstate-cache|downloads|buildhistory)$'
 	\ }
