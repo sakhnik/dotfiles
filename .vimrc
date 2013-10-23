@@ -129,6 +129,8 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 
 nnoremap <f2> :confirm w<cr>
 inoremap <f2> <c-o>:confirm w<cr>
+vnoremap <f2> <esc>:confirm w<cr>gv
+
 nnoremap <f10> :confirm qa<cr>
 inoremap <f10> <c-o>:confirm qa<cr>
 nnoremap <c-f8> :FencView<cr>
