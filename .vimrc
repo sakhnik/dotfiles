@@ -113,7 +113,7 @@ if has("gui_running")
 	endif
 endif
 set path+=../include
-set listchars=tab:»\ ,trail:·,nbsp:%
+set listchars=tab:▸\ ,trail:·,nbsp:%
 set list
 set guioptions-=T
 set guioptions-=m
@@ -140,9 +140,6 @@ nnoremap <f5> :GundoToggle<cr>
 nnoremap <Leader>; :<c-u>ls!<Bar>sleep <c-r>=v:count1<cr><cr><cr>
 vnoremap <Leader>/ <esc>/\%V
 vnoremap <Leader>? <esc>?\%V
-nnoremap <f3> :setlocal list!<cr>
-nnoremap <Leader>l :setlocal list!<cr>
-nnoremap <Leader>L :set list!<cr>
 nnoremap <silent> <c-l> :<c-u>nohlsearch<cr><c-l>
 nnoremap & :&&<cr>
 xnoremap & :&&<cf>
