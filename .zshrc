@@ -42,4 +42,12 @@ if fortune -e 2>/dev/null; then
     echo
 fi
 
+if [ -n "$DISPLAY" ]; then
+    if [[ "$TERM" == "xterm" ]]; then
+        export TERM=rxvt-unicode-256color
+    elif [[ "$TERM" -eq "screen" ]]; then
+        export TERM=screen-256color
+    fi
+fi
+
 export EDITOR=vim
