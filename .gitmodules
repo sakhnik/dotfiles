@@ -75,4 +75,4 @@
 	url = https://github.com/junegunn/seoul256.vim.git
 [submodule ".zsh/git-prompt"]
 	path = .zsh/git-prompt
-	url = https://github.com/olivierverdier/zsh-git-prompt
+	url = https://github.com/sakhnik/zsh-git-prompt

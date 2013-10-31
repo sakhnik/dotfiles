@@ -20,14 +20,17 @@ autoload -U promptinit && {
 
 	shortened_current_path() {
 		p=${PWD/#"$HOME"/~}
-		if [[ ${#p} > 30 ]]; then
+		if [[ ${#p} -gt 30 ]]; then
 			echo "${p:0:10}…${p:(-19)}"
 		else
 			echo "%~"
 		fi
 	}
 
-	PROMPT=${chroot}'%B%m:$(shortened_current_path)%b$(git_super_status) %# '
+	PROMPT=${chroot}
+	PROMPT=$PROMPT'%{$fg[green]%}%B%m%{$reset_color%}%b'
+	PROMPT=$PROMPT':%{$fg[blue]%}%B$(shortened_current_path)%b%{$reset_color%}'
+	PROMPT=$PROMPT'$(git_super_status) %# '
 }
 
 autoload -U colors && colors
