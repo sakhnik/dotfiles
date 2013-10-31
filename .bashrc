@@ -153,3 +153,9 @@ export EDITOR=vim
 	export PYTHONSTARTUP=$HOME/.sakhnik/pystartup.py
 
 alias gpush='git push origin HEAD:refs/for/master'
+
+export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/home/sakhnik/perl5";
+export PERL_MB_OPT="--install_base /home/sakhnik/perl5";
+export PERL_MM_OPT="INSTALL_BASE=/home/sakhnik/perl5";
+export PERL5LIB="/home/sakhnik/perl5/lib/perl5:$PERL5LIB";
+export PATH="/home/sakhnik/perl5/bin:$PATH";
