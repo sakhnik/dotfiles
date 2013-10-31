@@ -27,11 +27,7 @@ autoload -U promptinit && {
 		fi
 	}
 
-	git_super_status2() {
-		PYTHON=python2 git_super_status
-	}
-
-	PROMPT=${chroot}'%B%m:$(shortened_current_path)%b$(git_super_status2) %# '
+	PROMPT=${chroot}'%B%m:$(shortened_current_path)%b$(git_super_status) %# '
 }
 
 autoload -U colors && colors
