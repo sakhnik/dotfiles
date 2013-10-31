@@ -11,16 +11,16 @@ setopt AUTO_LIST
 unsetopt AUTO_MENU
 unsetopt MENU_COMPLETE
 
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
 # End of lines added by compinstall
 
-autoload -U promptinit
-promptinit
-prompt walters
+source ~/.zsh/git-prompt/zshrc.sh
 
-autoload -U colors
-colors
+autoload -U promptinit && promptinit
+#prompt pws
+PROMPT='%B%m:%~%b$(git_super_status) %# '
+
+autoload -U colors && colors
 
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
