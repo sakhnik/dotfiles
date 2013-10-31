@@ -18,18 +18,11 @@ autoload -U promptinit && {
 
 	chroot='${debian_chroot:+($debian_chroot)}'
 
-	shortened_current_path() {
-		p=${PWD/#"$HOME"/~}
-		if [[ ${#p} -gt 30 ]]; then
-			echo "${p:0:10}…${p:(-19)}"
-		else
-			echo "%~"
-		fi
-	}
-
-	PROMPT=${chroot}
-	PROMPT=$PROMPT'%{$fg[green]%}%B%m%{$reset_color%}%b'
-	PROMPT=$PROMPT':%{$fg[blue]%}%B$(shortened_current_path)%b%{$reset_color%}'
+	PROMPT='%(?..[%?] )'       # Exit code of the previous command if failed
+	PROMPT=$PROMPT${chroot}
+	PROMPT=$PROMPT'%{$fg[green]%}%B%m%{$reset_color%}%b' # Host name
+	PROMPT=$PROMPT':%{$fg[blue]%}%B%5(~.%~
+.%~)%b%{$reset_color%}'        # Current working directory (newline if at least 5 elements)
 	PROMPT=$PROMPT'$(git_super_status) %# '
 }
 
@@ -178,13 +171,21 @@ autoload -U compinit && {
 autoload -U select-word-style && select-word-style bash
 
 # Edit command line in editor
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '^f' edit-command-line
+autoload -U edit-command-line && {
+	zle -N edit-command-line
+	bindkey '^f' edit-command-line
+}
 
-# ctrl-p ctrl-n history navigation
-bindkey '^P' up-history
-bindkey '^N' down-history
+autoload -U up-line-or-beginning-search && {
+	zle -N up-line-or-beginning-search
+	bindkey '^P' up-line-or-beginning-search
+}
+
+autoload -U down-line-or-beginning-search && {
+	zle -N down-line-or-beginning-search
+	bindkey '^N' down-line-or-beginning-search
+}
+
 
 # backspace and ^h working even after returning from command mode
 bindkey '^?' backward-delete-char
