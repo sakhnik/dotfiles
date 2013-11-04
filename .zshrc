@@ -1,3 +1,13 @@
+
+export PATH=$PATH:/bin:/sbin:/usr/sbin
+if [[ -d $HOME/bin ]]; then
+    export PATH=$HOME/bin:$PATH
+fi
+
+export LANG=uk_UA.UTF-8
+
+alias ubuntu="schroot -c ubuntu -p"
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000

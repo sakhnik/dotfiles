@@ -77,3 +77,6 @@
 [submodule ".zsh/git-prompt"]
 	path = .zsh/git-prompt
 	url = https://github.com/sakhnik/zsh-git-prompt
+[submodule ".vim/bundle/characterize"]
+	path = .vim/bundle/characterize
+	url = https://github.com/tpope/vim-characterize
