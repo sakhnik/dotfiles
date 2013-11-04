@@ -8,6 +8,10 @@ export LANG=uk_UA.UTF-8
 
 alias ubuntu="schroot -c ubuntu -p"
 
+export EDITOR=vim
+[[ -f $HOME/.sakhnik/pystartup.py ]] &&
+	export PYTHONSTARTUP=$HOME/.sakhnik/pystartup.py
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
