@@ -114,7 +114,6 @@ if has("gui_running")
 endif
 set path+=../include
 set listchars=tab:▸\ ,trail:·,nbsp:%
-set list
 set guioptions-=T
 set guioptions-=m
 set mousehide
