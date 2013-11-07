@@ -199,6 +199,7 @@ let g:ycm_filetype_blacklist = {
 	\ 'unite' : 1,
 	\ 'conque_term' : 1,
 	\}
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
 
 let g:ConqueTerm_StartMessages = 0
 
