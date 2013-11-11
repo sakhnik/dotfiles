@@ -89,3 +89,6 @@
 [submodule ".vim/plugin/tabular"]
 	path = .vim/plugin/tabular
 	url = https://github.com/godlygeek/tabular
+[submodule ".vim/bundle/tabular"]
+	path = .vim/bundle/tabular
+	url = https://github.com/godlygeek/tabular
