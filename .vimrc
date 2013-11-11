@@ -244,10 +244,10 @@ let &efm .= ',%C' . ' %m'
 
 if &t_Co > 2 || has("gui_running")
 	let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : 'italic', 'sp' : 'fg' }
-	colors zenburn
-	if &term =~ 'rxvt-unicode.*'
-		hi Comment cterm=italic
+	if &term =~ 'rxvt-unicode.*' && has("autocmd")
+		autocmd ColorScheme * hi Comment cterm=italic
 	endif
+	colors zenburn
 endif
 
 "let $PAGER=''
