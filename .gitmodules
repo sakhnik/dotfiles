@@ -92,3 +92,6 @@
 [submodule ".vim/bundle/tabular"]
 	path = .vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular
+[submodule ".vim/bundle/ctrlp-digraphs"]
+	path = .vim/bundle/ctrlp-digraphs
+	url = https://github.com/naquad/ctrlp-digraphs.vim
