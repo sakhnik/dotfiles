@@ -188,6 +188,7 @@ let g:airline_paste_symbol = 'ρ'
 
 let g:ctrlp_extensions = ['tag']
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_use_caching = 0
 let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/](\.git|\CBUILD[-_a-z0-9]*|sstate-cache|downloads|buildhistory)$'
 	\ }

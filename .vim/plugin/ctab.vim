@@ -121,7 +121,7 @@ fun! s:InsertSmartTab()
 endfun
 
 fun! s:CheckLeaveLine(line)
-  if ('cpo' !~ 'I') && exists('b:ctab_lastalign') && (a:line == b:ctab_lastalign)
+  if ('cpo' !~ 'I') "&& exists('b:ctab_lastalign') && (a:line == b:ctab_lastalign)
     s/^\s*$//e
   endif
 endfun
@@ -263,7 +263,7 @@ if ! exists('g:ctab_disable_checkalign') || g:ctab_disable_checkalign==0
   fun! s:CheckCR()
     " echo 'SID:'.s:SID()
     if getline('.') =~ '^\s*$'
-      if ('cpo' !~ 'I') && exists('b:ctab_lastalign') && (line('.') == b:ctab_lastalign)
+      if ('cpo' !~ 'I') "&& exists('b:ctab_lastalign') && (line('.') == b:ctab_lastalign)
         return "^\<c-d>\<CR>"
       endif
       return "\<CR>"
