@@ -108,7 +108,7 @@ autoload -U compinit && {
 	zstyle ':completion:*' list-dirs-first true
 
 	# Turn on menu selection only when selections do not fit on screen.
-	zstyle ':completion:*' menu true=long select=long
+	#zstyle ':completion:*' menu true=long select=long
 
 	# Separate matches into groups.
 	zstyle ':completion:*:matches' group yes
