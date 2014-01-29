@@ -1,7 +1,7 @@
 
 export PATH=$PATH:/bin:/sbin:/usr/sbin
 if [[ -d $HOME/bin ]]; then
-    export PATH=$HOME/bin:$PATH
+	export PATH=$HOME/bin:$PATH
 fi
 
 export LANG=uk_UA.UTF-8
@@ -62,11 +62,28 @@ if fortune -e 2>/dev/null; then
 	echo
 fi
 
+create_terminfo_screen_it()
+{
+	# Create custom terminfo from screen-256color to support italics
+	if [[ ! -f "$HOME/.terminfo/s/screen-it" ]]; then
+		mkdir -p $HOME/.terminfo
+		infocmp screen-256color | sed \
+			-e 's/^screen[^|]*|[^,]*,/screen-it|screen with italics support,/' \
+			-e '$s/$/ sitm=\\E[3m, ritm=\\E[23m,/' > /tmp/terminfo
+		tic /tmp/terminfo
+	fi
+}
+
 if [ -n "$DISPLAY" ]; then
 	if [[ "$TERM" == "xterm" ]]; then
 		export TERM=rxvt-unicode-256color
 	elif [[ "$TERM" == "screen" ]]; then
-		export TERM=screen-256color
+		create_terminfo_screen_it
+		if [[ -f "$HOME/.terminfo/s/screen-it" ]]; then
+			export TERM=screen-it
+		else
+			export TERM=screen-256color
+		fi
 	fi
 fi
 

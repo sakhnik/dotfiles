@@ -246,8 +246,10 @@ let &efm .= ',%C' . ' %m'
 
 if &t_Co > 2 || has("gui_running")
 	let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : 'italic', 'sp' : 'fg' }
-	if &term =~ 'rxvt-unicode.*' && has("autocmd")
-		autocmd ColorScheme * hi Comment cterm=italic
+	if has("autocmd")
+		if &term =~ 'rxvt-unicode.*' || &term == 'screen-it'
+			autocmd ColorScheme * hi Comment cterm=italic
+		endif
 	endif
 	colors zenburn
 endif
