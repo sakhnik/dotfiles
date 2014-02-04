@@ -6,6 +6,33 @@ fi
 
 export LANG=uk_UA.UTF-8
 
+create_terminfo_screen_it()
+{
+	# Create custom terminfo from screen-256color to support italics
+	if [[ ! -f "$HOME/.terminfo/s/screen-it" ]]; then
+		mkdir -p $HOME/.terminfo
+		infocmp screen-256color | sed \
+			-e 's/^screen[^|]*|[^,]*,/screen-it|screen with italics support,/' \
+			-e '$s/$/ sitm=\\E[3m, ritm=\\E[23m,/' > /tmp/terminfo
+		tic /tmp/terminfo
+	fi
+}
+
+if [ -n "$DISPLAY" ]; then
+	if [[ "$TERM" == "xterm" ]]; then
+		export TERM=rxvt-unicode-256color
+	elif [[ "$TERM" == "screen" ]]; then
+		create_terminfo_screen_it
+		if [[ -f "$HOME/.terminfo/s/screen-it" ]]; then
+			export TERM=screen-it
+		else
+			export TERM=screen-256color
+		fi
+	fi
+fi
+
+[[ -z "$TMUX" ]] && exec tmux
+
 alias ubuntu="schroot -c ubuntu -p"
 
 export EDITOR=vim
@@ -61,34 +88,6 @@ alias urldecode='python2 -c "import sys, urllib as ul; print ul.unquote_plus(sys
 if fortune -e 2>/dev/null; then
 	echo
 fi
-
-create_terminfo_screen_it()
-{
-	# Create custom terminfo from screen-256color to support italics
-	if [[ ! -f "$HOME/.terminfo/s/screen-it" ]]; then
-		mkdir -p $HOME/.terminfo
-		infocmp screen-256color | sed \
-			-e 's/^screen[^|]*|[^,]*,/screen-it|screen with italics support,/' \
-			-e '$s/$/ sitm=\\E[3m, ritm=\\E[23m,/' > /tmp/terminfo
-		tic /tmp/terminfo
-	fi
-}
-
-if [ -n "$DISPLAY" ]; then
-	if [[ "$TERM" == "xterm" ]]; then
-		export TERM=rxvt-unicode-256color
-	elif [[ "$TERM" == "screen" ]]; then
-		create_terminfo_screen_it
-		if [[ -f "$HOME/.terminfo/s/screen-it" ]]; then
-			export TERM=screen-it
-		else
-			export TERM=screen-256color
-		fi
-	fi
-fi
-
-export EDITOR=vim
-
 
 # ------------------------------------------------------------------------------
 # Completion
