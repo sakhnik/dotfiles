@@ -50,6 +50,7 @@ autoload -U promptinit && {
 	promptinit
 
 	#prompt pws
+	export ZSH_THEME_GIT_PROMPT_NOCACHE=1
 	source ~/.zsh/git-prompt/zshrc.sh
 
 	# set variable indentifying the chroot you work in (used in the prompt below)
