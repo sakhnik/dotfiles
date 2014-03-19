@@ -1,37 +1,24 @@
-# For all commits
-# ---------------
-# The summary line:
-# - Should not contain a trailing period
-# - Restrict to 50 characters.
-# - Must be followed by a blank line.
+# Summary line. Restrict to 50 characters. Must be followed by a blank
+# line.
 #
-# For commits to components
-# -------------------------
 # The summary line should be in the present tense and imperative voice.
 # On its own, it should read like a command. It should also make sense
 # when inserted into the following sentence:
 #
 #     "This commit will <summary line>."
 #
-# For commits to meta-* layers
-# ----------------------------
-# Conform to the guidelines on the wiki, at
+# The summary line should not contain a trailing period.
 #
-# http://wiki.lgsvl.com/display/TechDoc/Component+naming+and+commit+message+conventions
-#
-#
-# The ruler below acts as a visual cue to the maximum summary line length
+# The ruler below acts as a visual cue to the imaimum line length
 #-------------------------------------------------
 <Summary Line>
 
-# The ruler below acts as a visual cue to the maximum content line length
-#-----------------------------------------------------------------------
 :Release Notes:
 # Enter an english language description of what this commit
 # implements. These will be extracted to form the release notes
 # for the official build.
 #
-# Do not make any attempt to format this  section. It will be
+# Do not make any attempt to format this  section. It will be 
 # reflowed to form a paragraph in the release notes.
 
 :Detailed Notes:
@@ -82,21 +69,18 @@
 # future time, gerrit will automatically verify the format and reject
 # commits which do not conform.
 #
-# Observe the following general rules.
-#
 # - DO visit https://wiki.openstack.org/wiki/GitCommitMessages for an
-#      excellent commentary on commit message content.
+#   excellent discussion of commit message content.
 # - DO leave all comment lines (beginning with a '#') in place. They
-#      will not appear in the commit message. Feel free to delete the
-#      comments once you are comfortable with the format.
-# - DO Wrap all lines other than the summary line, an possibly JIRA
-#      refrences, at 72 characters.
+#   will not appear in the commit message. Feel free to delete the
+#   comments once you are comfortable with the format.
+# - DO Wrap all lines other than the summary line at 72 characters
 # - DO Reference all JIRAs. There are two formats you can use to
-#      reference JIRA. References in the form [GF-9999] will be picked
-#      up in the  release notes. References in the form GF-9999 will not.
-#
+#   reference JIRA. References in the form [GF-9999] will be picked 
+#   up in the  release notes. References in the form GF-9999 will not.
+
 # - DO NOT delete blank lines in the template
 # - DO NOT delete lines containing section markers (:<text>:)
 # - DO NOT put waffle in any section. It will appear in the release
-#          notes, probably with your name attached.
+#   notes.
 #
