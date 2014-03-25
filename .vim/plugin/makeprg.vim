@@ -30,6 +30,9 @@ function! s:cmake(...)
   let s:build_dir = s:find_builddir('BUILD*')
   if s:build_dir != ""
     let &makeprg='make --directory=' . s:build_dir
+    for arg in a:000
+      let &makeprg .= ' ' . arg
+    endfor
     make
   endif
 
