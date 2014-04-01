@@ -18,20 +18,23 @@ create_terminfo_screen_it()
 	fi
 }
 
-if [ -n "$DISPLAY" ]; then
-	if [[ "$TERM" == "xterm" ]]; then
-		export TERM=rxvt-unicode-256color
-	elif [[ "$TERM" == "screen" ]]; then
+case "$TERM" in
+	"xterm")
+		if infocmp rxvt-unicode-256color >/dev/null 2>&1; then
+			export TERM=rxvt-unicode-256color
+		fi
+		;;
+	"screen")
 		create_terminfo_screen_it
-		if [[ -f "$HOME/.terminfo/s/screen-it" ]]; then
+		if infocmp screen-it >/dev/null 2>&1; then
 			export TERM=screen-it
-		else
+		elif infocmp screen-256color >/dev/null 2>&1; then
 			export TERM=screen-256color
 		fi
-	fi
-fi
+		;;
+esac
 
-[[ -z "$TMUX" ]] && exec tmux
+#[[ -z "$TMUX" ]] && exec tmux
 
 alias ubuntu="schroot -c ubuntu -p"
 
