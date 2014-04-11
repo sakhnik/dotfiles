@@ -26,6 +26,7 @@ endif
 map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
 
+set ttyscroll=0
 set nocompatible
 set backspace=indent,eol,start
 set nobackup
