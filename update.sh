@@ -11,7 +11,7 @@ head_rev=$(git show-ref refs/heads/master | cut -f1 -d' ')
 git pull --rebase
 new_head_rev=$(git show-ref refs/heads/master | cut -f1 -d' ')
 
-if [[ "$head_ref" == "$new_head_rev" ]]; then
+if [[ "$head_rev" == "$new_head_rev" ]]; then
 	git submodule foreach git pull origin master
 	LANG=C git status --porcelain | grep -q '^ [MDA]'
 	if [[ $? -eq 0 ]]; then
