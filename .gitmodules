@@ -101,3 +101,6 @@
 [submodule ".vim/bundle/vimproc"]
 	path = .vim/bundle/vimproc
 	url = https://github.com/Shougo/vimproc.vim
+[submodule ".vim/bundle/eunuch"]
+	path = .vim/bundle/eunuch
+	url = git://github.com/tpope/vim-eunuch.git
