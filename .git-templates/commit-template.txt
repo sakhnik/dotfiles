@@ -9,7 +9,7 @@
 #
 # The summary line should not contain a trailing period.
 #
-# The ruler below acts as a visual cue to the imaimum line length
+# The ruler below acts as a visual cue to the maximum line length
 #-------------------------------------------------
 <Summary Line>
 
