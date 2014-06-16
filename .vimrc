@@ -147,8 +147,6 @@ nnoremap <silent> <c-l> :<c-u>nohlsearch<cr><c-l>
 nnoremap & :&&<cr>
 xnoremap & :&&<cf>
 
-" Allow saving of files as sudo when I forgot to start vim using sudo.
-cnoremap w!! w !sudo tee > /dev/null %
 " Expand %% to the directory of the current buffer
 cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
