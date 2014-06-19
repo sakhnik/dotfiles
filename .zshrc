@@ -6,34 +6,6 @@ fi
 
 export LANG=uk_UA.UTF-8
 
-create_terminfo_screen_it()
-{
-	# Create custom terminfo from screen-256color to support italics
-	if [[ ! -f "$HOME/.terminfo/s/screen-it" ]]; then
-		mkdir -p $HOME/.terminfo
-		infocmp screen-256color | sed \
-			-e 's/^screen[^|]*|[^,]*,/screen-it|screen with italics support,/' \
-			-e '$s/$/ sitm=\\E[3m, ritm=\\E[23m,/' > /tmp/terminfo
-		tic /tmp/terminfo
-	fi
-}
-
-case "$TERM" in
-	"xterm")
-		if infocmp rxvt-unicode-256color >/dev/null 2>&1; then
-			export TERM=rxvt-unicode-256color
-		fi
-		;;
-	"screen")
-		create_terminfo_screen_it
-		if infocmp screen-it >/dev/null 2>&1; then
-			export TERM=screen-it
-		elif infocmp screen-256color >/dev/null 2>&1; then
-			export TERM=screen-256color
-		fi
-		;;
-esac
-
 #[[ -z "$TMUX" ]] && exec tmux
 
 alias ubuntu="schroot -c ubuntu -p"
