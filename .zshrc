@@ -6,6 +6,19 @@ fi
 
 export LANG=uk_UA.UTF-8
 
+case "$TERM" in
+	"xterm")
+		if infocmp rxvt-unicode-256color >/dev/null 2>&1; then
+			export TERM=rxvt-unicode-256color
+		fi
+		;;
+	"screen")
+		if infocmp screen-256color >/dev/null 2>&1; then
+			export TERM=screen-256color
+		fi
+		;;
+esac
+
 #[[ -z "$TMUX" ]] && exec tmux
 
 alias ubuntu="schroot -c ubuntu -p"
