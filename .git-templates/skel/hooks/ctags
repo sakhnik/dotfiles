@@ -1,23 +1,6 @@
 #!/bin/bash
 
-launched_by_bitbake()
-{
-	pid=$$
-	echo "pid=$pid"
-
-	while [[ $pid != 1 ]]; do
-		pid=`ps -p $pid -o ppid= 2>/dev/null`
-		comm=`ps -p $pid -o comm= 2>/dev/null`
-		pid=`echo $pid`  # Trim
-		echo "pid=$pid comm=$comm"
-
-		[[ "$comm" == "bitbake" ]] && return 0
-	done
-
-	return 1
-}
-
-launched_by_bitbake && exit 0
+env | grep -q '^webos' && exit 0   # Skip webOS environment
 
 set -e
 PATH="/usr/local/bin:$PATH"
