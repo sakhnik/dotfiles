@@ -245,6 +245,11 @@ let &efm .= ',%Z' . 'Call Stack (most recent call first):'
 " Continuation is message
 let &efm .= ',%C' . ' %m'
 
+" Java completion
+if has("autocmd")
+  autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Unite settings
 " The prefix key.

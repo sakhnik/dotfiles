@@ -104,3 +104,6 @@
 [submodule ".vim/bundle/eunuch"]
 	path = .vim/bundle/eunuch
 	url = git://github.com/tpope/vim-eunuch.git
+[submodule ".vim/bundle/javacomplete"]
+	path = .vim/bundle/javacomplete
+	url = https://github.com/vim-scripts/javacomplete
