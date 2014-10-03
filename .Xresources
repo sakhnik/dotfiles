@@ -7,6 +7,7 @@ XTerm*locale: true
 Xterm*saveLines: 4096
 
 URxvt*font: xft:Monospace:size=14:antialias=true:hinting=true:hintstyle=hintslight
+URxvt*letterSpace: -1
 URxvt*background: rgb:1f/1f/1f
 URxvt*foreground: rgb:cc/cc/cc
 URxvt*buffered: true

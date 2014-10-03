@@ -342,7 +342,7 @@ endif
 if &t_Co > 2 || has("gui_running")
 	let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : 'italic', 'sp' : 'fg' }
 	if has("autocmd")
-		if &term =~ 'rxvt-unicode.*' || &term == 'screen-it'
+		if &term =~ 'rxvt-unicode.*' || &term =~ 'screen-\(256color-\)\?it'
 			autocmd ColorScheme * hi Comment cterm=italic
 		endif
 	endif

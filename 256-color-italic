@@ -4,11 +4,15 @@
 create_terminfo_screen_it()
 {
 	# Create custom terminfo from screen-256color to support italics
-	if [[ ! -f "$HOME/.terminfo/s/screen-it" ]]; then
+	if [[ ! -f "$HOME/.terminfo/s/screen-256color-it" ]]; then
 		mkdir -p $HOME/.terminfo
 		infocmp screen-256color | sed \
-			-e 's/^screen[^|]*|[^,]*,/screen-it|screen with italics support,/' \
-			-e '$s/$/ sitm=\\E[3m, ritm=\\E[23m,/' > /tmp/terminfo
+			-e 's/^screen[^|]*|[^,]*,/screen-256color-it|screen with italics support,/' \
+			-e 's/%?%p1%t;3%/%?%p1%t;7%/' \
+			-e 's/smso=[^,]*,/smso=\\E[7m,/' \
+			-e 's/rmso=[^,]*,/rmso=\\E[27m,/' \
+			-e '$s/$/ sitm=\\E[3m, ritm=\\E[23m,/' \
+			> /tmp/terminfo
 		tic /tmp/terminfo
 	fi
 }
@@ -22,8 +26,8 @@ case "$TERM" in
 		;;
 	screen*)
 		create_terminfo_screen_it
-		if infocmp screen-it >/dev/null 2>&1; then
-			export TERM=screen-it
+		if infocmp screen-256color-it >/dev/null 2>&1; then
+			export TERM=screen-256color-it
 		elif infocmp screen-256color >/dev/null 2>&1; then
 			export TERM=screen-256color
 		fi
