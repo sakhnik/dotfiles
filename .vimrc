@@ -86,6 +86,9 @@ if has("autocmd")
 	" Substitute everything between [:VIM_EVAL:] and [:END_EVAL:]
 	" with the result of expression in it
 	autocmd BufNewFile *    %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+
+    " Autoclose preview window (omni completion) when leaving insert mode
+    autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 else
 
 	set autoindent      " always set autoindenting on
