@@ -107,3 +107,9 @@
 [submodule ".vim/bundle/javacomplete"]
 	path = .vim/bundle/javacomplete
 	url = https://github.com/vim-scripts/javacomplete
+[submodule ".emacs.d/evil"]
+	path = .emacs.d/evil
+	url = git://gitorious.org/evil/evil.git
+[submodule ".emacs.d/undo-tree"]
+	path = .emacs.d/undo-tree
+	url = http://www.dr-qubit.org/git/undo-tree.git
