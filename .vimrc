@@ -292,6 +292,9 @@ let g:unite_split_rule = 'botright'
 "let g:unite_prompt = '❫ '
 "let g:unite_prompt = '» '
 
+call unite#custom#source('file,file/new,buffer,file_rec',
+			\ 'matchers', 'matcher_fuzzy')
+
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
   " Overwrite settings.
