@@ -352,6 +352,13 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 2  "Close location list automatically
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if &t_Co > 2 || has("gui_running")
 	let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : 'italic', 'sp' : 'fg' }
