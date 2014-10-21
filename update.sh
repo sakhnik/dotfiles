@@ -25,11 +25,6 @@ fi
 if [[ -n "$updated" ]]; then
 	git submodule update --init --recursive
 
-	echo "Compile vimproc"
-	pushd .vim/bundle/vimproc
-	make
-	popd
-
 	echo "Compile ycm"
 	pushd .vim/bundle/ycm
 	./install.sh --clang-completer --system-libclang
