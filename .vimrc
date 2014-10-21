@@ -345,6 +345,14 @@ if executable('ack-grep')
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Ultisnips
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Trigger configuration.
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if &t_Co > 2 || has("gui_running")
 	let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : 'italic', 'sp' : 'fg' }
 	if has("autocmd")
