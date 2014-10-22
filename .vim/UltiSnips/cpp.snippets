@@ -31,6 +31,10 @@ namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`}
 }${1/.+/ \/* /m}$1${1/.+/ *\/ /m}
 endsnippet
 
+snippet us "using namespace .. (us)"
+using namespace ${0:std};
+endsnippet
+
 snippet readfile "read file (readF)"
 std::vector<char> v;
 if (FILE *fp = fopen(${1:"filename"}, "r"))
