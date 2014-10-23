@@ -83,9 +83,6 @@
 [submodule ".vim/bundle/tagbar"]
 	path = .vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar
-[submodule ".vim/bundle/nerdtree"]
-	path = .vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree
 [submodule ".vim/plugin/tabular"]
 	path = .vim/plugin/tabular
 	url = https://github.com/godlygeek/tabular
