@@ -104,3 +104,6 @@
 [submodule ".vim/bundle/delimitMate"]
 	path = .vim/bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate
+[submodule ".vim/bundle/incsearch"]
+	path = .vim/bundle/incsearch
+	url = https://github.com/haya14busa/incsearch.vim

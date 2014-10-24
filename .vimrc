@@ -197,6 +197,11 @@ let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/](\.git|\CBUILD[-_a-z0-9]*|sstate-cache|downloads|buildhistory|build[-_a-zA-Z]*)$'
 	\ }
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => YouCompleteMe
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
 let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
 let g:ycm_filetype_blacklist = {
 	\ 'notes' : 1,
@@ -228,6 +233,8 @@ if has('persistent_undo')
 		call mkdir(&undodir,"p")
 	endif
 endif
+" Forget about ex mode
+map Q <nop>
 
 nnoremap <Leader><space> /\s\+$\\| \+\ze\t<cr>
 
@@ -251,8 +258,8 @@ let &efm .= ',%C' . ' %m'
 " => Ultisnips
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Trigger configuration.
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 
@@ -261,6 +268,14 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 2  "Close location list automatically
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Incsearch
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:incsearch#magic = '\v'
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if &t_Co > 2 || has("gui_running")
