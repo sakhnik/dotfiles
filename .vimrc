@@ -200,8 +200,6 @@ let g:ctrlp_custom_ignore = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YouCompleteMe
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_key_list_select_completion=[]
-let g:ycm_key_list_previous_completion=[]
 let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
 let g:ycm_filetype_blacklist = {
 	\ 'notes' : 1,
@@ -258,8 +256,8 @@ let &efm .= ',%C' . ' %m'
 " => Ultisnips
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Trigger configuration.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 
