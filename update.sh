@@ -25,10 +25,12 @@ fi
 if [[ -n "$updated" ]]; then
 	git submodule update --init --recursive
 
-	echo "Compile ycm"
-	pushd .vim/bundle/ycm
-	./install.sh --clang-completer --system-libclang
-	popd
+	if ! git diff --quiet HEAD^.. .vim/bundle/ycm >/dev/null 2>&1; then
+		echo "Compile ycm"
+		pushd .vim/bundle/ycm
+		./install.sh --clang-completer --system-libclang
+		popd
+	fi
 fi
 
 echo "Done"
