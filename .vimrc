@@ -270,7 +270,6 @@ let g:syntastic_always_populate_loc_list = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Incsearch
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:incsearch#magic = '\v'
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
