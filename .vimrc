@@ -11,7 +11,6 @@ if &term == "win32"
 elseif &termencoding == "koi8-r"
 	set termencoding=koi8-u
 endif
-set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp1251,default
 runtime $VIMRUNTIME/vimrc_example.vim
 if &term == "linux"
@@ -28,13 +27,7 @@ map! <S-Insert> <MiddleMouse>
 
 set ttyscroll=0
 set nocompatible
-set backspace=indent,eol,start
 set nobackup
-set history=50
-set ruler
-set showcmd
-set incsearch
-set wildmenu
 set wildmode=longest,list
 if has("win32")
 	set shellpipe=2>&1\ \|\ tee
@@ -48,8 +41,6 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 if has("autocmd")
-
-	filetype plugin indent on
 
 	augroup vimrcEx
 		au!
@@ -91,12 +82,8 @@ if has("autocmd")
     autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 else
 
-	set autoindent      " always set autoindenting on
-
 endif " has("autocmd")
 
-set noexpandtab
-set smarttab
 set ignorecase smartcase
 set tabstop=4
 set cindent shiftwidth=4
@@ -118,18 +105,14 @@ if has("gui_running")
 	endif
 endif
 set path+=../include
-set listchars=tab:▸\ ,trail:·,nbsp:%
 set guioptions-=T
 set guioptions-=m
 set mousehide
-set scrolloff=3
 set statusline=%<%f\ %H%M%R%=%-7.k%-14.(%l,%c%V%)\ %P
-set laststatus=2
-set viminfo='100,f1,<1024,h,s128
 set clipboard=unnamed
 set completeopt=menu,longest,preview
-set tags=./tags,tags,tags;/
-set timeout timeoutlen=3000 ttimeoutlen=100
+"set tags=./tags,tags,tags;/
+"set timeout timeoutlen=3000 ttimeoutlen=100
 let mapleader='\'
 let maplocalleader=' '
 
