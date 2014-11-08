@@ -110,3 +110,6 @@
 [submodule ".vim/bundle/sensible"]
 	path = .vim/bundle/sensible
 	url = https://github.com/tpope/vim-sensible
+[submodule ".vim/bundle/sleuth"]
+	path = .vim/bundle/sleuth
+	url = https://github.com/tpope/vim-sleuth
