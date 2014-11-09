@@ -153,7 +153,9 @@ if has('persistent_undo')
 	set undofile
 	set undodir=/tmp/vim_undo-$USER
 	if exists("*mkdir") && !isdirectory(&undodir)
-		call mkdir(&undodir,"p")
+		call mkdir(&undodir, "p", 0700)
+	else
+		set undodir=.
 	endif
 endif
 " Forget about ex mode
@@ -161,6 +163,7 @@ map Q <nop>
 " Don't use Ex mode, use Q for formatting
 "map Q gq
 
+" Find tailing white spaces
 nnoremap <Leader><space> /\s\+$\\| \+\ze\t<cr>
 
 " Ignore timestamp lines in Google Test output
@@ -212,5 +215,4 @@ if &t_Co > 2 || has("gui_running")
 	colors zenburn
 endif
 
-"let $PAGER=''
 "vim: set noet ts=4 sw=4:
