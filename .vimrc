@@ -1,44 +1,18 @@
-set nocompatible
-" Let's parse $VIMINIT, which is like "source path"
-if $VIMINIT =~ 'source\s\+.*'
-	let f1 = substitute($VIMINIT, 'source\s\+\(.*\)', '\1', "")
-	let f2 = fnamemodify(f1, ":p:h").'/runtime'
-	let &runtimepath=f2.','.$VIMRUNTIME
-endif
-let &termencoding=&encoding
-if &term == "win32"
-	set termencoding=cp866
-elseif &termencoding == "koi8-r"
-	set termencoding=koi8-u
-endif
-set fileencodings=ucs-bom,utf-8,cp1251,default
-runtime $VIMRUNTIME/vimrc_example.vim
+" vim: set noet ts=2 sw=2:
+
 if &term == "linux"
 	set t_ve+=[?81;0;112c
-endif
-
-if v:progname =~? "evim"
-	finish
 endif
 
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
 
+set fileencodings=ucs-bom,utf-8,cp1251,default
 set ttyscroll=0
 set nocompatible
 set nobackup
 set wildmode=longest,list
-if has("win32")
-	set shellpipe=2>&1\ \|\ tee
-endif
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-	syntax on
-	set hlsearch
-endif
 
 if has("autocmd")
 
@@ -63,109 +37,71 @@ if has("autocmd")
 	" This is useful for "svn diff | vim -"
 	autocmd StdinReadPost * setlocal buftype=nofile
 
+	augroup reload_vimrc
+		au!
+		autocmd bufwritepost $MYVIMRC source $MYVIMRC
+	augroup END
+
+	" TODO: Substitute with UltiSnips
 	augroup templates
 		au!
 		" Read source file skeletons
 		autocmd BufNewFile *.*  silent! execute '0r $HOME/.vim/templates/skeleton.'.expand("<afile>:e")
 	augroup END
 
-	augroup reload_vimrc
-		au!
-		autocmd bufwritepost $MYVIMRC source $MYVIMRC
-	augroup END
-
 	" Substitute everything between [:VIM_EVAL:] and [:END_EVAL:]
 	" with the result of expression in it
 	autocmd BufNewFile *    %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 
-    " Autoclose preview window (omni completion) when leaving insert mode
-    autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-else
-
+	" Autoclose preview window (omni completion) when leaving insert mode
+	autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 endif " has("autocmd")
 
 set ignorecase smartcase
 set tabstop=4
 set cindent shiftwidth=4
 set cinoptions=:0,=1s,g0,(0,M1,U0,u0
-"set autochdir
+
+" In many terminal emulators the mouse works just fine, thus enable it.
 if exists("+mouse")
 	set mouse=a
 endif
-if has("gui_running")
-	if &guifont == ''
-		if has("gui_gtk2")
-			set guifont=Monospace\ 11
-		elseif has("x11")
-			" Also for GTK 1
-			set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
-		elseif has("gui_win32")
-			set guifont=Courier_New:h12:cRUSSIAN
-		endif
-	endif
-endif
-set path+=../include
+
 set guioptions-=T
 set guioptions-=m
 set mousehide
-set statusline=%<%f\ %H%M%R%=%-7.k%-14.(%l,%c%V%)\ %P
 set clipboard=unnamed
 set completeopt=menu,longest,preview
-"set tags=./tags,tags,tags;/
-"set timeout timeoutlen=3000 ttimeoutlen=100
 let mapleader='\'
 let maplocalleader=' '
 
-nnoremap <f2> :confirm w<cr>
-inoremap <f2> <c-o>:confirm w<cr>
-vnoremap <f2> <esc>:confirm w<cr>gv
-
-nnoremap <f10> :confirm qa<cr>
-inoremap <f10> <c-o>:confirm qa<cr>
-nnoremap <c-f8> :FencView<cr>
-inoremap <c-f8> <esc>:FencView<cr>
 nnoremap <f5> :GundoToggle<cr>
 
-nnoremap <Leader>; :<c-u>ls!<Bar>sleep <c-r>=v:count1<cr><cr><cr>
-vnoremap <Leader>/ <esc>/\%V
-vnoremap <Leader>? <esc>?\%V
-nnoremap <silent> <c-l> :<c-u>nohlsearch<cr><c-l>
 nnoremap & :&&<cr>
 xnoremap & :&&<cf>
 
 " Expand %% to the directory of the current buffer
 cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
-if exists(":vnew") && exists(":diffthis")
-	function! s:DiffWithSaved()
-		let filetype=&ft
-		diffthis
-		vnew | r # | normal 1Gdd
-		diffthis
-		exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-	endfunction
-	com! Diff call s:DiffWithSaved()
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
 endif
 
-if exists('+shellslash')
-	set shellslash
-endif
-
-" CTRL-Tab is Next window
-noremap <C-Tab> <C-W>w
-inoremap <C-Tab> <C-O><C-W>w
-cnoremap <C-Tab> <C-C><C-W>w
-onoremap <C-Tab> <C-C><C-W>w
 nnoremap <silent> \' :e $MYVIMRC<cr>
 
-" headers shouldn't be ignored!
-let g:netrw_sort_sequence='[\/]$,*,\.bak$,\.o$,\.info$,\.swp$,\.obj$'
-
-let b:match_words = '\s*#\s*region.*$:\s*#\s*endregion'
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Alternate
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:alternateExtensions_cc = "hh,h,hpp"
 let g:alternateExtensions_hh = "cc,cpp,C"
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Airline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_theme='dark'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
@@ -173,6 +109,9 @@ let g:airline_right_sep = ''
 let g:airline_branch_prefix = '⎇ '   "±
 let g:airline_paste_symbol = 'ρ'
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => CtrlP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_extensions = ['tag']
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_use_caching = 0
@@ -192,6 +131,9 @@ let g:ycm_filetype_blacklist = {
 	\}
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ConqueTerm
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ConqueTerm_StartMessages = 0
 
 runtime! plugin/*.vim
@@ -216,6 +158,8 @@ if has('persistent_undo')
 endif
 " Forget about ex mode
 map Q <nop>
+" Don't use Ex mode, use Q for formatting
+"map Q gq
 
 nnoremap <Leader><space> /\s\+$\\| \+\ze\t<cr>
 
