@@ -152,10 +152,12 @@ set modeline
 if has('persistent_undo')
 	set undofile
 	set undodir=/tmp/vim_undo-$USER
-	if exists("*mkdir") && !isdirectory(&undodir)
-		call mkdir(&undodir, "p", 0700)
-	else
-		set undodir=.
+	if !isdirectory(&undodir)
+		if exists("*mkdir")
+			call mkdir(&undodir, "p", 0700)
+		else
+			set undodir=.
+		endif
 	endif
 endif
 " Forget about ex mode
