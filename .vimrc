@@ -4,6 +4,10 @@ if &term == "linux"
 	set t_ve+=[?81;0;112c
 endif
 
+if has('nvim')
+	runtime! python_setup.vim
+endif
+
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
