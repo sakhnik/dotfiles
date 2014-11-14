@@ -23,7 +23,7 @@ function! s:find_builddir(expr)
 endfunction
 
 " Public Interface:
-command! -nargs=? Make call s:cmake(<f-args>)
+command! -nargs=? CMake call s:cmake(<f-args>)
 
 function! s:cmake(...)
 
