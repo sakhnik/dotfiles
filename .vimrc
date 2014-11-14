@@ -151,7 +151,7 @@ set novb t_vb=    " Не бікати взагалі ніколи
 set keymap=uk     " Завантажити українську мапу клавіш
 set iminsert=0    " Встановити англійську (i_ctrl-^)
 set imsearch=0
-set showbreak=↪
+set showbreak=\\  "↪
 set modeline
 if has('persistent_undo')
 	set undofile
