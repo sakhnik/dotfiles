@@ -1,6 +1,7 @@
 #!/bin/bash
 
-env | grep -q '^webos' && exit 0   # Skip webOS environment
+# Skip webOS environment
+pwd | grep -qE 'build-[a-z]+/BUILD[a-z0-9-]*/work' && exit 0
 
 set -e
 PATH="/usr/local/bin:$PATH"
