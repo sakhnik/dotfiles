@@ -9,7 +9,7 @@
   '(
     evil evil-surround evil-visualstar
     zenburn-theme solarized-theme
-    auto-complete yasnippet
+    yasnippet
     irony
     ) "a list of packages to ensure are installed at launch.")
 
@@ -44,13 +44,10 @@
 (require 'evil)
 (evil-mode 1)
 
-(require 'auto-complete)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(require 'auto-complete-config)
-(ac-config-default)
-
 (require 'yasnippet)
 (yas-global-mode 1)
+
+(add-hook 'after-init-hook 'global-company-mode)
 
 (require 'irony)
 (add-hook 'c++-mode-hook 'irony-mode)
@@ -65,3 +62,11 @@
   (define-key irony-mode-map [remap complete-symbol]
     'irony-completion-at-point-async))
 (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-irony))
+
+;; (optional) adds CC special commands to `company-begin-commands' in order to
+;; trigger completion at interesting places, such as after scope operator
+;;     std::|
+(add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
