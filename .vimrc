@@ -172,12 +172,16 @@ map Q <nop>
 " Find tailing white spaces
 nnoremap <Leader><space> /\s\+$\\| \+\ze\t<cr>
 
+" Doxygen parser
+let &efm = &efm . ',%f:%l\ %m'
+
 " Ignore timestamp lines in Google Test output
 let gtest_efm = '%E%f:%l:\ Failure'
 let gtest_efm .= ',%Z%m'
 let &efm = gtest_efm . ',' . &efm
 let glib_efm = '%[%^:]%#:%[A-Z]%#:%f:%l:%m'
 let &efm = glib_efm . ',' . &efm
+
 " CMake Parser
 " Call stack entries
 let &efm .= ', %#%f:%l %#(%m)'
