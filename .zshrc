@@ -64,7 +64,6 @@ if [ "$TERM" != "dumb" ]; then
 	alias ls='ls --color=auto'
 	#alias dir='ls --color=auto --format=vertical'
 	#alias vdir='ls --color=auto --format=long'
-	export GREP_OPTIONS='--colour=auto'
 fi
 
 alias ll='ls -l'
@@ -73,6 +72,7 @@ alias l='ls -CF'
 alias cal='cal -m'
 alias timidity='timidity -Os'
 alias urldecode='python2 -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
+alias grep='/usr/bin/grep --color'
 
 if fortune -e 2>/dev/null; then
 	echo
