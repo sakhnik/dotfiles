@@ -1,9 +1,9 @@
 [user]
 	name = Anatolii Sakhnik
-	email = anatolii.sakhnik@lge.com
+	email = sakhnik@gmail.com
 [alias]
-	review = push origin HEAD:refs/for/master
-	draft = push origin HEAD:refs/drafts/master
+	lg = log --oneline --decorate --graph
+	lga = log --all --oneline --decorate --graph
 	ctags = !.git/hooks/ctags
 [color]
 	ui = true
@@ -20,3 +20,5 @@
 [mergetool "vim"]
 	cmd = vim \"+Gdiff\" $MERGED
 	keepBackup = false
+[diff]
+	submodule = log
