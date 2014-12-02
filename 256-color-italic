@@ -41,5 +41,5 @@ exe_name=`basename ${BASH_SOURCE[0]}`
 for p in ${PATH//:/$'\n'}; do
 	[[ -x "$p/$exe_name" ]] || continue
 	[[ "$p/$exe_name" == ${BASH_SOURCE[0]} ]] && continue
-	exec "$p/$exe_name" $@
+	exec "$p/$exe_name" "$@"
 done
