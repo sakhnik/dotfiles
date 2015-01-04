@@ -116,3 +116,6 @@
 [submodule ".vim/bundle/dispatch"]
 	path = .vim/bundle/dispatch
 	url = https://github.com/tpope/vim-dispatch
+[submodule ".vim/bundle/vala"]
+	path = .vim/bundle/vala
+	url = https://github.com/tkztmk/vim-vala
