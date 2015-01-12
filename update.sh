@@ -28,7 +28,7 @@ if [[ -n "$updated" ]]; then
 	if ! git diff --quiet $head_rev.. .vim/bundle/ycm >/dev/null 2>&1; then
 		echo "Compile ycm"
 		pushd .vim/bundle/ycm
-		./install.sh --clang-completer --system-libclang
+		./install.sh --clang-completer --system-libclang --system-boost
 		popd
 	fi
 fi
