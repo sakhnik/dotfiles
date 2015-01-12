@@ -72,7 +72,11 @@ alias l='ls -CF'
 alias cal='cal -m'
 alias timidity='timidity -Os'
 alias urldecode='python2 -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
-alias grep='/usr/bin/grep --color'
+if [[ -f /usr/bin/grep ]]; then
+	alias grep='/usr/bin/grep --color'
+elif [[ -f /bin/grep ]]; then
+	alias grep='/bin/grep --color'
+fi
 
 if fortune -e 2>/dev/null; then
 	echo
