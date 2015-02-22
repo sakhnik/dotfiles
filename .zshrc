@@ -78,7 +78,13 @@ elif [[ -f /bin/grep ]]; then
 	alias grep='/bin/grep --color'
 fi
 
-if fortune -e 2>/dev/null; then
+if [[ $(($RANDOM & 1)) -eq 0 ]]; then
+	fortuneopts=vimtips
+else
+	fortuneopts=
+fi
+
+if fortune -e $fortuneopts 2>/dev/null; then
 	echo
 fi
 
