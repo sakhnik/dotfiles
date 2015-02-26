@@ -119,3 +119,6 @@
 [submodule ".vim/bundle/vala"]
 	path = .vim/bundle/vala
 	url = https://github.com/tkztmk/vim-vala
+[submodule ".vim/bundle/rust"]
+	path = .vim/bundle/rust
+	url = https://github.com/wting/rust.vim.git
