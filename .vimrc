@@ -13,7 +13,6 @@ map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
 
 set fileencodings=ucs-bom,utf-8,cp1251,default
-set ttyscroll=0
 set nocompatible
 set nobackup
 set wildmode=longest,list
