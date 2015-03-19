@@ -12,20 +12,21 @@
   '(
     evil evil-surround evil-visualstar
     zenburn-theme solarized-theme
+    markdown-mode
     yasnippet
     company
     ) "a list of packages to ensure are installed at launch.")
 
-; my-packages.el
+;; my-packages.el
 (require 'cl)
 
-; method to check if all packages are installed
+;; method to check if all packages are installed
 (defun packages-installed-p ()
   (loop for p in required-packages
 		when (not (package-installed-p p)) do (return nil)
 		finally (return t)))
 
-; if not all packages are installed, check one by one and install the missing ones.
+;; if not all packages are installed, check one by one and install the missing ones.
 (unless (packages-installed-p)
   ; check for new packages (package versions)
   (message "%s" "Emacs is now refreshing its package database...")
@@ -49,6 +50,13 @@
 
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-idle-delay .3)
+
+;; markdown-mode
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;;
 (custom-set-variables
