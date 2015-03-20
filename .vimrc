@@ -220,11 +220,12 @@ map g/ <Plug>(incsearch-stay)
 if &t_Co > 2 || has("gui_running")
 	let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : 'italic', 'sp' : 'fg' }
 	if has("autocmd")
-		if &term =~ 'rxvt-unicode.*' || &term =~ 'screen-\(256color-\)\?it'
+		if &term =~ '\(rxvt-unicode.*\|screen-\(256color-\)\?it\|nvim\)'
 			autocmd ColorScheme * hi Comment cterm=italic
 		endif
 	endif
 	colors zenburn
+	hi Comment cterm=italic
 endif
 
 "vim: set noet ts=4 sw=4:
