@@ -57,7 +57,7 @@ if has("autocmd")
 	autocmd BufNewFile *    %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 
 	" Autoclose preview window (omni completion) when leaving insert mode
-	autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+	autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
 endif " has("autocmd")
 
 set ignorecase smartcase
@@ -82,6 +82,12 @@ nnoremap <f5> :GundoToggle<cr>
 
 nnoremap & :&&<cr>
 xnoremap & :&&<cf>
+
+"Easier window navigation, control+letter moves in that direction
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
 
 " Expand %% to the directory of the current buffer
 cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%'
