@@ -149,7 +149,6 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
 let g:ConqueTerm_StartMessages = 0
 
 runtime! plugin/*.vim
-runtime ftplugin/man.vim
 
 runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
