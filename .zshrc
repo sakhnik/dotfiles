@@ -26,7 +26,12 @@ esac
 
 alias ubuntu="schroot -c ubuntu -p"
 
-export EDITOR=vim
+if which nvim >/dev/null 2>&1; then
+	export EDITOR=nvim
+else
+	export EDITOR=vim
+fi
+
 [[ -f $HOME/.sakhnik/pystartup.py ]] &&
 	export PYTHONSTARTUP=$HOME/.sakhnik/pystartup.py
 
