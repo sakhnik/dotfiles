@@ -81,13 +81,9 @@ let maplocalleader=' '
 nnoremap <f5> :GundoToggle<cr>
 
 nnoremap & :&&<cr>
-xnoremap & :&&<cf>
+xnoremap & :&&<cr>
 
-"Easier window navigation, control+letter moves in that direction
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
+nmap <C-l> :redraw!<cr>
 
 " Expand %% to the directory of the current buffer
 cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%'

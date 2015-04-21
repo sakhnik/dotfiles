@@ -131,3 +131,6 @@
 [submodule ".vim/bundle/nodejs-errorformat"]
 	path = .vim/bundle/nodejs-errorformat
 	url = https://github.com/felixge/vim-nodejs-errorformat
+[submodule ".vim/bundle/rtags"]
+	path = .vim/bundle/rtags
+	url = https://github.com/lyuts/vim-rtags
