@@ -134,3 +134,6 @@
 [submodule ".vim/bundle/rtags"]
 	path = .vim/bundle/rtags
 	url = https://github.com/lyuts/vim-rtags
+[submodule ".vim/bundle/clang-tags"]
+	path = .vim/bundle/clang-tags
+	url = https://github.com/sakhnik/vim-clang-tags
