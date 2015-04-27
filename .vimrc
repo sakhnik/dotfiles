@@ -96,7 +96,7 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-nnoremap <silent> \' :e $MYVIMRC<cr>
+nnoremap <leader>ve :split $MYVIMRC<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Alternate
