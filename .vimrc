@@ -75,7 +75,7 @@ set guioptions-=m
 set mousehide
 set clipboard=unnamed
 set completeopt=menu,longest,preview
-let mapleader='\'
+let mapleader=' '
 let maplocalleader=' '
 
 nnoremap <f5> :GundoToggle<cr>
@@ -137,6 +137,7 @@ let g:ycm_filetype_blacklist = {
 	\ 'text' : 1,
 	\ 'conque_term' : 1,
 	\}
+let g:ycm_confirm_extra_conf = 0
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
