@@ -75,7 +75,7 @@ set guioptions-=m
 set mousehide
 set clipboard=unnamed
 set completeopt=menu,longest,preview
-let mapleader='\'
+let mapleader=' '
 let maplocalleader=' '
 
 nnoremap <f5> :GundoToggle<cr>
