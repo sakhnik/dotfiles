@@ -25,6 +25,10 @@ if has("autocmd")
 		" For all text files set 'textwidth' to 78 characters.
 		autocmd FileType text setlocal textwidth=78 lbr
 		autocmd FileType gitcommit setlocal spell
+	augroup END
+
+	augroup misc
+		au!
 
 		" When editing a file, always jump to the last known cursor position.
 		" Don't do it when the position is invalid or when inside an event handler
@@ -34,11 +38,17 @@ if has("autocmd")
 		    \   exe "normal g`\"" |
 		    \ endif
 
-	augroup END
+		" Don't preserve a buffer when reading from stdin
+		" This is useful for "svn diff | vim -"
+		autocmd StdinReadPost * setlocal buftype=nofile
 
-	" Don't preserve a buffer when reading from stdin
-	" This is useful for "svn diff | vim -"
-	autocmd StdinReadPost * setlocal buftype=nofile
+		" Substitute everything between [:VIM_EVAL:] and [:END_EVAL:]
+		" with the result of expression in it
+		autocmd BufNewFile *    %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+
+		" Autoclose preview window (omni completion) when leaving insert mode
+		autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
+	augroup END
 
 	augroup reload_vimrc
 		au!
@@ -52,12 +62,6 @@ if has("autocmd")
 		autocmd BufNewFile *.*  silent! execute '0r $HOME/.vim/templates/skeleton.'.expand("<afile>:e")
 	augroup END
 
-	" Substitute everything between [:VIM_EVAL:] and [:END_EVAL:]
-	" with the result of expression in it
-	autocmd BufNewFile *    %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
-
-	" Autoclose preview window (omni completion) when leaving insert mode
-	autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
 endif " has("autocmd")
 
 set ignorecase smartcase
@@ -226,8 +230,11 @@ map g/ <Plug>(incsearch-stay)
 if &t_Co > 2 || has("gui_running")
 	let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : 'italic', 'sp' : 'fg' }
 	if has("autocmd")
-		if &term =~ '\(rxvt-unicode.*\|screen-\(256color-\)\?it\|nvim\)'
-			autocmd ColorScheme * hi Comment cterm=italic
+		if &term =~ '\v(rxvt-unicode.*|screen-(256color-)?it|nvim)'
+			augroup colors
+				au!
+				autocmd ColorScheme * hi Comment cterm=italic
+			augroup END
 		endif
 	endif
 	colors zenburn
