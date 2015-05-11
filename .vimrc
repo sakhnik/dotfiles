@@ -84,6 +84,7 @@ let mapleader=' '
 let maplocalleader=' '
 set cmdheight=2
 
+nnoremap <leader>w :w<cr>
 nnoremap <f5> :GundoToggle<cr>
 
 nnoremap & :&&<cr>
