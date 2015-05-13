@@ -65,9 +65,6 @@
 [submodule ".vim/bundle/repeat"]
 	path = .vim/bundle/repeat
 	url = https://github.com/tpope/vim-repeat
-[submodule ".vim/bundle/ack"]
-	path = .vim/bundle/ack
-	url = https://github.com/mileszs/ack.vim
 [submodule ".vim/bundle/seoul256"]
 	path = .vim/bundle/seoul256
 	url = https://github.com/junegunn/seoul256.vim.git
