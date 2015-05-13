@@ -119,9 +119,6 @@
 [submodule ".vim/bundle/vim-man"]
 	path = .vim/bundle/vim-man
 	url = git://github.com/bruno-/vim-man.git
-[submodule ".vim/bundle/tern_for_vim"]
-	path = .vim/bundle/tern_for_vim
-	url = https://github.com/marijnh/tern_for_vim
 [submodule ".vim/bundle/nodejs-errorformat"]
 	path = .vim/bundle/nodejs-errorformat
 	url = https://github.com/felixge/vim-nodejs-errorformat
