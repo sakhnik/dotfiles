@@ -109,7 +109,9 @@ nnoremap <leader>ve :split $MYVIMRC<cr>
 " => Alternate
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:alternateExtensions_cc = "hh,h,hpp"
-let g:alternateExtensions_hh = "cc,cpp,C"
+let g:alternateExtensions_hh = "cc"
+let g:alternateExtensions_hxx = "cxx"
+let g:alternateExtensions_cxx = "hxx,h"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Airline
