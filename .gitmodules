@@ -131,3 +131,15 @@
 [submodule ".vim/bundle/dbext"]
 	path = .vim/bundle/dbext
 	url = https://github.com/vim-scripts/dbext.vim
+[submodule ".vim/bundle/orgmode"]
+	path = .vim/bundle/orgmode
+	url = https://github.com/jceb/vim-orgmode
+[submodule ".vim/bundle/speeddating"]
+	path = .vim/bundle/speeddating
+	url = https://github.com/tpope/vim-speeddating
+[submodule ".vim/bundle/utl"]
+	path = .vim/bundle/utl
+	url = https://github.com/vim-scripts/utl.vim
+[submodule ".vim/bundle/calendar"]
+	path = .vim/bundle/calendar
+	url = https://github.com/mattn/calendar-vim
