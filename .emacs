@@ -12,6 +12,8 @@
   '(
     evil evil-surround evil-visualstar
     zenburn-theme solarized-theme
+    powerline
+    magit
     markdown-mode
     yasnippet
     company
@@ -41,6 +43,9 @@
 (global-font-lock-mode 1)
 (xterm-mouse-mode 1)
 (load-theme 'zenburn t)
+
+(require 'powerline)
+(powerline-default-theme)
 
 (require 'evil)
 (evil-mode 1)
