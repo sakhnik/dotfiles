@@ -128,6 +128,9 @@
 [submodule ".vim/bundle/clang-tags"]
 	path = .vim/bundle/clang-tags
 	url = https://github.com/sakhnik/vim-clang-tags
+[submodule ".vim/bundle/dbext"]
+	path = .vim/bundle/dbext
+	url = https://github.com/vim-scripts/dbext.vim
 [submodule ".vim/bundle/orgmode"]
 	path = .vim/bundle/orgmode
 	url = https://github.com/jceb/vim-orgmode
