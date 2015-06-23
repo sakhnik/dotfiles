@@ -47,6 +47,8 @@
 (require 'powerline)
 (powerline-default-theme)
 
+(setq magit-last-seen-setup-instructions "1.4.0")
+
 (require 'evil)
 (evil-mode 1)
 
