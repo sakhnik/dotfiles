@@ -143,3 +143,6 @@
 [submodule ".vim/bundle/calendar"]
 	path = .vim/bundle/calendar
 	url = https://github.com/mattn/calendar-vim
+[submodule ".vim/bundle/incsearch-fuzzy"]
+	path = .vim/bundle/incsearch-fuzzy
+	url = https://github.com/haya14busa/incsearch-fuzzy.vim
