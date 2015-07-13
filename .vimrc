@@ -62,6 +62,13 @@ if has("autocmd")
 		autocmd BufNewFile *    %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 	augroup END
 
+	" Set custom options for specific files
+	augroup custom_options
+		au!
+		" Read source file skeletons
+		autocmd BufReadPost /tmp/evo*  setlocal ft=text tw=78 spell
+	augroup END
+
 endif " has("autocmd")
 
 set ignorecase smartcase
