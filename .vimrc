@@ -66,7 +66,7 @@ if has("autocmd")
 	augroup custom_options
 		au!
 		" Read source file skeletons
-		autocmd BufReadPost /tmp/evo*  setlocal ft=text tw=78 spell
+		autocmd BufReadPost /tmp/evo*  setlocal ft=text tw=72 spell
 	augroup END
 
 endif " has("autocmd")
