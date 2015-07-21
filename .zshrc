@@ -1,4 +1,6 @@
 
+this_dir=$(dirname `readlink -f ~/.zshrc`)
+
 export PATH=$PATH:/bin:/sbin:/usr/sbin
 if [[ -d $HOME/.bin ]]; then
 	export PATH=$HOME/.bin:$PATH
@@ -36,8 +38,8 @@ else
 	export EDITOR=vim
 fi
 
-[[ -f $HOME/.sakhnik/pystartup.py ]] &&
-	export PYTHONSTARTUP=$HOME/.sakhnik/pystartup.py
+[[ -f $HOME/$this_dir/pystartup.py ]] &&
+	export PYTHONSTARTUP=$HOME/$this_dir/pystartup.py
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
