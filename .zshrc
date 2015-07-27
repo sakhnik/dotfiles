@@ -264,26 +264,3 @@ zle-line-init() {
 }
 zle -N zle-keymap-select
 zle -N zle-line-init
-
-
-# Fuzzy file finder in the current subtree
-fzf-file-widget() {
-	local FILES
-	local IFS="
-"
-	FILES=($(
-	find * -path '*/\.*' -prune \
-		-o -type f -print \
-		-o -type l -print 2> /dev/null | fzf -m))
-	unset IFS
-	FILES=$FILES:q
-	LBUFFER="${LBUFFER%% #} $FILES"
-	zle redisplay
-}
-zle     -N   fzf-file-widget
-bindkey '^P' fzf-file-widget
-
-# Open selected file in vim
-vf() {
-	file=$(fzf) && vim "$file"
-}
