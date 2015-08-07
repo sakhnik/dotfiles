@@ -14,6 +14,7 @@
     zenburn-theme solarized-theme
     powerline
     magit
+    projectile
     markdown-mode
     yasnippet
     company
