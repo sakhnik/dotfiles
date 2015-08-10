@@ -32,11 +32,7 @@ esac
 
 alias ubuntu="schroot -c ubuntu -p"
 
-if which nvim >/dev/null 2>&1; then
-	export EDITOR=nvim
-else
-	export EDITOR=vim
-fi
+export EDITOR=vim
 
 [[ -f $HOME/$this_dir/pystartup.py ]] &&
 	export PYTHONSTARTUP=$HOME/$this_dir/pystartup.py
