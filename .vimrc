@@ -167,6 +167,7 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
 " => ConqueTerm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ConqueTerm_StartMessages = 0
+let g:ConqueTerm_SendVisKey = '<leader>cc'
 
 runtime! plugin/*.vim
 
