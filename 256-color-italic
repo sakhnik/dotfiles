@@ -19,7 +19,7 @@ create_terminfo_screen_it()
 
 # Pick up a better terminal with italics support
 case "$TERM" in
-	xterm)
+	xterm*)
 		if infocmp rxvt-unicode-256color >/dev/null 2>&1; then
 			export TERM=rxvt-unicode-256color
 		fi
