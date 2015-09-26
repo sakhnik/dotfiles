@@ -6,5 +6,5 @@ pwd | grep -qE 'build-[a-z]+/BUILD[a-z0-9-]*/work' && exit 0
 set -e
 PATH="/usr/local/bin:$PATH"
 trap "rm -f .git/tags.$$" EXIT
-ctags --tag-relative -Rf.git/tags.$$ --exclude=.git --exclude=test --languages=-javascript,sql
+git ls-files | ctags -L - --tag-relative -Rf.git/tags.$$ --exclude=.git --exclude=test --languages=-javascript,sql
 mv .git/tags.$$ .git/tags
