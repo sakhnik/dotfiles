@@ -100,7 +100,11 @@ if [ "$TERM" != "dumb" ]; then
     alias ls='ls --color=auto'
     #alias dir='ls --color=auto --format=vertical'
     #alias vdir='ls --color=auto --format=long'
-    export GREP_OPTIONS='--colour=auto'
+    if [[ -f /usr/bin/grep ]]; then
+        alias grep='/usr/bin/grep --color'
+    elif [[ -f /bin/grep ]]; then
+        alias grep='/bin/grep --color'
+    fi
 fi
 
 alias ll='ls -l'
