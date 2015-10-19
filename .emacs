@@ -18,6 +18,8 @@
     markdown-mode
     yasnippet
     company
+    ycmd
+    company-ycmd
     ) "a list of packages to ensure are installed at launch.")
 
 ;; my-packages.el
@@ -65,6 +67,16 @@
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;; ycmd
+(require 'ycmd)
+(add-hook 'after-init-hook #'global-ycmd-mode)
+(set-variable 'ycmd-server-command '("python2" "~/.vim/bundle/ycm/third_party/ycmd/"))
+(set-variable 'ycmd-global-config "~/.vim/ycm_extra_conf.py")
+
+;; company-ycmd
+(require 'company-ycmd)
+(company-ycmd-setup)
 
 ;;
 (custom-set-variables
