@@ -46,6 +46,8 @@
 (global-font-lock-mode 1)
 (xterm-mouse-mode 1)
 (load-theme 'zenburn t)
+(setq auto-save-default nil) ; Disable auto save
+
 
 (require 'powerline)
 (powerline-default-theme)
@@ -70,9 +72,12 @@
 
 ;; ycmd
 (require 'ycmd)
-(add-hook 'after-init-hook #'global-ycmd-mode)
-(set-variable 'ycmd-server-command '("python2" "~/.vim/bundle/ycm/third_party/ycmd/"))
-(set-variable 'ycmd-global-config "~/.vim/ycm_extra_conf.py")
+(set-variable 'ycmd-server-command '("python2" "/home/sakhnik/.vim/bundle/ycm/third_party/ycmd/ycmd/__main__.py"))
+(set-variable 'ycmd-global-config "/home/sakhnik/.vim/ycm_extra_conf.py")
+(add-hook 'c-mode-common-hook 'ycmd-mode)
+(add-hook 'c-mode-common-hook 'company-mode)
+(add-hook 'python-mode-hook 'ycmd-mode)
+(add-hook 'python-mode-hook 'company-mode)
 
 ;; company-ycmd
 (require 'company-ycmd)
