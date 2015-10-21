@@ -252,12 +252,10 @@ map zg/ <Plug>(incsearch-fuzzy-stay)
 if &t_Co > 2 || has("gui_running")
 	let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : 'italic', 'sp' : 'fg' }
 	if has("autocmd")
-		if &term =~ '\v(rxvt-unicode.*|screen-(256color-)?it|nvim)'
-			augroup colors
-				au!
-				autocmd ColorScheme * hi Comment cterm=italic
-			augroup END
-		endif
+		augroup colors
+			au!
+			autocmd ColorScheme * hi Comment cterm=italic
+		augroup END
 	endif
 	colors zenburn
 	hi Comment cterm=italic

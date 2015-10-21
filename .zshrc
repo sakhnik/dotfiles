@@ -16,12 +16,12 @@ fi
 export LANG=uk_UA.UTF-8
 
 case "$TERM" in
-	"xterm")
+	xterm)
 		if infocmp rxvt-unicode-256color >/dev/null 2>&1; then
 			export TERM=rxvt-unicode-256color
 		fi
 		;;
-	"screen")
+	screen)
 		if infocmp screen-256color >/dev/null 2>&1; then
 			export TERM=screen-256color
 		fi
