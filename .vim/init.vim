@@ -14,7 +14,7 @@ map! <S-Insert> <MiddleMouse>
 
 set fileencodings=ucs-bom,utf-8,cp1251,default
 set nocompatible
-set nobackup
+set nobackup backupdir=.
 set wildmode=longest,list
 
 if has("autocmd")
@@ -93,7 +93,7 @@ let maplocalleader=' '
 set cmdheight=2
 
 nnoremap <leader>w :w<cr>
-nnoremap <f5> :GundoToggle<cr>
+nnoremap <leader>uu :GundoToggle<cr>
 
 nnoremap & :&&<cr>
 xnoremap & :&&<cr>
