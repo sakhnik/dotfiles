@@ -123,26 +123,34 @@ let g:alternateExtensions_hh = "cc"
 let g:alternateExtensions_hxx = "cxx"
 let g:alternateExtensions_cxx = "hxx,h"
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Airline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline_theme='dark'
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-endif
-let g:airline_symbols.branch = '⎇ '   "±
-let g:airline_symbols.paste = 'ρ'
-"let g:airline_symbols.linenr = '¶ '
-
 
 runtime! plugin/*.vim
 runtime autoload/plug.vim
 
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/seoul256.vim'
+
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-fugitive'          " :Git
+Plug 'tpope/vim-characterize'      " ga
+Plug 'tpope/vim-dispatch'          " :Make
+Plug 'tpope/vim-eunuch'            " :SudoWrite
+Plug 'tpope/vim-repeat'            " Repeat mapping with .
+Plug 'tpope/vim-sleuth'            " Set buffer options euristically
+Plug 'tpope/vim-unimpaired'        " ]q, ]a etc
+Plug 'majutsushi/tagbar'
+Plug 'vim-utils/vim-man'
+
+Plug 'bling/vim-airline'
+	let g:airline_theme='dark'
+	let g:airline_left_sep = ''
+	let g:airline_right_sep = ''
+	if !exists('g:airline_symbols')
+		let g:airline_symbols = {}
+	endif
+	let g:airline_symbols.branch = '⎇ '   "±
+	let g:airline_symbols.paste = 'ρ'
+	"let g:airline_symbols.linenr = '¶ '
 
 Plug 'kien/ctrlp.vim'
 	let g:ctrlp_extensions = ['tag']
@@ -175,6 +183,15 @@ Plug 'scrooloose/syntastic'
 	let g:syntastic_aggregate_errors = 1
 	let g:syntastic_html_tidy_exec = 'tidy5'
 
+Plug 'haya14busa/incsearch.vim'
+	map /  <Plug>(incsearch-forward)
+	map ?  <Plug>(incsearch-backward)
+	map g/ <Plug>(incsearch-stay)
+
+Plug 'haya14busa/incsearch-fuzzy.vim'
+	map z/ <Plug>(incsearch-fuzzy-/)
+	map z? <Plug>(incsearch-fuzzy-?)
+	map zg/ <Plug>(incsearch-fuzzy-stay)
 
 Plug 'vim-scripts/Conque-GDB', { 'on': 'Gdb' }
 	let g:ConqueTerm_StartMessages = 0
@@ -241,19 +258,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Incsearch
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-
-map z/ <Plug>(incsearch-fuzzy-/)
-map z? <Plug>(incsearch-fuzzy-?)
-map zg/ <Plug>(incsearch-fuzzy-stay)
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if &t_Co > 2 || has("gui_running")
-	let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : 'italic', 'sp' : 'fg' }
+if &t_Co == 256 || has("gui_running")
 	if has("autocmd")
 		augroup colors
 			au!

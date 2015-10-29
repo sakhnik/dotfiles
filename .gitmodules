@@ -1,15 +1,6 @@
 [submodule ".vim/bundle/pathogen"]
 	path = .vim/bundle/pathogen
 	url = https://github.com/tpope/vim-pathogen.git
-[submodule ".vim/bundle/airline"]
-	path = .vim/bundle/airline
-	url = https://github.com/bling/vim-airline
-[submodule ".vim/bundle/fugitive"]
-	path = .vim/bundle/fugitive
-	url = https://github.com/tpope/vim-fugitive.git
-[submodule ".vim/bundle/unimpaired"]
-	path = .vim/bundle/unimpaired
-	url = https://github.com/tpope/vim-unimpaired.git
 [submodule ".vim/bundle/bitbake"]
 	path = .vim/bundle/bitbake
 	url = https://github.com/kergoth/vim-bitbake.git
@@ -19,12 +10,6 @@
 [submodule ".vim/bundle/zenburn"]
 	path = .vim/bundle/zenburn
 	url = https://github.com/jnurmine/Zenburn.git
-[submodule ".vim/bundle/csapprox"]
-	path = .vim/bundle/csapprox
-	url = https://github.com/godlygeek/csapprox.git
-[submodule ".vim/bundle/solarized"]
-	path = .vim/bundle/solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
 [submodule ".vim/bundle/lemon"]
 	path = .vim/bundle/lemon
 	url = https://github.com/vim-scripts/lemon.vim.git
@@ -49,27 +34,15 @@
 [submodule ".vim/bundle/abolish"]
 	path = .vim/bundle/abolish
 	url = https://github.com/tpope/vim-abolish
-[submodule ".vim/bundle/repeat"]
-	path = .vim/bundle/repeat
-	url = https://github.com/tpope/vim-repeat
 [submodule ".zsh/git-prompt"]
 	path = .zsh/git-prompt
 	url = https://github.com/sakhnik/zsh-git-prompt
-[submodule ".vim/bundle/characterize"]
-	path = .vim/bundle/characterize
-	url = https://github.com/tpope/vim-characterize
-[submodule ".vim/bundle/tagbar"]
-	path = .vim/bundle/tagbar
-	url = git://github.com/majutsushi/tagbar
 [submodule ".vim/plugin/tabular"]
 	path = .vim/plugin/tabular
 	url = https://github.com/godlygeek/tabular
 [submodule ".vim/bundle/tabular"]
 	path = .vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular
-[submodule ".vim/bundle/eunuch"]
-	path = .vim/bundle/eunuch
-	url = git://github.com/tpope/vim-eunuch.git
 [submodule ".vim/bundle/ultisnips"]
 	path = .vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips
@@ -79,27 +52,9 @@
 [submodule ".vim/bundle/delimitMate"]
 	path = .vim/bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate
-[submodule ".vim/bundle/incsearch"]
-	path = .vim/bundle/incsearch
-	url = https://github.com/haya14busa/incsearch.vim
-[submodule ".vim/bundle/sleuth"]
-	path = .vim/bundle/sleuth
-	url = https://github.com/tpope/vim-sleuth
-[submodule ".vim/bundle/dispatch"]
-	path = .vim/bundle/dispatch
-	url = https://github.com/tpope/vim-dispatch
-[submodule ".vim/bundle/vala"]
-	path = .vim/bundle/vala
-	url = https://github.com/tkztmk/vim-vala
 [submodule ".vim/bundle/rust"]
 	path = .vim/bundle/rust
 	url = https://github.com/wting/rust.vim.git
-[submodule ".vim/bundle/vim-man"]
-	path = .vim/bundle/vim-man
-	url = git://github.com/bruno-/vim-man.git
-[submodule ".vim/bundle/nodejs-errorformat"]
-	path = .vim/bundle/nodejs-errorformat
-	url = https://github.com/felixge/vim-nodejs-errorformat
 [submodule ".vim/bundle/rtags"]
 	path = .vim/bundle/rtags
 	url = https://github.com/lyuts/vim-rtags
@@ -123,9 +78,6 @@
 [submodule ".vim/bundle/calendar"]
 	path = .vim/bundle/calendar
 	url = https://github.com/mattn/calendar-vim
-[submodule ".vim/bundle/incsearch-fuzzy"]
-	path = .vim/bundle/incsearch-fuzzy
-	url = https://github.com/haya14busa/incsearch-fuzzy.vim
 [submodule ".vim/bundle/mundo"]
 	path = .vim/bundle/mundo
 	url = https://github.com/simnalamburt/vim-mundo
