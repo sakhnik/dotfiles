@@ -136,42 +136,51 @@ let g:airline_symbols.branch = '⎇ '   "±
 let g:airline_symbols.paste = 'ρ'
 "let g:airline_symbols.linenr = '¶ '
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => CtrlP
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_extensions = ['tag']
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_use_caching = 0
-let g:ctrlp_custom_ignore = {
-	\ 'dir':  '\v[\/](\.git|\CBUILD[-_a-z0-9]*|sstate-cache|downloads|buildhistory|build[-_a-zA-Z]*)$'
-	\ }
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => YouCompleteMe
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
-let g:ycm_filetype_blacklist = {
-	\ 'notes' : 1,
-	\ 'markdown' : 1,
-	\ 'text' : 1,
-	\ 'conque_term' : 1,
-	\}
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
-let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
-let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
-let g:ycm_complete_in_comments = 1 " Completion in comments
-let g:ycm_complete_in_strings = 1 " Completion in string
-
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => ConqueTerm
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ConqueTerm_StartMessages = 0
-let g:ConqueTerm_SendVisKey = '<leader>cc'
 
 runtime! plugin/*.vim
+runtime autoload/plug.vim
+
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/seoul256.vim'
+Plug 'tpope/vim-sensible'
+
+Plug 'kien/ctrlp.vim'
+	let g:ctrlp_extensions = ['tag']
+	let g:ctrlp_show_hidden = 1
+	let g:ctrlp_use_caching = 0
+	let g:ctrlp_custom_ignore = {
+		\ 'dir':  '\v[\/](\.git|\CBUILD[-_a-z0-9]*|sstate-cache|downloads|buildhistory|build[-_a-zA-Z]*)$'
+		\ }
+
+Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer --system-libclang --system-boost' }
+	let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
+	let g:ycm_filetype_blacklist = {
+		\ 'notes' : 1,
+		\ 'markdown' : 1,
+		\ 'text' : 1,
+		\ 'conque_term' : 1,
+		\}
+	let g:ycm_confirm_extra_conf = 0
+	let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+	let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
+	let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
+	let g:ycm_complete_in_comments = 1 " Completion in comments
+	let g:ycm_complete_in_strings = 1 " Completion in string
+
+	nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
+
+Plug 'scrooloose/syntastic'
+	let g:syntastic_always_populate_loc_list = 1
+	"let g:syntastic_auto_loc_list = 2  "Close location list automatically
+	let g:syntastic_aggregate_errors = 1
+	let g:syntastic_html_tidy_exec = 'tidy5'
+
+
+Plug 'vim-scripts/Conque-GDB', { 'on': 'Gdb' }
+	let g:ConqueTerm_StartMessages = 0
+	let g:ConqueTerm_SendVisKey = '<leader>cc'
+
+call plug#end()
 
 runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
@@ -230,14 +239,6 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Syntastic
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 2  "Close location list automatically
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_html_tidy_exec = 'tidy5'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Incsearch

@@ -7,23 +7,9 @@
 [submodule ".vim/bundle/fugitive"]
 	path = .vim/bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule ".vim/bundle/ctrlp"]
-	path = .vim/bundle/ctrlp
-	url = https://github.com/kien/ctrlp.vim.git
-[submodule ".vim/bundle/syntastic"]
-	path = .vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
 [submodule ".vim/bundle/unimpaired"]
 	path = .vim/bundle/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
-[submodule ".vim/bundle/ycm"]
-	path = .vim/bundle/ycm
-	url = https://github.com/Valloric/YouCompleteMe.git
-	ignore = dirty
-[submodule ".vim/bundle/conque-gdb"]
-	path = .vim/bundle/conque-gdb
-	url = https://github.com/vim-scripts/Conque-GDB.git
-	ignore = dirty
 [submodule ".vim/bundle/bitbake"]
 	path = .vim/bundle/bitbake
 	url = https://github.com/kergoth/vim-bitbake.git
@@ -66,9 +52,6 @@
 [submodule ".vim/bundle/repeat"]
 	path = .vim/bundle/repeat
 	url = https://github.com/tpope/vim-repeat
-[submodule ".vim/bundle/seoul256"]
-	path = .vim/bundle/seoul256
-	url = https://github.com/junegunn/seoul256.vim.git
 [submodule ".zsh/git-prompt"]
 	path = .zsh/git-prompt
 	url = https://github.com/sakhnik/zsh-git-prompt
@@ -99,9 +82,6 @@
 [submodule ".vim/bundle/incsearch"]
 	path = .vim/bundle/incsearch
 	url = https://github.com/haya14busa/incsearch.vim
-[submodule ".vim/bundle/sensible"]
-	path = .vim/bundle/sensible
-	url = https://github.com/tpope/vim-sensible
 [submodule ".vim/bundle/sleuth"]
 	path = .vim/bundle/sleuth
 	url = https://github.com/tpope/vim-sleuth
