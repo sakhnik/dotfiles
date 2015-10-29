@@ -95,7 +95,6 @@ let maplocalleader=' '
 set cmdheight=2
 
 nnoremap <leader>w :w<cr>
-nnoremap <leader>uu :GundoToggle<cr>
 
 nnoremap & :&&<cr>
 xnoremap & :&&<cr>
@@ -129,6 +128,7 @@ runtime autoload/plug.vim
 
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/seoul256.vim'
+Plug 'tomasr/molokai'
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'          " :Git
@@ -138,8 +138,15 @@ Plug 'tpope/vim-eunuch'            " :SudoWrite
 Plug 'tpope/vim-repeat'            " Repeat mapping with .
 Plug 'tpope/vim-sleuth'            " Set buffer options euristically
 Plug 'tpope/vim-unimpaired'        " ]q, ]a etc
+Plug 'tpope/vim-surround'          " Movements s', s(
 Plug 'majutsushi/tagbar'
 Plug 'vim-utils/vim-man'
+Plug 'bronson/vim-visual-star-search'
+Plug 'sakhnik/clang-tags'
+Plug 'vim-scripts/dbext.vim', { 'on': 'Dbext' }
+
+Plug 'simnalamburt/vim-mundo'
+	nnoremap <leader>uu :GundoToggle<cr>
 
 Plug 'bling/vim-airline'
 	let g:airline_theme='dark'

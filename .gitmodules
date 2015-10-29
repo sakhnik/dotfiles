@@ -4,18 +4,12 @@
 [submodule ".vim/bundle/bitbake"]
 	path = .vim/bundle/bitbake
 	url = https://github.com/kergoth/vim-bitbake.git
-[submodule ".vim/bundle/kolor"]
-	path = .vim/bundle/kolor
-	url = https://github.com/zeis/vim-kolor.git
 [submodule ".vim/bundle/zenburn"]
 	path = .vim/bundle/zenburn
 	url = https://github.com/jnurmine/Zenburn.git
 [submodule ".vim/bundle/lemon"]
 	path = .vim/bundle/lemon
 	url = https://github.com/vim-scripts/lemon.vim.git
-[submodule ".vim/bundle/surround"]
-	path = .vim/bundle/surround
-	url = http://github.com/tpope/vim-surround
 [submodule ".vim/bundle/fontsize"]
 	path = .vim/bundle/fontsize
 	url = https://github.com/drmikehenry/vim-fontsize
@@ -28,12 +22,6 @@
 	path = .vim/bundle/textobj-user
 	url = https://github.com/kana/vim-textobj-user
 	ignore = dirty
-[submodule ".vim/bundle/visual-star-search"]
-	path = .vim/bundle/visual-star-search
-	url = https://github.com/nelstrom/vim-visual-star-search
-[submodule ".vim/bundle/abolish"]
-	path = .vim/bundle/abolish
-	url = https://github.com/tpope/vim-abolish
 [submodule ".zsh/git-prompt"]
 	path = .zsh/git-prompt
 	url = https://github.com/sakhnik/zsh-git-prompt
@@ -52,25 +40,9 @@
 [submodule ".vim/bundle/delimitMate"]
 	path = .vim/bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate
-[submodule ".vim/bundle/rust"]
-	path = .vim/bundle/rust
-	url = https://github.com/wting/rust.vim.git
-[submodule ".vim/bundle/rtags"]
-	path = .vim/bundle/rtags
-	url = https://github.com/lyuts/vim-rtags
-[submodule ".vim/bundle/clang-tags"]
-	path = .vim/bundle/clang-tags
-	url = https://github.com/sakhnik/vim-clang-tags
-[submodule ".vim/bundle/dbext"]
-	path = .vim/bundle/dbext
-	url = https://github.com/vim-scripts/dbext.vim
-	ignore = dirty
 [submodule ".vim/bundle/orgmode"]
 	path = .vim/bundle/orgmode
 	url = https://github.com/jceb/vim-orgmode
-[submodule ".vim/bundle/speeddating"]
-	path = .vim/bundle/speeddating
-	url = https://github.com/tpope/vim-speeddating
 [submodule ".vim/bundle/utl"]
 	path = .vim/bundle/utl
 	url = https://github.com/vim-scripts/utl.vim
@@ -78,12 +50,3 @@
 [submodule ".vim/bundle/calendar"]
 	path = .vim/bundle/calendar
 	url = https://github.com/mattn/calendar-vim
-[submodule ".vim/bundle/mundo"]
-	path = .vim/bundle/mundo
-	url = https://github.com/simnalamburt/vim-mundo
-[submodule ".vim/bundle/molokai"]
-	path = .vim/bundle/molokai
-	url = https://github.com/tomasr/molokai
-[submodule ".vim/bundle/wombat256"]
-	path = .vim/bundle/wombat256
-	url = https://github.com/vim-scripts/wombat256.vim
