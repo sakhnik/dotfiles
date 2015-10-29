@@ -144,6 +144,9 @@ Plug 'vim-utils/vim-man'
 Plug 'bronson/vim-visual-star-search'
 Plug 'sakhnik/clang-tags'
 Plug 'vim-scripts/dbext.vim', { 'on': 'Dbext' }
+Plug 'kergoth/vim-bitbake'
+Plug 'raimondi/delimitmate'
+Plug 'drmikehenry/vim-fontsize'
 
 Plug 'simnalamburt/vim-mundo'
 	nnoremap <leader>uu :GundoToggle<cr>
@@ -204,10 +207,12 @@ Plug 'vim-scripts/Conque-GDB', { 'on': 'Gdb' }
 	let g:ConqueTerm_StartMessages = 0
 	let g:ConqueTerm_SendVisKey = '<leader>cc'
 
-call plug#end()
+Plug 'SirVer/ultisnips'
+	let g:UltiSnipsExpandTrigger="<c-j>"
+	let g:UltiSnipsJumpForwardTrigger="<c-j>"
+	let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
-runtime bundle/pathogen/autoload/pathogen.vim
-execute pathogen#infect()
+call plug#end()
 
 set novb t_vb=    " Не бікати взагалі ніколи
 "set t_ti= t_te=   " Не очищувати екран після виходу
@@ -254,15 +259,6 @@ let &efm .= ',%E' . 'CMake Error at %f:%l (message):'
 let &efm .= ',%Z' . 'Call Stack (most recent call first):'
 " Continuation is message
 let &efm .= ',%C' . ' %m'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Ultisnips
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Trigger configuration.
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if &t_Co == 256 || has("gui_running")

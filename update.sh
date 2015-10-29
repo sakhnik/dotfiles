@@ -24,13 +24,6 @@ fi
 
 if [[ -n "$updated" ]]; then
 	git submodule update --init --recursive
-
-	if ! git diff --quiet $head_rev.. .vim/bundle/ycm >/dev/null 2>&1; then
-		echo "Compile ycm"
-		pushd .vim/bundle/ycm
-		python2 ./install.py --clang-completer --system-libclang --system-boost
-		popd
-	fi
 fi
 
 echo "Done"
