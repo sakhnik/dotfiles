@@ -31,8 +31,6 @@ esac
 
 #[[ -z "$TMUX" ]] && exec tmux
 
-alias ubuntu="schroot -c ubuntu -p"
-
 export EDITOR=vim
 
 [[ -f $HOME/$this_dir/pystartup.py ]] &&
@@ -73,20 +71,20 @@ autoload -U colors && colors
 if [ "$TERM" != "dumb" ]; then
 	eval "`dircolors -b`"
 	alias ls='ls --color=auto'
-	#alias dir='ls --color=auto --format=vertical'
-	#alias vdir='ls --color=auto --format=long'
+
+	if [[ -f /usr/bin/grep ]]; then
+		alias grep='/usr/bin/grep --color'
+	elif [[ -f /bin/grep ]]; then
+		alias grep='/bin/grep --color'
+	fi
 fi
 
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
-alias cal='cal -m'
-alias timidity='timidity -Os'
-alias urldecode='python2 -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
-if [[ -f /usr/bin/grep ]]; then
-	alias grep='/usr/bin/grep --color'
-elif [[ -f /bin/grep ]]; then
-	alias grep='/bin/grep --color'
+
+if which nvim >/dev/null 2>&1; then
+    alias vim=nvim
 fi
 
 if [[ $(($RANDOM & 1)) -eq 0 ]]; then

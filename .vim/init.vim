@@ -1,6 +1,6 @@
 " vim: set noet ts=2 sw=2:
 
-if &term == "linux"
+if &term == "linux" && !has('nvim')
 	set t_ve+=[?81;0;112c
 endif
 
@@ -13,7 +13,9 @@ map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
 
 set fileencodings=ucs-bom,utf-8,cp1251,default
-set nocompatible
+if !has('nvim')
+	set nocompatible
+endif
 set nobackup backupdir=.
 set wildmode=longest,list
 
