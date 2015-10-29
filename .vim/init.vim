@@ -114,15 +114,6 @@ endif
 
 nnoremap <leader>ve :split $MYVIMRC<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Alternate
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:alternateExtensions_cc = "hh,h,hpp"
-let g:alternateExtensions_hh = "cc"
-let g:alternateExtensions_hxx = "cxx"
-let g:alternateExtensions_cxx = "hxx,h"
-
-
 runtime! plugin/*.vim
 runtime autoload/plug.vim
 
@@ -147,6 +138,12 @@ Plug 'vim-scripts/dbext.vim', { 'on': 'Dbext' }
 Plug 'kergoth/vim-bitbake'
 Plug 'raimondi/delimitmate'
 Plug 'drmikehenry/vim-fontsize'
+
+Plug 'vim-scripts/a.vim'
+	let g:alternateExtensions_cc = "hh,h,hpp"
+	let g:alternateExtensions_hh = "cc"
+	let g:alternateExtensions_hxx = "cxx"
+	let g:alternateExtensions_cxx = "hxx,h"
 
 Plug 'simnalamburt/vim-mundo'
 	nnoremap <leader>uu :GundoToggle<cr>
@@ -203,7 +200,7 @@ Plug 'haya14busa/incsearch-fuzzy.vim'
 	map z? <Plug>(incsearch-fuzzy-?)
 	map zg/ <Plug>(incsearch-fuzzy-stay)
 
-Plug 'vim-scripts/Conque-GDB', { 'on': 'Gdb' }
+Plug 'vim-scripts/Conque-GDB', { 'on': 'ConqueGdb' }
 	let g:ConqueTerm_StartMessages = 0
 	let g:ConqueTerm_SendVisKey = '<leader>cc'
 
