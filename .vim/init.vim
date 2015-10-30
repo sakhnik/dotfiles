@@ -8,10 +8,6 @@ if has('nvim')
 	runtime! python_setup.vim
 endif
 
-" Make shift-insert work like in Xterm
-map <S-Insert> <MiddleMouse>
-map! <S-Insert> <MiddleMouse>
-
 set fileencodings=ucs-bom,utf-8,cp1251,default
 if !has('nvim')
 	set nocompatible
@@ -41,7 +37,7 @@ if has("autocmd")
 		    \ endif
 
 		" Don't preserve a buffer when reading from stdin
-		" This is useful for "svn diff | vim -"
+		" This is useful for "git diff | vim -"
 		autocmd StdinReadPost * setlocal buftype=nofile
 
 		" Autoclose preview window (omni completion) when leaving insert mode
@@ -82,6 +78,10 @@ set cinoptions=:0,=1s,g0,(0,M1,U0,u0
 " In many terminal emulators the mouse works just fine, thus enable it.
 if exists("+mouse")
 	set mouse=a
+
+	" Make shift-insert work like in Xterm
+	map <S-Insert> <MiddleMouse>
+	map! <S-Insert> <MiddleMouse>
 endif
 
 set guioptions-=T
