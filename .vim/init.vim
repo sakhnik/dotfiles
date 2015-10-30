@@ -139,7 +139,7 @@ Plug 'kergoth/vim-bitbake'
 Plug 'raimondi/delimitmate'
 Plug 'drmikehenry/vim-fontsize'
 
-Plug 'vim-scripts/a.vim'
+Plug 'Kris2k/A.vim'
 	let g:alternateExtensions_cc = "hh,h,hpp"
 	let g:alternateExtensions_hh = "cc"
 	let g:alternateExtensions_hxx = "cxx"
