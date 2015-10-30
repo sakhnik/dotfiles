@@ -167,7 +167,12 @@ Plug 'kien/ctrlp.vim'
 		\ 'dir':  '\v[\/](\.git|\CBUILD[-_a-z0-9]*|sstate-cache|downloads|buildhistory|build[-_a-zA-Z]*)$'
 		\ }
 
-Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer --system-libclang --system-boost' }
+Plug 'Valloric/YouCompleteMe', {
+	\ 'for': ['c', 'cpp', 'python'],
+	\ 'do': 'python2 ./install.py --clang-completer --system-libclang --system-boost'
+	\}
+	autocmd! User YouCompleteMe call youcompleteme#Enable()
+
 	let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
 	let g:ycm_filetype_blacklist = {
 		\ 'notes' : 1,
