@@ -85,6 +85,7 @@ alias l='ls -CF'
 
 if which nvim >/dev/null 2>&1; then
     alias vim=nvim
+    alias vimdiff="nvim -d"
 fi
 
 if [[ $(($RANDOM & 1)) -eq 0 ]]; then
