@@ -92,7 +92,7 @@ set completeopt=menu,longest,preview
 set shortmess=a
 let mapleader=' '
 let maplocalleader=' '
-set cmdheight=2
+"set cmdheight=2
 
 nnoremap <leader>w :w<cr>
 
@@ -221,6 +221,11 @@ Plug 'jpalardy/vim-slime', { 'on': 'SlimeConfig' }
 	xmap <leader>s <Plug>SlimeRegionSend
 	nmap <leader>s <Plug>SlimeMotionSend
 	nmap <leader>ss <Plug>SlimeLineSend
+
+Plug 'nathanaelkane/vim-indent-guides', { 'on': ['IndentGuidesToggle', 'IndentGuidesEnable'] }
+	let g:indent_guides_guide_size = 1
+	let g:indent_guides_color_change_percent = 20
+	nmap <silent> <leader>ig :IndentGuidesToggle<cr>
 
 call plug#end()
 
