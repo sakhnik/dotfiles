@@ -15,6 +15,7 @@ fi
 
 export LANG=uk_UA.UTF-8
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
+export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 case "$TERM" in
 	xterm)
