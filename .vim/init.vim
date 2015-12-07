@@ -132,7 +132,7 @@ Plug 'tpope/vim-unimpaired'        " ]q, ]a etc
 Plug 'tpope/vim-surround'          " Movements s', s(
 Plug 'tpope/vim-vinegar'
 Plug 'majutsushi/tagbar'
-Plug 'vim-utils/vim-man'
+Plug 'sakhnik/vim-man'
 Plug 'bronson/vim-visual-star-search'
 Plug 'sakhnik/clang-tags'
 Plug 'vim-scripts/dbext.vim', { 'on': 'Dbext' }
