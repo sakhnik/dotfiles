@@ -228,6 +228,10 @@ Plug 'nathanaelkane/vim-indent-guides', { 'on': ['IndentGuidesToggle', 'IndentGu
 	let g:indent_guides_color_change_percent = 20
 	nmap <silent> <leader>ig :IndentGuidesToggle<cr>
 
+Plug 'mhinz/vim-grepper'
+	nnoremap <leader>gg :Grepper -tool git -open<cr>
+	nnoremap <leader>ga :Grepper -tool ag  -open<cr>
+
 call plug#end()
 
 set novb t_vb=    " Не бікати взагалі ніколи
