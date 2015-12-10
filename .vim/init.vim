@@ -131,7 +131,6 @@ Plug 'tpope/vim-sleuth'            " Set buffer options euristically
 Plug 'tpope/vim-unimpaired'        " ]q, ]a etc
 Plug 'tpope/vim-surround'          " Movements s', s(
 Plug 'tpope/vim-vinegar'
-Plug 'majutsushi/tagbar'
 Plug 'sakhnik/vim-man'
 Plug 'bronson/vim-visual-star-search'
 Plug 'sakhnik/clang-tags'
@@ -139,6 +138,9 @@ Plug 'vim-scripts/dbext.vim', { 'on': 'Dbext' }
 Plug 'kergoth/vim-bitbake'
 Plug 'raimondi/delimitmate'
 Plug 'drmikehenry/vim-fontsize'
+
+Plug 'majutsushi/tagbar'
+	nnoremap <leader>tb :TagbarToggle<cr>
 
 Plug 'Kris2k/A.vim'
 	let g:alternateExtensions_cc = "hh,h,hpp"
@@ -229,8 +231,8 @@ Plug 'nathanaelkane/vim-indent-guides', { 'on': ['IndentGuidesToggle', 'IndentGu
 	nmap <silent> <leader>ig :IndentGuidesToggle<cr>
 
 Plug 'mhinz/vim-grepper'
-	nnoremap <leader>gg :Grepper -tool git -open<cr>
-	nnoremap <leader>ga :Grepper -tool ag  -open<cr>
+	nnoremap <leader>gg :Grepper -tool git<cr>
+	nnoremap <leader>ga :Grepper -tool ag<cr>
 
 call plug#end()
 
