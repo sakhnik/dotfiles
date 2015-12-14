@@ -231,8 +231,7 @@ Plug 'nathanaelkane/vim-indent-guides', { 'on': ['IndentGuidesToggle', 'IndentGu
 	nmap <silent> <leader>ig :IndentGuidesToggle<cr>
 
 Plug 'mhinz/vim-grepper'
-	nnoremap <leader>gg :Grepper -tool git<cr>
-	nnoremap <leader>ga :Grepper -tool ag<cr>
+	nnoremap <leader>g :Grepper -tool git<cr>
 
 call plug#end()
 
