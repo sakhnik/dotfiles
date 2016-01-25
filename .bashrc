@@ -83,7 +83,7 @@ export HISTSIZE=3000
 export HISTTIMEFORMAT="%d.%m.%Y %H:%M:%S  "
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)" 2>/dev/null
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
