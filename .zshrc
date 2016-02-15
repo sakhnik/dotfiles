@@ -2,12 +2,8 @@
 this_dir=$(dirname `readlink -f ~/.zshrc`)
 
 export PATH=$PATH:/bin:/sbin:/usr/sbin
-if [[ -d $HOME/.bin ]]; then
-	export PATH=$HOME/.bin:$PATH
-fi
-if [[ -d $HOME/bin ]]; then
-	export PATH=$HOME/bin:$PATH
-fi
+[[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
+[[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
 
 if which ruby >/dev/null && which gem >/dev/null; then
     PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
@@ -261,3 +257,5 @@ zle-line-init() {
 }
 zle -N zle-keymap-select
 zle -N zle-line-init
+
+[[ -f /etc/profile.d/fzf.zsh ]] && source /etc/profile.d/fzf.zsh
