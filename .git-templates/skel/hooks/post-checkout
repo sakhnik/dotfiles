@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# Autogeneration of tags may be a good idea, but it unnecessary
-# in webOS builds, vim plugins etc.
-#.git/hooks/ctags >/dev/null 2>&1 &
