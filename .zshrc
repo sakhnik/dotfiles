@@ -1,14 +1,6 @@
 
 this_dir=$(dirname `readlink -f ~/.zshrc`)
 
-export PATH=$PATH:/bin:/sbin:/usr/sbin
-[[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
-[[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
-
-if which ruby >/dev/null && which gem >/dev/null; then
-    PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
-fi
-
 export LANG=uk_UA.UTF-8
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
