@@ -125,6 +125,15 @@ vman()
 #        -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
 #        -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
 
+export PATH=$PATH:/bin:/sbin:/usr/sbin
+[[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
+[[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
+
+if which ruby >/dev/null && which gem >/dev/null; then
+    PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+fi
+
+
 export LANG=en_US.UTF-8
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
