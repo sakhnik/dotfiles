@@ -125,9 +125,9 @@ vman()
 #        -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
 #        -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
 
-export BOOST_BUILD_PATH="$HOME/work/BBv2"
-export STARDICT_DATA_DIR="/usr/local/share/stardict"
-export SDCV_PAGER="/bin/more"
+export LANG=en_US.UTF-8
+export NVIM_TUI_ENABLE_TRUE_COLOR=1
+export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 # enable bash completion in interactive shells
 if [ -f /etc/bash_completion ]; then
