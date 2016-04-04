@@ -103,6 +103,10 @@ nmap <C-l> :redraw!<cr>
 
 " Expand %% to the directory of the current buffer
 cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+" Use more convenient recall from history using prefix.
+" Should original scrolling be needed, use <c-u> first, or <c-f>.
+cnoremap <c-n> <down>
+cnoremap <c-p> <up>
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
