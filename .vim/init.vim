@@ -176,7 +176,7 @@ Plug 'kien/ctrlp.vim'
 
 Plug 'Valloric/YouCompleteMe', {
 	\ 'for': ['c', 'cpp', 'python'],
-	\ 'do': 'python2 ./install.py --clang-completer --system-libclang --system-boost'
+	\ 'do': 'python2 ./install.py --clang-completer'
 	\}
 	autocmd! User YouCompleteMe call youcompleteme#Enable()
 
