@@ -295,6 +295,10 @@ let &efm .= ',%Z' . 'Call Stack (most recent call first):'
 " Continuation is message
 let &efm .= ',%C' . ' %m'
 
+
+" NetRW
+let g:netrw_liststyle = 3
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if &t_Co == 256 || has("gui_running")
 	if has("autocmd")
