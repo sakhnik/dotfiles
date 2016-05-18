@@ -256,4 +256,4 @@ zle-line-init() {
 zle -N zle-keymap-select
 zle -N zle-line-init
 
-[[ -f /etc/profile.d/fzf.zsh ]] && source /etc/profile.d/fzf.zsh
+[[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh

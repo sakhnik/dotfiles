@@ -129,6 +129,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/seoul256.vim'
 Plug 'tomasr/molokai'
 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'          " :Git
 Plug 'tpope/vim-characterize'      " ga
