@@ -146,6 +146,7 @@ Plug 'vim-scripts/dbext.vim', { 'on': 'Dbext' }
 Plug 'kergoth/vim-bitbake'
 Plug 'raimondi/delimitmate'
 Plug 'drmikehenry/vim-fontsize'
+Plug 'wellle/targets.vim'
 
 Plug 'majutsushi/tagbar'
 	nnoremap <leader>tb :TagbarToggle<cr>
