@@ -144,12 +144,13 @@ Plug 'tpope/vim-surround'          " Movements s', s(
 Plug 'tpope/vim-vinegar'
 Plug 'vim-utils/vim-man'
 Plug 'bronson/vim-visual-star-search'
-Plug 'sakhnik/clang-tags'
+Plug 'sakhnik/vim-clang-tags'
 Plug 'vim-scripts/dbext.vim', { 'on': 'Dbext' }
 Plug 'kergoth/vim-bitbake'
 Plug 'raimondi/delimitmate'
 Plug 'drmikehenry/vim-fontsize'
 Plug 'wellle/targets.vim'
+Plug 'lyuts/vim-rtags'
 
 Plug 'majutsushi/tagbar'
 	nnoremap <leader>tb :TagbarToggle<cr>
