@@ -26,8 +26,6 @@ esac
 
 #[[ -z "$TMUX" ]] && exec tmux
 
-export EDITOR=vim
-
 [[ -f $HOME/$this_dir/pystartup.py ]] &&
 	export PYTHONSTARTUP=$HOME/$this_dir/pystartup.py
 
@@ -81,6 +79,9 @@ alias l='ls -CF'
 if which nvim >/dev/null 2>&1; then
     alias vim=nvim
     alias vimdiff="nvim -d"
+    export EDITOR=nvim
+else
+    export EDITOR=vim
 fi
 
 if [[ $(($RANDOM & 1)) -eq 0 ]]; then
