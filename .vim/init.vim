@@ -151,6 +151,7 @@ Plug 'raimondi/delimitmate'
 Plug 'drmikehenry/vim-fontsize'
 Plug 'wellle/targets.vim'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'cbracken/vala.vim'
 
 Plug 'lyuts/vim-rtags'
 	let g:rtagsUseLocationList = 0
