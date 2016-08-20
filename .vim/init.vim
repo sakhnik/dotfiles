@@ -151,6 +151,10 @@ Plug 'raimondi/delimitmate'
 Plug 'drmikehenry/vim-fontsize'
 Plug 'wellle/targets.vim'
 Plug 'ludovicchabant/vim-gutentags'
+	let g:gutentags_generate_on_missing = 0
+	let g:gutentags_generate_on_new = 0
+	set statusline+=%{gutentags#statusline()}
+
 Plug 'cbracken/vala.vim'
 
 Plug 'lyuts/vim-rtags'
