@@ -131,6 +131,11 @@ Plug 'tomasr/molokai'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
+  " For compatibility with Ctrl-P to stay productive
+	nmap <silent> <c-p> :Files<cr>
+	nmap <silent> <leader>ff :Files<cr>
+	nmap <silent> <leader>fg :GitFiles<cr>
+	nmap <silent> <leader>ft :Tags<cr>
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'          " :Git
@@ -182,14 +187,6 @@ Plug 'bling/vim-airline'
 	let g:airline_symbols.branch = '⎇ '   "±
 	let g:airline_symbols.paste = 'ρ'
 	"let g:airline_symbols.linenr = '¶ '
-
-Plug 'kien/ctrlp.vim'
-	let g:ctrlp_extensions = ['tag']
-	let g:ctrlp_show_hidden = 1
-	let g:ctrlp_use_caching = 0
-	let g:ctrlp_custom_ignore = {
-		\ 'dir':  '\v[\/](\.git|\CBUILD[-_a-z0-9]*|sstate-cache|downloads|buildhistory|build[-_a-zA-Z]*)$'
-		\ }
 
 Plug 'Valloric/YouCompleteMe', {
 	\ 'for': ['c', 'cpp', 'python'],
