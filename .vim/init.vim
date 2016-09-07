@@ -140,7 +140,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'          " :Git
 Plug 'tpope/vim-characterize'      " ga
-Plug 'tpope/vim-dispatch'          " :Make
 Plug 'tpope/vim-eunuch'            " :SudoWrite
 Plug 'tpope/vim-repeat'            " Repeat mapping with .
 Plug 'tpope/vim-sleuth'            " Set buffer options euristically
@@ -210,16 +209,16 @@ Plug 'Valloric/YouCompleteMe', {
 
 	nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
 
-Plug 'scrooloose/syntastic'
-	let g:syntastic_always_populate_loc_list = 1
-	"let g:syntastic_auto_loc_list = 2  "Close location list automatically
-	let g:syntastic_aggregate_errors = 1
-	let g:syntastic_html_tidy_exec = 'tidy5'
+Plug 'neomake/neomake'
+	let g:neomake_open_list = 1
+	let g:neomake_serialize = 1
+	let g:neomake_serialize_abort_on_error = 1
 
-	let g:syntastic_error_symbol = '✗'
-	let g:syntastic_style_error_symbol = '⁉️'
-	let g:syntastic_warning_symbol = '⚠️'
-	let g:syntastic_style_warning_symbol = '�'
+	augroup neovim
+		au!
+		autocmd! BufReadPost,BufWritePost * Neomake
+	augroup END
+
 
 Plug 'haya14busa/incsearch.vim'
 	map /  <Plug>(incsearch-forward)
