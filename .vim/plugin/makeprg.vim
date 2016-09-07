@@ -26,7 +26,6 @@ endfunction
 command! -nargs=? CMake call s:cmake(<f-args>)
 
 function! s:cmake(...)
-
   let s:build_dir = s:find_builddir('BUILD*')
   if s:build_dir != ""
     let &makeprg='make --directory=' . s:build_dir
@@ -35,11 +34,11 @@ function! s:cmake(...)
     endfor
     make
   endif
-
 endfunction
+
 " Choose build method
 function! <SID>SetMakePrg()
-    let makeprgs = ['make', 'bjam', 'g++ -std=c++11 %']
+    let makeprgs = ['make', 'bjam', 'g++ -std=c++14 %']
     let prompt_makeprgs = []
     let index = 0
     while index < len(makeprgs)
@@ -54,10 +53,8 @@ function! <SID>SetMakePrg()
 endf
 
 "Define mappings
-nnoremap <f9> :make<cr>
-inoremap <f9> <esc>:make<cr>
-nnoremap <c-f9> :call <SID>SetMakePrg() <bar> make<cr>
-inoremap <c-f9> <esc>:call <SID>SetMakePrg() <bar> make<cr>
+nnoremap <leader>mm :make<cr>
+nnoremap <leader>mc :call <SID>SetMakePrg() <bar> make<cr>
 
 "Set Boost.Build.v2 default if possible.
 if filereadable("Jamfile") || filereadable("Jamroot")

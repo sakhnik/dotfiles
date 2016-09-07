@@ -214,11 +214,8 @@ Plug 'neomake/neomake'
 	let g:neomake_serialize = 1
 	let g:neomake_serialize_abort_on_error = 1
 
-	augroup neovim
-		au!
-		autocmd! BufReadPost,BufWritePost * Neomake
-	augroup END
-
+	nnoremap <leader>nm :Neomake!<cr>
+	nnoremap <leader>nn :Neomake<cr>
 
 Plug 'haya14busa/incsearch.vim'
 	map /  <Plug>(incsearch-forward)
