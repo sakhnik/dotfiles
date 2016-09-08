@@ -32,9 +32,9 @@ if has("autocmd")
 		" Don't do it when the position is invalid or when inside an event handler
 		" (happens when dropping a file on gvim).
 		autocmd BufReadPost *
-		    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-		    \   exe "normal g`\"" |
-		    \ endif
+			\ if line("'\"") > 0 && line("'\"") <= line("$") |
+			\   exe "normal g`\"" |
+			\ endif
 
 		" Don't preserve a buffer when reading from stdin
 		" This is useful for "git diff | vim -"
@@ -116,7 +116,7 @@ cnoremap <c-p> <up>
 " Only define it when not defined already.
 if !exists(":DiffOrig")
 	command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+			\ | wincmd p | diffthis
 endif
 
 nnoremap <leader>ve :split $MYVIMRC<cr>
@@ -130,7 +130,7 @@ Plug 'tomasr/molokai'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-  " For compatibility with Ctrl-P to stay productive
+	" For compatibility with Ctrl-P to stay productive
 	nmap <silent> <c-p> :Files<cr>
 	nmap <silent> <leader>ff :Files<cr>
 	nmap <silent> <leader>fg :GitFiles<cr>
@@ -147,7 +147,6 @@ Plug 'tpope/vim-surround'          " Movements s', s(
 Plug 'tpope/vim-vinegar'
 Plug 'vim-utils/vim-man'
 Plug 'bronson/vim-visual-star-search'
-Plug 'sakhnik/vim-clang-tags'
 Plug 'vim-scripts/dbext.vim', { 'on': 'Dbext' }
 Plug 'kergoth/vim-bitbake'
 Plug 'raimondi/delimitmate'
