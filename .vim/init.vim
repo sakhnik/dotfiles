@@ -186,7 +186,6 @@ Plug 'bling/vim-airline'
 	"let g:airline_symbols.linenr = '¶ '
 
 Plug 'Valloric/YouCompleteMe', {
-	\ 'for': ['c', 'cpp', 'python'],
 	\ 'do': 'python2 ./install.py --clang-completer'
 	\}
 	autocmd! User YouCompleteMe call youcompleteme#Enable()
