@@ -156,6 +156,7 @@ Plug 'ludovicchabant/vim-gutentags'
 	let g:gutentags_generate_on_missing = 0
 	let g:gutentags_generate_on_new = 0
 	set statusline+=%{gutentags#statusline()}
+Plug 'leafgarland/typescript-vim'
 
 Plug 'cbracken/vala.vim'
 

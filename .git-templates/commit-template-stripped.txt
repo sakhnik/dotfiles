@@ -1,8 +1,6 @@
-# The ruler below acts as a visual cue to the maximum summary line length
-#-------------------------------------------------
 <Summary Line>
+#-------------------------------------------------
 
-# The ruler below acts as a visual cue to the maximum content line length
 #-----------------------------------------------------------------------
 :Release Notes:
 
