@@ -8,7 +8,7 @@
 [color]
 	ui = true
 [commit]
-	template = /home/sakhnik/.git-templates/commit-template.txt
+	template = /home/sakhnik/.git-templates/commit-template-stripped.txt
 [init]
 	templatedir = /home/sakhnik/.git-templates/skel
 [push]
