@@ -85,6 +85,10 @@ endif
 
 if exists("+termguicolors")
 	set termguicolors
+	if !has('nvim')
+		let &t_8f = "[38;2;%lu;%lu;%lum"
+		let &t_8b = "[48;2;%lu;%lu;%lum"
+	endif
 endif
 
 set guioptions-=T
