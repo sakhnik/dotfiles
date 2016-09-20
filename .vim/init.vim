@@ -211,7 +211,7 @@ Plug 'Valloric/YouCompleteMe', {
 	nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
 
 Plug 'neomake/neomake'
-	let g:neomake_open_list = 1
+	let g:neomake_open_list = 2
 	let g:neomake_serialize = 1
 	let g:neomake_serialize_abort_on_error = 1
 
