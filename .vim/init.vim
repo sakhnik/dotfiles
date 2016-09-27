@@ -135,13 +135,22 @@ Plug 'tomasr/molokai'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 	" For compatibility with Ctrl-P to stay productive
-	nmap <silent> <c-p> :Files<cr>
-	nmap <silent> <leader>ff :Files<cr>
-	nmap <silent> <leader>fg :GitFiles<cr>
-	nmap <silent> <leader>ft :Tags<cr>
+	nmap <c-p> :Files<cr>
+	nmap <leader>ff :Files<cr>
+	nmap <leader>fg :GitFiles<cr>
+	nmap <leader>ft :Tags<cr>
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'          " :Git
+	augroup git
+		au!
+		autocmd BufWinEnter * if exists(":Gblame") | nmap <buffer> <leader>gb :Gblame<cr> | endif
+		autocmd BufWinEnter * if exists(":Gwrite") | nmap <buffer> <leader>gw :Gwrite<cr> | endif
+		autocmd BufWinEnter * if exists(":Gdiff") | nmap <buffer> <leader>gd :Gdiff<cr> | endif
+		autocmd BufWinEnter * if exists(":Gstatus") | nmap <buffer> <leader>gs :Gstatus<cr> | endif
+		autocmd BufWinEnter * if exists(":Gcommit") | nmap <buffer> <leader>gc :Gcommit<cr> | endif
+	augroup END
+
 Plug 'tpope/vim-characterize'      " ga
 Plug 'tpope/vim-eunuch'            " :SudoWrite
 Plug 'tpope/vim-repeat'            " Repeat mapping with .
@@ -233,10 +242,10 @@ Plug 'jpalardy/vim-slime', { 'on': 'SlimeConfig' }
 Plug 'nathanaelkane/vim-indent-guides', { 'on': ['IndentGuidesToggle', 'IndentGuidesEnable'] }
 	let g:indent_guides_guide_size = 1
 	let g:indent_guides_color_change_percent = 20
-	nmap <silent> <leader>ig :IndentGuidesToggle<cr>
+	nmap <leader>ig :IndentGuidesToggle<cr>
 
 Plug 'mhinz/vim-grepper'
-	nnoremap <leader>g :Grepper -tool git<cr>
+	nnoremap <leader>gg :Grepper -tool git<cr>
 
 call plug#end()
 
