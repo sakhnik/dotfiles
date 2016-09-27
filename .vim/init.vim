@@ -251,9 +251,6 @@ call plug#end()
 
 set novb t_vb=    " Не бікати взагалі ніколи
 "set t_ti= t_te=   " Не очищувати екран після виходу
-set keymap=uk     " Завантажити українську мапу клавіш
-set iminsert=0    " Встановити англійську (i_ctrl-^)
-set imsearch=0
 set showbreak=\\  "↪
 set modeline
 if has('persistent_undo')
