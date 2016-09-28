@@ -111,7 +111,6 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias cal='cal -m'
-alias timidity='timidity -Os'
 alias youtube-viewer='perl -X /usr/bin/youtube-viewer'
 
 vman()
@@ -119,11 +118,6 @@ vman()
     text=`man $*` || return $?
     echo "$text" | col -b | vim -c 'set ft=man nomod nolist' -
 }
-
-#export MANPAGER="/bin/sh -c \"unset MANPAGER;col -b -x | \
-#    vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
-#        -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
-#        -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
 
 export PATH=$PATH:/bin:/sbin:/usr/sbin
 [[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
@@ -134,7 +128,6 @@ if which ruby >/dev/null && which gem >/dev/null; then
 fi
 
 
-export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 # enable bash completion in interactive shells
@@ -160,14 +153,13 @@ ruler()
     done
 }
 
-export EDITOR=vim
+if which nvim >/dev/null 2>&1; then
+    alias vim=nvim
+    alias vimdiff="nvim -d"
+    export EDITOR=nvim
+else
+    export EDITOR=vim
+fi
+
 [[ -f $HOME/.sakhnik/pystartup.py ]] &&
 	export PYTHONSTARTUP=$HOME/.sakhnik/pystartup.py
-
-alias gpush='git push origin HEAD:refs/for/master'
-
-export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/home/sakhnik/perl5";
-export PERL_MB_OPT="--install_base /home/sakhnik/perl5";
-export PERL_MM_OPT="INSTALL_BASE=/home/sakhnik/perl5";
-export PERL5LIB="/home/sakhnik/perl5/lib/perl5:$PERL5LIB";
-export PATH="/home/sakhnik/perl5/bin:$PATH";

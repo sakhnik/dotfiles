@@ -24,8 +24,6 @@ case "$TERM" in
 		;;
 esac
 
-#[[ -z "$TMUX" ]] && exec tmux
-
 [[ -f $HOME/$this_dir/pystartup.py ]] &&
 	export PYTHONSTARTUP=$HOME/$this_dir/pystartup.py
 
