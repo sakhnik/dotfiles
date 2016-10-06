@@ -13,7 +13,8 @@ if !has('nvim')
 	set nocompatible
 endif
 set nobackup backupdir=.
-set wildmode=longest,list
+set wildmode=longest,list,full
+set path+=**
 
 if has("autocmd")
 
