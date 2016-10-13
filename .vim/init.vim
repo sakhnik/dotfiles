@@ -172,6 +172,7 @@ Plug 'wellle/targets.vim'
 Plug 'ludovicchabant/vim-gutentags'
 	let g:gutentags_generate_on_missing = 0
 	let g:gutentags_generate_on_new = 0
+	let g:gutentags_define_advanced_commands = 1
 	set statusline+=%{gutentags#statusline()}
 Plug 'leafgarland/typescript-vim'
 
