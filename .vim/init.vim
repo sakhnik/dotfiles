@@ -155,7 +155,6 @@ Plug 'tpope/vim-fugitive'          " :Git
 		autocmd BufWinEnter * if exists(":Gcommit") | nmap <buffer> <leader>gc :Gcommit<cr> | endif
 	augroup END
 
-Plug 'tpope/vim-characterize'      " ga
 Plug 'tpope/vim-eunuch'            " :SudoWrite
 Plug 'tpope/vim-repeat'            " Repeat mapping with .
 Plug 'tpope/vim-sleuth'            " Set buffer options euristically
