@@ -58,11 +58,11 @@ flags = [
 'c++',
 '-I.',
 '-I..',
-'-isystem/usr/include/c++/4.9.1',
-'-isystem/usr/include/c++/4.9.1/x86_64-unknown-linux-gnu',
-'-isystem/usr/include/c++/4.9.1/backward',
+'-isystem/usr/include/c++/6.2.1',
+'-isystem/usr/include/c++/6.2.1/x86_64-unknown-linux-gnu',
+'-isystem/usr/include/c++/6.2.1/backward',
 '-isystem/usr/local/include',
-'-isystem/usr/lib/clang/3.5.0/include',
+'-isystem/usr/lib/clang/3.8.1/include',
 '-isystem/usr/include'
 ]
 

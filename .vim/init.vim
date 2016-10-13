@@ -92,9 +92,11 @@ if exists("+termguicolors")
 	endif
 endif
 
-set guioptions-=T
-set guioptions-=m
-set mousehide
+if has('nvim')
+	set guioptions-=T
+	set guioptions-=m
+	set mousehide
+endif
 set clipboard=unnamed
 set completeopt=menu,longest,preview
 set shortmess=a
@@ -201,26 +203,6 @@ Plug 'bling/vim-airline'
 	let g:airline_symbols.paste = 'ρ'
 	"let g:airline_symbols.linenr = '¶ '
 
-Plug 'Valloric/YouCompleteMe', {
-	\ 'do': 'python2 ./install.py --clang-completer --system-libclang --system-boost'
-	\}
-	autocmd! User YouCompleteMe call youcompleteme#Enable()
-
-	let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
-	let g:ycm_filetype_blacklist = {
-		\ 'notes' : 1,
-		\ 'markdown' : 1,
-		\ 'text' : 1,
-		\ 'conque_term' : 1,
-		\}
-	let g:ycm_confirm_extra_conf = 0
-	let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
-	let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
-	let g:ycm_complete_in_comments = 1 " Completion in comments
-	let g:ycm_complete_in_strings = 1 " Completion in string
-
-	nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
-
 Plug 'neomake/neomake'
 	let g:neomake_open_list = 2
 	let g:neomake_serialize = 1
@@ -250,6 +232,32 @@ Plug 'mhinz/vim-grepper'
 	nnoremap <leader>gg :Grepper -tool git<cr>
 
 call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" YouCompleteMe stuff
+if isdirectory($HOME . '/.vim/YouCompleteMe')
+	set rtp+=$HOME/.vim/YouCompleteMe
+	source $HOME/.vim/YouCompleteMe/plugin/youcompleteme.vim
+
+	autocmd! User YouCompleteMe call youcompleteme#Enable()
+
+	let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
+	let g:ycm_filetype_blacklist = {
+		\ 'notes' : 1,
+		\ 'markdown' : 1,
+		\ 'text' : 1,
+		\ 'conque_term' : 1,
+		\}
+	let g:ycm_confirm_extra_conf = 0
+	let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+	let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
+	let g:ycm_complete_in_comments = 1 " Completion in comments
+	let g:ycm_complete_in_strings = 1 " Completion in string
+
+	nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
 
 set novb t_vb=    " Не бікати взагалі ніколи
 "set t_ti= t_te=   " Не очищувати екран після виходу
