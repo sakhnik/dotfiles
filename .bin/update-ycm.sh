@@ -49,4 +49,15 @@ rsync -raP --delete YouCompleteMe ~/.vim/
 # Update vim help tags
 vim -u NONE -c 'helptags ~/.vim/YouCompleteMe/doc | quit'
 
+# 
+echo \
+	| clang -v -E -x c++ - 2>&1 \
+	| awk '/#include <...>/,/End of search/' \
+	| grep '/usr' \
+	| while read -r l; do
+		echo "'-isystem`readlink -f $l`',"
+	done > includes.txt
+
+sed -e "/#SYSTEM_INCLUDES_HERE/r includes" ~/.vim/ycm_extra_conf.py.in > ~/.vim/ycm_extra_conf.py
+
 echo "SUCCESS"

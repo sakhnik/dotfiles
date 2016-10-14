@@ -1,3 +1,7 @@
 .netrwhist
 *.pyc
 autoload/plug.vim.old
+YouCompleteMe
+plugged
+spell
+ycm_extra_conf.py
