@@ -169,6 +169,11 @@ Plug 'raimondi/delimitmate'
 Plug 'drmikehenry/vim-fontsize'
 Plug 'wellle/targets.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'artur-shaik/vim-javacomplete2'
+	augroup java
+		au!
+		autocmd FileType java setlocal omnifunc=javacomplete#Complete
+	augroup END
 
 Plug 'cbracken/vala.vim'
 
