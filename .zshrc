@@ -1,6 +1,17 @@
 
 this_dir=$(dirname `readlink -f ~/.zshrc`)
 
+PROFILE_STARTUP=false
+if [[ "$PROFILE_STARTUP" == true ]]; then
+    # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+    PS4=$'%D{%M%S%.} %N:%i> '
+    exec 3>&2 2>$HOME/tmp/startlog.$$
+    setopt xtrace prompt_subst
+fi
+
+# Hack for msys2
+[[ ! "$SHELL" ]] && SHELL=`which zsh`
+
 export PATH=$PATH:/bin:/sbin:/usr/sbin
 [[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
 [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
@@ -256,3 +267,8 @@ zle -N zle-keymap-select
 zle -N zle-line-init
 
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+
+if [[ "$PROFILE_STARTUP" == true ]]; then
+    unsetopt xtrace
+    exec 2>&3 3>&-
+fi
