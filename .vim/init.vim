@@ -135,13 +135,24 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/seoul256.vim'
 Plug 'tomasr/molokai'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-	" For compatibility with Ctrl-P to stay productive
-	nmap <c-p> :Files<cr>
-	nmap <leader>ff :Files<cr>
-	nmap <leader>fg :GitFiles<cr>
-	nmap <leader>ft :Tags<cr>
+let s:sysname = strpart(system('uname'), 0, 4)
+if s:sysname == 'MSYS'
+	Plug 'ctrlpvim/ctrlp.vim'
+		let g:ctrlp_user_command = {
+			\ 'types': {
+				\ 1: ['.git', 'cd %s && git ls-files'],
+				\ 2: ['.hg', 'hg --cwd %s locate -I .'],
+			\ },
+			\ 'fallback': 'dir %s /-n /b /s /a-d'
+		\ }
+		nmap <leader>ff :CtrlP<cr>
+else
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+	Plug 'junegunn/fzf.vim'
+		nmap <leader>ff :Files<cr>
+		nmap <leader>fg :GitFiles<cr>
+		nmap <leader>ft :Tags<cr>
+endif
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'          " :Git
