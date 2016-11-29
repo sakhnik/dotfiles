@@ -240,7 +240,7 @@ Plug 'mhinz/vim-grepper'
 	let g:grepper = {
 		\ 'tools': ['hg', 'git', 'grep'],
 		\ 'hg': {
-		\   'grepprg':    'hg grep -n -r "reverse(::.)" $* .',
+		\   'grepprg':    'hg grep -n -r "reverse(::.)"',
 		\   'grepformat': '%f:%\\d%\\+:%l:%m',
 		\   'escape':     '\+*^$()[]',
 		\ }}
