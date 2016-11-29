@@ -180,12 +180,6 @@ Plug 'raimondi/delimitmate'
 Plug 'drmikehenry/vim-fontsize'
 Plug 'wellle/targets.vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'artur-shaik/vim-javacomplete2'
-	augroup java
-		au!
-		autocmd FileType java setlocal omnifunc=javacomplete#Complete
-	augroup END
-
 Plug 'cbracken/vala.vim'
 
 Plug 'lyuts/vim-rtags'
@@ -241,6 +235,15 @@ Plug 'nathanaelkane/vim-indent-guides', { 'on': ['IndentGuidesToggle', 'IndentGu
 
 Plug 'mhinz/vim-grepper'
 	nnoremap <leader>gg :Grepper -tool git<cr>
+	nnoremap <leader>ga :Grepper -tool ag<cr>
+	nnoremap <leader>gh :Grepper -tool hg<cr>
+	let g:grepper = {
+		\ 'tools': ['hg', 'git', 'grep'],
+		\ 'hg': {
+		\   'grepprg':    'hg grep -n -r "reverse(::.)" $* .',
+		\   'grepformat': '%f:%\\d%\\+:%l:%m',
+		\   'escape':     '\+*^$()[]',
+		\ }}
 
 call plug#end()
 
