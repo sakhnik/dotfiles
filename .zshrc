@@ -10,13 +10,13 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
 fi
 
 # Hack for msys2
-[[ ! "$SHELL" ]] && SHELL=`which zsh`
+[[ -z "$SHELL" ]] && SHELL=`which zsh`
 
 export PATH=$PATH:/bin:/sbin:/usr/sbin
 [[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
 [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
 
-if which ruby >/dev/null && which gem >/dev/null; then
+if which ruby >/dev/null 2>&1 && which gem >/dev/null 2>&1; then
     PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
