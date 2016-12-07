@@ -269,6 +269,7 @@ if isdirectory($HOME . '/.vim/YouCompleteMe')
 	let g:ycm_complete_in_strings = 1 " Completion in string
 
 	nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
+	nnoremap <leader>yd :YcmCompleter GetDoc<cr>
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""
