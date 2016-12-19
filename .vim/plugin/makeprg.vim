@@ -53,7 +53,7 @@ function! <SID>SetMakePrg()
 endf
 
 "Define mappings
-nnoremap <leader>mm :make<cr>
+nnoremap <leader>mm :update<cr>:make<cr>
 nnoremap <leader>mc :call <SID>SetMakePrg() <bar> make<cr>
 
 "Set Boost.Build.v2 default if possible.
