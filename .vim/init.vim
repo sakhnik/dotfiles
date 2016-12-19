@@ -219,14 +219,17 @@ Plug 'neomake/neomake'
 Plug 'vim-scripts/Conque-GDB', { 'on': 'ConqueGdb' }
 	let g:ConqueTerm_StartMessages = 0
 	let g:ConqueTerm_SendVisKey = '<leader>cc'
-
-Plug 'jpalardy/vim-slime', { 'on': 'SlimeConfig' }
-	let g:slime_target = "tmux"
-	let g:slime_python_ipython = 1  "Use ipython's magic function %cpaste
-	let g:slime_no_mappings = 1
-	xmap <leader>s <Plug>SlimeRegionSend
-	nmap <leader>s <Plug>SlimeMotionSend
-	nmap <leader>ss <Plug>SlimeLineSend
+	nnoremap <leader>dd :ConqueGdb<cr>
+	let g:ConqueGdb_SaveHistory = 1
+	let g:ConqueGdb_Leader = '<leader>'
+	let g:ConqueGdb_Run = g:ConqueGdb_Leader . 'dr'
+	let g:ConqueGdb_Continue = g:ConqueGdb_Leader . 'dc'
+	let g:ConqueGdb_Next = g:ConqueGdb_Leader . 'dn'
+	let g:ConqueGdb_Step = g:ConqueGdb_Leader . 'ds'
+	let g:ConqueGdb_Print = g:ConqueGdb_Leader . 'dp'
+	let g:ConqueGdb_ToggleBreak = g:ConqueGdb_Leader . 'db'
+	let g:ConqueGdb_Finish = g:ConqueGdb_Leader . 'df'
+	let g:ConqueGdb_Backtrace = g:ConqueGdb_Leader . 'dt'
 
 Plug 'nathanaelkane/vim-indent-guides', { 'on': ['IndentGuidesToggle', 'IndentGuidesEnable'] }
 	let g:indent_guides_guide_size = 1
