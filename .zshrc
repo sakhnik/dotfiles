@@ -1,17 +1,12 @@
 if [[ ! -d ~/.zplug ]]; then
-	git clone --depth 1 https://github.com/zplug/zplug ~/.zplug/repos/zplug/zplug
+	git clone --depth 1 https://github.com/zplug/zplug ~/.zplug
 fi
 
-export ZPLUG_REPOS=~/.zplug/repos
-source ~/.zplug/repos/zplug/zplug/init.zsh
+source ~/.zplug/init.zsh
 
-autoload colors && colors
-setopt prompt_subst
-
-zplug "zplug/zplug"
-zplug "isqua/bureau", as:theme, use:"*.zsh"
+#zplug "isqua/bureau", as:theme, use:"*.zsh"
+zplug "molovo/filthy", as:theme, use:"*.zsh"
 zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zaw"
 
 zplug check || zplug install
 zplug load
