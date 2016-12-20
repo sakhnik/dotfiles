@@ -4,10 +4,13 @@ fi
 
 source ~/.zplug/init.zsh
 
-#zplug "isqua/bureau", as:theme, use:"*.zsh"
 zplug "molovo/filthy", as:theme, use:"*.zsh"
-zplug "zsh-users/zsh-syntax-highlighting"
+zplug "modules/history", from:prezto
 zplug "modules/editor", from:prezto
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
 
 zplug check || zplug install
 zplug load
@@ -34,9 +37,6 @@ fi
 [[ -f $HOME/$this_dir/pystartup.py ]] &&
 	export PYTHONSTARTUP=$HOME/$this_dir/pystartup.py
 
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
 bindkey -v
 
 # enable color support of ls and also add handy aliases
