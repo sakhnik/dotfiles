@@ -248,13 +248,15 @@ Plug 'mhinz/vim-grepper'
 		\   'escape':     '\+*^$()[]',
 		\ }}
 
-call plug#end()
-
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe stuff
 if isdirectory($HOME . '/.vim/YouCompleteMe')
+	" If there's preinstalled version, integrated with system libraries, prefer it
 	set rtp+=$HOME/.vim/YouCompleteMe
 	source $HOME/.vim/YouCompleteMe/plugin/youcompleteme.vim
+else
+	Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer'}
+endif
 
 	autocmd! User YouCompleteMe call youcompleteme#Enable()
 
@@ -273,7 +275,8 @@ if isdirectory($HOME . '/.vim/YouCompleteMe')
 
 	nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
 	nnoremap <leader>yd :YcmCompleter GetDoc<cr>
-endif
+
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 
