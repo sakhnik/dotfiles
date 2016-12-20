@@ -35,8 +35,9 @@ else
 	export EDITOR=vim
 fi
 
-[[ -f $HOME/$this_dir/pystartup.py ]] &&
-	export PYTHONSTARTUP=$HOME/$this_dir/pystartup.py
+this_dir=$(dirname `readlink -f ~/.zshrc`)
+[[ -f $this_dir/pystartup.py ]] &&
+	export PYTHONSTARTUP=$this_dir/pystartup.py
 
 bindkey -v
 
