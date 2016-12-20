@@ -7,6 +7,7 @@ source ~/.zplug/init.zsh
 zplug "molovo/filthy", as:theme, use:"*.zsh"
 zplug "modules/history", from:prezto
 zplug "modules/editor", from:prezto
+zplug "modules/directory", from:prezto
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
