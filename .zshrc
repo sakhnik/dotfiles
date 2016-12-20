@@ -7,6 +7,7 @@ source ~/.zplug/init.zsh
 #zplug "isqua/bureau", as:theme, use:"*.zsh"
 zplug "molovo/filthy", as:theme, use:"*.zsh"
 zplug "zsh-users/zsh-syntax-highlighting"
+zplug "modules/editor", from:prezto
 
 zplug check || zplug install
 zplug load
