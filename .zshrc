@@ -40,9 +40,10 @@ else
 	export EDITOR=vim
 fi
 
-this_dir=$(dirname `readlink -f ~/.zshrc`)
+local this_dir=$(dirname `readlink -f ~/.zshrc`)
 [[ -f $this_dir/pystartup.py ]] &&
 	export PYTHONSTARTUP=$this_dir/pystartup.py
+unset this_dir
 
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
