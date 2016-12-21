@@ -7,7 +7,6 @@ fi
 source ~/.zplug/init.zsh
 
 zplug "modules/history", from:prezto
-zplug "modules/editor", from:prezto
 zplug "modules/directory", from:prezto
 zplug "zsh-users/zsh-completions"
 zplug mafredri/zsh-async, from:github, defer:0  # Load this first
