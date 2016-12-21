@@ -23,13 +23,13 @@ export PATH=$PATH:/bin:/sbin:/usr/sbin
 [[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
 [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
 
-if which ruby >/dev/null 2>&1 && which gem >/dev/null 2>&1; then
+if [[ -x /usr/bin/ruby && -x /usr/bin/gem ]]; then
 	PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-if which nvim >/dev/null 2>&1; then
+if [[ -x /usr/bin/nvim || -x /usr/local/bin/nvim ]]; then
 	alias vim=nvim
 	alias vimdiff="nvim -d"
 	export EDITOR=nvim
