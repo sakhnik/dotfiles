@@ -4,7 +4,7 @@ fi
 
 source ~/.zplug/init.zsh
 
-zplug "molovo/filthy", as:theme, use:"*.zsh"
+#zplug "molovo/filthy", as:theme, use:"*.zsh"
 zplug "modules/history", from:prezto
 zplug "modules/editor", from:prezto
 zplug "modules/directory", from:prezto
@@ -12,6 +12,8 @@ zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
+zplug mafredri/zsh-async, from:github, defer:0  # Load this first
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 
 zplug check || zplug install
 zplug load
