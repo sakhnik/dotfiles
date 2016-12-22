@@ -9,7 +9,7 @@ source ~/.zplug/init.zsh
 zplug "modules/history", from:prezto
 zplug "modules/directory", from:prezto
 zplug "zsh-users/zsh-completions"
-zplug mafredri/zsh-async, from:github, defer:0  # Load this first
+zplug mafredri/zsh-async, use:async.zsh, from:github, defer:0  # Load this first
 zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 if [[ -d ~/.fzf ]]; then
 	# Assume fzf can be installed by other means (like vim)
