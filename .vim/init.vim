@@ -154,6 +154,8 @@ else
 		nmap <leader>ft :Tags<cr>
 endif
 
+Plug 'wincent/command-t', {'do': 'cd ruby/command-t && ruby extconf.rb && make'}
+
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'          " :Git
 	augroup git

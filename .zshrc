@@ -9,8 +9,13 @@ source ~/.zplug/init.zsh
 zplug "modules/history", from:prezto
 zplug "modules/directory", from:prezto
 zplug "zsh-users/zsh-completions"
+
 zplug mafredri/zsh-async, use:async.zsh, from:github, defer:0  # Load this first
 zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+PURE_PROMPT_SYMBOL='$'
+PURE_GIT_UP_ARROW='↑'
+PURE_GIT_DOWN_ARROW='↓'
+
 if [[ -d ~/.fzf ]]; then
 	# Assume fzf can be installed by other means (like vim)
 	zplug "~/.fzf/shell", from:local, use:'*.zsh'
