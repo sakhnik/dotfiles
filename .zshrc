@@ -21,7 +21,7 @@ if [[ -d ~/.fzf ]]; then
 	zplug "~/.fzf/shell", from:local, use:'*.zsh'
 fi
 
-zplug check || zplug installP
+zplug check || zplug install
 zplug load
 
 
@@ -64,5 +64,24 @@ fi
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
+
+######################################################
+# Options
+
+# Enable job control
+setopt monitor
+# Check running jobs on exit
+setopt check_jobs
+# Don't give up when shell does exit
+setopt no_hup
+unset hup
+# Ignore <C-d> logout
+setopt ignore_eof
+# Disable beeps
+setopt no_beep
+# Enable spellcheck
+setopt correct
+# Better jobs
+setopt long_list_jobs
 
 # vim: set ts=4 sw=4 noet:
