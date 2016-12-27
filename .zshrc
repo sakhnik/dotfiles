@@ -72,11 +72,6 @@ alias l='ls -CF'
 setopt monitor
 # Check running jobs on exit
 setopt check_jobs
-# Don't give up when shell does exit
-setopt no_hup
-unset hup
-# Ignore <C-d> logout
-setopt ignore_eof
 # Disable beeps
 setopt no_beep
 # Enable spellcheck
