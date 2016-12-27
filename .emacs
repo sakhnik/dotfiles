@@ -16,13 +16,14 @@
     magit
     projectile
     helm
-	helm-projectile
+    helm-projectile
     smart-tabs-mode
     markdown-mode
     yasnippet
     company
     ycmd
     company-ycmd
+    rtags
     ) "a list of packages to ensure are installed at launch.")
 
 ;; my-packages.el
@@ -31,8 +32,8 @@
 ;; method to check if all packages are installed
 (defun packages-installed-p ()
   (loop for p in required-packages
-		when (not (package-installed-p p)) do (return nil)
-		finally (return t)))
+    when (not (package-installed-p p)) do (return nil)
+    finally (return t)))
 
 ;; if not all packages are installed, check one by one and install the missing ones.
 (unless (packages-installed-p)
@@ -42,8 +43,8 @@
   (message "%s" " done.")
   ; install the missing packages
   (dolist (p required-packages)
-	(when (not (package-installed-p p))
-	  (package-install p))))
+    (when (not (package-installed-p p))
+      (package-install p))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-font-lock-mode 1)
@@ -129,11 +130,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(package-selected-packages
+   (quote
+    (rtags zenburn-theme zenburn yasnippet solarized-theme smart-tabs-mode powerline markdown-mode magit helm-projectile git-rebase-mode git-commit-mode evil-visualstar evil-surround company-ycmd))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:slant italic))))
- )
+ '(font-lock-comment-face ((t (:slant italic)))))
