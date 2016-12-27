@@ -74,6 +74,8 @@ set ignorecase smartcase
 set tabstop=4
 set cindent shiftwidth=4
 set cinoptions=:0,=1s,g0,(0,M1,U0,u0
+set copyindent
+set preserveindent
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if exists("+mouse")
