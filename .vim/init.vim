@@ -155,8 +155,6 @@ else
 		nmap <leader>ft :Tags<cr>
 endif
 
-Plug 'wincent/command-t', {'do': 'cd ruby/command-t && ruby extconf.rb && make'}
-
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'          " :Git
 	augroup git
@@ -168,6 +166,8 @@ Plug 'tpope/vim-fugitive'          " :Git
 		autocmd BufWinEnter * if exists(":Gstatus") | nmap <buffer> <leader>gs :Gstatus<cr> | endif
 		autocmd BufWinEnter * if exists(":Gcommit") | nmap <buffer> <leader>gc :Gcommit<cr> | endif
 	augroup END
+
+Plug 'gregsexton/gitv'
 
 Plug 'tpope/vim-eunuch'            " :SudoWrite
 Plug 'tpope/vim-repeat'            " Repeat mapping with .
