@@ -24,7 +24,12 @@ fi
 zplug check || zplug install
 zplug load
 
+# Edit command line in EDITOR
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^F' edit-command-line
 
+# Paths to search binaries
 export PATH=$PATH:/bin:/sbin:/usr/sbin
 [[ -d ~/.bin ]] && export PATH=~/.bin:$PATH
 [[ -d ~/bin ]] && export PATH=~/bin:$PATH
