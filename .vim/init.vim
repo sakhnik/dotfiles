@@ -75,7 +75,6 @@ set tabstop=4
 set cindent shiftwidth=4
 set cinoptions=:0,=1s,g0,(0,M1,U0,u0
 set copyindent
-set preserveindent
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if exists("+mouse")
@@ -156,8 +155,6 @@ else
 		nmap <leader>ft :Tags<cr>
 endif
 
-Plug 'wincent/command-t', {'do': 'cd ruby/command-t && ruby extconf.rb && make'}
-
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'          " :Git
 	augroup git
@@ -169,6 +166,8 @@ Plug 'tpope/vim-fugitive'          " :Git
 		autocmd BufWinEnter * if exists(":Gstatus") | nmap <buffer> <leader>gs :Gstatus<cr> | endif
 		autocmd BufWinEnter * if exists(":Gcommit") | nmap <buffer> <leader>gc :Gcommit<cr> | endif
 	augroup END
+
+Plug 'gregsexton/gitv'
 
 Plug 'tpope/vim-eunuch'            " :SudoWrite
 Plug 'tpope/vim-repeat'            " Repeat mapping with .
