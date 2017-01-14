@@ -9,4 +9,4 @@ for i in `cat ~/.vim/includes.txt`; do
 done
 
 # Check that system libraries haven't changed for ycmd
-ldd ~/.vim/YouCompleteMe/third_party/ycmd/ycm_core.so | grep -q 'not found' || exit 2
+ldd ~/.vim/YouCompleteMe/third_party/ycmd/ycm_core.so | grep -q 'not found' && exit 2 || true

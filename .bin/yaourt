@@ -7,10 +7,10 @@ set -e
 /usr/bin/yaourt "$@"
 
 if [[ ${1:0:2} == -S && $1 != "-Ss" ]]; then
-    if ! check-ycm.sh ; then
+    if ! ycm-check.sh ; then
         echo "Updating outdated YouCompleteMe deployment"
-        update-ycm.sh
+        ycm-update.sh
         echo "Validation"
-        check-ycm.sh
+        ycm-check.sh
     fi
 fi

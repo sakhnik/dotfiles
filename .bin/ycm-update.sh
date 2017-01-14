@@ -54,7 +54,7 @@ echo \
 	| awk '/#include <...>/,/End of search/' \
 	| grep '/usr' \
 	| while read -r l; do
-		echo "'-isystem`readlink -f $l`',"
+		echo `readlink -f $l`
 	done > ~/.vim/includes.txt
 
 echo "SUCCESS"

@@ -56,9 +56,17 @@ flags = [
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x', 'c++',
 '-I.',
-#SYSTEM_INCLUDES_HERE
-'-I..'
+'-I..',
 ]
+
+fname = os.path.join(os.path.dirname(__file__), 'includes.txt')
+if os.path.exists(fname):
+  with open(fname, 'r') as f:
+    for line in f:
+      flags.append('-isystem' + line.strip())
+else:
+  flags.append('-isystem/usr/local/include')
+  flags.append('-isystem/usr/include')
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
