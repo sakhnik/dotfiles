@@ -55,8 +55,6 @@ echo \
 	| grep '/usr' \
 	| while read -r l; do
 		echo "'-isystem`readlink -f $l`',"
-	done > includes.txt
-
-sed -e "/#SYSTEM_INCLUDES_HERE/r includes.txt" ~/.vim/ycm_extra_conf.py.in > ~/.vim/ycm_extra_conf.py
+	done > ~/.vim/includes.txt
 
 echo "SUCCESS"

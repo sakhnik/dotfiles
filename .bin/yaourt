@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+[[ -x /usr/bin/yaourt ]] || exit 255
+
+/usr/bin/yaourt "$@"
+
+if [[ ${1:0:2} == -S && $1 != "-Ss" ]]; then
+    if ! check-ycm.sh ; then
+        echo "Updating outdated YouCompleteMe deployment"
+        update-ycm.sh
+        echo "Validation"
+        check-ycm.sh
+    fi
+fi
