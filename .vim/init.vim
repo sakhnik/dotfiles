@@ -211,7 +211,7 @@ Plug 'bling/vim-airline'
 	let g:airline_symbols.branch = '⎇ '   "±
 	let g:airline_symbols.paste = 'ρ'
 	"let g:airline_symbols.linenr = '¶ '
-  let g:airline#extensions#whitespace#mixed_indent_algo = 2
+	let g:airline#extensions#whitespace#mixed_indent_algo = 2
 
 Plug 'neomake/neomake'
 	let g:neomake_open_list = 2
