@@ -6,6 +6,7 @@ fi
 
 source ~/.zplug/init.zsh
 
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "modules/history", from:prezto
 zplug "modules/directory", from:prezto
 zplug "zsh-users/zsh-completions"
