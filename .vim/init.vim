@@ -15,6 +15,7 @@ endif
 set nobackup backupdir=.
 set wildmode=longest,list,full
 set path+=**
+set diffopt+=iwhite
 
 if has("autocmd")
 
@@ -210,7 +211,7 @@ Plug 'bling/vim-airline'
 	let g:airline_symbols.branch = '⎇ '   "±
 	let g:airline_symbols.paste = 'ρ'
 	"let g:airline_symbols.linenr = '¶ '
-  let g:airline#extensions#whitespace#mixed_indent_algo = 2
+	let g:airline#extensions#whitespace#mixed_indent_algo = 2
 
 Plug 'neomake/neomake'
 	let g:neomake_open_list = 2
