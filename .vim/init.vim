@@ -281,6 +281,8 @@ endif
 	nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
 	nnoremap <leader>yd :YcmCompleter GetDoc<cr>
 
+Plug 'ledger/vim-ledger'
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""
