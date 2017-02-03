@@ -94,7 +94,7 @@ if exists("+termguicolors")
 	endif
 endif
 
-if has('nvim')
+if !has('nvim')
 	set guioptions-=T
 	set guioptions-=m
 	set mousehide
