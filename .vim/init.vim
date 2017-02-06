@@ -282,7 +282,7 @@ endif
 	nnoremap <leader>yd :YcmCompleter GetDoc<cr>
 
 Plug 'ledger/vim-ledger'
-	let g:ledger_extra_options = '--pedantic --explicit --check-payees'
+	let g:ledger_extra_options = '--pedantic --explicit --check-payees --price-db prices.db'
 	let g:ledger_align_at = 45
 	let g:ledger_default_commodity = '₴'
 	let g:ledger_commodity_before = 0
