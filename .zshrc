@@ -75,14 +75,14 @@ alias l='ls -CF'
 # Options
 
 # Enable job control
-setopt monitor
+set -o monitor
 # Check running jobs on exit
-setopt check_jobs
+set -o check_jobs
 # Disable beeps
-setopt no_beep
+set -o no_beep
 # Enable spellcheck
-setopt correct
+set -o correct
 # Better jobs
-setopt long_list_jobs
+set -o long_list_jobs
 
 # vim: set ts=4 sw=4 noet:
