@@ -156,7 +156,10 @@ else
 		nmap <leader>ft :Tags<cr>
 endif
 
-Plug 'tpope/vim-sensible'
+if !has('nvim')
+	Plug 'tpope/vim-sensible'
+endif
+
 Plug 'tpope/vim-fugitive'          " :Git
 	augroup git
 		au!
@@ -212,6 +215,8 @@ Plug 'bling/vim-airline'
 	let g:airline_symbols.paste = 'ρ'
 	"let g:airline_symbols.linenr = '¶ '
 	let g:airline#extensions#whitespace#mixed_indent_algo = 2
+	let g:airline#extensions#tabline#buffer_nr_show = 1
+	"let g:airline#extensions#tabline#buffer_nr_format = '** %s: '
 
 Plug 'neomake/neomake'
 	let g:neomake_open_list = 2
@@ -255,15 +260,6 @@ Plug 'mhinz/vim-grepper'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe stuff
-if isdirectory($HOME . '/.vim/YouCompleteMe')
-	" If there's preinstalled version, integrated with system libraries, prefer it
-	set rtp+=$HOME/.vim/YouCompleteMe
-	source $HOME/.vim/YouCompleteMe/plugin/youcompleteme.vim
-else
-	Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer'}
-endif
-
-	autocmd! User YouCompleteMe call youcompleteme#Enable()
 
 	let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
 	let g:ycm_filetype_blacklist = {
@@ -277,6 +273,16 @@ endif
 	let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
 	let g:ycm_complete_in_comments = 1 " Completion in comments
 	let g:ycm_complete_in_strings = 1 " Completion in string
+
+if isdirectory($HOME . '/.vim/YouCompleteMe')
+	" If there's preinstalled version, integrated with system libraries, prefer it
+	set rtp+=$HOME/.vim/YouCompleteMe
+	source $HOME/.vim/YouCompleteMe/plugin/youcompleteme.vim
+else
+	Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer'}
+endif
+
+	autocmd! User YouCompleteMe call youcompleteme#Enable()
 
 	nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
 	nnoremap <leader>yd :YcmCompleter GetDoc<cr>
