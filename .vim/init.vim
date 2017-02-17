@@ -289,6 +289,12 @@ Plug 'ledger/vim-ledger'
 	let g:ledger_commodity_sep = ' '
 	let g:ledger_fold_blanks = 1
 
+Plug 'artur-shaik/vim-javacomplete2'
+	augroup java
+		au!
+		autocmd FileType java setlocal omnifunc=javacomplete#Complete
+	augroup END
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""
