@@ -284,7 +284,7 @@ endif
 
 	autocmd! User YouCompleteMe call youcompleteme#Enable()
 
-	nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
+	nnoremap <leader>yj :YcmCompleter GoToDefinitionElseDeclaration<cr>
 	nnoremap <leader>yd :YcmCompleter GetDoc<cr>
 
 Plug 'ledger/vim-ledger'
