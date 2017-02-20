@@ -267,6 +267,7 @@ Plug 'mhinz/vim-grepper'
 		\ 'markdown' : 1,
 		\ 'text' : 1,
 		\ 'conque_term' : 1,
+		\ 'ledger' : 1,
 		\}
 	let g:ycm_confirm_extra_conf = 0
 	let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
