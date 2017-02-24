@@ -5,3 +5,7 @@
 
 tmux new-session -d
 tmux set-option -ga terminal-overrides ",xterm-256color:Tc"
+
+if [[ -z "$PS1" ]]; then
+    exec tmux attach
+fi
