@@ -4,15 +4,10 @@
 [alias]
 	lg = log --oneline --decorate --graph
 	lga = log --all --oneline --decorate --graph
-	ctags = !.git/hooks/ctags
 [color]
 	ui = true
-[init]
-	templatedir = /home/sakhnik/.git-templates/skel
 [push]
 	default = simple
-[core]
-	excludesfile = /home/sakhnik/.git-templates/ignore
 [merge]
 	tool = vim
 [mergetool "vim"]
