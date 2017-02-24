@@ -2,9 +2,9 @@
 
 set -e
 
-[[ -x /usr/bin/yaourt ]] || exit 255
+[[ -x /usr/bin/pacaur ]] || exit 255
 
-/usr/bin/yaourt "$@"
+/usr/bin/pacaur "$@"
 
 if [[ ${1:0:2} == -S && $1 != "-Ss" ]]; then
     if ! ycm-check.sh ; then
