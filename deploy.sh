@@ -3,16 +3,9 @@
 set -e
 
 dotfiles=`readlink -f $(dirname ${BASH_SOURCE[0]})`
+cd "$dotfiles"
 
-cd
-
-for i in $dotfiles/.*; do
-	if [[ $i =~ /\.(|\.|git|gitignore|gitmodules)$ ]]; then
-		continue
-	fi
-	ln -sf $i
+# Utilize GNU stow to symlink from HOME to our config files.
+for i in *; do
+	[[ -d $i ]] && stow $i
 done
-
-mkdir -p ~/.config
-unlink ~/.config/nvim || true
-ln -sf $dotfiles/.vim ~/.config/nvim
