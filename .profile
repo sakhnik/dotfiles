@@ -6,7 +6,7 @@ export PATH=$PATH:/bin:/sbin:/usr/sbin
 [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
 [[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
 
-if which ruby >/dev/null && which gem >/dev/null; then
+if [[ -x /usr/bin/ruby && -x /usr/bin/gem ]]; then
     PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
