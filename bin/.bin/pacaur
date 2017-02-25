@@ -6,7 +6,12 @@ set -e
 
 /usr/bin/pacaur "$@"
 
-if [[ ${1:0:2} == -S && $1 != "-Ss" ]]; then
+if [[ $1 == -S || $1 =~ -S.*u.* ]]; then
+    white=`tput setaf 7`
+    blue=`tput setaf 4`
+    bold=`tput bold`
+    reset=`tput sgr 0`
+    echo "${bold}${blue}:: ${white}Checking YouCompleteMe deployment...${reset}"
     if ! ycm-check.sh ; then
         echo "Updating outdated YouCompleteMe deployment"
         ycm-update.sh
