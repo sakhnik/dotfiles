@@ -16,3 +16,4 @@
 	keepBackup = false
 [diff]
 	submodule = log
+	tool = vimdiff
