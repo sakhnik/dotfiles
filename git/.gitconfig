@@ -9,9 +9,11 @@
 [push]
 	default = simple
 [merge]
-	tool = vim
-[mergetool "vim"]
-	cmd = vim \"+Gdiff\" $MERGED
+	tool = vimdiff
+	conflictstyle = diff3
+	prompt = false
+[mergetool "vimdiff"]
 	keepBackup = false
 [diff]
 	submodule = log
+	tool = vimdiff
