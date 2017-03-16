@@ -13,17 +13,13 @@
     evil evil-surround evil-visualstar
     zenburn-theme solarized-theme
     powerline
-    magit
     projectile
     helm
     helm-projectile
     smart-tabs-mode
-    markdown-mode
     yasnippet
     company
-    ycmd
-    company-ycmd
-    rtags
+    org
     ) "a list of packages to ensure are installed at launch.")
 
 ;; my-packages.el
@@ -58,8 +54,6 @@
 
 (require 'powerline)
 (powerline-default-theme)
-
-(setq magit-last-seen-setup-instructions "1.4.0")
 
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
@@ -104,25 +98,8 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-idle-delay .3)
 
-;; markdown-mode
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-;; ycmd
-(require 'ycmd)
-(set-variable 'ycmd-server-command '("python2" "/home/sakhnik/.vim/bundle/ycm/third_party/ycmd/ycmd/__main__.py"))
-(set-variable 'ycmd-global-config "/home/sakhnik/.vim/ycm_extra_conf.py")
-(add-hook 'c-mode-common-hook 'ycmd-mode)
-(add-hook 'c-mode-common-hook 'company-mode)
-(add-hook 'python-mode-hook 'ycmd-mode)
-(add-hook 'python-mode-hook 'company-mode)
-
-;; company-ycmd
-(require 'company-ycmd)
-(company-ycmd-setup)
+;; Don't create backup files
+(setq make-backup-files nil)
 
 ;;
 (custom-set-variables
@@ -130,9 +107,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/work/notes")))
  '(package-selected-packages
    (quote
-    (rtags zenburn-theme zenburn yasnippet solarized-theme smart-tabs-mode powerline markdown-mode magit helm-projectile git-rebase-mode git-commit-mode evil-visualstar evil-surround company-ycmd))))
+    (zenburn-theme zenburn yasnippet solarized-theme smart-tabs-mode powerline helm-projectile git-rebase-mode git-commit-mode evil-visualstar evil-surround))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
