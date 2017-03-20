@@ -1,6 +1,5 @@
 (require 'package)
 
-(menu-bar-mode -1)
 (tool-bar-mode -1)
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
