@@ -101,6 +101,12 @@
 ;; Don't create backup files
 (setq make-backup-files nil)
 
+;; Org-mode settings
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitchb)
+
 ;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
