@@ -19,4 +19,5 @@ function! ChooseKeymap()
 	return ''
 endf
 
-nmap <leader>km :call ChooseKeymap()<cr>
+nmap <leader>kk :call ChooseKeymap()<cr>
+nmap <leader>ku :setlocal keymap=uk<cr>
