@@ -103,3 +103,7 @@ awk 'BEGIN{
 }
 
 # vim: set ts=4 sw=4 noet:
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/sakhnik/.sdkman"
+[[ -s "/home/sakhnik/.sdkman/bin/sdkman-init.sh" ]] && source "/home/sakhnik/.sdkman/bin/sdkman-init.sh"
