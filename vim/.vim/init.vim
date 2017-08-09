@@ -287,6 +287,8 @@ endif
 	nnoremap <leader>yj :YcmCompleter GoToDefinitionElseDeclaration<cr>
 	nnoremap <leader>yd :YcmCompleter GetDoc<cr>
 
+Plug 'tenfyzhong/CompleteParameter.vim'
+
 Plug 'ledger/vim-ledger'
 	let g:ledger_extra_options = '--pedantic --explicit --check-payees --price-db prices.db'
 	let g:ledger_align_at = 45

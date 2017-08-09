@@ -68,6 +68,12 @@ else:
   flags.append('-isystem/usr/local/include')
   flags.append('-isystem/usr/include')
 
+fname = os.path.join(os.getcwd(), '.includes.txt')
+if os.path.exists(fname):
+  with open(fname, 'r') as f:
+    for line in f:
+      flags.append('-I' + line.strip())
+
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
 # more details: http://clang.llvm.org/docs/JSONCompilationDatabase.html
