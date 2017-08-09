@@ -43,7 +43,7 @@ if has("autocmd")
 		autocmd StdinReadPost * setlocal buftype=nofile
 
 		" Autoclose preview window (omni completion) when leaving insert mode
-		autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
+		"autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
 	augroup END
 
 	augroup reload_vimrc

@@ -37,7 +37,6 @@ import ycm_core
 flags = [
 '-Wall',
 '-Wextra',
-'-Werror',
 #'-Wc++98-compat',
 '-Wno-long-long',
 '-Wno-variadic-macros',
@@ -49,7 +48,7 @@ flags = [
 # a "-std=<something>".
 # For a C project, you would set this to something like 'c99' instead of
 # 'c++11'.
-'-std=c++14',
+#'-std=c++14',
 # ...and the same thing goes for the magic -x option which specifies the
 # language that the files to be compiled are written in. This is mostly
 # relevant for c++ headers.
@@ -59,7 +58,11 @@ flags = [
 '-I..',
 ]
 
-fname = os.path.join(os.path.dirname(__file__), 'includes.txt')
+def DirectoryOfThisScript():
+  return os.path.dirname( os.path.abspath( __file__ ) )
+
+# Add system include directories (see ycm-update.sh)
+fname = os.path.join(DirectoryOfThisScript(), 'includes.txt')
 if os.path.exists(fname):
   with open(fname, 'r') as f:
     for line in f:
@@ -68,11 +71,12 @@ else:
   flags.append('-isystem/usr/local/include')
   flags.append('-isystem/usr/include')
 
-fname = os.path.join(os.getcwd(), '.includes.txt')
+# Add project-specific options
+fname = os.path.join(os.getcwd(), '.ycm.conf')
 if os.path.exists(fname):
   with open(fname, 'r') as f:
     for line in f:
-      flags.append('-I' + line.strip())
+      flags.append(line.strip())
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
@@ -87,9 +91,6 @@ if compilation_database_folder:
 else:
   database = None
 
-
-def DirectoryOfThisScript():
-  return os.path.dirname( os.path.abspath( __file__ ) )
 
 
 def MakeRelativePathsInFlagsAbsolute( flags, working_directory ):
