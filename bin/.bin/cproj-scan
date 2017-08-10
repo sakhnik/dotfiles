@@ -14,11 +14,22 @@ import re
 with open(".cproj", "r") as f:
     data = f.readlines()
 
-command = "/usr/bin/clang++ " + " ".join([s.strip() for s in data])
-
-comp = []
+# Current working directory will be considered project root
 curdir = os.path.dirname(os.path.abspath(os.getcwd()))
 
+def FixPaths(opt):
+    # Ensure that relative include directories are converted to absolute ones
+    if opt.startswith('-I') and opt[2] != '/':
+        return '-I' + os.path.join(curdir, opt[2:])
+    return opt
+
+# Create clang compilation command
+command = "/usr/bin/clang++ " + " ".join([FixPaths(s.strip()) for s in data])
+
+# Compilation database
+comp = []
+
+# Find all c++ files
 for root, dirs, files in os.walk('.'):
     if re.match("^\./(BUILD.*|\.git|\.hg)", root, re.I):
         continue
@@ -39,6 +50,7 @@ except OSError as e:
     if e.errno != errno.EEXIST:
         raise
 
+# Dump compilation database into a JSON file
 with open(".cproj.d/compile_commands.json", "w") as f:
     f.write(json.dumps(comp, indent=4))
 
