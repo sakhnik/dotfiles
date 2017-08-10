@@ -282,8 +282,6 @@ Plug 'ledger/vim-ledger'
 	let g:ledger_commodity_sep = ' '
 	let g:ledger_fold_blanks = 1
 
-Plug 'dbgx/lldb.nvim'
-
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""
