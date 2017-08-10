@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+
+import os, sys, glob, errno
+import json
+import re
+
+# This script will scan a project for c++ source files,
+# and create a compilation database based on .cproj file.
+# Then it will add the project to rtags.
+# On the other hand, YCM will pick up .cproj for its job.
+
+# See ~/.vim/ycm_extra_conf.py for reference.
+
+with open(".cproj", "r") as f:
+    data = f.readlines()
+
+command = "/usr/bin/clang++ " + " ".join([s.strip() for s in data])
+
+comp = []
+curdir = os.path.dirname(os.path.abspath(os.getcwd()))
+
+for root, dirs, files in os.walk('.'):
+    if re.match("^\./(BUILD.*|\.git|\.hg)", root, re.I):
+        continue
+    for f in files:
+        if not re.search('\.(cc|cpp|cxx)$', f, re.I):
+            continue
+        print(os.path.join(root, f))
+        fabs = os.path.abspath(os.path.join(root, f))
+        entry = {}
+        entry["directory"] = curdir
+        entry["command"] = command + " -o " + fabs + ".o " + fabs
+        entry["file"] = fabs
+        comp.append(entry)
+
+try:
+    os.mkdir(".cproj.d")
+except OSError as e:
+    if e.errno != errno.EEXIST:
+        raise
+
+with open(".cproj.d/compile_commands.json", "w") as f:
+    f.write(json.dumps(comp, indent=4))
+
+# If rdm (from rtags) is socket-activated, this should succeed
+os.system('rc --load-compile-commands=.cproj.d --project-root=.')

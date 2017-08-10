@@ -72,7 +72,7 @@ else:
   flags.append('-isystem/usr/include')
 
 # Add project-specific options
-fname = os.path.join(os.getcwd(), '.ycm.conf')
+fname = os.path.join(os.getcwd(), '.cproj')
 if os.path.exists(fname):
   with open(fname, 'r') as f:
     for line in f:
