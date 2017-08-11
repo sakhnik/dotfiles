@@ -72,11 +72,14 @@ else:
   flags.append('-isystem/usr/include')
 
 # Add project-specific options
-fname = os.path.join(os.getcwd(), '.cproj')
+fname = os.path.join(os.getcwd(), '.cproj/cflags')
 if os.path.exists(fname):
   with open(fname, 'r') as f:
     for line in f:
-      flags.append(line.strip())
+      l = line.strip()
+      if not l or l[0] == '#':
+        continue
+      flags.append(l)
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
