@@ -71,20 +71,26 @@ else:
   flags.append('-isystem/usr/local/include')
   flags.append('-isystem/usr/include')
 
-def MakeProjectRelativePathAbsolute(p):
+def MakeProjectRelativePathAbsolute(projdir, p):
   if p[:2] == '-I' and p[2] != '/':
-    return '-I' + os.path.join(os.path.abspath(os.getcwd()), p[2:])
+    return '-I' + os.path.join(projdir, p[2:])
   return p
 
 # Add project-specific options
-fname = os.path.join(os.getcwd(), '.cproj/cflags')
+projdir = os.getcwd()
+while not os.path.exists(os.path.join(projdir, '.cproj')):
+  projdir = os.path.dirname(projdir)
+  if projdir == '/':
+    break
+
+fname = os.path.join(projdir, '.cproj/cflags')
 if os.path.exists(fname):
   with open(fname, 'r') as f:
     for line in f:
       l = line.strip()
       if not l or l[0] == '#':
         continue
-      flags.append(MakeProjectRelativePathAbsolute(l))
+      flags.append(MakeProjectRelativePathAbsolute(projdir, l))
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
