@@ -20,7 +20,7 @@ with open(".cproj/cflags", "r") as f:
     data = [s for s in (l.strip() for l in f.readlines()) if not IsComment(s)]
 
 # Current working directory will be considered project root
-curdir = os.path.dirname(os.path.abspath(os.getcwd()))
+curdir = os.path.abspath(os.getcwd())
 
 def FixPaths(opt):
     # Ensure that relative include directories are converted to absolute ones
