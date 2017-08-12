@@ -282,7 +282,7 @@ Plug 'ledger/vim-ledger'
 	let g:ledger_commodity_sep = ' '
 	let g:ledger_fold_blanks = 1
 
-Plug 'sakhnik/neogdb.vim'
+Plug 'sakhnik/neogdb.vim', {'branch': 'mine'}
 
 call plug#end()
 
