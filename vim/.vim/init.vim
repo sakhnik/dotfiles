@@ -282,20 +282,7 @@ Plug 'ledger/vim-ledger'
 	let g:ledger_commodity_sep = ' '
 	let g:ledger_fold_blanks = 1
 
-Plug 'vim-scripts/Conque-GDB', { 'on': 'ConqueGdb' }
-	let g:ConqueTerm_StartMessages = 0
-	let g:ConqueTerm_SendVisKey = '<leader>cc'
-	nnoremap <leader>dd :ConqueGdb<cr>
-	let g:ConqueGdb_SaveHistory = 1
-	let g:ConqueGdb_Leader = '<leader>'
-	let g:ConqueGdb_Run = g:ConqueGdb_Leader . 'dr'
-	let g:ConqueGdb_Continue = '<f5>'
-	let g:ConqueGdb_Next = '<f10>'
-	let g:ConqueGdb_Step = '<f11>'
-	let g:ConqueGdb_Print = '<f7>'
-	let g:ConqueGdb_ToggleBreak = '<f8>'
-	let g:ConqueGdb_Finish = '<s-f5>'
-	let g:ConqueGdb_Backtrace = g:ConqueGdb_Leader . 'dt'
+Plug 'sakhnik/neogdb.vim'
 
 call plug#end()
 
