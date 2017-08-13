@@ -1,16 +1,16 @@
 " vim: set noet ts=2 sw=2:
 
 if &term == "linux" && !has('nvim')
-	set t_ve+=[?81;0;112c
+  set t_ve+=[?81;0;112c
 endif
 
 if has('nvim')
-	runtime! python_setup.vim
+  runtime! python_setup.vim
 endif
 
 set fileencodings=ucs-bom,utf-8,cp1251,default
 if !has('nvim')
-	set nocompatible
+  set nocompatible
 endif
 set nobackup backupdir=.
 set wildmode=longest,list,full
@@ -19,55 +19,55 @@ set diffopt+=iwhite
 
 if has("autocmd")
 
-	augroup vimrcEx
-		au!
+  augroup vimrcEx
+    au!
 
-		" For all text files set 'textwidth' to 78 characters.
-		autocmd FileType text setlocal textwidth=78 lbr
-		autocmd FileType gitcommit setlocal spell
-	augroup END
+    " For all text files set 'textwidth' to 78 characters.
+    autocmd FileType text setlocal textwidth=78 lbr
+    autocmd FileType gitcommit setlocal spell
+  augroup END
 
-	augroup misc
-		au!
+  augroup misc
+    au!
 
-		" When editing a file, always jump to the last known cursor position.
-		" Don't do it when the position is invalid or when inside an event handler
-		" (happens when dropping a file on gvim).
-		autocmd BufReadPost *
-			\ if line("'\"") > 0 && line("'\"") <= line("$") |
-			\   exe "normal g`\"" |
-			\ endif
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal g`\"" |
+      \ endif
 
-		" Don't preserve a buffer when reading from stdin
-		" This is useful for "git diff | vim -"
-		autocmd StdinReadPost * setlocal buftype=nofile
+    " Don't preserve a buffer when reading from stdin
+    " This is useful for "git diff | vim -"
+    autocmd StdinReadPost * setlocal buftype=nofile
 
-		" Autoclose preview window (omni completion) when leaving insert mode
-		"autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
-	augroup END
+    " Autoclose preview window (omni completion) when leaving insert mode
+    "autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
+  augroup END
 
-	augroup reload_vimrc
-		au!
-		autocmd bufwritepost $MYVIMRC source $MYVIMRC
-	augroup END
+  augroup reload_vimrc
+    au!
+    autocmd bufwritepost $MYVIMRC source $MYVIMRC
+  augroup END
 
-	augroup templates
-		au!
-		" Read source file skeletons
-		autocmd BufNewFile *.*  silent! execute '0r $HOME/.vim/templates/skeleton.'.expand("<afile>:e")
+  augroup templates
+    au!
+    " Read source file skeletons
+    autocmd BufNewFile *.*  silent! execute '0r $HOME/.vim/templates/skeleton.'.expand("<afile>:e")
 
-		" Substitute everything between [:VIM_EVAL:] and [:END_EVAL:]
-		" with the result of expression in it
-		autocmd BufNewFile *    %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
-	augroup END
+    " Substitute everything between [:VIM_EVAL:] and [:END_EVAL:]
+    " with the result of expression in it
+    autocmd BufNewFile *    %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+  augroup END
 
-	" Set custom options for specific files
-	augroup custom_options
-		au!
-		" Read source file skeletons
-		autocmd BufReadPost /tmp/evo*  setlocal ft=text tw=72 spell
-		autocmd BufReadPost /tmp/itsalltext/jira2*.txt setlocal tw=0 spell
-	augroup END
+  " Set custom options for specific files
+  augroup custom_options
+    au!
+    " Read source file skeletons
+    autocmd BufReadPost /tmp/evo*  setlocal ft=text tw=72 spell
+    autocmd BufReadPost /tmp/itsalltext/jira2*.txt setlocal tw=0 spell
+  augroup END
 
 endif " has("autocmd")
 
@@ -79,25 +79,25 @@ set copyindent
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if exists("+mouse")
-	set mouse=a
+  set mouse=a
 
-	" Make shift-insert work like in Xterm
-	map <S-Insert> <MiddleMouse>
-	map! <S-Insert> <MiddleMouse>
+  " Make shift-insert work like in Xterm
+  map <S-Insert> <MiddleMouse>
+  map! <S-Insert> <MiddleMouse>
 endif
 
 if exists("+termguicolors")
-	set termguicolors
-	if !has('nvim')
-		let &t_8f = "[38;2;%lu;%lu;%lum"
-		let &t_8b = "[48;2;%lu;%lu;%lum"
-	endif
+  set termguicolors
+  if !has('nvim')
+    let &t_8f = "[38;2;%lu;%lu;%lum"
+    let &t_8b = "[48;2;%lu;%lu;%lum"
+  endif
 endif
 
 if !has('nvim')
-	set guioptions-=T
-	set guioptions-=m
-	set mousehide
+  set guioptions-=T
+  set guioptions-=m
+  set mousehide
 endif
 set clipboard=unnamed
 set completeopt=menu,longest,preview
@@ -124,8 +124,8 @@ cnoremap <c-p> <up>
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 if !exists(":DiffOrig")
-	command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-			\ | wincmd p | diffthis
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+      \ | wincmd p | diffthis
 endif
 
 nnoremap <leader>ve :split $MYVIMRC<cr>
@@ -139,37 +139,37 @@ Plug 'tomasr/molokai'
 
 let s:sysname = strpart(system('uname'), 0, 4)
 if s:sysname == 'MSYS'
-	Plug 'ctrlpvim/ctrlp.vim'
-		let g:ctrlp_user_command = {
-			\ 'types': {
-				\ 1: ['.git', 'cd %s && git ls-files'],
-				\ 2: ['.hg', 'hg --cwd %s locate -I .'],
-			\ },
-			\ 'fallback': 'dir %s /-n /b /s /a-d'
-		\ }
-		nmap <leader>ff :CtrlP<cr>
+  Plug 'ctrlpvim/ctrlp.vim'
+    let g:ctrlp_user_command = {
+      \ 'types': {
+        \ 1: ['.git', 'cd %s && git ls-files'],
+        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+      \ },
+      \ 'fallback': 'dir %s /-n /b /s /a-d'
+    \ }
+    nmap <leader>ff :CtrlP<cr>
 else
-	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-	Plug 'junegunn/fzf.vim'
-		nmap <leader>ff :Files<cr>
-		nmap <leader>fg :GitFiles<cr>
-		nmap <leader>ft :Tags<cr>
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+  Plug 'junegunn/fzf.vim'
+    nmap <leader>ff :Files<cr>
+    nmap <leader>fg :GitFiles<cr>
+    nmap <leader>ft :Tags<cr>
 endif
 
 if !has('nvim')
-	Plug 'tpope/vim-sensible'
+  Plug 'tpope/vim-sensible'
 endif
 
 Plug 'tpope/vim-fugitive'          " :Git
-	augroup git
-		au!
-		autocmd BufWinEnter * if exists(":Gblame") | nmap <buffer> <leader>gb :Gblame<cr> | endif
-		autocmd BufWinEnter * if exists(":Gwrite") | nmap <buffer> <leader>gw :Gwrite<cr> | endif
-		autocmd BufWinEnter * if exists(":Gdiff") | nmap <buffer> <leader>gd :Gdiff<cr> | endif
-		autocmd BufWinEnter * if exists(":Gvdiff") | nmap <buffer> <leader>gD :Gvdiff<cr> | endif
-		autocmd BufWinEnter * if exists(":Gstatus") | nmap <buffer> <leader>gs :Gstatus<cr> | endif
-		autocmd BufWinEnter * if exists(":Gcommit") | nmap <buffer> <leader>gc :Gcommit<cr> | endif
-	augroup END
+  augroup git
+    au!
+    autocmd BufWinEnter * if exists(":Gblame") | nmap <buffer> <leader>gb :Gblame<cr> | endif
+    autocmd BufWinEnter * if exists(":Gwrite") | nmap <buffer> <leader>gw :Gwrite<cr> | endif
+    autocmd BufWinEnter * if exists(":Gdiff") | nmap <buffer> <leader>gd :Gdiff<cr> | endif
+    autocmd BufWinEnter * if exists(":Gvdiff") | nmap <buffer> <leader>gD :Gvdiff<cr> | endif
+    autocmd BufWinEnter * if exists(":Gstatus") | nmap <buffer> <leader>gs :Gstatus<cr> | endif
+    autocmd BufWinEnter * if exists(":Gcommit") | nmap <buffer> <leader>gc :Gcommit<cr> | endif
+  augroup END
 
 Plug 'gregsexton/gitv'
 
@@ -190,107 +190,110 @@ Plug 'leafgarland/typescript-vim'
 Plug 'cbracken/vala.vim'
 
 Plug 'lyuts/vim-rtags'
-	let g:rtagsUseLocationList = 0
+  let g:rtagsUseLocationList = 0
 
 Plug 'majutsushi/tagbar'
-	nnoremap <leader>tb :TagbarToggle<cr>
+  nnoremap <leader>tb :TagbarToggle<cr>
 
 Plug 'Kris2k/A.vim'
-	let g:alternateExtensions_cc = "hh,h,hpp"
-	let g:alternateExtensions_hh = "cc"
-	let g:alternateExtensions_hxx = "cxx"
-	let g:alternateExtensions_cxx = "hxx,h"
+  let g:alternateExtensions_cc = "hh,h,hpp"
+  let g:alternateExtensions_hh = "cc"
+  let g:alternateExtensions_hxx = "cxx"
+  let g:alternateExtensions_cxx = "hxx,h"
 
 Plug 'simnalamburt/vim-mundo'
-	nnoremap <leader>uu :GundoToggle<cr>
+  nnoremap <leader>uu :GundoToggle<cr>
 
 Plug 'bling/vim-airline'
-	let g:airline_theme='dark'
-	let g:airline_left_sep = ''
-	let g:airline_right_sep = ''
-	if !exists('g:airline_symbols')
-		let g:airline_symbols = {}
-	endif
-	let g:airline_symbols.branch = '⎇ '   "±
-	let g:airline_symbols.paste = 'ρ'
-	"let g:airline_symbols.linenr = '¶ '
-	let g:airline#extensions#whitespace#mixed_indent_algo = 2
-	let g:airline#extensions#tabline#enabled = 0
+  let g:airline_theme='dark'
+  let g:airline_left_sep = ''
+  let g:airline_right_sep = ''
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+  let g:airline_symbols.branch = '⎇ '   "±
+  let g:airline_symbols.paste = 'ρ'
+  "let g:airline_symbols.linenr = '¶ '
+  let g:airline#extensions#whitespace#mixed_indent_algo = 2
+  let g:airline#extensions#tabline#enabled = 0
 
 Plug 'neomake/neomake'
-	let g:neomake_open_list = 2
-	let g:neomake_serialize = 1
-	let g:neomake_serialize_abort_on_error = 1
+  let g:neomake_open_list = 2
+  let g:neomake_serialize = 1
+  let g:neomake_serialize_abort_on_error = 1
 
-	nnoremap <leader>nm :Neomake!<cr>
-	nnoremap <leader>nn :Neomake<cr>
+  nnoremap <leader>nm :Neomake!<cr>
+  nnoremap <leader>nn :Neomake<cr>
 
 Plug 'nathanaelkane/vim-indent-guides', { 'on': ['IndentGuidesToggle', 'IndentGuidesEnable'] }
-	let g:indent_guides_guide_size = 1
-	let g:indent_guides_color_change_percent = 20
-	nmap <leader>ig :IndentGuidesToggle<cr>
+  let g:indent_guides_guide_size = 1
+  let g:indent_guides_color_change_percent = 20
+  nmap <leader>ig :IndentGuidesToggle<cr>
 
 Plug 'mhinz/vim-grepper'
-	nnoremap <leader>gg :Grepper -tool git<cr>
-	nnoremap <leader>ga :Grepper -tool ag<cr>
-	nnoremap <leader>gh :Grepper -tool hg<cr>
-	let g:grepper = {
-		\ 'tools': ['hg', 'git', 'grep'],
-		\ 'hg': {
-		\   'grepprg':    'hg grep -n -r "reverse(::.)"',
-		\   'grepformat': '%f:%\\d%\\+:%l:%m',
-		\   'escape':     '\+*^$()[]',
-		\ }}
+  nnoremap <leader>gg :Grepper -tool git<cr>
+  nnoremap <leader>ga :Grepper -tool ag<cr>
+  nnoremap <leader>gh :Grepper -tool hg<cr>
+  let g:grepper = {
+    \ 'tools': ['hg', 'git', 'grep'],
+    \ 'hg': {
+    \   'grepprg':    'hg grep -n -r "reverse(::.)"',
+    \   'grepformat': '%f:%\\d%\\+:%l:%m',
+    \   'escape':     '\+*^$()[]',
+    \ }}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe stuff
 
-	let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
-	let g:ycm_filetype_blacklist = {
-		\ 'notes' : 1,
-		\ 'markdown' : 1,
-		\ 'text' : 1,
-		\ 'conque_term' : 1,
-		\ 'ledger' : 1,
-		\}
-	let g:ycm_confirm_extra_conf = 0
-	let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
-	let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
-	let g:ycm_complete_in_comments = 1 " Completion in comments
-	let g:ycm_complete_in_strings = 1 " Completion in string
+  let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
+  let g:ycm_filetype_blacklist = {
+    \ 'notes' : 1,
+    \ 'markdown' : 1,
+    \ 'text' : 1,
+    \ 'conque_term' : 1,
+    \ 'ledger' : 1,
+    \}
+  let g:ycm_confirm_extra_conf = 0
+  let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+  let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
+  let g:ycm_complete_in_comments = 1 " Completion in comments
+  let g:ycm_complete_in_strings = 1 " Completion in string
 
 if isdirectory($HOME . '/.vim/YouCompleteMe')
-	" If there's preinstalled version, integrated with system libraries, prefer it
-	set rtp+=$HOME/.vim/YouCompleteMe
-	source $HOME/.vim/YouCompleteMe/plugin/youcompleteme.vim
+  " If there's preinstalled version, integrated with system libraries, prefer it
+  set rtp+=$HOME/.vim/YouCompleteMe
+  source $HOME/.vim/YouCompleteMe/plugin/youcompleteme.vim
 else
-	Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer'}
+  Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer'}
 endif
 
-	autocmd! User YouCompleteMe call youcompleteme#Enable()
+  autocmd! User YouCompleteMe call youcompleteme#Enable()
 
-	nnoremap <leader>yj :YcmCompleter GoToDefinitionElseDeclaration<cr>
-	nnoremap <leader>yd :YcmCompleter GetDoc<cr>
+  nnoremap <leader>yj :YcmCompleter GoToDefinitionElseDeclaration<cr>
+  nnoremap <leader>yd :YcmCompleter GetDoc<cr>
 
 Plug 'tenfyzhong/CompleteParameter.vim'
 
 Plug 'ledger/vim-ledger'
-	let g:ledger_extra_options = '--pedantic --explicit --check-payees --price-db prices.db'
-	let g:ledger_align_at = 45
-	let g:ledger_default_commodity = '₴'
-	let g:ledger_commodity_before = 0
-	let g:ledger_commodity_sep = ' '
-	let g:ledger_fold_blanks = 1
+  let g:ledger_extra_options = '--pedantic --explicit --check-payees --price-db prices.db'
+  let g:ledger_align_at = 45
+  let g:ledger_default_commodity = '₴'
+  let g:ledger_commodity_before = 0
+  let g:ledger_commodity_sep = ' '
+  let g:ledger_fold_blanks = 1
 
-Plug 'sakhnik/neogdb.vim', {'branch': 'mine'}
-	let g:gdb_keymap_refresh = '<f3>'
-	let g:gdb_keymap_continue = '<f5>'
-	let g:gdb_keymap_next = '<f10>'
-	let g:gdb_keymap_step = '<f11>'
-	let g:gdb_keymap_finish = '<leader><f11>'
-	let g:gdb_keymap_until = '<f8>'
-	let g:gdb_keymap_toggle_break = '<f9>'
-	let g:gdb_keymap_toggle_break_all = '<leader>da'
+Plug 'sakhnik/neogdb.vim', {'branch': 'mine', 'on': 'GdbLocal'}
+  let g:gdb_keymap_refresh = '<f3>'
+  let g:gdb_keymap_continue = '<f5>'
+  let g:gdb_keymap_next = '<f10>'
+  let g:gdb_keymap_step = '<f11>'
+  let g:gdb_keymap_finish = '<leader><f11>'
+  let g:gdb_keymap_until = '<f8>'
+  let g:gdb_keymap_toggle_break = '<f9>'
+  let g:gdb_keymap_toggle_break_all = '<leader>da'
+
+  nnoremap <leader>dd :GdbLocal gdbconf\#me a.out
+
 
 call plug#end()
 
@@ -301,15 +304,15 @@ set novb t_vb=    " Не бікати взагалі ніколи
 set showbreak=\\  "↪
 set modeline
 if has('persistent_undo')
-	set undofile
-	set undodir=/tmp/vim_undo-$USER
-	if !isdirectory(&undodir)
-		if exists("*mkdir")
-			call mkdir(&undodir, "p", 0700)
-		else
-			set undodir=.
-		endif
-	endif
+  set undofile
+  set undodir=/tmp/vim_undo-$USER
+  if !isdirectory(&undodir)
+    if exists("*mkdir")
+      call mkdir(&undodir, "p", 0700)
+    else
+      set undodir=.
+    endif
+  endif
 endif
 " Forget about ex mode
 map Q <nop>
@@ -345,14 +348,14 @@ let g:netrw_liststyle = 3
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if &t_Co == 256 || has("gui_running")
-	if has("autocmd")
-		augroup colors
-			au!
-			autocmd ColorScheme * hi Comment cterm=italic
-		augroup END
-	endif
-	colors zenburn
-	hi Comment cterm=italic
+  if has("autocmd")
+    augroup colors
+      au!
+      autocmd ColorScheme * hi Comment cterm=italic
+    augroup END
+  endif
+  colors zenburn
+  hi Comment cterm=italic
 endif
 
-"vim: set noet ts=4 sw=4:
+"vim: set et ts=4 sw=4:
