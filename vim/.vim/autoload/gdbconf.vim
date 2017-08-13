@@ -11,7 +11,7 @@ function! gdbconf#me() abort
         \ "reconnect" : 0,
         \ "showbreakpoint" : 0,
         \ "showbacktrace" : 0,
-        \ "conf_gdb_layout" : ["sp"],
+        \ "conf_gdb_layout" : ["sp", "normal J"],
         \ "conf_gdb_cmd" : ['gdb -q -f', 'a.out'],
         \ "window" : [
         \   {   "name":   "gdbserver",
@@ -24,13 +24,3 @@ function! gdbconf#me() abort
 
     return this
 endfunc
-
-
-
-function! s:__fini__()
-    if exists("s:init")
-        return
-    endif
-endfunction
-call s:__fini__()
-let s:init = 1
