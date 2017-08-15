@@ -171,7 +171,7 @@ Plug 'tpope/vim-fugitive'          " :Git
     autocmd BufWinEnter * if exists(":Gcommit") | nmap <buffer> <leader>gc :Gcommit<cr> | endif
   augroup END
 
-Plug 'gregsexton/gitv'
+Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
 Plug 'tpope/vim-eunuch'            " :SudoWrite
 Plug 'tpope/vim-repeat'            " Repeat mapping with .
@@ -182,7 +182,6 @@ Plug 'tpope/vim-vinegar'
 Plug 'vim-utils/vim-man'
 Plug 'bronson/vim-visual-star-search'
 Plug 'vim-scripts/dbext.vim', { 'on': 'Dbext' }
-Plug 'kergoth/vim-bitbake'
 Plug 'raimondi/delimitmate'
 Plug 'drmikehenry/vim-fontsize'
 Plug 'wellle/targets.vim'
@@ -246,12 +245,9 @@ Plug 'mhinz/vim-grepper'
 " YouCompleteMe stuff
 
   let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
-  let g:ycm_filetype_blacklist = {
-    \ 'notes' : 1,
-    \ 'markdown' : 1,
-    \ 'text' : 1,
-    \ 'conque_term' : 1,
-    \ 'ledger' : 1,
+  let g:ycm_filetype_whitelist = {
+    \ 'cpp' : 1,
+    \ 'python' : 1,
     \}
   let g:ycm_confirm_extra_conf = 0
   let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
@@ -264,7 +260,7 @@ if isdirectory($HOME . '/.vim/YouCompleteMe')
   set rtp+=$HOME/.vim/YouCompleteMe
   source $HOME/.vim/YouCompleteMe/plugin/youcompleteme.vim
 else
-  Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer'}
+  Plug 'Valloric/YouCompleteMe', { 'for': ['python', 'cpp'], 'do': 'python2 ./install.py --clang-completer'}
 endif
 
   autocmd! User YouCompleteMe call youcompleteme#Enable()
@@ -293,7 +289,6 @@ Plug 'sakhnik/neogdb.vim', {'branch': 'mine', 'on': 'GdbLocal'}
   let g:gdb_keymap_toggle_break_all = '<leader>da'
 
   nnoremap <leader>dd :GdbLocal gdbconf\#me a.out
-
 
 call plug#end()
 
