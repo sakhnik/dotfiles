@@ -278,17 +278,9 @@ Plug 'ledger/vim-ledger'
   let g:ledger_commodity_sep = ' '
   let g:ledger_fold_blanks = 1
 
-Plug 'sakhnik/neogdb.vim', {'branch': 'mine', 'on': 'GdbLocal'}
-  let g:gdb_keymap_refresh = '<f3>'
-  let g:gdb_keymap_continue = '<f5>'
-  let g:gdb_keymap_next = '<f10>'
-  let g:gdb_keymap_step = '<f11>'
-  let g:gdb_keymap_finish = '<leader><f11>'
-  let g:gdb_keymap_until = '<f8>'
-  let g:gdb_keymap_toggle_break = '<f9>'
-  let g:gdb_keymap_toggle_break_all = '<leader>da'
+Plug 'sakhnik/nvim-gdb'
 
-  nnoremap <leader>dd :GdbLocal gdbconf\#me a.out
+  "nnoremap <leader>dd :GdbStart gdb -q -f a.out
 
 call plug#end()
 
