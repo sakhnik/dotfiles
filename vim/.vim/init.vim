@@ -267,6 +267,8 @@ endif
 
   nnoremap <leader>yj :YcmCompleter GoToDefinitionElseDeclaration<cr>
   nnoremap <leader>yd :YcmCompleter GetDoc<cr>
+  nnoremap <leader>yf :YcmCompleter FixIt<cr>
+  nnoremap <leader>yy :YcmDiags<cr>
 
 Plug 'tenfyzhong/CompleteParameter.vim'
 
