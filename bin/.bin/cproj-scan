@@ -73,4 +73,16 @@ def CreateCompileDatabaseForRtags():
     os.system('rc --load-compile-commands=' + outdir + ' --project-root=.')
 
 
+def LoadIncludes():
+    with open(os.path.join(os.path.expanduser("~"), ".vim/includes.txt"), "r") as f:
+        return [s for s in (l.strip() for l in f.readlines())]
+
+def CreateClangComplete():
+    with open(".clang_complete", "w") as f:
+        f.write("\n".join(['-isystem'+s for s in LoadIncludes()]))
+        f.write("\n")
+        f.write("\n".join(LoadCflags()))
+        f.write("\n")
+
 CreateCompileDatabaseForRtags()
+CreateClangComplete()
