@@ -8,10 +8,13 @@ def MakeProjectRelativePathAbsolute(projdir, p):
         return '-I' + os.path.join(projdir, p[2:])
     return p
 
-def DirectoryOfThisScript():
-    return os.path.dirname( os.path.abspath( __file__ ) )
+# Find closest project root
+projdir = os.getcwd()
+while not os.path.exists(os.path.join(projdir, '.cproj')):
+    projdir = os.path.dirname(projdir)
+    if projdir == '/':
+        break
 
-projdir = DirectoryOfThisScript()
 fname = os.path.join(projdir, '.clang_complete')
 with open(fname, 'r') as f:
     for line in f:

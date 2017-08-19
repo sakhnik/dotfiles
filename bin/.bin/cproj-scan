@@ -85,7 +85,7 @@ def CreateClangComplete():
         f.write("\n")
 
 def DeployYcmExtraConf():
-    os.system("cp ~/.vim/.ycm_extra_conf.py .")
+    os.system("ln -sf ~/.vim/.ycm_extra_conf.py .")
 
 CreateCompileDatabaseForRtags()
 CreateClangComplete()
