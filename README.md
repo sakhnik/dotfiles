@@ -18,4 +18,4 @@ Configuration files, which I share among work stations.
 
 ## Writing and navigating C++ code
 
-[![asciicast](https://asciinema.org/a/qV8uazTba3VwTIw2791gTuL95.png)](https://asciinema.org/a/qV8uazTba3VwTIw2791gTuL95)
+[![asciicast](https://asciinema.org/a/qV8uazTba3VwTIw2791gTuL95.png)](https://asciinema.org/a/qV8uazTba3VwTIw2791gTuL95?autoplay=1)
