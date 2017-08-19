@@ -11,16 +11,22 @@ import re
 
 # See ~/.vim/ycm_extra_conf.py for reference.
 
+# Current working directory will be considered project root
+curdir = os.path.abspath(os.getcwd())
+
 outdir = ".cproj.out"
+try:
+    os.mkdir(outdir)
+except OSError as e:
+    if e.errno != errno.EEXIST:
+        raise
 
 def IsComment(s):
     return not s or s[0] == '#'
 
-with open(".cproj/cflags", "r") as f:
-    data = [s for s in (l.strip() for l in f.readlines()) if not IsComment(s)]
-
-# Current working directory will be considered project root
-curdir = os.path.abspath(os.getcwd())
+def LoadCflags():
+    with open(".cproj/cflags", "r") as f:
+        return [s for s in (l.strip() for l in f.readlines()) if not IsComment(s)]
 
 def FixPaths(opt):
     # Ensure that relative include directories are converted to absolute ones
@@ -28,42 +34,43 @@ def FixPaths(opt):
         return '-I' + os.path.join(curdir, opt[2:])
     return opt
 
-# Create clang compilation command
-command = "/usr/bin/clang++ " + " ".join([FixPaths(s.strip()) for s in data])
 
-# Compilation database
-comp = []
+def CreateCompileDatabaseForRtags():
+    data = LoadCflags()
 
-# Find all c++ files
-with open('.cproj/files', 'r') as f:
-    # The format should be "directory  regex"
-    for l in f.readlines():
-        line = l.strip()
-        # Skip empty lines and comments
-        if IsComment(line):
-            continue
-        d, rx = line.split()
-        for root, dirs, files in os.walk(d):
-            for f in files:
-                if not re.search(rx, f, re.I):
-                    continue
-                print(os.path.join(root, f))
-                fabs = os.path.abspath(os.path.join(root, f))
-                entry = {}
-                entry["directory"] = curdir
-                entry["command"] = command + " -o " + fabs + ".o " + fabs
-                entry["file"] = fabs
-                comp.append(entry)
+    # Create clang compilation command
+    command = "/usr/bin/clang++ " + " ".join([FixPaths(s.strip()) for s in data])
 
-try:
-    os.mkdir(outdir)
-except OSError as e:
-    if e.errno != errno.EEXIST:
-        raise
+    # Compilation database
+    comp = []
 
-# Dump compilation database into a JSON file
-with open(os.path.join(outdir, "compile_commands.json"), "w") as f:
-    f.write(json.dumps(comp, indent=4))
+    # Find all c++ files
+    with open('.cproj/files', 'r') as f:
+        # The format should be "directory  regex"
+        for l in f.readlines():
+            line = l.strip()
+            # Skip empty lines and comments
+            if IsComment(line):
+                continue
+            d, rx = line.split()
+            for root, dirs, files in os.walk(d):
+                for f in files:
+                    if not re.search(rx, f, re.I):
+                        continue
+                    print(os.path.join(root, f))
+                    fabs = os.path.abspath(os.path.join(root, f))
+                    entry = {}
+                    entry["directory"] = curdir
+                    entry["command"] = command + " -o " + fabs + ".o " + fabs
+                    entry["file"] = fabs
+                    comp.append(entry)
 
-# If rdm (from rtags) is socket-activated, this should succeed
-os.system('rc --load-compile-commands=' + outdir + ' --project-root=.')
+    # Dump compilation database into a JSON file
+    with open(os.path.join(outdir, "compile_commands.json"), "w") as f:
+        f.write(json.dumps(comp, indent=4))
+
+    # If rdm (from rtags) is socket-activated, this should succeed
+    os.system('rc --load-compile-commands=' + outdir + ' --project-root=.')
+
+
+CreateCompileDatabaseForRtags()
