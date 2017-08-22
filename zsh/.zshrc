@@ -32,6 +32,7 @@ bindkey '^F' edit-command-line
 
 # Paths to search binaries
 export PATH=$PATH:/bin:/sbin:/usr/sbin
+[[ -d ~/.local/bin ]] && export PATH=~/.local/bin:$PATH
 [[ -d ~/.bin ]] && export PATH=~/.bin:$PATH
 [[ -d ~/bin ]] && export PATH=~/bin:$PATH
 [[ -d ~/.fzf/bin ]] && export PATH=$PATH:~/.fzf/bin
@@ -40,6 +41,7 @@ if [[ -x /usr/bin/ruby && -x /usr/bin/gem ]]; then
 	PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
+export CTEST_OUTPUT_ON_FAILURE=1
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 if [[ -x /usr/bin/nvim || -x /usr/local/bin/nvim ]]; then
