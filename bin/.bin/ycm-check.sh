@@ -2,7 +2,7 @@
 
 set -e
 
-vimdir=`dirname ${BASH_SOURCE[0]}`/../.vim
+vimdir=$(cd `dirname ${BASH_SOURCE[0]}`/../.vim; pwd)
 
 # Check that all directories in includes.txt are still present
 # If something is missing, high chance that stdc++ has been updated.

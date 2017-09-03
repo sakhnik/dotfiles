@@ -5,7 +5,7 @@
 
 set -e
 
-vimdir=`dirname ${BASH_SOURCE[0]}`/../.vim
+vimdir=$(cd `dirname ${BASH_SOURCE[0]}`/../.vim; pwd)
 
 # Arrange a temporary directory
 workdir=`mktemp -d /tmp/ycm.XXXXXXX`
