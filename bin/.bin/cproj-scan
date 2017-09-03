@@ -9,10 +9,13 @@ import re
 # Then it will add the project to rtags.
 # On the other hand, YCM will pick up .cproj for its job.
 
-# See ~/.vim/ycm_extra_conf.py for reference.
+# See <vimdir>/ycm_extra_conf.py for reference.
 
 # Current working directory will be considered project root
 curdir = os.path.abspath(os.getcwd())
+
+# Path to vim directory where .ycm_extra_conf.py template is located
+vimdir = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.vim')
 
 outdir = ".cproj.out"
 try:
@@ -85,7 +88,7 @@ def CreateClangComplete():
         f.write("\n")
 
 def DeployYcmExtraConf():
-    os.system("ln -sf ~/.vim/.ycm_extra_conf.py .")
+    os.system("ln -sf " + vimdir + "/.ycm_extra_conf.py .")
 
 CreateCompileDatabaseForRtags()
 CreateClangComplete()
