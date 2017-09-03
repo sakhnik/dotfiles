@@ -5,6 +5,8 @@
 
 set -e
 
+vimdir=`dirname ${BASH_SOURCE[0]}`/../.vim
+
 # Arrange a temporary directory
 workdir=`mktemp -d /tmp/ycm.XXXXXXX`
 trap 'rm -rf $workdir' EXIT
@@ -43,10 +45,10 @@ find third_party -type d -name docs -prune -exec rm -rf {} \;
 
 # Deploy the plugin into vim directory
 cd ..
-rsync -raP --delete YouCompleteMe ~/.vim/
+rsync -raP --delete YouCompleteMe $vimdir/
 
 # Update vim help tags
-vim -u NONE -c 'helptags ~/.vim/YouCompleteMe/doc | quit'
+vim -u NONE -c "helptags $vimdir/YouCompleteMe/doc | quit"
 
 # 
 echo \
@@ -55,6 +57,6 @@ echo \
 	| grep '/usr' \
 	| while read -r l; do
 		echo `readlink -f $l`
-	done > ~/.vim/includes.txt
+	done > $vimdir/includes.txt
 
 echo "SUCCESS"
