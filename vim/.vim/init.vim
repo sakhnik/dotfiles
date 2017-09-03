@@ -232,35 +232,6 @@ Plug 'mhinz/vim-grepper'
     \   'escape':     '\+*^$()[]',
     \ }}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" YouCompleteMe stuff
-
-  let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/ycm_extra_conf.py'
-  let g:ycm_filetype_whitelist = {
-    \ 'cpp' : 1,
-    \ 'python' : 1,
-    \}
-  let g:ycm_confirm_extra_conf = 0
-  let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
-  let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
-  let g:ycm_complete_in_comments = 1 " Completion in comments
-  let g:ycm_complete_in_strings = 1 " Completion in string
-
-if isdirectory($HOME . '/.vim/YouCompleteMe')
-  " If there's preinstalled version, integrated with system libraries, prefer it
-  set rtp+=$HOME/.vim/YouCompleteMe
-  source $HOME/.vim/YouCompleteMe/plugin/youcompleteme.vim
-else
-  Plug 'Valloric/YouCompleteMe', { 'for': ['python', 'cpp'], 'do': 'python2 ./install.py --clang-completer'}
-endif
-
-  autocmd! User YouCompleteMe call youcompleteme#Enable()
-
-  nnoremap <leader>yj :YcmCompleter GoToDefinitionElseDeclaration<cr>
-  nnoremap <leader>yd :YcmCompleter GetDoc<cr>
-  nnoremap <leader>yf :YcmCompleter FixIt<cr>
-  nnoremap <leader>yy :YcmDiags<cr>
-
 Plug 'tenfyzhong/CompleteParameter.vim'
 
 Plug 'ledger/vim-ledger'
@@ -276,6 +247,37 @@ Plug 'sakhnik/nvim-gdb'
   "nnoremap <leader>dd :GdbStart gdb -q -f a.out
 
 call plug#end()
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" YouCompleteMe stuff
+" The plugin should be delpoyed by the script ycm-update.sh
+
+let s:vim_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+
+if isdirectory(s:vim_dir . '/YouCompleteMe')
+  let g:ycm_global_ycm_extra_conf = s:vim_dir . '/ycm_extra_conf.py'
+  let g:ycm_filetype_whitelist = {
+    \ 'cpp' : 1,
+    \ 'python' : 1,
+    \}
+  let g:ycm_confirm_extra_conf = 0
+  let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+  let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
+  let g:ycm_complete_in_comments = 1 " Completion in comments
+  let g:ycm_complete_in_strings = 1 " Completion in string
+
+  " If there's preinstalled version, integrated with system libraries, prefer it
+  exe 'set rtp+='.s:vim_dir.'/YouCompleteMe'
+  exe 'source '.s:vim_dir.'/YouCompleteMe/plugin/youcompleteme.vim'
+
+  autocmd! User YouCompleteMe call youcompleteme#Enable()
+
+  nnoremap <leader>yj :YcmCompleter GoToDefinitionElseDeclaration<cr>
+  nnoremap <leader>yd :YcmCompleter GetDoc<cr>
+  nnoremap <leader>yf :YcmCompleter FixIt<cr>
+  nnoremap <leader>yy :YcmDiags<cr>
+endif   " YouCompleteMe
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 
