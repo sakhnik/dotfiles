@@ -51,21 +51,12 @@ if has("autocmd")
     autocmd bufwritepost $MYVIMRC source $MYVIMRC
   augroup END
 
-  augroup templates
-    au!
-    " Read source file skeletons
-    autocmd BufNewFile *.*  silent! execute '0r $HOME/.vim/templates/skeleton.'.expand("<afile>:e")
-
-    " Substitute everything between [:VIM_EVAL:] and [:END_EVAL:]
-    " with the result of expression in it
-    autocmd BufNewFile *    %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
-  augroup END
-
   " Set custom options for specific files
   augroup custom_options
     au!
-    " Read source file skeletons
+    " Evolution new message
     autocmd BufReadPost /tmp/evo*  setlocal ft=text tw=72 spell
+		" Firefox extension to edit text in the entry fields
     autocmd BufReadPost /tmp/itsalltext/jira2*.txt setlocal tw=0 spell
   augroup END
 
