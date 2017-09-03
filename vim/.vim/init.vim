@@ -124,7 +124,9 @@ nnoremap <leader>ve :split $MYVIMRC<cr>
 runtime! plugin/*.vim
 runtime autoload/plug.vim
 
-call plug#begin('~/.vim/plugged')
+let s:vim_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+
+call plug#begin(s:vim_dir.'/plugged')
 Plug 'junegunn/seoul256.vim'
 Plug 'tomasr/molokai'
 
@@ -252,8 +254,6 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe stuff
 " The plugin should be delpoyed by the script ycm-update.sh
-
-let s:vim_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
 if isdirectory(s:vim_dir . '/YouCompleteMe')
   let g:ycm_global_ycm_extra_conf = s:vim_dir . '/ycm_extra_conf.py'
