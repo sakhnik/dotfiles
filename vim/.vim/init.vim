@@ -124,9 +124,9 @@ nnoremap <leader>ve :split $MYVIMRC<cr>
 runtime! plugin/*.vim
 runtime autoload/plug.vim
 
-let s:vim_dir = expand('<sfile>:p:h')
+let s:vimdir = expand('<sfile>:p:h')
 
-call plug#begin(s:vim_dir.'/plugged')
+call plug#begin(s:vimdir.'/plugged')
 Plug 'junegunn/seoul256.vim'
 Plug 'tomasr/molokai'
 
@@ -142,7 +142,7 @@ if s:sysname == 'MSYS'
     \ }
     nmap <leader>ff :CtrlP<cr>
 else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+  Plug 'junegunn/fzf', { 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
     nmap <leader>ff :Files<cr>
     nmap <leader>fg :GitFiles<cr>
@@ -255,8 +255,8 @@ call plug#end()
 " YouCompleteMe stuff
 " The plugin should be delpoyed by the script ycm-update.sh
 
-if isdirectory(s:vim_dir . '/YouCompleteMe')
-  let g:ycm_global_ycm_extra_conf = s:vim_dir . '/ycm_extra_conf.py'
+if isdirectory(s:vimdir . '/YouCompleteMe')
+  let g:ycm_global_ycm_extra_conf = s:vimdir . '/ycm_extra_conf.py'
   let g:ycm_filetype_whitelist = {
     \ 'cpp' : 1,
     \ 'python' : 1,
@@ -268,8 +268,8 @@ if isdirectory(s:vim_dir . '/YouCompleteMe')
   let g:ycm_complete_in_strings = 1 " Completion in string
 
   " If there's preinstalled version, integrated with system libraries, prefer it
-  exe 'set rtp+='.s:vim_dir.'/YouCompleteMe'
-  exe 'source '.s:vim_dir.'/YouCompleteMe/plugin/youcompleteme.vim'
+  exe 'set rtp+='.s:vimdir.'/YouCompleteMe'
+  exe 'source '.s:vimdir.'/YouCompleteMe/plugin/youcompleteme.vim'
 
   autocmd! User YouCompleteMe call youcompleteme#Enable()
 

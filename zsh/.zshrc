@@ -17,9 +17,9 @@ PURE_PROMPT_SYMBOL='$'
 PURE_GIT_UP_ARROW='↑'
 PURE_GIT_DOWN_ARROW='↓'
 
-if [[ -d ~/.fzf ]]; then
+if [[ -d ~/.vim/plugged/fzf ]]; then
 	# Assume fzf can be installed by other means (like vim)
-	zplug "~/.fzf/shell", from:local, use:'*.zsh'
+	zplug "~/.vim/plugged/fzf/shell", from:local, use:'*.zsh'
 fi
 
 zplug check || zplug install
@@ -35,7 +35,7 @@ export PATH=$PATH:/bin:/sbin:/usr/sbin
 [[ -d ~/.local/bin ]] && export PATH=~/.local/bin:$PATH
 [[ -d ~/.bin ]] && export PATH=~/.bin:$PATH
 [[ -d ~/bin ]] && export PATH=~/bin:$PATH
-[[ -d ~/.fzf/bin ]] && export PATH=$PATH:~/.fzf/bin
+[[ -d ~/.vim/plugged/fzf/bin ]] && export PATH=$PATH:~/.vim/plugged/fzf/bin
 
 if [[ -x /usr/bin/ruby && -x /usr/bin/gem ]]; then
 	PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
