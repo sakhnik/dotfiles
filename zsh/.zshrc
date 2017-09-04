@@ -1,10 +1,13 @@
 bindkey -v
 
-if [[ ! -d ~/.zplug ]]; then
-	git clone --depth 1 https://github.com/zplug/zplug ~/.zplug
+local zshrc_path=${(%):-%N}
+local zshrc_dir=$(cd `dirname $zshrc_path`; pwd)
+
+if [[ ! -d $zshrc_dir/.zplug ]]; then
+	git clone --depth 1 https://github.com/zplug/zplug $zshrc_dir/.zplug
 fi
 
-source ~/.zplug/init.zsh
+source $zshrc_dir/.zplug/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "modules/history", from:prezto
@@ -17,9 +20,9 @@ PURE_PROMPT_SYMBOL='$'
 PURE_GIT_UP_ARROW='↑'
 PURE_GIT_DOWN_ARROW='↓'
 
-if [[ -d ~/.vim/plugged/fzf ]]; then
+if [[ -d $zshrc_dir/.vim/plugged/fzf ]]; then
 	# Assume fzf can be installed by other means (like vim)
-	zplug "~/.vim/plugged/fzf/shell", from:local, use:'*.zsh'
+	zplug "$zshrc_dir/.vim/plugged/fzf/shell", from:local, use:'*.zsh'
 fi
 
 zplug check || zplug install
@@ -33,12 +36,12 @@ bindkey '^F' edit-command-line
 # Paths to search binaries
 export PATH=$PATH:/bin:/sbin:/usr/sbin
 [[ -d ~/.local/bin ]] && export PATH=~/.local/bin:$PATH
-[[ -d ~/.bin ]] && export PATH=~/.bin:$PATH
 [[ -d ~/bin ]] && export PATH=~/bin:$PATH
-[[ -d ~/.vim/plugged/fzf/bin ]] && export PATH=$PATH:~/.vim/plugged/fzf/bin
+[[ -d $zshrc_dir/.bin ]] && export PATH=$zshrc_dir/.bin:$PATH
+[[ -d $zshrc_dir/.vim/plugged/fzf/bin ]] && export PATH=$PATH:$zshrc_dir/.vim/plugged/fzf/bin
 
 if [[ -x /usr/bin/ruby && -x /usr/bin/gem ]]; then
-	PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+	PATH="$PATH:$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
 fi
 
 export CTEST_OUTPUT_ON_FAILURE=1
@@ -52,10 +55,12 @@ else
 	export EDITOR=vim
 fi
 
-local this_dir=$(dirname `readlink -f ~/.zshrc`)
-[[ -f $this_dir/pystartup.py ]] &&
-	export PYTHONSTARTUP=$this_dir/pystartup.py
-unset this_dir
+local dotfiles_dir=$(dirname `readlink -f $zshrc_path`)
+[[ -f $dotfiles_dir/pystartup.py ]] &&
+	export PYTHONSTARTUP=$dotfiles_dir/pystartup.py
+unset dotfiles_dir
+unset zshrc_dir
+unset zshrc_path
 
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
