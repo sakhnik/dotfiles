@@ -34,15 +34,21 @@ zle -N edit-command-line
 bindkey '^F' edit-command-line
 
 # Paths to search binaries
-export PATH=$PATH:/bin:/sbin:/usr/sbin
-[[ -d ~/.local/bin ]] && export PATH=~/.local/bin:$PATH
-[[ -d ~/bin ]] && export PATH=~/bin:$PATH
-[[ -d $zshrc_dir/.bin ]] && export PATH=$zshrc_dir/.bin:$PATH
-[[ -d $zshrc_dir/.vim/plugged/fzf/bin ]] && export PATH=$PATH:$zshrc_dir/.vim/plugged/fzf/bin
-
-if [[ -x /usr/bin/ruby && -x /usr/bin/gem ]]; then
-	PATH="$PATH:$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
+if [[ -d $zshrc_dir/.bin ]]; then
+	case "$PATH" in
+		*$zshrc_dir/.bin*) ;;
+		*) export PATH=$zshrc_dir/.bin:$PATH ;;
+	esac
 fi
+
+local fzf_dir=$zshrc_dir/.vim/plugged/fzf/bin
+if [[ -d $fzf_dir ]]; then
+	case "$PATH" in
+		*$fzf_dir*) ;;
+		*) export PATH=$PATH:$fzf_dir ;;
+	esac
+fi
+unset fzf_dir
 
 export CTEST_OUTPUT_ON_FAILURE=1
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
