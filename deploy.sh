@@ -9,10 +9,10 @@ dotfiles=`readlink -f $(dirname ${BASH_SOURCE[0]})`
 cd "$dotfiles"
 
 # Utilize GNU stow to symlink from HOME to our config files.
-for i in *; do
-	[[ -d $i ]] && stow -t "$dstdir" $i
-done
+# Note that stow will refuse to install to the direct parent directory.
+stow -t "$dstdir" src
 
+exit
 zsh -df <<END
 [[ ! -f "$dstdir/.zshrc" ]] && exit 1
 source "$dstdir/.zshrc"
