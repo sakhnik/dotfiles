@@ -1,7 +1,7 @@
 bindkey -v
 
 local zshrc_path=${(%):-%N}
-local zshrc_dir=$(cd `dirname $zshrc_path`; pwd)
+local zshrc_dir=`dirname $(readlink -f $zshrc_path)`
 
 if [[ ! -d $zshrc_dir/.zplug ]]; then
 	git clone --depth 1 https://github.com/zplug/zplug $zshrc_dir/.zplug
