@@ -48,7 +48,7 @@ cd ..
 rsync -raP --delete YouCompleteMe $vimdir/
 
 # Update vim help tags
-vim -u NONE -c "helptags $vimdir/YouCompleteMe/doc | quit"
+vim -esc "helptags $vimdir/YouCompleteMe/doc | quit"
 
 # 
 echo \
