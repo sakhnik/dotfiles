@@ -1,13 +1,18 @@
 bindkey -v
 
-local zshrc_path=${(%):-%x}
-local zshrc_dir=`dirname $(readlink -f $zshrc_path)`
+local zshrc_path=`readlink -f ${(%):-%x}`
+local zshrc_dir=`dirname $zshrc_path`
 
-if [[ ! -d $zshrc_dir/.zplug ]]; then
-	git clone --depth 1 https://github.com/zplug/zplug $zshrc_dir/.zplug
+export ZPLUG_HOME=`dirname $zshrc_dir`/.zplug
+export ZPLUG_REPOS=$ZPLUG_HOME/repos
+export ZPLUG_CACHE_DIR=$ZPLUG_HOME/cache
+export ZPLUG_BIN=$ZPLUG_HOME/bin
+
+if [[ ! -d $ZPLUG_HOME ]]; then
+    git clone --depth 1 https://github.com/zplug/zplug $ZPLUG_HOME
 fi
 
-source $zshrc_dir/.zplug/init.zsh
+source $ZPLUG_HOME/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "modules/history", from:prezto
@@ -21,8 +26,8 @@ PURE_GIT_UP_ARROW='↑'
 PURE_GIT_DOWN_ARROW='↓'
 
 if [[ -d $zshrc_dir/.vim/plugged/fzf ]]; then
-	# Assume fzf can be installed by other means (like vim)
-	zplug "$zshrc_dir/.vim/plugged/fzf/shell", from:local, use:'*.zsh'
+    # Assume fzf can be installed by other means (like vim)
+    zplug "$zshrc_dir/.vim/plugged/fzf/shell", from:local, use:'*.zsh'
 fi
 
 zplug check || zplug install
@@ -35,18 +40,18 @@ bindkey '^F' edit-command-line
 
 # Paths to search binaries
 if [[ -d $zshrc_dir/.bin ]]; then
-	case "$PATH" in
-		*$zshrc_dir/.bin*) ;;
-		*) export PATH=$zshrc_dir/.bin:$PATH ;;
-	esac
+    case "$PATH" in
+        *$zshrc_dir/.bin*) ;;
+        *) export PATH=$zshrc_dir/.bin:$PATH ;;
+    esac
 fi
 
 local fzf_dir=$zshrc_dir/.vim/plugged/fzf/bin
 if [[ -d $fzf_dir ]]; then
-	case "$PATH" in
-		*$fzf_dir*) ;;
-		*) export PATH=$PATH:$fzf_dir ;;
-	esac
+    case "$PATH" in
+        *$fzf_dir*) ;;
+        *) export PATH=$PATH:$fzf_dir ;;
+    esac
 fi
 unset fzf_dir
 
@@ -54,30 +59,30 @@ export CTEST_OUTPUT_ON_FAILURE=1
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 if [[ -x /usr/bin/nvim || -x /usr/local/bin/nvim ]]; then
-	alias vim=nvim
-	alias vimdiff="nvim -d"
-	export EDITOR=nvim
+    alias vim=nvim
+    alias vimdiff="nvim -d"
+    export EDITOR=nvim
 else
-	export EDITOR=vim
+    export EDITOR=vim
 fi
 
 local dotfiles_dir=$(dirname `readlink -f $zshrc_path`)
 [[ -f $dotfiles_dir/pystartup.py ]] &&
-	export PYTHONSTARTUP=$dotfiles_dir/pystartup.py
+    export PYTHONSTARTUP=$dotfiles_dir/pystartup.py
 unset dotfiles_dir
 unset zshrc_dir
 unset zshrc_path
 
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
-	eval "`dircolors -b`"
-	alias ls='ls --color=auto'
+    eval "`dircolors -b`"
+    alias ls='ls --color=auto'
 
-	if [[ -f /usr/bin/grep ]]; then
-		alias grep='/usr/bin/grep --color'
-	elif [[ -f /bin/grep ]]; then
-		alias grep='/bin/grep --color'
-	fi
+    if [[ -f /usr/bin/grep ]]; then
+        alias grep='/usr/bin/grep --color'
+    elif [[ -f /bin/grep ]]; then
+        alias grep='/bin/grep --color'
+    fi
 fi
 
 alias ll='ls -l'
@@ -115,4 +120,4 @@ awk 'BEGIN{
 }'
 }
 
-# vim: set ts=4 sw=4 noet:
+# vim: set ts=4 sw=4 et:
