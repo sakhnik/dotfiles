@@ -7,6 +7,7 @@ cd $this_dir
 
 export HOME=$this_dir/src
 
-zsh -df -c "source src/.zshrc && ycm-update.sh"
+zsh -df -c "source src/.zshrc"
+./src/.bin/ycm-update.sh
 
 vim +PlugInstall +qa
