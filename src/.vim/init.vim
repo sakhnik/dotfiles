@@ -124,7 +124,7 @@ nnoremap <leader>ve :split $MYVIMRC<cr>
 runtime! plugin/*.vim
 runtime autoload/plug.vim
 
-let s:vimdir = expand('<sfile>:p:h')
+let s:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
 call plug#begin(s:vimdir.'/plugged')
 Plug 'junegunn/seoul256.vim'
