@@ -2,12 +2,11 @@
 
 set -e
 
-this_dir=`dirname ${BASH_SOURCE[0]}`
-
-cd $this_dir/src
+export this_dir=$(dirname `readlink -f ${BASH_SOURCE[0]}`)
+cd $this_dir
 
 zsh -df <<END
-source ".zshrc"
-ycm-update.sh
 export HOME=$this_dir/src
+source "src/.zshrc"
+ycm-update.sh
 END

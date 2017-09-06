@@ -1,6 +1,6 @@
 bindkey -v
 
-local zshrc_path=${(%):-%N}
+local zshrc_path=${(%):-%x}
 local zshrc_dir=`dirname $(readlink -f $zshrc_path)`
 
 if [[ ! -d $zshrc_dir/.zplug ]]; then
