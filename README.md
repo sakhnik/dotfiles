@@ -21,24 +21,32 @@ Configuration files, which I share among work stations.
 
 First clone the repository to a working directory:
 
+```
   git clone https://github.com/sakhnik/dotfiles --depth 1
   cd dotfiles/
+```
 
 Then you need to configure the distribution: download zplug plugins,
 download vim plugins, install and build YouCompleteMe. For this, execute:
 
+```
   ./config.sh
+```
 
 To install to the home directory (optional), execute the script
 [deploy.sh](https://github.com/sakhnik/dotfiles/blob/master/deploy.sh):
 
+```
   ./deploy.sh
+```
 
 It will create symlinks from home to the working directory.
 
 To launch zsh for use in-place,
 
+```
    ./zsh.sh
+```
 
 # Showcase
 
