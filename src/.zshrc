@@ -56,7 +56,6 @@ fi
 unset fzf_dir
 
 export CTEST_OUTPUT_ON_FAILURE=1
-export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 if [[ -x /usr/bin/nvim || -x /usr/local/bin/nvim ]]; then
     alias vim=nvim
