@@ -50,6 +50,16 @@ To launch zsh for use in-place,
 
 # Showcase
 
+## Configuring an in-place deployment
+
+* Clone a repository (shallow will suffice)
+* Install all the plugins with ./configure.sh
+* Launch a zsh with required environment variables with ./zsh.sh
+* ???
+* PROFIT
+
+[![asciicast](https://asciinema.org/a/SqDcy6d1NUBWF6YUuN5vpA3UL.png)](https://asciinema.org/a/SqDcy6d1NUBWF6YUuN5vpA3UL?autoplay=1)
+
 ## Writing and navigating C++ code
 
 [![asciicast](https://asciinema.org/a/qV8uazTba3VwTIw2791gTuL95.png)](https://asciinema.org/a/qV8uazTba3VwTIw2791gTuL95?autoplay=1)
