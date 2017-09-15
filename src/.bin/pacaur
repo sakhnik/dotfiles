@@ -18,4 +18,12 @@ if [[ $1 == -S || $1 =~ -S.*u.* ]]; then
         echo "Validation"
         ycm-check.sh
     fi
+
+    if pacaur -Qi rtags-git >/dev/null 2>&1; then
+        echo "${bold}${blue}:: ${white}Checking rtags-git...${reset}"
+        if ldd /usr/bin/rdm | grep "not found" >/dev/null 2>&1; then
+            echo "Updating rtags-git"
+            pacaur -S rtags-git
+        fi
+    fi
 fi
