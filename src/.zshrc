@@ -3,6 +3,7 @@ bindkey -v
 local zshrc_path=`readlink -f ${(%):-%x}`
 local zshrc_dir=`dirname $zshrc_path`
 
+# Configure zplug for in-place work
 export ZPLUG_HOME=`dirname $zshrc_dir`/.zplug
 export ZPLUG_REPOS=$ZPLUG_HOME/repos
 export ZPLUG_CACHE_DIR=$ZPLUG_HOME/cache
@@ -55,8 +56,13 @@ if [[ -d $fzf_dir ]]; then
 fi
 unset fzf_dir
 
-export CTEST_OUTPUT_ON_FAILURE=1
 
+# Let ctest output error on test failure
+export CTEST_OUTPUT_ON_FAILURE=1
+# Use vim as man pager
+export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
+
+# Use nvim as vim by default (if available)
 if [[ -x /usr/bin/nvim || -x /usr/local/bin/nvim ]]; then
     alias vim=nvim
     alias vimdiff="nvim -d"
