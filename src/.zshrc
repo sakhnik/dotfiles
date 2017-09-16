@@ -65,10 +65,8 @@ else
     export EDITOR=vim
 fi
 
-local dotfiles_dir=$(dirname `readlink -f $zshrc_path`)
-[[ -f $dotfiles_dir/pystartup.py ]] &&
-    export PYTHONSTARTUP=$dotfiles_dir/pystartup.py
-unset dotfiles_dir
+[[ -f $zshrc_dir/../pystartup.py ]] &&
+    export PYTHONSTARTUP=$zshrc_dir/../pystartup.py
 unset zshrc_dir
 unset zshrc_path
 
