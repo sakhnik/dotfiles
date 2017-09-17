@@ -3,6 +3,12 @@ bindkey -v
 local zshrc_path=`readlink -f ${(%):-%x}`
 local zshrc_dir=`dirname $zshrc_path`
 
+local red=`tput setaf 1`
+local green=`tput setaf 2`
+local yellow=`tput setaf 3`
+local reset=`tput sgr 0`
+local bold=`tput bold`
+
 # Configure zplug for in-place work
 export ZPLUG_HOME=`dirname $zshrc_dir`/.zplug
 export ZPLUG_REPOS=$ZPLUG_HOME/repos
@@ -29,10 +35,19 @@ PURE_GIT_DOWN_ARROW='↓'
 if [[ -d $zshrc_dir/.vim/plugged/fzf ]]; then
     # Assume fzf can be installed by other means (like vim)
     zplug "$zshrc_dir/.vim/plugged/fzf/shell", from:local, use:'*.zsh'
+else
+    [[ -n "$PS1" ]] && \
+        echo "$yellow(W)$reset  fzf is missing, vim plugins need be installed"
 fi
 
 zplug check || zplug install
 zplug load
+
+if [[ -n "$PS1" && -f $ZPLUG_HOME/log/job.lock ]]; then
+    # Job control may be broken
+    echo "$yellow(W)$reset  Deleted dangling .zplug/log/job.lock, restart the shell."
+    rm $ZPLUG_HOME/log/job.lock
+fi
 
 # Edit command line in EDITOR
 autoload -U edit-command-line
@@ -67,12 +82,17 @@ if [[ -x /usr/bin/nvim || -x /usr/local/bin/nvim ]]; then
     alias vim=nvim
     alias vimdiff="nvim -d"
     export EDITOR=nvim
+    [[ -n "$PS1" ]] && echo "$green(I)$reset  Neovim is the default editor"
 else
     export EDITOR=vim
+    [[ -n "$PS1" ]] && echo "$green(I)$reset  Vim is the default editor"
 fi
 
-[[ -f $zshrc_dir/../pystartup.py ]] &&
+if [[ -f $zshrc_dir/../pystartup.py ]]; then
     export PYTHONSTARTUP=$zshrc_dir/../pystartup.py
+else
+    [[ -n "$PS1" ]] && echo "$red(E)$reset  Couldn't set PYTHONSTARTUP"
+fi
 unset zshrc_dir
 unset zshrc_path
 
@@ -107,6 +127,10 @@ set -o correct
 set -o long_list_jobs
 
 [[ -n "$PS1" ]] && {
+
+ycm-check.sh || \
+    echo "$red(E)$reset  YouCompleteMe non-functional, run ycm-update.sh"
+
 echo "Terminal true color test"
 awk 'BEGIN{
     s="/\\/\\/\\/\\/\\"; s=s s s s s s s s;
@@ -122,5 +146,11 @@ awk 'BEGIN{
     printf "\n";
 }'
 }
+
+unset red
+unset green
+unset yellow
+unset reset
+unset bold
 
 # vim: set ts=4 sw=4 et:
