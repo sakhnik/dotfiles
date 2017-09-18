@@ -14,8 +14,14 @@ import re
 # Current working directory will be considered project root
 curdir = os.path.abspath(os.getcwd())
 
-# Path to vim directory where .ycm_extra_conf.py template is located
-vimdir = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.vim')
+# Paths from the directory where .ycm_extra_conf.py template is located
+srcdir = os.path.dirname(os.path.dirname(__file__))
+vimdir = os.path.join(srcdir, '.vim')
+libdir = os.path.join(os.path.dirname(srcdir), 'lib')
+
+sys.path.append(libdir)
+from cproj import PathFixer
+
 
 outdir = ".cproj.out"
 try:
@@ -31,18 +37,12 @@ def LoadCflags():
     with open(".cproj/cflags", "r") as f:
         return [s for s in (l.strip() for l in f.readlines()) if not IsComment(s)]
 
-def FixPaths(opt):
-    # Ensure that relative include directories are converted to absolute ones
-    if opt.startswith('-I') and opt[2] != '/':
-        return '-I' + os.path.join(curdir, opt[2:])
-    return opt
-
-
 def CreateCompileDatabaseForRtags():
     data = LoadCflags()
 
     # Create clang compilation command
-    command = "/usr/bin/clang++ " + " ".join([FixPaths(s.strip()) for s in data])
+    path_fixer = PathFixer(curdir)
+    command = "/usr/bin/clang++ " + " ".join([path_fixer.FixOpt(s) for s in data])
 
     # Compilation database
     comp = []

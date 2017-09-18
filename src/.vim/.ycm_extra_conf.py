@@ -1,12 +1,12 @@
-import os
+import os, sys
 import ycm_core
 
-flags = []
+# Path to lib directory: `dirname __file__`/../../lib
+libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.readlink(__file__)))), 'lib')
+sys.path.append(libdir)
+from cproj import PathFixer
 
-def MakeProjectRelativePathAbsolute(projdir, p):
-    if p[:2] == '-I' and p[2] != '/':
-        return '-I' + os.path.join(projdir, p[2:])
-    return p
+flags = []
 
 # Find closest project root
 projdir = os.getcwd()
@@ -17,11 +17,11 @@ while not os.path.exists(os.path.join(projdir, '.cproj')):
 
 fname = os.path.join(projdir, '.clang_complete')
 with open(fname, 'r') as f:
+    path_fixer = PathFixer(projdir)
     for line in f:
-        l = line.strip()
-        if not l or l[0] == '#':
+        if not line or line[0] == '#':
             continue
-        flags.append(MakeProjectRelativePathAbsolute(projdir, l))
+        flags.append(path_fixer.FixOpt(line))
 
 flags.append('-Wall')
 flags.append('-Wextra')

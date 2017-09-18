@@ -3,3 +3,4 @@ tags
 .zhistory
 .local
 .viminfo
+__pycache__/
