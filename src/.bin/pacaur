@@ -25,6 +25,11 @@ if [[ $1 == -S || $1 =~ -S.*u.* ]]; then
     echo "${bold}${blue}:: ${white}Checking whether AUR packages need be rebuilt...${reset}"
     to_rebuild=
     for pkg in `pacaur -Qm | awk '{print $1}'`; do
+        # Blacklist: skip known exceptional packages
+        grep -q $pkg <<END && continue
+jdk
+javafx-scenebuilder
+END
         for f in `pacaur -Ql $pkg | grep -E '/(bin|lib)/.' | awk '{print $2}'`; do
             if [[ -x "$f" ]]; then
                 output=$(ldd $f 2>/dev/null || continue)
