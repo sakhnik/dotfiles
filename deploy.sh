@@ -6,4 +6,4 @@ dotfiles=`readlink -f $(dirname ${BASH_SOURCE[0]})`
 cd "$dotfiles"
 
 # Utilize GNU stow to symlink from HOME to our config files.
-stow src
+stow -Svt $HOME src
