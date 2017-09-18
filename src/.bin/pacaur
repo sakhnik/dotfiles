@@ -30,6 +30,7 @@ if [[ $1 == -S || $1 =~ -S.*u.* ]]; then
 jdk
 javafx-scenebuilder
 END
+        echo "  Checking $pkg"
         for f in `pacaur -Ql $pkg | grep -E '/(bin|lib)/.' | awk '{print $2}'`; do
             if [[ -x "$f" ]]; then
                 output=$(ldd $f 2>/dev/null || continue)
