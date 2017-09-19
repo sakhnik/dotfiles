@@ -11,11 +11,11 @@ class PathFixer:
 
         if self.path_pending:
             self.path_pending = False
-            return os.path.join(projdir, opt)
+            return os.path.join(self.projdir, opt)
 
         if opt.startswith('-I'):
             if len(opt) == 2:
                 self.path_pending = True
             elif opt[2] != '/':
-                return '-I' + os.path.join(projdir, opt[2:])
+                return '-I' + os.path.join(self.projdir, opt[2:])
         return opt
