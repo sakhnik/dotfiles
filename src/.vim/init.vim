@@ -56,7 +56,7 @@ if has("autocmd")
     au!
     " Evolution new message
     autocmd BufReadPost /tmp/evo*  setlocal ft=text tw=72 spell
-		" Firefox extension to edit text in the entry fields
+    " Firefox extension to edit text in the entry fields
     autocmd BufReadPost /tmp/itsalltext/jira2*.txt setlocal tw=0 spell
   augroup END
 
