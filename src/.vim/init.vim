@@ -177,8 +177,9 @@ Plug 'vim-scripts/dbext.vim', { 'on': 'Dbext' }
 Plug 'raimondi/delimitmate'
 Plug 'drmikehenry/vim-fontsize'
 Plug 'wellle/targets.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
+Plug 'vim-jp/vim-cpp'
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 Plug 'lyuts/vim-rtags'
   let g:rtagsUseLocationList = 0
