@@ -180,6 +180,11 @@ Plug 'wellle/targets.vim'
 "Plug 'sheerun/vim-polyglot'
 Plug 'vim-jp/vim-cpp'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+  let g:vim_markdown_folding_disabled = 1
+  let g:vim_markdown_frontmatter = 1
+  let g:vim_markdown_no_default_key_mappings = 1
 
 Plug 'lyuts/vim-rtags'
   let g:rtagsUseLocationList = 0
