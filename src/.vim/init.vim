@@ -178,7 +178,7 @@ Plug 'raimondi/delimitmate'
 Plug 'drmikehenry/vim-fontsize'
 Plug 'wellle/targets.vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'cbracken/vala.vim'
+Plug 'sheerun/vim-polyglot'
 
 Plug 'lyuts/vim-rtags'
   let g:rtagsUseLocationList = 0
