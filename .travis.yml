@@ -7,6 +7,7 @@ notifications:
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y zsh
+  - sudo apt-get install -y libboost-dev
 
 script:
   - ./config.sh
