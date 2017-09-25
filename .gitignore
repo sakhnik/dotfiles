@@ -1,6 +1,6 @@
 tags
 .zplug
-.zhistory
 .local
-.viminfo
 __pycache__/
+!src/.*
+!src/*
