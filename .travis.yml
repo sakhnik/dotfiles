@@ -4,5 +4,9 @@ dist: trusty
 notifications:
   email: false
 
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y zsh
+
 script:
   - ./config.sh
