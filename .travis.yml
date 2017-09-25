@@ -1,0 +1,8 @@
+language: c++
+sudo: required
+dist: trusty
+notifications:
+  email: false
+
+script:
+  - ./config.sh
