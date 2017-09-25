@@ -7,7 +7,7 @@ notifications:
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y zsh
-  - sudo apt-get install -y libboost-dev
+  - sudo apt-get install -y libboost-filesystem-dev libboost-regex-dev libboost-system-dev libboost-python-dev
 
 script:
   - ./config.sh
