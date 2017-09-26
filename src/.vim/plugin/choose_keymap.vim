@@ -5,7 +5,7 @@ endif
 let g:loaded_choose_keymap = 1
 
 function! ChooseKeymap()
-    let keymaps = ['', 'uk', 'ru']
+    let keymaps = ['', 'uk']
     let prompt_keymaps = []
     let index = 0
     while index < len(keymaps)
