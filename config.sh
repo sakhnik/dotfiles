@@ -10,4 +10,7 @@ export HOME=$this_dir/src
 zsh -df -c "source src/.zshrc"
 ./src/.bin/ycm-update.sh
 
-vim +PlugInstall +qa
+vim=vim
+[[ -x /usr/bin/nvim ]] && vim=nvim
+
+$vim +PlugInstall +qa
