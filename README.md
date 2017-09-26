@@ -1,4 +1,4 @@
-[![Travis Build Status](https://travis-ci.org/sakhnik/dotfiles.svg?branch=master)](https://travis-ci.org/sakhnik/github)
+[![Travis Build Status](https://travis-ci.org/sakhnik/dotfiles.svg?branch=master)](https://travis-ci.org/sakhnik/dotfiles)
 
 Configuration files, which I share among work stations.
 
