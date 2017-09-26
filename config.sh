@@ -11,6 +11,8 @@ zsh -df -c "source src/.zshrc"
 ./src/.bin/ycm-update.sh
 
 vim=vim
-[[ -x /usr/bin/nvim ]] && vim=nvim
+if which nvim 2>/dev/null; then
+    vim=nvim
+fi
 
 $vim +PlugInstall +qa
