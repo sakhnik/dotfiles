@@ -1,3 +1,5 @@
+[![Travis Build Status](https://travis-ci.org/sakhnik/dotfiles.svg?branch=master)](https://travis-ci.org/sakhnik/github)
+
 Configuration files, which I share among work stations.
 
 # Generic features
