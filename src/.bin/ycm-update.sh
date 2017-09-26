@@ -19,11 +19,11 @@ git submodule update --init --recommend-shallow --jobs 2
 
 # Skip unnecessary modules (C#, go, rust)
 (
-	cd third_party/ycmd
-	for s in OmniSharpServer gocode godef racerd; do
-		git submodule deinit third_party/$s
-		git rm third_party/$s
-	done
+    cd third_party/ycmd
+    for s in OmniSharpServer gocode godef racerd; do
+        git submodule deinit third_party/$s
+        git rm third_party/$s
+    done
 
 )
 
@@ -48,15 +48,20 @@ cd ..
 rsync -raP --delete YouCompleteMe $vimdir/
 
 # Update vim help tags
-vim +"helptags $vimdir/YouCompleteMe/doc" +qa
+vim=vim
+if which nvim 2>/dev/null; then
+    vim=nvim
+fi
+
+$vim +"helptags $vimdir/YouCompleteMe/doc" +qa
 
 # 
 echo \
-	| clang -v -E -x c++ - 2>&1 \
-	| awk '/#include <...>/,/End of search/' \
-	| grep '/usr' \
-	| while read -r l; do
-		echo `readlink -f $l`
-	done > $vimdir/includes.txt
+    | clang -v -E -x c++ - 2>&1 \
+    | awk '/#include <...>/,/End of search/' \
+    | grep '/usr' \
+    | while read -r l; do
+        echo `readlink -f $l`
+    done > $vimdir/includes.txt
 
 echo "SUCCESS"
