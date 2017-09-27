@@ -96,6 +96,7 @@ set shortmess=a
 let mapleader=' '
 let maplocalleader=' '
 "set cmdheight=2
+set lazyredraw
 
 nnoremap <leader>w :w<cr>
 
