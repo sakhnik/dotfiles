@@ -4,9 +4,7 @@
 # like shell or vim for automated testing.
 #
 # File format:
-# <time> <byteCount>
-# <... bytes ...>
-# <time> <byteCount>
+# <time from previous burst> <burst duration> <byteCount>
 # <... bytes ...>
 #
 
@@ -14,32 +12,44 @@ import sys, os, time
 import pty
 
 class KeyLogger:
-    grouping = 1.0   # group keystrokes by 1 second
+    grouping = 0.4   # group keystrokes that are closer than given time (seconds)
 
     def __init__(self, fname):
         self.of = open(fname, "wb")
-        self.last_time = time.monotonic()
-        self.last_dt = 0.0
+        self.prev_group_end = time.monotonic()
+        self.group_start = 0
+        self.last_time = 0
         self.buf = b''    # Buffer with grouped incremental input
 
     def log(self, data):
         now = time.monotonic()
-        dt = now - self.last_time
-        if dt > KeyLogger.grouping:
-            self.of.write(b"%f %d\n" % (self.last_dt, len(self.buf)))
-            self.of.write(self.buf)
-            self.of.write(b"\n")
+
+        if not self.group_start:
+            self.group_start = now
             self.last_time = now
             self.buf = data
-            self.last_dt = dt - self.last_dt
-        else:
-            self.buf += data
-            self.last_dt = dt
+            return
 
-    def __del__(self):
-        self.of.write(b"%f %d\n" % (self.last_dt, len(self.buf)))
+        dt = now - self.last_time
+        if dt > KeyLogger.grouping:
+            self.write_log()
+            self.prev_group_end = self.last_time
+            self.group_start = now
+            self.last_time = now
+            self.buf = data
+        else:
+            self.last_time = now
+            self.buf += data
+
+    def write_log(self):
+        self.of.write(b"%f %f %d\n" % (self.group_start - self.prev_group_end, \
+                                       self.last_time - self.group_start, \
+                                       len(self.buf)))
         self.of.write(self.buf)
         self.of.write(b"\n")
+
+    def __del__(self):
+        self.write_log()
 
 key_logger = KeyLogger("input")
 
