@@ -30,7 +30,7 @@ if [[ $1 == -S || $1 =~ -S.*u.* ]]; then
 jdk
 javafx-scenebuilder
 END
-        echo "  Checking $pkg"
+        printf "\r  Checking %-48s" $pkg
         for f in `pacaur -Ql $pkg | grep -E '/(bin|lib)/.' | awk '{print $2}'`; do
             if [[ -x "$f" ]]; then
                 output=$(ldd $f 2>/dev/null || continue)
@@ -43,6 +43,9 @@ END
     done
 
     if [[ -n "$to_rebuild" ]]; then
+        printf "\rTo rebuild: %-48s\n" "$to_rebuild"
         /usr/bin/pacaur -S $to_rebuild
+    else
+        printf "\rNothing to rebuild %-48s\n" " "
     fi
 fi
