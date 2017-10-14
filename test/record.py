@@ -42,9 +42,9 @@ class KeyLogger:
             self.buf += data
 
     def write_log(self):
-        self.of.write(b"%f %f %d\n" % (self.group_start - self.prev_group_end, \
-                                       self.last_time - self.group_start, \
-                                       len(self.buf)))
+        self.of.write(b"%.2f %.2f %d\n" % (self.group_start - self.prev_group_end, \
+                                           self.last_time - self.group_start, \
+                                           len(self.buf)))
         self.of.write(self.buf)
         self.of.write(b"\n")
 
