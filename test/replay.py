@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import time, sys
 
 with open("input", "rb") as f:
     while f:
@@ -9,7 +10,12 @@ with open("input", "rb") as f:
         delay = float(params[0])
         duration = float(params[1])
         count = int(params[2])
-        print(delay, duration, count)
+        # 1. Delay
+        time.sleep(delay)
         keystrokes = f.read(count)
-        print(keystrokes)
-        f.read(1)
+        d = duration / len(keystrokes)
+        for k in keystrokes:
+            sys.stdout.write("%c" % k)
+            sys.stdout.flush()
+            time.sleep(d)
+        f.read(1)    # newline
