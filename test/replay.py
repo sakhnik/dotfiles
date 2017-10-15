@@ -21,8 +21,10 @@ def InputReader():
                 delay = d
             f.read(1)    # newline
 
+master, slave = pty.openpty()
+vim = subprocess.Popen(['bash'], stdin=slave)
+
 keys = InputReader()
 for d,k in keys:
     time.sleep(d)
-    sys.stdout.write("%c" % k)
-    sys.stdout.flush()
+    os.write(master, b'%c' % k)
