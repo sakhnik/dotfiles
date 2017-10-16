@@ -9,6 +9,7 @@ import argparse
 parser = argparse.ArgumentParser(description='Replay prerecorded terminal session.')
 parser.add_argument('file', nargs='?', default='input', help='input with timings (see record.py)')
 parser.add_argument('--accel', type=float, default=1.0, help='acceleration factor (default 1.0)')
+parser.add_argument('--quiet', action='store_true', help='suppress terminal output')
 
 args = parser.parse_args(sys.argv[1:])
 
@@ -31,9 +32,15 @@ def InputReader():
                 delay = d
             f.read(1)    # newline
 
+stdout = None
+stderr = None
+if args.quiet:
+    stdout = subprocess.DEVNULL
+    stderr = subprocess.DEVNULL
+
 # Run shell in a PTY
 master, slave = pty.openpty()
-child = subprocess.Popen(['bash'], stdin=slave)
+child = subprocess.Popen(['bash'], stdin=slave, stdout=stdout, stderr=stderr)
 
 # Feed the child with timed input
 keys = InputReader()
