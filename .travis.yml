@@ -18,3 +18,4 @@ before_install:
 
 script:
   - ./config.sh
+  - ./zsh.sh -c test/test.sh
