@@ -8,8 +8,8 @@ import argparse
 
 parser = argparse.ArgumentParser(description='Replay prerecorded terminal session.')
 parser.add_argument('file', nargs='?', default='input', help='input with timings (see record.py)')
-parser.add_argument('--accel', type=float, default=1.0, help='acceleration factor (default 1.0)')
-parser.add_argument('--quiet', action='store_true', help='suppress terminal output')
+parser.add_argument('-a', '--accel', type=float, default=1.0, help='acceleration factor (default 1.0)')
+parser.add_argument('-q', '--quiet', action='store_true', help='suppress terminal output')
 
 args = parser.parse_args(sys.argv[1:])
 
