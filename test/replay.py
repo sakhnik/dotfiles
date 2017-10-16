@@ -46,4 +46,4 @@ child = subprocess.Popen(['bash'], stdin=slave, stdout=stdout, stderr=stderr)
 keys = InputReader()
 for d,k in keys:
     time.sleep(d / args.accel)
-    os.write(master, b'%c' % k)
+    os.write(master, bytes(chr(k), 'utf-8'))
