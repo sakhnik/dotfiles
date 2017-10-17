@@ -2,5 +2,4 @@ tags
 .zplug
 .local
 __pycache__/
-!src/.*
-!src/*
+src/.viminfo
