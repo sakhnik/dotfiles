@@ -8,7 +8,7 @@ cd $this_dir
 export HOME=$this_dir/src
 
 zsh -df -c "source src/.zshrc"
-./src/.bin/ycm-update.sh
+./src/.bin/ycm-update.sh || echo "Failed to install YCM"
 
 vim=vim
 if which nvim 2>/dev/null; then

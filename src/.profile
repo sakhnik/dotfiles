@@ -10,6 +10,8 @@ if [[ -x /usr/bin/ruby && -x /usr/bin/gem ]]; then
     PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
+mesg n || true
+
 #!/bin/bash
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/sakhnik/.sdkman"
