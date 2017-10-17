@@ -3,3 +3,5 @@ tags
 .local
 __pycache__/
 src/.viminfo
+src/.zhistory
+src/.bash_history
