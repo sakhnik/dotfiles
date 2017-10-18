@@ -2,6 +2,7 @@
 
 this_dir=`dirname ${BASH_SOURCE[0]}`
 cd $this_dir
+export HOME=`readlink -f ../src`
 
 test_cases=`find . -name "case*.sh" | sort`
 echo "Found `echo "$test_cases" | wc -l` test cases"
