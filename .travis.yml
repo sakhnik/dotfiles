@@ -8,6 +8,7 @@ before_install:
   - sudo add-apt-repository ppa:neovim-ppa/unstable -y
   - sudo add-apt-repository ppa:pkg-vim/vim-daily -y
   - sudo apt-get -qq update
+  - sudo apt-get -qq upgrade
   - sudo apt-get install -y zsh
   - sudo apt-get install -y libboost-filesystem-dev libboost-regex-dev libboost-system-dev libboost-python-dev
   - sudo apt-get install -y libclang-dev
