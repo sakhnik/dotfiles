@@ -26,6 +26,6 @@ else
     exit 1
 fi
 
-for i in /tmp/ycmd_stderr*.log; do
+for i in /tmp/ycmd_*.log; do
 	cat $i
 done
