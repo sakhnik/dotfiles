@@ -20,4 +20,4 @@ before_install:
 
 script:
   - ./config.sh
-  - vim --version
+  - ./test/test.sh
