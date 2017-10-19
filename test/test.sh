@@ -25,3 +25,7 @@ else
     echo "The following test cases failed: $failed"
     exit 1
 fi
+
+for i in /tmp/ycmd_stderr*.log; do
+	cat $i
+done
