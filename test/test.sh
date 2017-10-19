@@ -19,11 +19,13 @@ for test_case in `echo $test_cases`; do
     bash $test_case || log_failed $test_case
 done
 
+for i in /tmp/ycmd_*.log; do
+    cat $i
+done
+
 if [[ -z "$failed" ]]; then
     echo "PASSED"
 else
     echo "The following test cases failed: $failed"
     exit 1
 fi
-
-find /tmp -name 'ycm*.log'
