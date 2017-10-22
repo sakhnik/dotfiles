@@ -16,8 +16,10 @@ set $mod Mod4
 #font pango:monospace 12
 font pango:DejaVu Sans Mono, Icons 10
 
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border none
 new_window 1pixel
+
+bindsym Control+Shift+1 [class="^.*"] border toggle
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
