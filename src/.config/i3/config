@@ -171,5 +171,9 @@ bar {
         position top
 }
 
+# Lock screen
+bindsym Control+$mod+l exec "~/.bin/fuzzy_lock.sh"
+exec --no-startup-id xautolock -time 15 -locker '~/.bin/fuzzy_lock.sh'
+
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id udiskie -ans
