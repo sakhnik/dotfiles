@@ -10,7 +10,7 @@ status.register("clock",
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
-status.register("load")
+#status.register("load")
 
 # Shows your CPU temperature, if you have a Intel CPU
 #status.register("temp",
@@ -29,7 +29,7 @@ status.register("load")
 #   http://www.knopwob.org/dunst/
 status.register("battery",
     #format="{status}{consumption:.2f}W {percentage:.2f}% {remaining:%E%h:%M}",
-    format="{status}{percentage:.2f}% {remaining:%E%h:%M}",
+    format="{status}{percentage:.0f}% {remaining:%E%h:%M}",
     alert=True,
     alert_percentage=10,
     status={
@@ -41,7 +41,7 @@ status.register("battery",
 # Note: requires both netifaces and basiciw (for essid and quality)
 status.register("network",
     interface="wlp1s0",
-    format_up="{essid} {quality:03.0f}% {v4cidr}",)
+    format_up="{essid} {quality:2.0f}% {v4cidr}",)
 
 # Shows disk usage of /
 # Format:
