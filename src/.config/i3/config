@@ -185,3 +185,4 @@ exec --no-startup-id xss-lock -- '~/.bin/fuzzy_lock.sh'
 # Load gnome settings daemon
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id udiskie -ans
+exec --no-startup-id compton -bC
