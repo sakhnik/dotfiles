@@ -29,19 +29,19 @@ status.register("clock",
 #   http://www.knopwob.org/dunst/
 status.register("battery",
     #format="{status}{consumption:.2f}W {percentage:.2f}% {remaining:%E%h:%M}",
-    format="{status}{percentage:.0f}% {remaining:%E%h:%M}",
+    format="{status} {percentage:.0f}% {remaining:%E%h:%M}",
     alert=True,
     alert_percentage=10,
     status={
-        "DIS": "↓",
-        "CHR": "↑",
-        "FULL": "=",
+        "DIS": "BAT",
+        "CHR": "AC ",
+        "FULL": "AC*",
     },)
 
 # Note: requires both netifaces and basiciw (for essid and quality)
 status.register("network",
     interface="wlp1s0",
-    format_up="{essid} {quality:2.0f}% {v4cidr}",)
+    format_up="{essid} {quality:3.0f}% {v4cidr}",)
 
 # Shows disk usage of /
 # Format:
@@ -66,5 +66,8 @@ status.register("pulseaudio",
 #        "play": "▶",
 #        "stop": "◾",
 #    },)
+
+status.register("backlight",
+    format="☼{percentage}",)
 
 status.run()
