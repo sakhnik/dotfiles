@@ -177,8 +177,8 @@ bar {
 
 # Lock screen manually
 bindsym Control+$mod+l exec "~/.bin/fuzzy_lock.sh"
-# Lock screen on idle 15 minutes
-exec --no-startup-id xautolock -time 15 -locker '~/.bin/fuzzy_lock.sh'
+# Lock screen on idle (minutes)
+exec --no-startup-id xautolock -time 10 -locker '~/.bin/fuzzy_lock.sh'
 # Lock screen on suspend
 exec --no-startup-id xss-lock -- '~/.bin/fuzzy_lock.sh'
 
