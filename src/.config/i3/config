@@ -194,7 +194,7 @@ bindsym Control+$mod+l exec "~/.bin/fuzzy_lock.sh"
 # Lock screen on idle (minutes)
 exec --no-startup-id xautolock -time 5 -locker '~/.bin/fuzzy_lock.sh'
 # Lock screen on suspend
-exec --no-startup-id xss-lock -- '~/.bin/fuzzy_lock.sh'
+exec --no-startup-id xss-lock -- i3lock -c 777777
 
 # Load gnome settings daemon
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
