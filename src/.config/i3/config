@@ -196,6 +196,12 @@ exec --no-startup-id xautolock -time 5 -locker '~/.bin/fuzzy_lock.sh'
 # Lock screen on suspend
 exec --no-startup-id xss-lock -- i3lock -c 777777
 
+# Multi-screen screenshots with scrot
+bindsym --release Print exec scrot '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'chmod go-a $f' # All screens
+# OSX-like area selection screenshots
+bindsym --release Shift+Print exec scrot --select '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'chmod go-a $f' # Area selection
+bindsym --release $mod+Print exec scrot --focused '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'chmod go-a $f' # Focused window
+
 # Load gnome settings daemon
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id udiskie -ans
