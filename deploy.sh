@@ -18,3 +18,6 @@ ignores=$( \
 
 # Utilize GNU stow to symlink from HOME to our config files.
 stow -Svt $HOME --ignore "($ignores)" src
+
+# Check that all executables required for i3 are reachable
+./check-i3.sh
