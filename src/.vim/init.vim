@@ -89,6 +89,7 @@ if !has('nvim')
   set guioptions-=T
   set guioptions-=m
   set mousehide
+  set incsearch
 endif
 set clipboard=unnamed
 set completeopt=menu,longest,preview
