@@ -12,7 +12,7 @@
 	tool = vimdiff
 	conflictstyle = diff3
 	prompt = false
-[mergetool "vimdiff"]
+[mergetool]
 	keepBackup = false
 [diff]
 	submodule = log
