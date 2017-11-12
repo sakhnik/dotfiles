@@ -123,7 +123,6 @@ endif
 
 nnoremap <leader>ve :split $MYVIMRC<cr>
 
-runtime! plugin/*.vim
 runtime autoload/plug.vim
 
 let s:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
@@ -179,6 +178,7 @@ Plug 'vim-scripts/dbext.vim', { 'on': 'Dbext' }
 Plug 'raimondi/delimitmate'
 Plug 'drmikehenry/vim-fontsize'
 Plug 'wellle/targets.vim'
+Plug 'andymass/vim-matchup'
 "Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-git'
 Plug 'vim-jp/vim-cpp'
@@ -259,6 +259,7 @@ Plug 'sakhnik/nvim-gdb'
 
 call plug#end()
 
+runtime! plugin/*.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe stuff
