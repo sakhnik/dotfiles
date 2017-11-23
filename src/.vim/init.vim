@@ -276,6 +276,7 @@ if isdirectory(s:vimdir . '/YouCompleteMe')
   let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
   let g:ycm_complete_in_comments = 1 " Completion in comments
   let g:ycm_complete_in_strings = 1 " Completion in string
+  let g:ycm_always_populate_location_list = 1
 
   " If there's preinstalled version, integrated with system libraries, prefer it
   exe 'set rtp+='.s:vimdir.'/YouCompleteMe'
