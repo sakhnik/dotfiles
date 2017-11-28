@@ -178,7 +178,6 @@ Plug 'vim-scripts/dbext.vim', { 'on': 'Dbext' }
 Plug 'raimondi/delimitmate'
 Plug 'drmikehenry/vim-fontsize'
 Plug 'wellle/targets.vim'
-Plug 'andymass/vim-matchup'
 "Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-git'
 Plug 'vim-jp/vim-cpp'
@@ -189,6 +188,9 @@ Plug 'plasticboy/vim-markdown'
   let g:vim_markdown_frontmatter = 1
   let g:vim_markdown_no_default_key_mappings = 1
 Plug 'LaTeX-Box-Team/LaTeX-Box'
+
+Plug 'andymass/vim-matchup'
+  let g:matchup_matchparen_status_offscreen = 0
 
 Plug 'lyuts/vim-rtags'
   let g:rtagsUseLocationList = 0
