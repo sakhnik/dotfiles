@@ -195,7 +195,7 @@ bindsym Control+$mod+l exec "~/.bin/i3-lock.sh"
 # Lock screen on idle (minutes)
 exec --no-startup-id xautolock -time 5 -locker '~/.bin/i3-lock.sh'
 # Lock screen on suspend
-exec --no-startup-id xss-lock -- '~/.bin/i3-lock.sh' -c 777777
+exec --no-startup-id xss-lock -- '~/.bin/i3-lock.sh'
 
 # Multi-screen screenshots with scrot
 bindsym --release Print exec scrot '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'chmod go-a $f' # All screens
