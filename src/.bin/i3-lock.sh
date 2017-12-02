@@ -7,6 +7,8 @@ scrot /tmp/screen_locked.png
 #mogrify -scale 10% -scale 1000% /tmp/screen_locked.png
 mogrify -blur 20x10 /tmp/screen_locked.png
 
+# Ensure English keyboard to easy unlocking
+xkb-switch -s us
 
 # Lock screen displaying this image.
 i3lock -i /tmp/screen_locked.png

@@ -191,11 +191,11 @@ bar {
 }
 
 # Lock screen manually
-bindsym Control+$mod+l exec "~/.bin/fuzzy_lock.sh"
+bindsym Control+$mod+l exec "~/.bin/i3-lock.sh"
 # Lock screen on idle (minutes)
-exec --no-startup-id xautolock -time 5 -locker '~/.bin/fuzzy_lock.sh'
+exec --no-startup-id xautolock -time 5 -locker '~/.bin/i3-lock.sh'
 # Lock screen on suspend
-exec --no-startup-id xss-lock -- i3lock -c 777777
+exec --no-startup-id xss-lock -- '~/.bin/i3-lock.sh' -c 777777
 
 # Multi-screen screenshots with scrot
 bindsym --release Print exec scrot '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'chmod go-a $f' # All screens
@@ -203,6 +203,7 @@ bindsym --release Print exec scrot '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'chmod
 bindsym --release Shift+Print exec scrot --select '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'chmod go-a $f' # Area selection
 bindsym --release $mod+Print exec scrot --focused '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'chmod go-a $f' # Focused window
 
+exec --no-startup-id ~/.bin/i3-startup.sh
 # Load gnome settings daemon
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id udiskie -ans
