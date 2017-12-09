@@ -1,10 +1,5 @@
 
-if exists("g:loaded_choose_keymap")
-    finish
-endif
-let g:loaded_choose_keymap = 1
-
-function! ChooseKeymap()
+function! mykeymaps#ChooseKeymap()
     let keymaps = ['', 'uk']
     let prompt_keymaps = []
     let index = 0
@@ -14,10 +9,7 @@ function! ChooseKeymap()
     endwhile
     let choice = inputlist(prompt_keymaps)
     if choice >= 0 && choice < len(keymaps)
-		let &keymap=keymaps[choice]
+        let &keymap=keymaps[choice]
     endif
-	return ''
+    return ''
 endf
-
-nmap <leader>kk :call ChooseKeymap()<cr>
-nmap <leader>ku :setlocal keymap=uk<cr>
