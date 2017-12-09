@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export LANG=uk_UA.utf8
+export LANG=en_US.utf8
 
 export PATH=$PATH:/bin:/sbin:/usr/sbin
 [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
