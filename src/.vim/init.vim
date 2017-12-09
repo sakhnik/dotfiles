@@ -321,24 +321,6 @@ nnoremap <Leader><space> /\s\+$\\| \+\ze\t<cr>
 "" Doxygen parser
 "let &efm = &efm . ',%f:%l\ %m'
 "
-"" Ignore timestamp lines in Google Test output
-"let gtest_efm = '%E%f:%l:\ Failure'
-"let gtest_efm .= ',%Z%m'
-"let &efm = gtest_efm . ',' . &efm
-
-" Doctest C++ unit testing
-let &efm = '%E%f(%l) ERROR!,%E%f(%l) FATAL ERROR!,%-Cwith expansion:,%C %m,%Z,' . &efm
-
-" CMake Parser
-" Call stack entries
-let &efm .= ', %#%f:%l %#(%m)'
-" Start of multi-line error
-let &efm .= ',%E' . 'CMake Error at %f:%l (%m):'
-" End of multi-line error
-let &efm .= ',%Z' . 'Call Stack (most recent call first):'
-" Continuation is message
-let &efm .= ',%C' . ' %m'
-
 
 " NetRW
 let g:netrw_liststyle = 3

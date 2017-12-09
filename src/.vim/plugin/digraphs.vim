@@ -4,6 +4,5 @@ if !exists("+digraph")
     finish
 endif
 
-" трикрапка
-digraph 3_ 8230
-digraph Hr 8372
+digraph 3_ 8230   " …
+digraph Hr 8372   " ₴
