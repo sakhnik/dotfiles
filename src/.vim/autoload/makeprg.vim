@@ -12,7 +12,7 @@ function! makeprg#find_builddir(expr)
   return ""
 endfunction
 
-function! makeprg#cmake(...)
+function! makeprg#CMake(...)
   let s:build_dir = makeprg#find_builddir('BUILD*')
   if s:build_dir != ""
     let &makeprg='make --directory=' . s:build_dir
@@ -20,6 +20,19 @@ function! makeprg#cmake(...)
       let &makeprg .= ' ' . arg
     endfor
     make
+  endif
+endfunction
+
+function! makeprg#CMakeDefault()
+  let build_dir = makeprg#find_builddir('BUILD*')
+  if build_dir != ""
+    if filereadable('/proc/cpuinfo')
+      let jobcount = system('grep -c ^processor /proc/cpuinfo') + 1
+      let &makeprg = 'make --directory='.build_dir.' -j'.jobcount
+      make
+    endif
+  else
+    echoerr "Couldn't find BUILD*/"
   endif
 endfunction
 
@@ -36,5 +49,6 @@ function! makeprg#SetMakePrg()
     let choice = inputlist(prompt_makeprgs)
     if choice >= 0 && choice < len(makeprgs)
         let &makeprg = makeprgs[choice]
+        make
     endif
 endf
