@@ -248,10 +248,14 @@ Plug 'mhinz/vim-grepper'
 
 Plug 'tenfyzhong/CompleteParameter.vim'
   inoremap <silent><expr> ( complete_parameter#pre_complete("()")
-  smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-  imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-  smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
-  imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+  imap <m-j> <Plug>(complete_parameter#goto_next_parameter)
+  smap <m-j> <Plug>(complete_parameter#goto_next_parameter)
+  imap <m-k> <Plug>(complete_parameter#goto_previous_parameter)
+  smap <m-k> <Plug>(complete_parameter#goto_previous_parameter)
+  imap <m-d> <Plug>(complete_parameter#overload_down)
+  smap <m-d> <Plug>(complete_parameter#overload_down)
+  imap <m-u> <Plug>(complete_parameter#overload_up)
+  smap <m-u> <Plug>(complete_parameter#overload_up)
 
 Plug 'ledger/vim-ledger'
   let g:ledger_extra_options = '--pedantic --explicit --check-payees --price-db prices.db'
