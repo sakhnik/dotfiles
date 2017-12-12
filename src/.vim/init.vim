@@ -98,6 +98,7 @@ let mapleader=' '
 let maplocalleader=' '
 "set cmdheight=2
 set lazyredraw
+set laststatus=0
 
 nnoremap <leader>w :w<cr>
 
@@ -209,18 +210,18 @@ Plug 'Kris2k/A.vim'
 Plug 'simnalamburt/vim-mundo'
   nnoremap <leader>uu :GundoToggle<cr>
 
-Plug 'bling/vim-airline'
-  let g:airline_theme='dark'
-  let g:airline_left_sep = ''
-  let g:airline_right_sep = ''
-  if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
-  let g:airline_symbols.branch = '⎇ '   "±
-  let g:airline_symbols.paste = 'ρ'
-  "let g:airline_symbols.linenr = '¶ '
-  let g:airline#extensions#whitespace#mixed_indent_algo = 2
-  let g:airline#extensions#tabline#enabled = 0
+"Plug 'bling/vim-airline'
+"  let g:airline_theme='dark'
+"  let g:airline_left_sep = ''
+"  let g:airline_right_sep = ''
+"  if !exists('g:airline_symbols')
+"    let g:airline_symbols = {}
+"  endif
+"  let g:airline_symbols.branch = '⎇ '   "±
+"  let g:airline_symbols.paste = 'ρ'
+"  "let g:airline_symbols.linenr = '¶ '
+"  let g:airline#extensions#whitespace#mixed_indent_algo = 2
+"  let g:airline#extensions#tabline#enabled = 0
 
 Plug 'neomake/neomake'
   let g:neomake_open_list = 2
