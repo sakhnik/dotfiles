@@ -210,19 +210,6 @@ Plug 'Kris2k/A.vim'
 Plug 'simnalamburt/vim-mundo'
   nnoremap <leader>uu :GundoToggle<cr>
 
-"Plug 'bling/vim-airline'
-"  let g:airline_theme='dark'
-"  let g:airline_left_sep = ''
-"  let g:airline_right_sep = ''
-"  if !exists('g:airline_symbols')
-"    let g:airline_symbols = {}
-"  endif
-"  let g:airline_symbols.branch = '⎇ '   "±
-"  let g:airline_symbols.paste = 'ρ'
-"  "let g:airline_symbols.linenr = '¶ '
-"  let g:airline#extensions#whitespace#mixed_indent_algo = 2
-"  let g:airline#extensions#tabline#enabled = 0
-
 Plug 'neomake/neomake'
   let g:neomake_open_list = 2
   let g:neomake_serialize = 1
@@ -247,17 +234,6 @@ Plug 'mhinz/vim-grepper'
     \   'grepformat': '%f:%\\d%\\+:%l:%m',
     \   'escape':     '\+*^$()[]',
     \ }}
-
-Plug 'tenfyzhong/CompleteParameter.vim'
-  inoremap <silent><expr> ( complete_parameter#pre_complete("()")
-  imap <m-j> <Plug>(complete_parameter#goto_next_parameter)
-  smap <m-j> <Plug>(complete_parameter#goto_next_parameter)
-  imap <m-k> <Plug>(complete_parameter#goto_previous_parameter)
-  smap <m-k> <Plug>(complete_parameter#goto_previous_parameter)
-  imap <m-d> <Plug>(complete_parameter#overload_down)
-  smap <m-d> <Plug>(complete_parameter#overload_down)
-  imap <m-u> <Plug>(complete_parameter#overload_up)
-  smap <m-u> <Plug>(complete_parameter#overload_up)
 
 Plug 'ledger/vim-ledger'
   let g:ledger_extra_options = '--pedantic --explicit --check-payees --price-db prices.db'
