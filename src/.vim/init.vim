@@ -98,7 +98,7 @@ let mapleader=' '
 let maplocalleader=' '
 "set cmdheight=2
 set lazyredraw
-set laststatus=0
+set laststatus=1
 
 nnoremap <leader>w :w<cr>
 
