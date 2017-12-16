@@ -14,7 +14,6 @@ if !has('nvim')
 endif
 set nobackup backupdir=.
 set wildmode=longest,list,full
-set path+=**
 set diffopt+=iwhite
 
 if has("autocmd")
