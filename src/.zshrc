@@ -102,6 +102,7 @@ unset zshrc_path
 if [ "$TERM" != "dumb" ]; then
     eval "`dircolors -b`"
     alias ls='ls --color=auto'
+    alias cower='cower --color=auto'
 
     if [[ -f /usr/bin/grep ]]; then
         alias grep='/usr/bin/grep --color'

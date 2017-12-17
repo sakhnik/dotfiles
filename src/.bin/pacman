@@ -2,9 +2,9 @@
 
 set -e
 
-[[ -x /usr/bin/pacaur ]] || exit 255
+pacman="sudo /usr/bin/pacman"
 
-/usr/bin/pacaur "$@"
+$pacman "$@"
 
 if [[ $1 == -S || $1 =~ -S.*u.* ]]; then
     white=`tput setaf 7`
@@ -24,14 +24,14 @@ if [[ $1 == -S || $1 =~ -S.*u.* ]]; then
     # with ldd and rebuild those with dangling dependency.
     echo "${bold}${blue}:: ${white}Checking whether AUR packages need be rebuilt...${reset}"
     to_rebuild=
-    for pkg in `pacaur -Qm | awk '{print $1}'`; do
+    for pkg in `$pacman -Qm | awk '{print $1}'`; do
         # Blacklist: skip known exceptional packages
         grep -q $pkg <<END && continue
 jdk
 javafx-scenebuilder
 END
         printf "\r  Checking %-48s" $pkg
-        for f in `pacaur -Ql $pkg | grep -E '/(bin|lib)/.' | awk '{print $2}'`; do
+        for f in `$pacman -Ql $pkg | grep -E '/(bin|lib)/.' | awk '{print $2}'`; do
             if [[ -x "$f" ]]; then
                 output=$(ldd $f 2>/dev/null || continue)
                 if grep -q 'not found' <<< "$output"; then
@@ -44,7 +44,7 @@ END
 
     if [[ -n "$to_rebuild" ]]; then
         printf "\rTo rebuild: %-48s\n" "$to_rebuild"
-        /usr/bin/pacaur -S $to_rebuild
+        #/usr/bin/pacaur -S $to_rebuild
     else
         printf "\rNothing to rebuild %-48s\n" " "
     fi
