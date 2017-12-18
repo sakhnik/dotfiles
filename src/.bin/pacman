@@ -4,7 +4,7 @@ set -e
 
 pacman=/usr/bin/pacman
 
-sudo $pacman "$@"
+$pacman "$@" || sudo pacman "$@"
 
 if [[ $1 == -S || $1 =~ -S.*u.* ]]; then
     white=`tput setaf 7`
@@ -49,3 +49,5 @@ END
         printf "\rNothing to rebuild %-48s\n" " "
     fi
 fi
+
+cower -u
