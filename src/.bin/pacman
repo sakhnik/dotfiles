@@ -48,6 +48,7 @@ END
     else
         printf "\rNothing to rebuild %-48s\n" " "
     fi
+
+    cower -u
 fi
 
-cower -u
