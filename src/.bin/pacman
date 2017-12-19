@@ -4,7 +4,7 @@ set -e
 
 pacman=/usr/bin/pacman
 
-$pacman "$@" || sudo pacman "$@"
+$pacman "$@" || sudo $pacman "$@"
 
 if [[ $1 == -S || $1 =~ -S.*u.* ]]; then
     white=`tput setaf 7`
