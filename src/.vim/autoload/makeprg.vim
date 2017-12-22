@@ -24,13 +24,26 @@ function! makeprg#CMake(...)
 endfunction
 
 function! makeprg#CMakeDefault()
+  " Find the first available build directory
   let build_dir = makeprg#find_builddir('BUILD*')
+
   if build_dir != ""
+    " Detect how many concurrent jobs are possible on this CPU: cpus + 1
+    let jobopts = ''
     if filereadable('/proc/cpuinfo')
       let jobcount = system('grep -c ^processor /proc/cpuinfo') + 1
-      let &makeprg = 'make --directory='.build_dir.' -j'.jobcount
-      make
+      let jobopts = ' -j'.jobcount
     endif
+
+    " Detect what command is used to build the source: make or ninja
+    let makecmd = 'make'
+    if filereadable(build_dir . '/build.ninja')
+      let makecmd = 'ninja'
+    endif
+
+    " Set the option 'makeprg' and build the code
+    let &makeprg = makecmd . ' -C ' . build_dir . jobopts
+    make
   else
     echoerr "Couldn't find BUILD*/"
   endif
