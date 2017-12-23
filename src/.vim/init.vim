@@ -1,4 +1,4 @@
-" vim: set noet ts=2 sw=2:
+" vim: set et ts=2 sw=2:
 
 if &term == "linux" && !has('nvim')
   set t_ve+=[?81;0;112c
@@ -66,6 +66,7 @@ set tabstop=4
 set cindent shiftwidth=4
 set cinoptions=:0,=1s,g0,(0,M1,U0,u0
 set copyindent
+set expandtab
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if exists("+mouse")
@@ -322,5 +323,3 @@ if &t_Co == 256 || has("gui_running")
   colors zenburn
   hi Comment cterm=italic
 endif
-
-"vim: set et ts=4 sw=4:
