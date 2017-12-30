@@ -190,6 +190,8 @@ Plug 'plasticboy/vim-markdown'
   let g:vim_markdown_folding_disabled = 1
   let g:vim_markdown_frontmatter = 1
   let g:vim_markdown_no_default_key_mappings = 1
+Plug 'suan/vim-instant-markdown'
+  let g:instant_markdown_autostart = 0
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 
 Plug 'andymass/vim-matchup'
