@@ -4,7 +4,7 @@ set -e
 
 pacman=/usr/bin/pacman
 
-if [[ $1 =~ -[SQ][slom].* ]]; then
+if [[ $1 =~ -[SQ][slomi].* ]]; then
     $pacman "$@"
 else
     sudo $pacman "$@"
