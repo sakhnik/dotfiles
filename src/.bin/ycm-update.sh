@@ -59,9 +59,8 @@ $vim +"helptags $vimdir/YouCompleteMe/doc" +qa
 echo \
     | clang -v -E -x c++ - 2>&1 \
     | awk '/#include <...>/,/End of search/' \
-    | grep '/usr' \
     | while read -r l; do
-        echo `readlink -f $l`
+        [[ -d "$l" ]] && echo `readlink -f $l`
     done > $vimdir/includes.txt
 
 echo "SUCCESS"
