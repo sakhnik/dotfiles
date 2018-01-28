@@ -48,9 +48,9 @@ cd ..
 rsync -raP --delete YouCompleteMe $vimdir/
 
 # Update vim help tags
-vim=vim
-if which nvim 2>/dev/null; then
-    vim=nvim
+vim="vim -es"
+if which nvim >/dev/null 2>&1; then
+    vim="nvim -es --headless"
 fi
 
 $vim -es +"helptags $vimdir/YouCompleteMe/doc" +qa
