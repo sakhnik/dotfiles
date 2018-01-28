@@ -53,7 +53,7 @@ if which nvim 2>/dev/null; then
     vim=nvim
 fi
 
-$vim +"helptags $vimdir/YouCompleteMe/doc" +qa
+$vim -es +"helptags $vimdir/YouCompleteMe/doc" +qa
 
 # 
 echo \
