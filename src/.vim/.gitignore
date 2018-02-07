@@ -1,7 +1,5 @@
 .netrwhist
 *.pyc
 autoload/plug.vim.old
-YouCompleteMe
 plugged
 spell
-includes.txt

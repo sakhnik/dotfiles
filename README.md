@@ -25,7 +25,7 @@ First clone the repository to a working directory:
 ```
 
 Then you need to configure the distribution: download zplug plugins,
-download vim plugins, install and build YouCompleteMe. For this, execute:
+download vim plugins. For this, execute:
 
 ```
   ./config.sh
