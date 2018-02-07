@@ -198,9 +198,6 @@ Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'andymass/vim-matchup'
   let g:matchup_matchparen_status_offscreen = 0
 
-Plug 'lyuts/vim-rtags'
-  let g:rtagsUseLocationList = 0
-
 Plug 'majutsushi/tagbar'
   nnoremap <leader>tb :TagbarToggle<cr>
 
