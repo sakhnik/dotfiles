@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+cat > .cquery <<END
+clang++
+-xc++
+-std=c++17
+END
+
+echo \
+    | clang -v -E -x c++ - 2>&1 \
+    | awk '/#include <...>/,/End of search/' \
+    | while read -r l; do
+        [[ -d "$l" ]] && echo "-isystem`readlink -f $l`"
+    done >> .cquery
