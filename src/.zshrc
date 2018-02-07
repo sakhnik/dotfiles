@@ -131,9 +131,6 @@ set -o long_list_jobs
 
 [[ -n "$PS1" ]] && {
 
-ycm-check.sh || \
-    echo "$red(E)$reset  YouCompleteMe non-functional, run ycm-update.sh"
-
 echo "Terminal true color test"
 awk 'BEGIN{
     s="/\\/\\/\\/\\/\\"; s=s s s s s s s s;

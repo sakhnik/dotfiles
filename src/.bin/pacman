@@ -15,13 +15,6 @@ if [[ $1 == -S || $1 =~ -S.*u.* ]]; then
     blue=`tput setaf 4`
     bold=`tput bold`
     reset=`tput sgr 0`
-    echo "${bold}${blue}:: ${white}Checking YouCompleteMe deployment...${reset}"
-    if ! ycm-check.sh ; then
-        echo "Updating outdated YouCompleteMe deployment"
-        ycm-update.sh
-        echo "Validation"
-        ycm-check.sh
-    fi
 
     # Upgrading libraries may leave AUR packages broken.
     # Let's loop over all installed "foreign" packages, check their linkage
