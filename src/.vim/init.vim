@@ -67,6 +67,7 @@ set cindent shiftwidth=4
 set cinoptions=:0,=1s,g0,(0,M1,U0,u0
 set copyindent
 set expandtab
+set hidden
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if exists("+mouse")
@@ -248,6 +249,28 @@ Plug 'ledger/vim-ledger'
 Plug 'sakhnik/nvim-gdb'
 
   "nnoremap <leader>dd :GdbStart gdb -q -f a.out
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+  let g:LanguageClient_serverCommands = {
+      \ 'cpp': ['cquery', '--language-server', '--log-file=/tmp/cq.log']
+      \ }
+  let g:LanguageClient_loadSettings = 1
+  let g:LanguageClient_settingsPath = s:vimdir . '/cquery.json'
+  "let g:LanguageClient_diagnosticsList = "location"
+  let g:LanguageClient_selectionUI = "location-list"
+
+  nnoremap <leader>ll :call LanguageClient_textDocument_hover()<cr>
+  nnoremap <leader>lj :call LanguageClient_textDocument_definition()<cr>
+  nnoremap <leader>lw :call LanguageClient_textDocument_rename()<cr>
+  nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol() <bar> lopen<cr>
+  nnoremap <leader>lf :call LanguageClient_textDocument_references() <bar> lopen<cr>
+  nnoremap <leader>lS :call LanguageClient_workspace_symbol() <bar> lopen<cr>
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
