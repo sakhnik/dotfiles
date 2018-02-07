@@ -250,6 +250,22 @@ Plug 'sakhnik/nvim-gdb'
 
   "nnoremap <leader>dd :GdbStart gdb -q -f a.out
 
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#enable_smart_case = 1
+  " Enable snipMate compatibility feature.
+  let g:neosnippet#enable_snipmate_compatibility = 1
+  imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
+  imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+  imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
+
+  " For conceal markers.
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
+
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -269,8 +285,6 @@ Plug 'autozimu/LanguageClient-neovim', {
   nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol() <bar> lopen<cr>
   nnoremap <leader>lf :call LanguageClient_textDocument_references() <bar> lopen<cr>
   nnoremap <leader>lS :call LanguageClient_workspace_symbol() <bar> lopen<cr>
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
