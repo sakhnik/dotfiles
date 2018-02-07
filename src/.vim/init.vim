@@ -283,6 +283,15 @@ Plug 'autozimu/LanguageClient-neovim', {
   nnoremap <leader>lf :call LanguageClient_textDocument_references() <bar> lopen<cr>
   nnoremap <leader>lS :call LanguageClient_workspace_symbol() <bar> lopen<cr>
 
+  augroup LanguageClient_config
+    au!
+    au BufEnter * let b:Plugin_LanguageClient_started = 0
+    au User LanguageClientStarted setl signcolumn=yes
+    au User LanguageClientStarted let b:Plugin_LanguageClient_started = 1
+    au User LanguageClientStopped setl signcolumn=auto
+    au User LanguageClientStopped let b:Plugin_LanguageClient_stopped = 0
+    au CursorMoved * if b:Plugin_LanguageClient_started | call LanguageClient_textDocument_hover() | endif
+  augroup END
 call plug#end()
 
 runtime! plugin/*.vim
