@@ -259,9 +259,9 @@ Plug 'Shougo/neosnippet-snippets'
   imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
 
   " For conceal markers.
-  if has('conceal')
-    set conceallevel=2 concealcursor=niv
-  endif
+  "if has('conceal')
+  "  set conceallevel=2 concealcursor=niv
+  "endif
 
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
