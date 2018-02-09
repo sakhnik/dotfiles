@@ -252,6 +252,12 @@ Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#enable_smart_case = 1
+
+  let g:deoplete#sources = {}
+  let g:deoplete#sources._ = ['buffer']
+  let g:deoplete#sources.cpp = ['omni', 'LanguageClient']
+  let g:deoplete#sources.ledger = ['omni']
+
   " Enable snipMate compatibility feature.
   let g:neosnippet#enable_snipmate_compatibility = 1
   imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
