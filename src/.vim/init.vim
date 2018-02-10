@@ -93,8 +93,8 @@ if !has('nvim')
   set incsearch
 endif
 set clipboard=unnamed
-set completeopt=menu,longest,preview
-set shortmess=a
+set completeopt=menu,preview
+set shortmess=ac
 let mapleader=' '
 let maplocalleader=' '
 "set cmdheight=2
