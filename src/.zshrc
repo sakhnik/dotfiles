@@ -76,8 +76,6 @@ unset fzf_dir
 
 # Let ctest output error on test failure
 export CTEST_OUTPUT_ON_FAILURE=1
-# Use vim as man pager
-export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
 
 # Use nvim as vim by default (if available)
 if [[ -x /usr/bin/nvim || -x /usr/local/bin/nvim ]]; then
@@ -85,9 +83,13 @@ if [[ -x /usr/bin/nvim || -x /usr/local/bin/nvim ]]; then
     alias vimdiff="nvim -d"
     export EDITOR=nvim
     [[ -n "$PS1" ]] && echo "$green(I)$reset  Neovim is the default editor"
+    # Use nvim as man pager
+    export MANPAGER="env MAN_PN=1 nvim -M +'set ft=man' -"
 else
     export EDITOR=vim
     [[ -n "$PS1" ]] && echo "$green(I)$reset  Vim is the default editor"
+    # Use vim as man pager
+    export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
 fi
 
 if [[ -f $zshrc_dir/../pystartup.py ]]; then
