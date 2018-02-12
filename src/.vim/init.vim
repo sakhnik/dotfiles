@@ -279,7 +279,7 @@ Plug 'autozimu/LanguageClient-neovim', {
       \ }
   let g:LanguageClient_loadSettings = 1
   let g:LanguageClient_settingsPath = s:vimdir . '/cquery.json'
-  "let g:LanguageClient_diagnosticsList = "location"
+  let g:LanguageClient_diagnosticsList = "Location"
   let g:LanguageClient_selectionUI = "location-list"
 
   nnoremap <leader>li :call LanguageClient_textDocument_hover()<cr>
