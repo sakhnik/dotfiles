@@ -282,12 +282,21 @@ Plug 'autozimu/LanguageClient-neovim', {
   "let g:LanguageClient_diagnosticsList = "location"
   let g:LanguageClient_selectionUI = "location-list"
 
-  nnoremap <leader>ll :call LanguageClient_textDocument_hover()<cr>
+  nnoremap <leader>li :call LanguageClient_textDocument_hover()<cr>
   nnoremap <leader>lj :call LanguageClient_textDocument_definition()<cr>
   nnoremap <leader>lw :call LanguageClient_textDocument_rename()<cr>
   nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol() <bar> lopen<cr>
   nnoremap <leader>lf :call LanguageClient_textDocument_references() <bar> lopen<cr>
   nnoremap <leader>lS :call LanguageClient_workspace_symbol() <bar> lopen<cr>
+  nnoremap <leader>ll :call LanguageClientMyToggle()<cr>
+
+  function! LanguageClientMyToggle()
+    if b:Plugin_LanguageClient_started
+      LanguageClientStop
+    else
+      LanguageClientStart
+    endif
+  endfunction
 
   augroup LanguageClient_config
     au!
@@ -295,7 +304,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     au User LanguageClientStarted setl signcolumn=yes
     au User LanguageClientStarted let b:Plugin_LanguageClient_started = 1
     au User LanguageClientStopped setl signcolumn=auto
-    au User LanguageClientStopped let b:Plugin_LanguageClient_stopped = 0
+    au User LanguageClientStopped let b:Plugin_LanguageClient_started = 0
     au CursorMoved * if b:Plugin_LanguageClient_started | call LanguageClient_textDocument_hover() | endif
   augroup END
 call plug#end()
