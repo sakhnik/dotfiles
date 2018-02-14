@@ -290,8 +290,17 @@ Plug 'autozimu/LanguageClient-neovim', {
   nnoremap <leader>lS :call LanguageClient_workspace_symbol() <bar> lopen<cr>
   nnoremap <leader>ll :call LanguageClientMyToggle()<cr>
 
+  " Language servers are started per file type.
+  " My requirements:
+  "   * show hover automatically for the activated file types
+  "   * show signcolumn for the activated file types
+  "   * hide signcolumn in the unfocused windows
+
+  " List of active filetypes
+  let g:ls_started_filetypes = []
+
   function! LanguageClientMyToggle()
-    if b:Plugin_LanguageClient_started
+    if index(g:ls_started_filetypes, &filetype) != -1
       LanguageClientStop
     else
       LanguageClientStart
@@ -300,13 +309,13 @@ Plug 'autozimu/LanguageClient-neovim', {
 
   augroup LanguageClient_config
     au!
-    au BufEnter * let b:Plugin_LanguageClient_started = 0
-    au User LanguageClientStarted setl signcolumn=yes
-    au User LanguageClientStarted let b:Plugin_LanguageClient_started = 1
-    au User LanguageClientStopped setl signcolumn=auto
-    au User LanguageClientStopped let b:Plugin_LanguageClient_started = 0
-    au CursorMoved * if b:Plugin_LanguageClient_started | call LanguageClient_textDocument_hover() | endif
+    au BufEnter * if index(g:ls_started_filetypes, &filetype) != -1 | setl signcolumn=yes | endif
+    au BufLeave,WinLeave * setl signcolumn=auto
+    au User LanguageClientStarted call insert(g:ls_started_filetypes, &filetype) | setl signcolumn=yes
+    au User LanguageClientStopped call remove(g:ls_started_filetypes, &filetype) | setl signcolumn=auto
+    au CursorMoved * if index(g:ls_started_filetypes, &filetype) != -1 | call LanguageClient_textDocument_hover() | endif
   augroup END
+
 call plug#end()
 
 runtime! plugin/*.vim
