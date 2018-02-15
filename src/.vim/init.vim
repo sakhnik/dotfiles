@@ -210,14 +210,6 @@ Plug 'Kris2k/A.vim'
 Plug 'simnalamburt/vim-mundo'
   nnoremap <leader>uu :GundoToggle<cr>
 
-Plug 'neomake/neomake'
-  let g:neomake_open_list = 2
-  let g:neomake_serialize = 1
-  let g:neomake_serialize_abort_on_error = 1
-
-  nnoremap <leader>nm :Neomake!<cr>
-  nnoremap <leader>nn :Neomake<cr>
-
 Plug 'nathanaelkane/vim-indent-guides', { 'on': ['IndentGuidesToggle', 'IndentGuidesEnable'] }
   let g:indent_guides_guide_size = 1
   let g:indent_guides_color_change_percent = 20
