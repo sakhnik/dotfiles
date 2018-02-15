@@ -275,7 +275,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 
   let g:LanguageClient_serverCommands = {
-      \ 'cpp': ['cquery', '--language-server', '--log-file=/tmp/cq.log']
+      \ 'cpp': ['cquery', '--language-server', '--log-file=/tmp/cq.log'],
+      \ 'python': ['pyls', '--log-file=/tmp/pyls.log'],
       \ }
   let g:LanguageClient_loadSettings = 1
   let g:LanguageClient_settingsPath = s:vimdir . '/cquery.json'
