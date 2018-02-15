@@ -12,7 +12,9 @@ Configuration files, which I share among work stations.
 
 # Features for C++
 
-* [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim) for [cquery](https://github.com/autozimu/LanguageClient-neovim)
+* [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim)
+  for [cquery](https://github.com/autozimu/LanguageClient-neovim) and
+  [python-language-server](https://github.com/palantir/python-language-server)
 * [nvim-gdb](https://github.com/sakhnik/nvim-gdb) with VisualStudio-like keybindings
 
 # Installation
