@@ -306,7 +306,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     au BufLeave,WinLeave * setl signcolumn=auto
     au User LanguageClientStarted call insert(g:ls_started_filetypes, &filetype) | setl signcolumn=yes
     au User LanguageClientStopped call remove(g:ls_started_filetypes, &filetype) | setl signcolumn=auto
-    au CursorMoved * if index(g:ls_started_filetypes, &filetype) != -1 | call LanguageClient_textDocument_hover() | endif
+    "au CursorMoved * if index(g:ls_started_filetypes, &filetype) != -1 | call LanguageClient_textDocument_hover() | endif
   augroup END
 
 call plug#end()
