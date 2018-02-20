@@ -1,6 +1,4 @@
-#!/bin/bash
-
-set -e
+#!/bin/bash -e
 
 pacman=/usr/bin/pacman
 
@@ -11,9 +9,9 @@ else
 fi
 
 # Check if the session is interactive
-[[ -t 1 ]] || exit
-ps -o stat= -p $PPID | grep -q s || exit
-ps -o stat= -p $$ | grep -q '\+' || exit
+[[ -t 1 ]] || exit 0
+ps -o stat= -p $PPID | grep -q s || exit 0
+ps -o stat= -p $$ | grep -q '\+' || exit 0
 
 
 if [[ $1 == -S || $1 =~ -S.*u.* ]]; then
