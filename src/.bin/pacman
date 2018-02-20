@@ -10,6 +10,12 @@ else
     sudo $pacman "$@"
 fi
 
+# Check if the session is interactive
+[[ -t 1 ]] || exit
+ps -o stat= -p $PPID | grep -q s || exit
+ps -o stat= -p $$ | grep -q '\+' || exit
+
+
 if [[ $1 == -S || $1 =~ -S.*u.* ]]; then
     white=`tput setaf 7`
     blue=`tput setaf 4`
