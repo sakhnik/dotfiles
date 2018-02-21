@@ -244,6 +244,7 @@ Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#enable_smart_case = 1
+  let g:deoplete#auto_complete_delay = 200  " increase after the default 50
 
   let g:deoplete#sources = {}
   let g:deoplete#sources._ = ['buffer']
