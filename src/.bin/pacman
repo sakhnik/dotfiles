@@ -30,6 +30,9 @@ if [[ $1 == -S || $1 =~ -S.*u.* ]]; then
         grep -q $pkg <<END && continue
 jdk
 javafx-scenebuilder
+linux-lts49
+linux-lts49-docs
+linux-lts49-headers
 END
         printf "\r  Checking %-48s" $pkg
         for f in `$pacman -Ql $pkg | grep -E '/(bin|lib)/.' | awk '{print $2}'`; do
