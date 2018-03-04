@@ -5,3 +5,4 @@ __pycache__/
 src/.viminfo
 src/.zhistory
 src/.bash_history
+.ropeproject/
