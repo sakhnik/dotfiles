@@ -12,7 +12,7 @@ status.register("clock",
 # (the default value for format is used)
 #status.register("load")
 
-status.register("cpu_usage_graph", format="{usage} {cpu_graph}")
+status.register("cpu_usage_graph", format="{usage:2d} {cpu_graph}")
 
 # Shows your CPU temperature, if you have a Intel CPU
 #status.register("temp",
