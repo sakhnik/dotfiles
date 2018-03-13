@@ -84,7 +84,7 @@ if [[ -x /usr/bin/nvim || -x /usr/local/bin/nvim ]]; then
     export EDITOR=nvim
     [[ -n "$PS1" ]] && echo "$green(I)$reset  Neovim is the default editor"
     # Use nvim as man pager
-    export MANPAGER="env MAN_PN=1 nvim -M +'set ft=man' -"
+    export MANPAGER="env MAN_PN=1 nvim +'set ft=man' -"
 else
     export EDITOR=vim
     [[ -n "$PS1" ]] && echo "$green(I)$reset  Vim is the default editor"
