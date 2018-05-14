@@ -28,6 +28,7 @@ if [[ $1 == -S || $1 =~ -S.*u.* ]]; then
     for pkg in `$pacman -Qm | awk '{print $1}'`; do
         # Blacklist: skip known exceptional packages
         grep -q $pkg <<END && continue
+android-studio
 jdk
 javafx-scenebuilder
 linux-lts49
