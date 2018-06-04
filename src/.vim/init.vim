@@ -130,12 +130,12 @@ runtime autoload/plug.vim
 let s:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
 call plug#begin(s:vimdir.'/plugged')
-Plug 'junegunn/seoul256.vim'
-Plug 'tomasr/molokai'
+Plug 'https://github.com/junegunn/seoul256.vim.git'
+Plug 'https://github.com/tomasr/molokai.git'
 
 let s:sysname = strpart(system('uname'), 0, 4)
 if s:sysname == 'MSYS'
-  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
     let g:ctrlp_user_command = {
       \ 'types': {
         \ 1: ['.git', 'cd %s && git ls-files'],
@@ -145,18 +145,18 @@ if s:sysname == 'MSYS'
     \ }
     nmap <leader>ff :CtrlP<cr>
 else
-  Plug 'junegunn/fzf', { 'do': './install --bin' }
-  Plug 'junegunn/fzf.vim'
+  Plug 'https://github.com/junegunn/fzf.git', { 'do': './install --bin' }
+  Plug 'https://github.com/junegunn/fzf.vim.git'
     nmap <leader>ff :Files<cr>
     nmap <leader>fg :GitFiles<cr>
     nmap <leader>ft :Tags<cr>
 endif
 
 if !has('nvim')
-  Plug 'tpope/vim-sensible'
+  Plug 'https://github.com/tpope/vim-sensible.git'
 endif
 
-Plug 'tpope/vim-fugitive'          " :Git
+Plug 'https://github.com/tpope/vim-fugitive.git'          " :Git
   augroup git
     au!
     autocmd BufWinEnter * if exists(":Gblame") | nmap <buffer> <leader>gb :Gblame<cr>| endif
@@ -168,54 +168,54 @@ Plug 'tpope/vim-fugitive'          " :Git
     autocmd BufWinEnter * if exists(":Gpush") | nmap <buffer> <leader>gp :Gpush<cr>| endif
   augroup END
 
-Plug 'gregsexton/gitv', {'on': 'Gitv'}
+Plug 'https://github.com/gregsexton/gitv.git', {'on': 'Gitv'}
 
-Plug 'tpope/vim-eunuch'            " :SudoWrite
-Plug 'tpope/vim-repeat'            " Repeat mapping with .
-Plug 'tpope/vim-sleuth'            " Set buffer options euristically
-Plug 'tpope/vim-unimpaired'        " ]q, ]a etc
-Plug 'tpope/vim-surround'          " Movements s', s(
-Plug 'tpope/vim-vinegar'
-Plug 'bronson/vim-visual-star-search'
-Plug 'vim-scripts/dbext.vim', { 'on': 'Dbext' }
-Plug 'raimondi/delimitmate'
-Plug 'drmikehenry/vim-fontsize'
-Plug 'wellle/targets.vim'
-"Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-git'
-Plug 'vim-jp/vim-cpp'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'godlygeek/tabular'
-Plug 'mh21/errormarker.vim'
-Plug 'plasticboy/vim-markdown'
+Plug 'https://github.com/tpope/vim-eunuch.git'            " :SudoWrite
+Plug 'https://github.com/tpope/vim-repeat.git'            " Repeat mapping with .
+Plug 'https://github.com/tpope/vim-sleuth.git'            " Set buffer options euristically
+Plug 'https://github.com/tpope/vim-unimpaired.git'        " ]q, ]a etc
+Plug 'https://github.com/tpope/vim-surround.git'          " Movements s', s(
+Plug 'https://github.com/tpope/vim-vinegar.git'
+Plug 'https://github.com/bronson/vim-visual-star-search.git'
+Plug 'https://github.com/vim-scripts/dbext.vim.git', { 'on': 'Dbext' }
+Plug 'https://github.com/raimondi/delimitmate.git'
+Plug 'https://github.com/drmikehenry/vim-fontsize.git'
+Plug 'https://github.com/wellle/targets.vim.git'
+"Plug 'https://github.com/sheerun/vim-polyglot.git'
+Plug 'https://github.com/tpope/vim-git.git'
+Plug 'https://github.com/vim-jp/vim-cpp.git'
+Plug 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
+Plug 'https://github.com/godlygeek/tabular.git'
+Plug 'https://github.com/mh21/errormarker.vim.git'
+Plug 'https://github.com/plasticboy/vim-markdown.git'
   let g:vim_markdown_folding_disabled = 1
   let g:vim_markdown_frontmatter = 1
   let g:vim_markdown_no_default_key_mappings = 1
-Plug 'suan/vim-instant-markdown'
+Plug 'https://github.com/suan/vim-instant-markdown.git'
   let g:instant_markdown_autostart = 0
-Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'https://github.com/LaTeX-Box-Team/LaTeX-Box.git'
 
-Plug 'andymass/vim-matchup'
+Plug 'https://github.com/andymass/vim-matchup.git'
   let g:matchup_matchparen_status_offscreen = 0
 
-Plug 'majutsushi/tagbar'
+Plug 'https://github.com/majutsushi/tagbar.git'
   nnoremap <leader>tb :TagbarToggle<cr>
 
-Plug 'Kris2k/A.vim'
+Plug 'https://github.com/Kris2k/A.vim.git'
   let g:alternateExtensions_cc = "hh,h,hpp"
   let g:alternateExtensions_hh = "cc"
   let g:alternateExtensions_hxx = "cxx"
   let g:alternateExtensions_cxx = "hxx,h"
 
-Plug 'simnalamburt/vim-mundo'
+Plug 'https://github.com/simnalamburt/vim-mundo.git'
   nnoremap <leader>uu :GundoToggle<cr>
 
-Plug 'nathanaelkane/vim-indent-guides', { 'on': ['IndentGuidesToggle', 'IndentGuidesEnable'] }
+Plug 'https://github.com/nathanaelkane/vim-indent-guides.git', { 'on': ['IndentGuidesToggle', 'IndentGuidesEnable'] }
   let g:indent_guides_guide_size = 1
   let g:indent_guides_color_change_percent = 20
   nmap <leader>ig :IndentGuidesToggle<cr>
 
-Plug 'mhinz/vim-grepper'
+Plug 'https://github.com/mhinz/vim-grepper.git'
   nnoremap <leader>gg :Grepper -tool git<cr>
   nnoremap <leader>ga :Grepper -tool ag<cr>
   nnoremap <leader>gh :Grepper -tool hg<cr>
@@ -227,7 +227,7 @@ Plug 'mhinz/vim-grepper'
     \   'escape':     '\+*^$()[]',
     \ }}
 
-Plug 'ledger/vim-ledger'
+Plug 'https://github.com/ledger/vim-ledger.git'
   let g:ledger_extra_options = '--pedantic --explicit --check-payees --price-db prices.db'
   let g:ledger_align_at = 45
   let g:ledger_default_commodity = '₴'
@@ -235,13 +235,13 @@ Plug 'ledger/vim-ledger'
   let g:ledger_commodity_sep = ' '
   let g:ledger_fold_blanks = 1
 
-Plug 'sakhnik/nvim-gdb'
+Plug 'https://github.com/sakhnik/nvim-gdb.git'
 
   "nnoremap <leader>dd :GdbStart gdb -q -f a.out
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
+Plug 'https://github.com/Shougo/deoplete.nvim.git', { 'do': ':UpdateRemotePlugins' }
+Plug 'https://github.com/Shougo/neosnippet.git'
+Plug 'https://github.com/Shougo/neosnippet-snippets.git'
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#enable_smart_case = 1
   let g:deoplete#auto_complete_delay = 200  " increase after the default 50
@@ -262,7 +262,7 @@ Plug 'Shougo/neosnippet-snippets'
   "  set conceallevel=2 concealcursor=niv
   "endif
 
-Plug 'autozimu/LanguageClient-neovim', {
+Plug 'https://github.com/autozimu/LanguageClient-neovim.git', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
