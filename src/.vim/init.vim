@@ -275,6 +275,7 @@ Plug 'https://github.com/autozimu/LanguageClient-neovim.git', {
   let g:LanguageClient_settingsPath = s:vimdir . '/cquery.json'
   let g:LanguageClient_diagnosticsList = "Location"
   let g:LanguageClient_selectionUI = "location-list"
+  let g:LanguageClient_hasSnippetSupport = 1
 
   nnoremap <leader>li :call LanguageClient_textDocument_hover()<cr>
   nnoremap <leader>lj :call LanguageClient_textDocument_definition()<cr>
