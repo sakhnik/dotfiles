@@ -1,7 +1,5 @@
 bindkey -v
 
-export LANG=en_US.utf8
-
 local zshrc_path=`readlink -f ${(%):-%x}`
 local zshrc_dir=`dirname $zshrc_path`
 
