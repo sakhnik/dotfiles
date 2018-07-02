@@ -195,11 +195,11 @@ bindsym Control+$mod+l exec "~/.bin/i3-lock.sh"
 # Lock screen on idle (minutes)
 exec --no-startup-id xautolock -time 5 -locker '~/.bin/i3-lock.sh'
 
-# Multi-screen screenshots with scrot
-bindsym --release Print exec scrot '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'chmod go-a $f' # All screens
+# Multi-screen screenshots with ImageMagick
+bindsym --release Print exec "~/.bin/i3-printscreen.sh"
 # OSX-like area selection screenshots
-bindsym --release Shift+Print exec scrot --select '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'chmod go-a $f' # Area selection
-bindsym --release $mod+Print exec scrot --focused '/tmp/screenshot_%Y%m%d_%H%M%S.png' -e 'chmod go-a $f' # Focused window
+bindsym --release Shift+Print exec "~/.bin/i3-printscreen-select.sh"
+bindsym --release $mod+Print exec "~/.bin/i3-printscreen-focused.sh"
 
 exec --no-startup-id ~/.bin/i3-startup.sh
 exec --no-startup-id udiskie -ans
