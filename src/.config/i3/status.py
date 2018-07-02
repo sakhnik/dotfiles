@@ -43,7 +43,8 @@ status.register("battery",
 # Note: requires both netifaces and basiciw (for essid and quality)
 status.register("network",
     interface="wlp1s0",
-    format_up="{essid} {quality:3.0f}% {v4cidr}",)
+    format_up="{essid} {quality:3.0f}% {v4cidr}",
+    on_leftclick="sudo wpa_gui",)
 
 # Shows disk usage of /
 # Format:
