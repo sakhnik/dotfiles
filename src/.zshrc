@@ -80,6 +80,7 @@ if [[ -x /usr/bin/nvim || -x /usr/local/bin/nvim ]]; then
     alias vim=nvim
     alias vimdiff="nvim -d"
     export EDITOR=nvim
+    export SUDO_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
     [[ -n "$PS1" ]] && echo "$green(I)$reset  Neovim is the default editor"
     # Use nvim as man pager
     export MANPAGER="env MAN_PN=1 nvim +'set ft=man' -"
