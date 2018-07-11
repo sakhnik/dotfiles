@@ -181,6 +181,7 @@ Plug 'https://github.com/vim-scripts/dbext.vim.git', { 'on': 'Dbext' }
 Plug 'https://github.com/raimondi/delimitmate.git'
 Plug 'https://github.com/drmikehenry/vim-fontsize.git'
 Plug 'https://github.com/wellle/targets.vim.git'
+  let g:targets_aiAI = 'aIAi'
 "Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/tpope/vim-git.git'
 Plug 'https://github.com/vim-jp/vim-cpp.git'
