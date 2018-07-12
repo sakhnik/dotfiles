@@ -257,7 +257,7 @@ Plug 'https://github.com/honza/vim-snippets.git'
   "let g:UltiSnipsJumpBackwardTrigger="<c-k>"
   imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
   imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-  imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
+  imap <expr><CR> pumvisible() ? "\<C-r>=ExpandLspSnippet()\<CR>" : "\<CR>"
 
   " For conceal markers.
   "if has('conceal')
@@ -295,7 +295,7 @@ Plug 'https://github.com/honza/vim-snippets.git'
     return ''
   endfunction
 
-  imap <C-k> <C-R>=ExpandLspSnippet()<CR>
+  imap <C-j> <C-R>=ExpandLspSnippet()<CR>
 
 Plug 'https://github.com/autozimu/LanguageClient-neovim.git', {
     \ 'branch': 'next',
