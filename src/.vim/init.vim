@@ -257,7 +257,7 @@ Plug 'https://github.com/honza/vim-snippets.git'
   "let g:UltiSnipsJumpBackwardTrigger="<c-k>"
   imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
   imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-  imap <expr><CR> pumvisible() ? "\<C-r>=ExpandLspSnippet()\<CR>" : "\<CR>"
+  imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
 
   " For conceal markers.
   "if has('conceal')
