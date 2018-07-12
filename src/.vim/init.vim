@@ -241,20 +241,21 @@ Plug 'https://github.com/sakhnik/nvim-gdb.git'
   "nnoremap <leader>dd :GdbStart gdb -q -f a.out
 
 Plug 'https://github.com/Shougo/deoplete.nvim.git', { 'do': ':UpdateRemotePlugins' }
-Plug 'https://github.com/Shougo/neosnippet.git'
-Plug 'https://github.com/Shougo/neosnippet-snippets.git'
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#enable_smart_case = 1
   let g:deoplete#auto_complete_delay = 200  " increase after the default 50
 
   let g:deoplete#sources = {}
   let g:deoplete#sources._ = ['buffer']
-  let g:deoplete#sources.cpp = ['omni', 'LanguageClient']
+  let g:deoplete#sources.cpp = ['omni', 'ultisnips', 'LanguageClient']
   let g:deoplete#sources.ledger = ['omni']
 
-  " Enable snipMate compatibility feature.
-  let g:neosnippet#enable_snipmate_compatibility = 1
-  imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
+Plug 'https://github.com/SirVer/ultisnips.git'
+Plug 'https://github.com/honza/vim-snippets.git'
+  let g:UltiSnipsExpandTrigger="<c-b>"
+  "let g:UltiSnipsJumpForwardTrigger="<c-j>"
+  "let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+  imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
   imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
   imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
 
@@ -262,6 +263,39 @@ Plug 'https://github.com/Shougo/neosnippet-snippets.git'
   "if has('conceal')
   "  set conceallevel=2 concealcursor=niv
   "endif
+
+  function! ExpandLspSnippet()
+    call UltiSnips#ExpandSnippetOrJump()
+    if !pumvisible() || empty(v:completed_item)
+      return ''
+    endif
+
+    " only expand Lsp if UltiSnips#ExpandSnippetOrJump not effect.
+    let l:value = v:completed_item['word']
+    let l:matched = len(l:value)
+    if l:matched <= 0
+      return ''
+    endif
+
+    " remove inserted chars before expand snippet
+    if col('.') == col('$')
+      let l:matched -= 1
+      exec 'normal! ' . l:matched . 'Xx'
+    else
+      exec 'normal! ' . l:matched . 'X'
+    endif
+
+    if col('.') == col('$') - 1
+      " move to $ if at the end of line.
+      call cursor(line('.'), col('$'))
+    endif
+
+    " expand snippet now.
+    call UltiSnips#Anon(l:value)
+    return ''
+  endfunction
+
+  imap <C-k> <C-R>=ExpandLspSnippet()<CR>
 
 Plug 'https://github.com/autozimu/LanguageClient-neovim.git', {
     \ 'branch': 'next',
