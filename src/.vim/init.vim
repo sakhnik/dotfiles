@@ -248,6 +248,7 @@ Plug 'https://github.com/Shougo/deoplete.nvim.git', { 'do': ':UpdateRemotePlugin
   let g:deoplete#sources = {}
   let g:deoplete#sources._ = ['buffer']
   let g:deoplete#sources.cpp = ['omni', 'ultisnips', 'LanguageClient']
+  let g:deoplete#sources.python = ['ultisnips', 'LanguageClient']
   let g:deoplete#sources.ledger = ['omni']
 
 Plug 'https://github.com/SirVer/ultisnips.git'
