@@ -395,3 +395,5 @@ if &t_Co == 256 || has("gui_running")
   colors zenburn
   hi Comment cterm=italic
 endif
+
+call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
