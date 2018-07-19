@@ -319,7 +319,8 @@ Plug 'https://github.com/autozimu/LanguageClient-neovim.git', {
   nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol() <bar> lopen<cr>
   nnoremap <leader>lf :call LanguageClient_textDocument_references() <bar> lopen<cr>
   nnoremap <leader>lS :call LanguageClient_workspace_symbol() <bar> lopen<cr>
-  nnoremap <leader>ll :call LanguageClientMyToggle()<cr>
+  nnoremap <leader>ll :call LanguageClient_contextMenu()<cr>
+  nnoremap <leader>lL :call LanguageClientMyToggle()<cr>
 
   " Language servers are started per file type.
   " My requirements:
