@@ -247,8 +247,8 @@ Plug 'https://github.com/Shougo/deoplete.nvim.git', { 'do': ':UpdateRemotePlugin
 
   let g:deoplete#sources = {}
   let g:deoplete#sources._ = ['buffer']
-  let g:deoplete#sources.cpp = ['omni', 'ultisnips', 'LanguageClient']
-  let g:deoplete#sources.python = ['ultisnips', 'LanguageClient']
+  let g:deoplete#sources.cpp = ['user', 'ultisnips']
+  let g:deoplete#sources.python = ['user', 'ultisnips']
   let g:deoplete#sources.ledger = ['omni']
 
 Plug 'https://github.com/SirVer/ultisnips.git'
@@ -298,55 +298,75 @@ Plug 'https://github.com/honza/vim-snippets.git'
 
   imap <C-j> <C-R>=ExpandLspSnippet()<CR>
 
-Plug 'https://github.com/autozimu/LanguageClient-neovim.git', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
-  let g:LanguageClient_serverCommands = {
-      \ 'cpp': ['cquery', '--language-server', '--log-file=/tmp/cq.log'],
-      \ 'python': ['pyls', '--log-file=/tmp/pyls.log'],
+Plug 'sakhnik/vim-lsc'
+  let g:lsc_auto_map = v:true " Use defaults
+  let g:lsc_server_commands = {}
+  if executable('cquery')
+    let cqueryInit = {
+      \ "cacheDirectory": "/tmp/cquery-cache",
+      \ "progressReportFrequencyMs": -1,
       \ }
-  let g:LanguageClient_loadSettings = 1
-  let g:LanguageClient_settingsPath = s:vimdir . '/cquery.json'
-  let g:LanguageClient_diagnosticsList = "Location"
-  let g:LanguageClient_selectionUI = "location-list"
-  let g:LanguageClient_hasSnippetSupport = 1
+    let g:lsc_server_commands['cpp'] = {
+      \   'command': 'cquery --init="' . escape(json_encode(cqueryInit), '"') . '"',
+      \   'suppress_stderr': v:true,
+      \ }
+  endif
+  if executable('pyls')
+    let g:lsc_server_commands['python'] = {
+      \ 'command': 'pyls',
+      \ 'suppress_stderr': v:true,
+      \ }
+  endif
 
-  nnoremap <leader>li :call LanguageClient_textDocument_hover()<cr>
-  nnoremap <leader>lj :call LanguageClient_textDocument_definition()<cr>
-  nnoremap <leader>lw :call LanguageClient_textDocument_rename()<cr>
-  nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol() <bar> lopen<cr>
-  nnoremap <leader>lf :call LanguageClient_textDocument_references() <bar> lopen<cr>
-  nnoremap <leader>lS :call LanguageClient_workspace_symbol() <bar> lopen<cr>
-  nnoremap <leader>ll :call LanguageClient_contextMenu()<cr>
-  nnoremap <leader>LL :call LanguageClientMyToggle()<cr>
-
-  " Language servers are started per file type.
-  " My requirements:
-  "   * show hover automatically for the activated file types
-  "   * show signcolumn for the activated file types
-  "   * hide signcolumn in the unfocused windows
-
-  " List of active filetypes
-  let g:ls_started_filetypes = []
-
-  function! LanguageClientMyToggle()
-    if index(g:ls_started_filetypes, &filetype) != -1
-      LanguageClientStop
-    else
-      LanguageClientStart
-    endif
-  endfunction
-
-  augroup LanguageClient_config
-    au!
-    au BufEnter * if index(g:ls_started_filetypes, &filetype) != -1 | setl signcolumn=yes | endif
-    au BufLeave,WinLeave * setl signcolumn=auto
-    au User LanguageClientStarted call insert(g:ls_started_filetypes, &filetype) | setl signcolumn=yes
-    au User LanguageClientStopped call remove(g:ls_started_filetypes, &filetype) | setl signcolumn=auto
-    "au CursorMoved * if index(g:ls_started_filetypes, &filetype) != -1 | call LanguageClient_textDocument_hover() | endif
-  augroup END
+"Plug 'https://github.com/autozimu/LanguageClient-neovim.git', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash install.sh',
+"    \ }
+"
+"  let g:LanguageClient_serverCommands = {
+"      \ 'cpp': ['cquery', '--language-server', '--log-file=/tmp/cq.log', '--record=/tmp/cquery'],
+"      \ 'python': ['pyls', '--log-file=/tmp/pyls.log'],
+"      \ }
+"  let g:LanguageClient_loadSettings = 1
+"  let g:LanguageClient_settingsPath = s:vimdir . '/cquery.json'
+"  let g:LanguageClient_diagnosticsList = "Location"
+"  let g:LanguageClient_selectionUI = "location-list"
+"  let g:LanguageClient_hasSnippetSupport = 1
+"
+"  nnoremap <leader>li :call LanguageClient_textDocument_hover()<cr>
+"  nnoremap <leader>lj :call LanguageClient_textDocument_definition()<cr>
+"  nnoremap <leader>lw :call LanguageClient_textDocument_rename()<cr>
+"  nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol() <bar> lopen<cr>
+"  nnoremap <leader>lf :call LanguageClient_textDocument_references() <bar> lopen<cr>
+"  nnoremap <leader>lS :call LanguageClient_workspace_symbol() <bar> lopen<cr>
+"  nnoremap <leader>ll :call LanguageClient_contextMenu()<cr>
+"  nnoremap <leader>LL :call LanguageClientMyToggle()<cr>
+"
+"  " Language servers are started per file type.
+"  " My requirements:
+"  "   * show hover automatically for the activated file types
+"  "   * show signcolumn for the activated file types
+"  "   * hide signcolumn in the unfocused windows
+"
+"  " List of active filetypes
+"  let g:ls_started_filetypes = []
+"
+"  function! LanguageClientMyToggle()
+"    if index(g:ls_started_filetypes, &filetype) != -1
+"      LanguageClientStop
+"    else
+"      LanguageClientStart
+"    endif
+"  endfunction
+"
+"  augroup LanguageClient_config
+"    au!
+"    au BufEnter * if index(g:ls_started_filetypes, &filetype) != -1 | setl signcolumn=yes | endif
+"    au BufLeave,WinLeave * setl signcolumn=auto
+"    au User LanguageClientStarted call insert(g:ls_started_filetypes, &filetype) | setl signcolumn=yes
+"    au User LanguageClientStopped call remove(g:ls_started_filetypes, &filetype) | setl signcolumn=auto
+"    "au CursorMoved * if index(g:ls_started_filetypes, &filetype) != -1 | call LanguageClient_textDocument_hover() | endif
+"  augroup END
 
 call plug#end()
 
