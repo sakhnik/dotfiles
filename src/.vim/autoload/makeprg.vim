@@ -19,7 +19,7 @@ function! makeprg#CMake(...)
     for arg in a:000
       let &makeprg .= ' ' . arg
     endfor
-    make
+    make!
   endif
 endfunction
 
@@ -43,7 +43,7 @@ function! makeprg#CMakeDefault()
 
     " Set the option 'makeprg' and build the code
     let &makeprg = makecmd . ' -C ' . build_dir . jobopts
-    make
+    make!
   else
     echoerr "Couldn't find BUILD*/"
   endif
@@ -62,6 +62,6 @@ function! makeprg#SetMakePrg()
     let choice = inputlist(prompt_makeprgs)
     if choice >= 0 && choice < len(makeprgs)
         let &makeprg = makeprgs[choice]
-        make
+        make!
     endif
 endf
