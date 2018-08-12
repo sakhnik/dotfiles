@@ -1,14 +1,33 @@
 #!/bin/bash -e
 
+comma=''
+
+add_opt()
+{
+    echo "$1" >> .cquery
+    echo -n "$comma'$1'" >>.ycm_extra_conf.py
+    comma=', '
+}
+
 cat > .cquery <<END
 clang++
--xc++
--std=c++17
 END
+
+cat >.ycm_extra_conf.py <<END
+def Settings( **kwargs ):
+  return {
+END
+echo -n "    'flags': [ " >>.ycm_extra_conf.py
+
+add_opt "-xc++"
+add_opt "-std=c++17"
 
 echo \
     | clang -v -E -x c++ - 2>&1 \
     | awk '/#include <...>/,/End of search/' \
     | while read -r l; do
-        [[ -d "$l" ]] && echo "-isystem`readlink -f $l`"
-    done >> .cquery
+        [[ -d "$l" ]] && add_opt "-isystem`readlink -f $l`" || true
+    done
+
+echo ' ],' >>.ycm_extra_conf.py
+echo '  }' >>.ycm_extra_conf.py
