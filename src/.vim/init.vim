@@ -280,7 +280,7 @@ Plug 'https://github.com/honza/vim-snippets.git'
   imap <C-j> <C-R>=ExpandLspSnippet()<CR>
 
 Plug 'https://github.com/natebosch/vim-lsc'
-  let g:lsc_auto_map = v:true " Use defaults
+  let g:lsc_auto_map = {'defaults': v:true, 'Completion': 'omnifunc'}
   let g:lsc_enable_autocomplete = v:false
   let g:lsc_server_commands = {}
   if executable('cquery')
