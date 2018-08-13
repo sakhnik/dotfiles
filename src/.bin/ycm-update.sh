@@ -36,7 +36,7 @@ python2 install.py --clang-completer --system-boost --system-libclang
 
 # Remove source code
 rm -rf third_party/ycmd/cpp
-rm -rf third_party/ycmd/clang_includes
+#rm -rf third_party/ycmd/clang_includes
 # Remove the library, which has been copied from the system
 rm -rf third_party/ycmd/libclang*
 # Remove tests and docs
