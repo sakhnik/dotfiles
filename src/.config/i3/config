@@ -188,6 +188,8 @@ assign [class="Firefox"]        $ws2
 bar {
         status_command python ~/.config/i3/status.py
         position top
+        mode hide
+        hidden_state hide
 }
 
 # Lock screen manually
