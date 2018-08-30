@@ -282,6 +282,7 @@ Plug 'https://github.com/honza/vim-snippets.git'
 Plug 'https://github.com/sakhnik/vim-lsc'
   let g:lsc_auto_map = {'defaults': v:true, 'Completion': 'omnifunc'}
   let g:lsc_enable_autocomplete = v:false
+  let g:lsc_enable_diagnostics = v:false
   let g:lsc_server_commands = {}
   if executable('cquery')
     let cqueryInit = {
