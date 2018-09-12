@@ -129,6 +129,12 @@ runtime autoload/plug.vim
 
 let s:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
+if empty(glob(s:vimdir.'/autoload/plug.vim'))
+  exe 'silent !curl -fLo '.s:vimdir.'/autoload/plug.vim --create-dirs'.
+    \ ' https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin(s:vimdir.'/plugged')
 Plug 'https://github.com/junegunn/seoul256.vim.git'
 Plug 'https://github.com/tomasr/molokai.git'
