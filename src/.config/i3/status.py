@@ -44,7 +44,7 @@ status.register("battery",
 status.register("network",
     interface="wlp1s0",
     format_up="{essid} {quality:3.0f}% {v4cidr}",
-    on_leftclick="sudo wpa_gui",)
+    on_leftclick="",)
 
 # Shows disk usage of /
 # Format:
