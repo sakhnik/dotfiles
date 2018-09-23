@@ -129,6 +129,8 @@ set -o no_beep
 set -o correct
 # Better jobs
 set -o long_list_jobs
+# No need for extendedglob, treat ^ as a plain character
+setopt noextendedglob
 
 [[ -n "$PS1" ]] && {
 
