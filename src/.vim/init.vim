@@ -246,7 +246,7 @@ Plug 'https://github.com/ledger/vim-ledger.git'
   let g:ledger_commodity_sep = ' '
   let g:ledger_fold_blanks = 1
 
-Plug 'https://github.com/sakhnik/nvim-gdb.git'
+Plug 'https://github.com/sakhnik/nvim-gdb.git', { 'do': './install.sh' }
 
   "nnoremap <leader>dd :GdbStart gdb -q -f a.out
 
