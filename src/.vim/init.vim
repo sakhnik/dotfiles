@@ -194,6 +194,7 @@ Plug 'https://github.com/vim-jp/vim-cpp.git'
 Plug 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
 Plug 'https://github.com/godlygeek/tabular.git'
 Plug 'https://github.com/mh21/errormarker.vim.git'
+Plug 'https://github.com/sirtaj/vim-openscad'
 Plug 'https://github.com/plasticboy/vim-markdown.git'
   let g:vim_markdown_folding_disabled = 1
   let g:vim_markdown_frontmatter = 1
