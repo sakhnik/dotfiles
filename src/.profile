@@ -10,6 +10,10 @@ if [[ -x /usr/bin/ruby && -x /usr/bin/gem ]]; then
     PATH="$(ruby -rrubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
+if [[ -x /usr/bin/luarocks-5.1 ]]; then
+    eval `luarocks-5.1 path`
+fi
+
 mesg n || true
 
 #!/bin/bash
