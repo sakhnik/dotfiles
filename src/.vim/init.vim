@@ -201,6 +201,7 @@ Plug 'https://github.com/plasticboy/vim-markdown.git'
 Plug 'https://github.com/suan/vim-instant-markdown.git'
   let g:instant_markdown_autostart = 0
 Plug 'https://github.com/LaTeX-Box-Team/LaTeX-Box.git'
+Plug 'https://github.com/leafo/moonscript-vim.git'
 
 Plug 'https://github.com/andymass/vim-matchup.git'
   let g:matchup_matchparen_status_offscreen = 0
@@ -213,6 +214,8 @@ Plug 'https://github.com/Kris2k/A.vim.git'
   let g:alternateExtensions_hh = "cc"
   let g:alternateExtensions_hxx = "cxx"
   let g:alternateExtensions_cxx = "hxx,h"
+  let g:alternateExtensions_moon = "lua"
+  let g:alternateExtensions_lua = "moon"
 
 Plug 'https://github.com/simnalamburt/vim-mundo.git'
   nnoremap <leader>uu :GundoToggle<cr>
