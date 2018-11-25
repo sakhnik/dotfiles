@@ -1,5 +1,5 @@
 setlocal makeprg=moonc\ %
-au BufWritePost,FileWritePost <buffer> make
+au BufWritePost,FileWritePost <buffer> lmake
 
 "|| lua/gdb/backend/gdb.moon	Failed to parse:
 "||  [2] >>    " gdb specifics
