@@ -16,6 +16,7 @@ nnoremap <leader>mm :update<cr>:make!<cr>
 nnoremap <leader>mc :update<cr>:call makeprg#CMakeDefault()<cr>
 nnoremap <leader>mM :call makeprg#SetMakePrg()<cr>
 nnoremap <leader>mt :update<cr>:make! test<cr>
+nnoremap <leader>mo :copen<cr>
 
 "Set Boost.Build.v2 default if possible.
 if filereadable("Jamfile") || filereadable("Jamroot")
