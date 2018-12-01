@@ -52,6 +52,9 @@ def GetCompileCommandsOptions(section):
         if o.startswith('-I'):
             # Make sure includes are listed with full path.
             o = '-I' + os.path.normpath(os.path.join(directory, o[2:]))
+        if o.startswith('-D'):
+            # Make sure the quotes aren't escaped too much in definitions.
+            o = re.sub(r'-D([^=]*)=\\"(.*)\\"', '-D\\1="\\2"', o)
         target_opts.append(o)
         i += 1
 
