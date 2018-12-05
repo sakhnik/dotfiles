@@ -20,7 +20,7 @@ git submodule update --init --recommend-shallow --jobs 2
 # Skip unnecessary modules (C#, go, rust)
 (
     cd third_party/ycmd
-    for s in OmniSharpServer gocode godef racerd; do
+    for s in OmniSharpServer go/src/github.com/{mdempsky/gocode,rogpeppe/godef} racerd; do
         git submodule deinit third_party/$s
         git rm third_party/$s
     done
