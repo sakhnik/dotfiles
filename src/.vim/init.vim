@@ -320,6 +320,11 @@ runtime! plugin/*.vim
 " The plugin should be delpoyed by the script ycm-update.sh
 
 if isdirectory(s:vimdir . '/YouCompleteMe')
+  augroup YCM
+    au!
+    au FileType cpp,python setlocal signcolumn=yes
+  augroup END
+
   let g:ycm_filetype_whitelist = {
     \ 'cpp' : 1,
     \ 'python' : 1,
@@ -333,8 +338,6 @@ if isdirectory(s:vimdir . '/YouCompleteMe')
   " If there's preinstalled version, integrated with system libraries, prefer it
   exe 'set rtp+='.s:vimdir.'/YouCompleteMe'
   exe 'source '.s:vimdir.'/YouCompleteMe/plugin/youcompleteme.vim'
-
-  autocmd! User YouCompleteMe call youcompleteme#Enable()
 
   nnoremap <leader>yj :YcmCompleter GoToDefinitionElseDeclaration<cr>
   nnoremap <leader>yd :YcmCompleter GetDoc<cr>
