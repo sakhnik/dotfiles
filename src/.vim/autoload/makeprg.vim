@@ -51,7 +51,7 @@ endfunction
 
 " Choose build method
 function! makeprg#SetMakePrg()
-    let makeprgs = ['make', 'bjam', 'g++ -std=c++14 %']
+    let makeprgs = ['make', 'bjam', 'g++ -std=c++17 %']
     let prompt_makeprgs = []
     let index = 0
     while index < len(makeprgs)
