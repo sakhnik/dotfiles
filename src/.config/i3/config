@@ -12,9 +12,9 @@ workspace_layout tabbed
 #font pango:monospace 12
 font pango:DejaVu Sans Mono, Icons 8
 
-# Don't use borders
-for_window [class="^.*"] border none
-new_window 1pixel
+# Don't use borders when one window per workspace
+hide_edge_borders smart
+new_window 1pixel    # Hide title bar in split containers
 
 bindsym Control+Shift+1 [class="^.*"] border toggle
 
