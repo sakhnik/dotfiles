@@ -250,6 +250,8 @@ Plug 'https://github.com/sakhnik/nvim-gdb.git', { 'do': './install.sh' }
 
   "nnoremap <leader>dd :GdbStart gdb -q -f a.out
 
+Plug 'https://github.com/w0rp/ale'
+
 Plug 'https://github.com/SirVer/ultisnips.git'
 Plug 'https://github.com/honza/vim-snippets.git'
   let g:UltiSnipsExpandTrigger="<c-b>"
@@ -307,6 +309,12 @@ Plug 'https://github.com/natebosch/vim-lsc'
   if executable('pyls')
     let g:lsc_server_commands['python'] = {
       \ 'command': 'pyls',
+      \ 'suppress_stderr': v:true,
+      \ }
+  endif
+  if executable('php-language-server')
+    let g:lsc_server_commands['php'] = {
+      \ 'command': 'php-language-server',
       \ 'suppress_stderr': v:true,
       \ }
   endif
