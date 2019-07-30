@@ -251,6 +251,7 @@ Plug 'https://github.com/sakhnik/nvim-gdb.git', { 'do': './install.sh' }
   "nnoremap <leader>dd :GdbStart gdb -q -f a.out
 
 Plug 'https://github.com/w0rp/ale'
+  let g:ale_virtualtext_cursor = 1
 
 Plug 'https://github.com/SirVer/ultisnips.git'
 Plug 'https://github.com/honza/vim-snippets.git'
