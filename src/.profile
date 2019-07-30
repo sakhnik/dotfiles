@@ -11,7 +11,11 @@ if [[ -x /usr/bin/ruby && -x /usr/bin/gem ]]; then
 fi
 
 if [[ -x /usr/bin/luarocks-5.1 ]]; then
-    eval `luarocks-5.1 path`
+    eval "$(luarocks-5.1 path)"
+fi
+
+if [[ "$XDG_SESSION_TYPE" == wayland ]]; then
+    export MOZ_ENABLE_WAYLAND=1
 fi
 
 mesg n || true
