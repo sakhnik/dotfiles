@@ -196,8 +196,8 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound vo
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec pkexec brillo -A 4 # increase screen brightness
-bindsym XF86MonBrightnessDown exec pkexec brillo -U 3 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec brillo -A 4
+bindsym XF86MonBrightnessDown exec brillo -U 3
 
 # Lock screen manually
 bindsym Control+$mod+l exec swayidle -w \
