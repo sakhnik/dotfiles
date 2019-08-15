@@ -92,7 +92,6 @@ if !has('nvim')
   set mousehide
   set incsearch
 endif
-set clipboard=unnamed
 set completeopt=menu,preview
 set shortmess=ac
 let mapleader=' '
