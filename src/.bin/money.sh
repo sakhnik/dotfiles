@@ -2,10 +2,10 @@
 
 set -e
 
-this_dir=`dirname ${BASH_SOURCE[0]}`
+this_dir=$(dirname "${BASH_SOURCE[0]}")
 
 (
-    encfs --extpass $this_dir/data.passwd.sh ~/.Private ~/Private
+    encfs --extpass "$this_dir"/data.passwd.sh ~/.Private ~/Private
 
     finish()
     {
@@ -15,13 +15,13 @@ this_dir=`dirname ${BASH_SOURCE[0]}`
     trap finish EXIT
 
     pushd ~/Private/money
-    zsh
+    LEDGER_FILE=~/Private/money/cur.dat zsh
 )
 
 # Copy to the backup drives is mounted
-for dir in /run/media/$USER/sakhnik*; do
-    if mountpoint -q $dir; then
-        rsync -raP --delete ~/.Private $dir/
+for dir in /run/media/"$USER"/sakhnik*; do
+    if mountpoint -q "$dir"; then
+        rsync -raP --delete ~/.Private "$dir/"
     fi
 done
 
