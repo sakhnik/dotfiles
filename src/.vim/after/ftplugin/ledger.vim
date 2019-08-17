@@ -1,8 +1,9 @@
 nmap <buffer> <leader>ld :call ledger#transaction_date_set('.'), "auxiliary")<cr>
 nmap <buffer> <leader>la :LedgerAlign<cr>
 nmap <buffer> <leader>lh :call ledger#align_amount_at_cursor()<cr>
-inoremap <buffer> <silent> <Tab> <C-r>=LedgerMyHandleTab()<cr>
+inoremap <buffer> <silent> <Tab> <C-r>=ledger#autocomplete_and_align()<cr>
 vnoremap <buffer> <silent> <Tab> :LedgerAlign<cr>
+inoremap <buffer> <silent> <c-l> <c-o>:call ledger#entry()<cr>
 
 "Evaluate arithmetic expressions
 nmap <buffer> <silent> <leader>le :set opfunc=LedgerEvaluateExpr<CR>g@
@@ -28,14 +29,3 @@ function! LedgerEvaluateExpr(type, ...)
 endfunction
 
 noremap <buffer> <silent> <leader>ll :call ledger#transaction_state_toggle(line('.'), ' *')<CR>
-
-function! LedgerMyHandleTab()
-	" If the cursor is on the first line (where the date is),
-	" use `ledger entry`.
-	if getline('.')[0] =~ "[0-9]"
-		call ledger#entry()
-		return ''
-	endif
-	" Otherwise, simply complete
-	return ledger#autocomplete_and_align()
-endfunction
