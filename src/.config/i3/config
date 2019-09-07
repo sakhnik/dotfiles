@@ -57,7 +57,7 @@ new_window 1pixel    # Hide title bar in split containers
 floating_modifier $mod
 
 
-assign [class="Gnome-terminal"] $ws1
+#assign [class="Gnome-terminal"] $ws1
 assign [class="Chromium"]       $ws2
 assign [class="Firefox"]        $ws2
 
