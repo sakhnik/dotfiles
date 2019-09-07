@@ -3,7 +3,7 @@ nmap <buffer> <leader>la :LedgerAlign<cr>
 nmap <buffer> <leader>lh :call ledger#align_amount_at_cursor()<cr>
 inoremap <buffer> <silent> <Tab> <C-r>=ledger#autocomplete_and_align()<cr>
 vnoremap <buffer> <silent> <Tab> :LedgerAlign<cr>
-inoremap <buffer> <silent> <c-l> <c-o>:call ledger#entry()<cr>
+inoremap <buffer> <silent> <c-l> <esc>:call ledger#entry()<cr>
 
 "Evaluate arithmetic expressions
 nmap <buffer> <silent> <leader>le :set opfunc=LedgerEvaluateExpr<CR>g@

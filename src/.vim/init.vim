@@ -238,13 +238,13 @@ Plug 'https://github.com/mhinz/vim-grepper.git'
     \ }}
 
 Plug 'https://github.com/ledger/vim-ledger.git'
-  let g:ledger_extra_options = '--pedantic --explicit --price-db prices.db'
+  let g:ledger_date_format = '%Y-%m-%d'
+  let g:ledger_extra_options = '--pedantic --explicit --price-db prices.db --date-format '.g:ledger_date_format
   let g:ledger_align_at = 45
   let g:ledger_default_commodity = '₴'
   let g:ledger_commodity_before = 0
   let g:ledger_commodity_sep = ' '
   let g:ledger_fold_blanks = 1
-  let g:ledger_date_format = '%Y-%m-%d'
 
 Plug 'https://github.com/sakhnik/nvim-gdb.git', { 'do': './install.sh' }
 
