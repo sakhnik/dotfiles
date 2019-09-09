@@ -29,7 +29,8 @@ set $ws10 10
 # Startup programs
 
 # Lock screen on idle (minutes)
-exec --no-startup-id xautolock -time 5 -locker '~/.bin/i3-lock.sh'
+#exec --no-startup-id xautolock -time 5 -locker '~/.bin/i3-lock.sh'
+exec --no-startup-id xautolock -locker '~/.bin/i3-lock.sh'
 exec --no-startup-id ~/.bin/i3-startup.sh
 exec --no-startup-id udiskie -ans
 exec --no-startup-id compton -bC
@@ -57,7 +58,6 @@ new_window 1pixel    # Hide title bar in split containers
 floating_modifier $mod
 
 
-#assign [class="Gnome-terminal"] $ws1
 assign [class="Chromium"]       $ws2
 assign [class="Firefox"]        $ws2
 
