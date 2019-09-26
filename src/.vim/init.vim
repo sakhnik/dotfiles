@@ -226,16 +226,12 @@ Plug 'https://github.com/nathanaelkane/vim-indent-guides.git', { 'on': ['IndentG
   nmap <leader>ig :IndentGuidesToggle<cr>
 
 Plug 'https://github.com/mhinz/vim-grepper.git'
-  nnoremap <leader>gg :Grepper -tool git<cr>
+  nnoremap <leader>gG :Grepper -tool git<cr>
   nnoremap <leader>ga :Grepper -tool ag<cr>
-  nnoremap <leader>gh :Grepper -tool hg<cr>
+  nnoremap <leader>gg :Grepper -tool rg<cr>
   let g:grepper = {
-    \ 'tools': ['hg', 'git', 'grep'],
-    \ 'hg': {
-    \   'grepprg':    'hg grep -n -r "reverse(::.)"',
-    \   'grepformat': '%f:%\\d%\\+:%l:%m',
-    \   'escape':     '\+*^$()[]',
-    \ }}
+    \ 'tools': ['rg', 'git', 'grep'],
+    \ }
 
 Plug 'https://github.com/ledger/vim-ledger.git'
   let g:ledger_date_format = '%Y-%m-%d'
