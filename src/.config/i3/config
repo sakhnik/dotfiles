@@ -29,14 +29,13 @@ set $ws10 10
 # Startup programs
 
 # Lock screen on idle (minutes)
-#exec --no-startup-id xautolock -time 5 -locker '~/.bin/i3-lock.sh'
-exec --no-startup-id xautolock -locker '~/.bin/i3-lock.sh'
+exec --no-startup-id xautolock -time 120 -locker '~/.bin/i3-lock.sh'
 exec --no-startup-id ~/.bin/i3-startup.sh
 exec --no-startup-id udiskie -ans
 exec --no-startup-id compton -bC
 exec --no-startup-id /usr/lib/notification-daemon-1.0/notification-daemon
 exec --no-startup-ip nm-applet
-exec /usr/bin/gnome-terminal
+exec /usr/bin/alacritty
 
 
 ####################################################
@@ -129,7 +128,7 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1; exec [ $(pidof -s gnome-terminal-server | wc -l) = 0 ] && gnome-terminal
+bindsym $mod+1 workspace $ws1; exec [ $(pidof -s alacritty | wc -l) = 0 ] && alacritty
 bindsym $mod+2 workspace $ws2; exec [ $(pidof -s firefox | wc -l) = 0 ] && firefox
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
