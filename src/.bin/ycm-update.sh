@@ -17,16 +17,6 @@ git clone --depth 1 https://github.com/Valloric/YouCompleteMe
 cd YouCompleteMe
 git submodule update --init --recommend-shallow --jobs 2
 
-# Skip unnecessary modules (C#, go, rust)
-(
-    cd third_party/ycmd
-    for s in OmniSharpServer go/src/github.com/{mdempsky/gocode,rogpeppe/godef} racerd; do
-        git submodule deinit third_party/$s
-        git rm third_party/$s
-    done
-
-)
-
 # Clone the rest of submodules
 git submodule update --init --recursive --recommend-shallow --jobs 8
 find -name '.git*' -prune -exec rm -rf {} \;
