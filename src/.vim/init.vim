@@ -234,6 +234,7 @@ Plug 'https://github.com/mhinz/vim-grepper.git'
     \ }
 
 Plug 'https://github.com/ledger/vim-ledger.git'
+  let g:ledger_bin = 'ledger'
   let g:ledger_date_format = '%Y-%m-%d'
   let g:ledger_extra_options = '--pedantic --explicit --price-db prices.db --date-format '.g:ledger_date_format
   let g:ledger_align_at = 45
