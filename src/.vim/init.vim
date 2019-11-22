@@ -249,6 +249,7 @@ Plug 'https://github.com/sakhnik/nvim-gdb.git', { 'do': './install.sh' }
 
 Plug 'https://github.com/w0rp/ale'
   let g:ale_virtualtext_cursor = 1
+  let g:ale_linters = {'cpp': []}  "Disable ALE linters for c++, YCM will do the job.
 
 Plug 'https://github.com/SirVer/ultisnips.git'
 Plug 'https://github.com/honza/vim-snippets.git'
