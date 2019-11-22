@@ -22,7 +22,7 @@ git submodule update --init --recursive --recommend-shallow --jobs 8
 find -name '.git*' -prune -exec rm -rf {} \;
 
 # Build completion of C++ code
-python2 install.py --clang-completer --system-boost --system-libclang
+python install.py --clang-completer --system-boost --system-libclang
 
 # Remove source code
 rm -rf third_party/ycmd/cpp

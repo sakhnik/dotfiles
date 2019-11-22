@@ -294,14 +294,27 @@ Plug 'https://github.com/natebosch/vim-lsc'
   let g:lsc_enable_autocomplete = v:false
   let g:lsc_enable_diagnostics = v:false
   let g:lsc_server_commands = {}
-  if executable('cquery')
-    let cqueryInit = {
-      \ "cacheDirectory": "/tmp/cquery-cache",
-      \ "progressReportFrequencyMs": -1,
-      \ }
+  if executable('ccls')
+    function! FindProjectRoot()
+      let marker = findfile('compile_commands.json', expand('%:p') . ';')
+      if !marker
+        let marker = findfile('.ccls', expand('%:p') . ';')
+      endif
+      if !marker
+        let marker = finddir('.git', expand('%:p') . ';')
+      endif
+      return lsc#uri#documentUri(fnamemodify(marker, ':p:h'))
+    endfunction
+
     let g:lsc_server_commands['cpp'] = {
-      \   'command': 'cquery --init="' . escape(json_encode(cqueryInit), '"') . '"',
-      \   'suppress_stderr': v:true,
+      \ 'command': 'ccls',
+      \ 'suppress_stderr': v:true,
+      \ 'message_hooks': {
+      \   'initialize': {
+      \     'initializationOptions': {'cache': {'directory': '/tmp/ccls-cache'}},
+      \     'rootUri': {m, p -> FindProjectRoot()}
+      \     },
+      \   },
       \ }
   endif
   if executable('pyls')
@@ -340,6 +353,7 @@ if isdirectory(s:vimdir . '/YouCompleteMe')
   let g:ycm_complete_in_comments = 1 " Completion in comments
   let g:ycm_complete_in_strings = 1 " Completion in string
   let g:ycm_always_populate_location_list = 1
+  let g:ycm_use_clangd = 0
 
   " If there's preinstalled version, integrated with system libraries, prefer it
   exe 'set rtp+='.s:vimdir.'/YouCompleteMe'
