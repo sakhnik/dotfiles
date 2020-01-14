@@ -76,14 +76,14 @@ unset fzf_dir
 export CTEST_OUTPUT_ON_FAILURE=1
 
 # Use nvim as vim by default (if available)
-if [[ -x /usr/bin/nvim || -x /usr/local/bin/nvim ]]; then
+if command -v nvim >/dev/null 2>&1; then
     alias vim=nvim
     alias vimdiff="nvim -d"
     export EDITOR=nvim
     export SUDO_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
     [[ -n "$PS1" ]] && echo "$green(I)$reset  Neovim is the default editor"
     # Use nvim as man pager
-    export MANPAGER="env MAN_PN=1 nvim +'set ft=man' -"
+    export MANPAGER='nvim +Man!'
 else
     export EDITOR=vim
     [[ -n "$PS1" ]] && echo "$green(I)$reset  Vim is the default editor"
