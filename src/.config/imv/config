@@ -1,0 +1,5 @@
+[binds]
+
+# Delete and then close an open image by pressing 'X'
+<Shift+X> = exec mkdir -p .imv-trash; exec mv "$imv_current_file" .imv-trash; close
+
