@@ -79,6 +79,7 @@ export CTEST_OUTPUT_ON_FAILURE=1
 if command -v nvim >/dev/null 2>&1; then
     alias vim=nvim
     alias vimdiff="nvim -d"
+    export DIFFPROG="nvim -d"
     export EDITOR=nvim
     export SUDO_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
     [[ -n "$PS1" ]] && echo "$green(I)$reset  Neovim is the default editor"
