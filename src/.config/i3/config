@@ -120,6 +120,7 @@ bindsym $mod+Shift+space floating toggle
 
 # toggle sticky on a floating window
 bindsym $mod+Shift+s sticky toggle
+for_window [class="mpv"] floating enable, resize set 1280 720, move position center, border none, sticky enable
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
