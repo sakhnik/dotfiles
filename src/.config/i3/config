@@ -31,11 +31,11 @@ set $ws10 10
 # Lock screen on idle (minutes)
 exec --no-startup-id xautolock -time 120 -locker '~/.bin/i3-lock.sh'
 exec --no-startup-id ~/.bin/i3-startup.sh
-exec --no-startup-id udiskie -ans
-exec --no-startup-id picom -bC
-exec --no-startup-id /usr/lib/notification-daemon-1.0/notification-daemon
-exec --no-startup-ip nm-applet
-exec /usr/bin/alacritty
+#exec --no-startup-id udiskie --smart-tray --menu nested --automount
+#exec --no-startup-id picom -bC
+#exec --no-startup-id /usr/lib/notification-daemon-1.0/notification-daemon
+#exec --no-startup-ip nm-applet
+#exec /usr/bin/alacritty
 
 
 ####################################################
@@ -72,8 +72,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start a program selected with fzf (a program launcher)
-bindsym $mod+d exec gnome-terminal --geometry=40x15 --title=fzf-launcher -- "$home/.bin/i3-fzf-launch.sh"
-for_window [class="Gnome-terminal" title="^fzf-launcher$"] floating enable, border none
+bindsym $mod+d exec xfce4-terminal --geometry=40x15 --title=fzf-launcher --command="$home/.bin/i3-fzf-launch.sh"
+for_window [class="Xfce4-terminal" title="^fzf-launcher$"] floating enable, border none
 
 bindsym Control+Shift+1 [class="^.*"] border toggle
 
