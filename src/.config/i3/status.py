@@ -42,7 +42,7 @@ status.register("battery",
 
 # Note: requires both netifaces and basiciw (for essid and quality)
 status.register("network",
-    interface="wifi",
+    interface="wlp1s0",
     format_up="{essid} {quality:3.0f}% {v4cidr}",
     on_leftclick="",)
 
