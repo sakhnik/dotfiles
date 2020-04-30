@@ -131,6 +131,10 @@ bindsym --to-code {
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
+# toggle sticky on a floating window
+bindsym $mod+Shift+s sticky toggle
+for_window [app_id="mpv"] floating enable, resize set 1280 720, move position center, border none, sticky enable
+
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
@@ -177,28 +181,28 @@ bindsym --to-code {
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+    # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym --to-code {
-            $left resize shrink width 10 px or 10 ppt
-            $down resize grow height 10 px or 10 ppt
-            $up resize shrink height 10 px or 10 ppt
-            $right resize grow width 10 px or 10 ppt
-        }
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym --to-code {
+        $left resize shrink width 10 px or 10 ppt
+        $down resize grow height 10 px or 10 ppt
+        $up resize shrink height 10 px or 10 ppt
+        $right resize grow width 10 px or 10 ppt
+    }
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
 bindsym --to-code $mod+r mode "resize"
@@ -238,12 +242,12 @@ bar {
     hidden_state hide
 }
 
-input "1739:32421:Synaptics_TM3242-001" {
-        tap enabled
-        natural_scroll enabled
+input "1267:123:Elan_Touchpad" {
+    tap enabled
+    natural_scroll enabled
 }
 
 input * xkb_layout "us,ua"
 input * xkb_variant "altgr-intl,"
-input * xkb_options "grp:caps_toggle,lv3:ralt_switch,compose:rctrl-altgr"
-#input "MANUFACTURER1 Keyboard" xkb_model "pc101"
+input * xkb_options "grp:alt_shift_toggle,lv3:ralt_switch,compose:rctrl-altgr"
+input "1:1:AT_Translated_Set_2_keyboard" xkb_model "chromebook"

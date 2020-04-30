@@ -71,6 +71,7 @@ status.register("pulseaudio",
 #    },)
 
 status.register("backlight",
+    backlight="intel_backlight",
     format="☼{percentage}",)
 
 status.run()
