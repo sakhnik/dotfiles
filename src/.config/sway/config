@@ -242,6 +242,8 @@ bar {
     hidden_state hide
 }
 
+output "eDP-1" scale 2
+
 input "1267:123:Elan_Touchpad" {
     tap enabled
     natural_scroll enabled
