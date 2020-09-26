@@ -53,7 +53,7 @@ font pango:Monospace 12
 
 # Don't use borders when one window per workspace
 hide_edge_borders --i3 smart
-default_border pixel 1    # Hide title bar in split containers
+default_border pixel 4
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -134,7 +134,7 @@ bindsym $mod+Shift+space floating toggle
 
 # toggle sticky on a floating window
 bindsym $mod+Shift+s sticky toggle
-for_window [app_id="mpv"] floating enable, resize set height 720 px, move position center, sticky enable
+for_window [app_id="mpv"] floating enable, sticky enable, border pixel 5
 for_window [class="[vV]lc"] floating enable, sticky enable
 
 # change focus between tiling / floating windows
@@ -253,5 +253,5 @@ input "1267:123:Elan_Touchpad" {
 
 input * xkb_layout "us,ua"
 input * xkb_variant "altgr-intl,"
-input * xkb_options "grp:alt_shift_toggle,lv3:ralt_switch,compose:rctrl-altgr"
+input * xkb_options "grp:alt_space_toggle,lv3:ralt_switch,compose:rctrl-altgr"
 input "1:1:AT_Translated_Set_2_keyboard" xkb_model "chromebook"
