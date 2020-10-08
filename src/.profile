@@ -18,11 +18,14 @@ if [[ "$XDG_SESSION_TYPE" == wayland ]]; then
     export MOZ_ENABLE_WAYLAND=1
     export QT_WAYLAND_FORCE_DPI=140
     export XDG_CURRENT_DESKTOP=Unity
+else
+    export GDK_SCALE=2
+    export GDK_DPI_SCALE=0.5
+    export MOZ_X11_EGL=1
 fi
 
 mesg n || true
 
-#!/bin/bash
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/sakhnik/.sdkman"
 [[ -s "/home/sakhnik/.sdkman/bin/sdkman-init.sh" ]] && source "/home/sakhnik/.sdkman/bin/sdkman-init.sh"
