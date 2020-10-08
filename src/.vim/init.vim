@@ -1,13 +1,5 @@
 " vim: set et ts=2 sw=2:
 
-if &term == "linux" && !has('nvim')
-  set t_ve+=[?81;0;112c
-endif
-
-if has('nvim')
-  runtime! python_setup.vim
-endif
-
 set fileencodings=ucs-bom,utf-8,cp1251,default
 if !has('nvim')
   set nocompatible
@@ -15,52 +7,6 @@ endif
 set nobackup backupdir=.
 set wildmode=longest,list,full
 set diffopt+=iwhite
-
-if has("autocmd")
-
-  augroup vimrcEx
-    au!
-
-    " For all text files set 'textwidth' to 78 characters.
-    autocmd FileType text setlocal textwidth=78 lbr
-    autocmd FileType gitcommit setlocal spell
-  augroup END
-
-  augroup misc
-    au!
-
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
-    autocmd BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \   exe "normal g`\"" |
-      \ endif
-
-    " Don't preserve a buffer when reading from stdin
-    " This is useful for "git diff | vim -"
-    autocmd StdinReadPost * setlocal buftype=nofile
-
-    " Autoclose preview window (omni completion) when leaving insert mode
-    "autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
-  augroup END
-
-  augroup reload_vimrc
-    au!
-    autocmd bufwritepost $MYVIMRC source $MYVIMRC
-  augroup END
-
-  " Set custom options for specific files
-  augroup custom_options
-    au!
-    " Evolution new message
-    autocmd BufReadPost /tmp/evo*  setlocal ft=text tw=72 spell
-    " Firefox extension to edit text in the entry fields
-    autocmd BufReadPost /tmp/itsalltext/jira2*.txt setlocal tw=0 spell
-  augroup END
-
-endif " has("autocmd")
-
 set ignorecase smartcase
 set tabstop=4
 set cindent shiftwidth=4
@@ -72,10 +18,6 @@ set hidden
 " In many terminal emulators the mouse works just fine, thus enable it.
 if exists("+mouse")
   set mouse=a
-
-  " Make shift-insert work like in Xterm
-  map <S-Insert> <MiddleMouse>
-  map! <S-Insert> <MiddleMouse>
 endif
 
 if exists("+termguicolors")
@@ -101,10 +43,6 @@ set lazyredraw
 set laststatus=1
 
 nnoremap <leader>w :w<cr>
-
-nnoremap & :&&<cr>
-xnoremap & :&&<cr>
-
 nmap <C-l> :redraw!<cr>
 
 " Expand %% to the directory of the current buffer
@@ -121,8 +59,6 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
       \ | wincmd p | diffthis
 endif
-
-nnoremap <leader>ve :split $MYVIMRC<cr>
 
 runtime autoload/plug.vim
 
@@ -370,7 +306,6 @@ endif   " YouCompleteMe
 """""""""""""""""""""""""""""""""""""""""""""""""
 
 set novb t_vb=    " Не бікати взагалі ніколи
-"set t_ti= t_te=   " Не очищувати екран після виходу
 set showbreak=\\  "↪
 set modeline
 if has('persistent_undo')
@@ -386,15 +321,9 @@ if has('persistent_undo')
 endif
 " Forget about ex mode
 map Q <nop>
-" Don't use Ex mode, use Q for formatting
-"map Q gq
 
 " Find tailing white spaces
 nnoremap <Leader><space> /\s\+$\\| \+\ze\t<cr>
-
-"" Doxygen parser
-"let &efm = &efm . ',%f:%l\ %m'
-"
 
 " NetRW
 let g:netrw_liststyle = 3
