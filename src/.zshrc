@@ -32,13 +32,8 @@ PURE_PROMPT_SYMBOL='$'
 PURE_GIT_UP_ARROW='↑'
 PURE_GIT_DOWN_ARROW='↓'
 
-if [[ -d $zshrc_dir/.vim/plugged/fzf ]]; then
-    # Assume fzf can be installed by other means (like vim)
-    zplug "$zshrc_dir/.vim/plugged/fzf/shell", from:local, use:'*.zsh'
-else
-    [[ -n "$PS1" ]] && \
-        echo "$yellow(W)$reset  fzf is missing, vim plugins need be installed"
-fi
+# Assume fzf can be installed by other means (like vim)
+zplug "$zshrc_dir/.vim/plugged/fzf/shell", from:local, use:'*.zsh'
 
 zplug check || zplug install
 zplug load
