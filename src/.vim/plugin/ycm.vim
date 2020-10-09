@@ -10,8 +10,9 @@ let g:loaded_plugin_ycm = 1
 let s:ycmdir = g:vimdir . '/YouCompleteMe'
 if !isdirectory(s:ycmdir)
   let s:ycmdir = '/tmp/YouCompleteMe'
-elseif !isdirectory(s:ycmdir)
-  finish
+  if !isdirectory(s:ycmdir)
+    finish
+  endif
 endif
 
 augroup YCM

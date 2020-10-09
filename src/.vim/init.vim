@@ -78,7 +78,7 @@ function! PackInit() abort
   call minpac#add('ledger/vim-ledger')
   call minpac#add('sakhnik/nvim-gdb')
   call minpac#add('w0rp/ale')
-  call minpac#add('natebosch/vim-lsc')
+  call minpac#add('neovim/nvim-lspconfig', {'type': 'opt'})
 endfunction
 
 command! PackUpdate call PackInit() | call minpac#update()
@@ -133,46 +133,6 @@ let g:ledger_fold_blanks = 1
 
 let g:ale_virtualtext_cursor = 1
 let g:ale_linters = {'cpp': []}  "Disable ALE linters for c++, YCM will do the job.
-
-let g:lsc_auto_map = {'defaults': v:true, 'Completion': 'omnifunc'}
-let g:lsc_enable_autocomplete = v:false
-let g:lsc_enable_diagnostics = v:false
-let g:lsc_server_commands = {}
-if executable('ccls')
-  function! FindProjectRoot()
-    let marker = findfile('compile_commands.json', expand('%:p') . ';')
-    if !marker
-      let marker = findfile('.ccls', expand('%:p') . ';')
-    endif
-    if !marker
-      let marker = finddir('.git', expand('%:p') . ';')
-    endif
-    return lsc#uri#documentUri(fnamemodify(marker, ':p:h'))
-  endfunction
-
-  let g:lsc_server_commands['cpp'] = {
-    \ 'command': 'ccls',
-    \ 'suppress_stderr': v:true,
-    \ 'message_hooks': {
-    \   'initialize': {
-    \     'initializationOptions': {'cache': {'directory': '/tmp/ccls-cache'}},
-    \     'rootUri': {m, p -> FindProjectRoot()}
-    \     },
-    \   },
-    \ }
-endif
-if executable('pyls')
-  let g:lsc_server_commands['python'] = {
-    \ 'command': 'pyls',
-    \ 'suppress_stderr': v:true,
-    \ }
-endif
-if executable('php-language-server')
-  let g:lsc_server_commands['php'] = {
-    \ 'command': 'php-language-server',
-    \ 'suppress_stderr': v:true,
-    \ }
-endif
 
 runtime! plugin/*.vim
 
