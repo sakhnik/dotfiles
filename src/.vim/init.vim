@@ -60,44 +60,44 @@ if !exists(":DiffOrig")
       \ | wincmd p | diffthis
 endif
 
-runtime autoload/plug.vim
+let g:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+let s:minpac_dir = g:vimdir . '/pack/minpac/opt/minpac'
 
-let s:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-
-if empty(glob(s:vimdir.'/autoload/plug.vim'))
-  exe 'silent !curl -fLo '.s:vimdir.'/autoload/plug.vim --create-dirs'.
-    \ ' https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if empty(glob(s:minpac_dir))
+  exe 'silent !git clone https://github.com/k-takata/minpac.git ' . s:minpac_dir
 endif
 
-call plug#begin(s:vimdir.'/plugged')
-Plug 'https://github.com/junegunn/seoul256.vim.git'
-Plug 'https://github.com/tomasr/molokai.git'
+packadd minpac
+call minpac#init()
 
-let s:sysname = strpart(system('uname'), 0, 4)
-if s:sysname == 'MSYS'
-  Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
-    let g:ctrlp_user_command = {
-      \ 'types': {
-        \ 1: ['.git', 'cd %s && git ls-files'],
-        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-      \ },
-      \ 'fallback': 'dir %s /-n /b /s /a-d'
-    \ }
-    nmap <leader>ff :CtrlP<cr>
-else
-  Plug 'https://github.com/junegunn/fzf.git', { 'do': './install --bin' }
-  Plug 'https://github.com/junegunn/fzf.vim.git'
+" minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
+call minpac#add('k-takata/minpac', {'type': 'opt'})
+
+"let s:sysname = strpart(system('uname'), 0, 4)
+"if s:sysname == 'MSYS'
+"  Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+"    let g:ctrlp_user_command = {
+"      \ 'types': {
+"        \ 1: ['.git', 'cd %s && git ls-files'],
+"        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+"      \ },
+"      \ 'fallback': 'dir %s /-n /b /s /a-d'
+"    \ }
+"    nmap <leader>ff :CtrlP<cr>
+"else
+  call minpac#add('junegunn/fzf')
+  call minpac#add('junegunn/fzf.vim')
+
     nmap <leader>ff :Files<cr>
     nmap <leader>fg :GitFiles<cr>
     nmap <leader>ft :Tags<cr>
-endif
+"endif
 
 if !has('nvim')
-  Plug 'https://github.com/tpope/vim-sensible.git'
+  call minpac#add('tpope/vim-sensible')
 endif
 
-Plug 'https://github.com/tpope/vim-fugitive.git'          " :Git
+call minpac#add('tpope/vim-fugitive')
   augroup git
     au!
     autocmd BufWinEnter * if exists(":Gblame") | nmap <buffer> <leader>gb :Gblame<cr>| endif
@@ -109,60 +109,38 @@ Plug 'https://github.com/tpope/vim-fugitive.git'          " :Git
     autocmd BufWinEnter * if exists(":Gpush") | nmap <buffer> <leader>gp :Gpush<cr>| endif
   augroup END
 
-Plug 'https://github.com/gregsexton/gitv.git', {'on': 'Gitv'}
-
-Plug 'https://github.com/tpope/vim-eunuch.git'            " :SudoWrite
-Plug 'https://github.com/tpope/vim-repeat.git'            " Repeat mapping with .
-Plug 'https://github.com/tpope/vim-sleuth.git'            " Set buffer options euristically
-Plug 'https://github.com/tpope/vim-unimpaired.git'        " ]q, ]a etc
-Plug 'https://github.com/tpope/vim-surround.git'          " Movements s', s(
-Plug 'https://github.com/tpope/vim-vinegar.git'
-Plug 'https://github.com/bronson/vim-visual-star-search.git'
-Plug 'https://github.com/vim-scripts/dbext.vim.git', { 'on': 'Dbext' }
-Plug 'https://github.com/raimondi/delimitmate.git'
-Plug 'https://github.com/drmikehenry/vim-fontsize.git'
-Plug 'https://github.com/wellle/targets.vim.git'
+call minpac#add('tpope/vim-eunuch')            " :SudoWrite
+call minpac#add('tpope/vim-repeat')            " Repeat mapping with .
+call minpac#add('tpope/vim-sleuth' )           " Set buffer options euristically
+call minpac#add('tpope/vim-unimpaired')        " ]q, ]a etc
+call minpac#add('tpope/vim-surround')          " Movements s', s(
+call minpac#add('tpope/vim-vinegar')
+call minpac#add('bronson/vim-visual-star-search')
+call minpac#add('raimondi/delimitmate')
+call minpac#add('wellle/targets.vim')
   let g:targets_aiAI = 'aIAi'
-Plug 'https://github.com/sheerun/vim-polyglot.git'
+call minpac#add('https://github.com/sheerun/vim-polyglot')
   let g:polyglot_disabled = []
-Plug 'https://github.com/tpope/vim-git.git'
-"Plug 'https://github.com/vim-jp/vim-cpp.git'
-"Plug 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
-Plug 'https://github.com/godlygeek/tabular.git'
-Plug 'https://github.com/mh21/errormarker.vim.git'
-Plug 'https://github.com/sirtaj/vim-openscad'
-Plug 'https://github.com/plasticboy/vim-markdown.git'
+call minpac#add('mh21/errormarker.vim')
+call minpac#add('sirtaj/vim-openscad')
+call minpac#add('plasticboy/vim-markdown')
   let g:vim_markdown_folding_disabled = 1
   let g:vim_markdown_frontmatter = 1
   let g:vim_markdown_no_default_key_mappings = 1
-Plug 'https://github.com/suan/vim-instant-markdown.git'
-  let g:instant_markdown_autostart = 0
-Plug 'https://github.com/LaTeX-Box-Team/LaTeX-Box.git'
-Plug 'https://github.com/leafo/moonscript-vim.git'
 
-Plug 'https://github.com/andymass/vim-matchup.git'
+call minpac#add('andymass/vim-matchup')
   let g:matchup_matchparen_status_offscreen = 0
 
-Plug 'https://github.com/majutsushi/tagbar.git'
+call minpac#add('majutsushi/tagbar')
   nnoremap <leader>tb :TagbarToggle<cr>
 
-Plug 'https://github.com/Kris2k/A.vim.git'
+call minpac#add('Kris2k/A.vim')
   let g:alternateExtensions_cc = "hh,h,hpp"
   let g:alternateExtensions_hh = "cc"
   let g:alternateExtensions_hxx = "cxx"
   let g:alternateExtensions_cxx = "hxx,h"
-  let g:alternateExtensions_moon = "lua"
-  let g:alternateExtensions_lua = "moon"
 
-Plug 'https://github.com/simnalamburt/vim-mundo.git'
-  nnoremap <leader>uu :GundoToggle<cr>
-
-Plug 'https://github.com/nathanaelkane/vim-indent-guides.git', { 'on': ['IndentGuidesToggle', 'IndentGuidesEnable'] }
-  let g:indent_guides_guide_size = 1
-  let g:indent_guides_color_change_percent = 20
-  nmap <leader>ig :IndentGuidesToggle<cr>
-
-Plug 'https://github.com/mhinz/vim-grepper.git'
+call minpac#add('mhinz/vim-grepper')
   nnoremap <leader>gG :Grepper -tool git<cr>
   nnoremap <leader>ga :Grepper -tool ag<cr>
   nnoremap <leader>gg :Grepper -tool rg<cr>
@@ -170,7 +148,7 @@ Plug 'https://github.com/mhinz/vim-grepper.git'
     \ 'tools': ['rg', 'git', 'grep'],
     \ }
 
-Plug 'https://github.com/ledger/vim-ledger.git'
+call minpac#add('ledger/vim-ledger')
   let g:ledger_bin = 'ledger'
   let g:ledger_date_format = '%Y-%m-%d'
   let g:ledger_extra_options = '--pedantic --explicit --price-db prices.db --date-format '.g:ledger_date_format
@@ -180,54 +158,13 @@ Plug 'https://github.com/ledger/vim-ledger.git'
   let g:ledger_commodity_sep = ' '
   let g:ledger_fold_blanks = 1
 
-Plug 'https://github.com/sakhnik/nvim-gdb.git', { 'do': './install.sh' }
+call minpac#add('sakhnik/nvim-gdb')
 
-  "nnoremap <leader>dd :GdbStart gdb -q -f a.out
-
-Plug 'https://github.com/w0rp/ale'
+call minpac#add('w0rp/ale')
   let g:ale_virtualtext_cursor = 1
   let g:ale_linters = {'cpp': []}  "Disable ALE linters for c++, YCM will do the job.
 
-Plug 'https://github.com/SirVer/ultisnips.git'
-Plug 'https://github.com/honza/vim-snippets.git'
-  let g:UltiSnipsExpandTrigger="<c-b>"
-  "let g:UltiSnipsJumpForwardTrigger="<c-j>"
-  "let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
-  function! ExpandLspSnippet()
-    call UltiSnips#ExpandSnippetOrJump()
-    if !pumvisible() || empty(v:completed_item)
-      return ''
-    endif
-
-    " only expand Lsp if UltiSnips#ExpandSnippetOrJump not effect.
-    let l:value = v:completed_item['word']
-    let l:matched = len(l:value)
-    if l:matched <= 0
-      return ''
-    endif
-
-    " remove inserted chars before expand snippet
-    if col('.') == col('$')
-      let l:matched -= 1
-      exec 'normal! ' . l:matched . 'Xx'
-    else
-      exec 'normal! ' . l:matched . 'X'
-    endif
-
-    if col('.') == col('$') - 1
-      " move to $ if at the end of line.
-      call cursor(line('.'), col('$'))
-    endif
-
-    " expand snippet now.
-    call UltiSnips#Anon(l:value)
-    return ''
-  endfunction
-
-  imap <C-j> <C-R>=ExpandLspSnippet()<CR>
-
-Plug 'https://github.com/natebosch/vim-lsc'
+call minpac#add('natebosch/vim-lsc')
   let g:lsc_auto_map = {'defaults': v:true, 'Completion': 'omnifunc'}
   let g:lsc_enable_autocomplete = v:false
   let g:lsc_enable_diagnostics = v:false
@@ -268,40 +205,7 @@ Plug 'https://github.com/natebosch/vim-lsc'
       \ }
   endif
 
-call plug#end()
-
 runtime! plugin/*.vim
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" YouCompleteMe stuff
-" The plugin should be delpoyed by the script ycm-update.sh
-
-if isdirectory(s:vimdir . '/YouCompleteMe')
-  augroup YCM
-    au!
-    au FileType cpp,python setlocal signcolumn=yes
-  augroup END
-
-  let g:ycm_filetype_whitelist = {
-    \ 'cpp' : 1,
-    \ 'python' : 1,
-    \}
-  "let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
-  "let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
-  let g:ycm_complete_in_comments = 1 " Completion in comments
-  let g:ycm_complete_in_strings = 1 " Completion in string
-  let g:ycm_always_populate_location_list = 1
-  let g:ycm_use_clangd = 0
-
-  " If there's preinstalled version, integrated with system libraries, prefer it
-  exe 'set rtp+='.s:vimdir.'/YouCompleteMe'
-  exe 'source '.s:vimdir.'/YouCompleteMe/plugin/youcompleteme.vim'
-
-  nnoremap <leader>yj :YcmCompleter GoToDefinitionElseDeclaration<cr>
-  nnoremap <leader>yd :YcmCompleter GetDoc<cr>
-  nnoremap <leader>yf :YcmCompleter FixIt<cr>
-  nnoremap <leader>yy :YcmDiags<cr>
-endif   " YouCompleteMe
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 

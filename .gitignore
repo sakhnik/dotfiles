@@ -6,5 +6,5 @@ src/.viminfo
 src/.zhistory
 src/.bash_history
 .ropeproject/
-src/.vim/YouCompleteMe/
 src/.vim/autoload/plug.vim
+src/.vim/pack
