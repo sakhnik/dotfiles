@@ -79,6 +79,7 @@ function! PackInit() abort
   call minpac#add('sakhnik/nvim-gdb')
   call minpac#add('w0rp/ale')
   call minpac#add('neovim/nvim-lspconfig', {'type': 'opt'})
+  call minpac#add('nvim-lua/completion-nvim', {'type': 'opt'})
 endfunction
 
 command! PackUpdate call PackInit() | call minpac#update()
