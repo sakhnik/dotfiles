@@ -1,9 +1,11 @@
 " vim: set et ts=2 sw=2:
 
-set fileencodings=ucs-bom,utf-8,cp1251,default
 if !has('nvim')
-  set nocompatible
+  if &compatible   " Beware of side effects, the check is necessary before set nocp
+    set nocompatible
+  endif
 endif
+set fileencodings=ucs-bom,utf-8,cp1251,default
 set nobackup backupdir=.
 set wildmode=longest,list,full
 set diffopt+=iwhite
@@ -56,22 +58,51 @@ cnoremap <c-p> <up>
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+  command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
       \ | wincmd p | diffthis
 endif
 
 let g:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-let s:minpac_dir = g:vimdir . '/pack/minpac/opt/minpac'
 
-if empty(glob(s:minpac_dir))
-  exe 'silent !git clone https://github.com/k-takata/minpac.git ' . s:minpac_dir
-endif
+function! PackInit() abort
+  let s:minpac_dir = g:vimdir . '/pack/minpac/opt/minpac'
+  if empty(glob(s:minpac_dir))
+    exe 'silent !git clone https://github.com/k-takata/minpac.git ' . s:minpac_dir
+  endif
 
-packadd minpac
-call minpac#init()
+  packadd minpac
+  call minpac#init()
+  " minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
+  call minpac#add('k-takata/minpac', {'type': 'opt'})
+  call minpac#add('junegunn/fzf')
+  call minpac#add('junegunn/fzf.vim')
+  call minpac#add('tpope/vim-fugitive')
+  call minpac#add('tpope/vim-eunuch')            " :SudoWrite
+  call minpac#add('tpope/vim-repeat')            " Repeat mapping with .
+  call minpac#add('tpope/vim-sleuth' )           " Set buffer options euristically
+  call minpac#add('tpope/vim-unimpaired')        " ]q, ]a etc
+  call minpac#add('tpope/vim-surround')          " Movements s', s(
+  call minpac#add('tpope/vim-vinegar')
+  call minpac#add('bronson/vim-visual-star-search')
+  call minpac#add('raimondi/delimitmate')
+  call minpac#add('wellle/targets.vim')
+  call minpac#add('https://github.com/sheerun/vim-polyglot')
+  call minpac#add('mh21/errormarker.vim')
+  call minpac#add('sirtaj/vim-openscad')
+  call minpac#add('plasticboy/vim-markdown')
+  call minpac#add('andymass/vim-matchup')
+  call minpac#add('majutsushi/tagbar')
+  call minpac#add('Kris2k/A.vim')
+  call minpac#add('mhinz/vim-grepper')
+  call minpac#add('ledger/vim-ledger')
+  call minpac#add('sakhnik/nvim-gdb')
+  call minpac#add('w0rp/ale')
+  call minpac#add('natebosch/vim-lsc')
+endfunction
 
-" minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
-call minpac#add('k-takata/minpac', {'type': 'opt'})
+command! PackUpdate call PackInit() | call minpac#update()
+command! PackClean  call PackInit() | call minpac#clean()
+command! PackStatus call PackInit() | call minpac#status()
 
 "let s:sysname = strpart(system('uname'), 0, 4)
 "if s:sysname == 'MSYS'
@@ -85,19 +116,13 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 "    \ }
 "    nmap <leader>ff :CtrlP<cr>
 "else
-  call minpac#add('junegunn/fzf')
-  call minpac#add('junegunn/fzf.vim')
 
     nmap <leader>ff :Files<cr>
     nmap <leader>fg :GitFiles<cr>
     nmap <leader>ft :Tags<cr>
 "endif
 
-if !has('nvim')
-  call minpac#add('tpope/vim-sensible')
-endif
 
-call minpac#add('tpope/vim-fugitive')
   augroup git
     au!
     autocmd BufWinEnter * if exists(":Gblame") | nmap <buffer> <leader>gb :Gblame<cr>| endif
@@ -109,38 +134,21 @@ call minpac#add('tpope/vim-fugitive')
     autocmd BufWinEnter * if exists(":Gpush") | nmap <buffer> <leader>gp :Gpush<cr>| endif
   augroup END
 
-call minpac#add('tpope/vim-eunuch')            " :SudoWrite
-call minpac#add('tpope/vim-repeat')            " Repeat mapping with .
-call minpac#add('tpope/vim-sleuth' )           " Set buffer options euristically
-call minpac#add('tpope/vim-unimpaired')        " ]q, ]a etc
-call minpac#add('tpope/vim-surround')          " Movements s', s(
-call minpac#add('tpope/vim-vinegar')
-call minpac#add('bronson/vim-visual-star-search')
-call minpac#add('raimondi/delimitmate')
-call minpac#add('wellle/targets.vim')
   let g:targets_aiAI = 'aIAi'
-call minpac#add('https://github.com/sheerun/vim-polyglot')
   let g:polyglot_disabled = []
-call minpac#add('mh21/errormarker.vim')
-call minpac#add('sirtaj/vim-openscad')
-call minpac#add('plasticboy/vim-markdown')
   let g:vim_markdown_folding_disabled = 1
   let g:vim_markdown_frontmatter = 1
   let g:vim_markdown_no_default_key_mappings = 1
 
-call minpac#add('andymass/vim-matchup')
   let g:matchup_matchparen_status_offscreen = 0
 
-call minpac#add('majutsushi/tagbar')
   nnoremap <leader>tb :TagbarToggle<cr>
 
-call minpac#add('Kris2k/A.vim')
   let g:alternateExtensions_cc = "hh,h,hpp"
   let g:alternateExtensions_hh = "cc"
   let g:alternateExtensions_hxx = "cxx"
   let g:alternateExtensions_cxx = "hxx,h"
 
-call minpac#add('mhinz/vim-grepper')
   nnoremap <leader>gG :Grepper -tool git<cr>
   nnoremap <leader>ga :Grepper -tool ag<cr>
   nnoremap <leader>gg :Grepper -tool rg<cr>
@@ -148,7 +156,6 @@ call minpac#add('mhinz/vim-grepper')
     \ 'tools': ['rg', 'git', 'grep'],
     \ }
 
-call minpac#add('ledger/vim-ledger')
   let g:ledger_bin = 'ledger'
   let g:ledger_date_format = '%Y-%m-%d'
   let g:ledger_extra_options = '--pedantic --explicit --price-db prices.db --date-format '.g:ledger_date_format
@@ -158,13 +165,9 @@ call minpac#add('ledger/vim-ledger')
   let g:ledger_commodity_sep = ' '
   let g:ledger_fold_blanks = 1
 
-call minpac#add('sakhnik/nvim-gdb')
-
-call minpac#add('w0rp/ale')
   let g:ale_virtualtext_cursor = 1
   let g:ale_linters = {'cpp': []}  "Disable ALE linters for c++, YCM will do the job.
 
-call minpac#add('natebosch/vim-lsc')
   let g:lsc_auto_map = {'defaults': v:true, 'Completion': 'omnifunc'}
   let g:lsc_enable_autocomplete = v:false
   let g:lsc_enable_diagnostics = v:false
