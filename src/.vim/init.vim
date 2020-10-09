@@ -1,9 +1,7 @@
 " vim: set et ts=2 sw=2:
 
-if !has('nvim')
-  if &compatible   " Beware of side effects, the check is necessary before set nocp
-    set nocompatible
-  endif
+if &compatible   " Beware of side effects, the check is necessary before set nocp
+  set nocompatible
 endif
 set fileencodings=ucs-bom,utf-8,cp1251,default
 set nobackup backupdir=.
@@ -16,26 +14,9 @@ set cinoptions=:0,=1s,g0,(0,M1,U0,u0
 set copyindent
 set expandtab
 set hidden
-
-" In many terminal emulators the mouse works just fine, thus enable it.
-if exists("+mouse")
-  set mouse=a
-endif
-
-if exists("+termguicolors")
-  set termguicolors
-  if !has('nvim')
-    let &t_8f = "[38;2;%lu;%lu;%lum"
-    let &t_8b = "[48;2;%lu;%lu;%lum"
-  endif
-endif
-
-if !has('nvim')
-  set guioptions-=T
-  set guioptions-=m
-  set mousehide
-  set incsearch
-endif
+set mouse=a
+set termguicolors
+set incsearch
 set completeopt=menu,preview
 set shortmess=ac
 let mapleader=' '
@@ -104,109 +85,94 @@ command! PackUpdate call PackInit() | call minpac#update()
 command! PackClean  call PackInit() | call minpac#clean()
 command! PackStatus call PackInit() | call minpac#status()
 
-"let s:sysname = strpart(system('uname'), 0, 4)
-"if s:sysname == 'MSYS'
-"  Plug 'https://github.com/ctrlpvim/ctrlp.vim'
-"    let g:ctrlp_user_command = {
-"      \ 'types': {
-"        \ 1: ['.git', 'cd %s && git ls-files'],
-"        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-"      \ },
-"      \ 'fallback': 'dir %s /-n /b /s /a-d'
-"    \ }
-"    nmap <leader>ff :CtrlP<cr>
-"else
+nmap <leader>ff :Files<cr>
+nmap <leader>fg :GitFiles<cr>
+nmap <leader>ft :Tags<cr>
 
-    nmap <leader>ff :Files<cr>
-    nmap <leader>fg :GitFiles<cr>
-    nmap <leader>ft :Tags<cr>
-"endif
+augroup git
+  au!
+  autocmd BufWinEnter * if exists(":Gblame") | nmap <buffer> <leader>gb :Gblame<cr>| endif
+  autocmd BufWinEnter * if exists(":Gwrite") | nmap <buffer> <leader>gw :Gwrite<cr>| endif
+  autocmd BufWinEnter * if exists(":Gdiff") | nmap <buffer> <leader>gd :Gdiff<cr>| endif
+  autocmd BufWinEnter * if exists(":Gvdiff") | nmap <buffer> <leader>gD :Gvdiff<cr>| endif
+  autocmd BufWinEnter * if exists(":Gstatus") | nmap <buffer> <leader>gs :Gstatus<cr>| endif
+  autocmd BufWinEnter * if exists(":Gcommit") | nmap <buffer> <leader>gc :Gcommit<cr>| endif
+  autocmd BufWinEnter * if exists(":Gpush") | nmap <buffer> <leader>gp :Gpush<cr>| endif
+augroup END
 
+let g:targets_aiAI = 'aIAi'
+let g:polyglot_disabled = []
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_no_default_key_mappings = 1
 
-  augroup git
-    au!
-    autocmd BufWinEnter * if exists(":Gblame") | nmap <buffer> <leader>gb :Gblame<cr>| endif
-    autocmd BufWinEnter * if exists(":Gwrite") | nmap <buffer> <leader>gw :Gwrite<cr>| endif
-    autocmd BufWinEnter * if exists(":Gdiff") | nmap <buffer> <leader>gd :Gdiff<cr>| endif
-    autocmd BufWinEnter * if exists(":Gvdiff") | nmap <buffer> <leader>gD :Gvdiff<cr>| endif
-    autocmd BufWinEnter * if exists(":Gstatus") | nmap <buffer> <leader>gs :Gstatus<cr>| endif
-    autocmd BufWinEnter * if exists(":Gcommit") | nmap <buffer> <leader>gc :Gcommit<cr>| endif
-    autocmd BufWinEnter * if exists(":Gpush") | nmap <buffer> <leader>gp :Gpush<cr>| endif
-  augroup END
+let g:matchup_matchparen_status_offscreen = 0
 
-  let g:targets_aiAI = 'aIAi'
-  let g:polyglot_disabled = []
-  let g:vim_markdown_folding_disabled = 1
-  let g:vim_markdown_frontmatter = 1
-  let g:vim_markdown_no_default_key_mappings = 1
+nnoremap <leader>tb :TagbarToggle<cr>
 
-  let g:matchup_matchparen_status_offscreen = 0
+let g:alternateExtensions_cc = "hh,h,hpp"
+let g:alternateExtensions_hh = "cc"
+let g:alternateExtensions_hxx = "cxx"
+let g:alternateExtensions_cxx = "hxx,h"
 
-  nnoremap <leader>tb :TagbarToggle<cr>
+nnoremap <leader>gG :Grepper -tool git<cr>
+nnoremap <leader>ga :Grepper -tool ag<cr>
+nnoremap <leader>gg :Grepper -tool rg<cr>
+let g:grepper = {
+  \ 'tools': ['rg', 'git', 'grep'],
+  \ }
 
-  let g:alternateExtensions_cc = "hh,h,hpp"
-  let g:alternateExtensions_hh = "cc"
-  let g:alternateExtensions_hxx = "cxx"
-  let g:alternateExtensions_cxx = "hxx,h"
+let g:ledger_bin = 'ledger'
+let g:ledger_date_format = '%Y-%m-%d'
+let g:ledger_extra_options = '--pedantic --explicit --price-db prices.db --date-format '.g:ledger_date_format
+let g:ledger_align_at = 45
+let g:ledger_default_commodity = '₴'
+let g:ledger_commodity_before = 0
+let g:ledger_commodity_sep = ' '
+let g:ledger_fold_blanks = 1
 
-  nnoremap <leader>gG :Grepper -tool git<cr>
-  nnoremap <leader>ga :Grepper -tool ag<cr>
-  nnoremap <leader>gg :Grepper -tool rg<cr>
-  let g:grepper = {
-    \ 'tools': ['rg', 'git', 'grep'],
+let g:ale_virtualtext_cursor = 1
+let g:ale_linters = {'cpp': []}  "Disable ALE linters for c++, YCM will do the job.
+
+let g:lsc_auto_map = {'defaults': v:true, 'Completion': 'omnifunc'}
+let g:lsc_enable_autocomplete = v:false
+let g:lsc_enable_diagnostics = v:false
+let g:lsc_server_commands = {}
+if executable('ccls')
+  function! FindProjectRoot()
+    let marker = findfile('compile_commands.json', expand('%:p') . ';')
+    if !marker
+      let marker = findfile('.ccls', expand('%:p') . ';')
+    endif
+    if !marker
+      let marker = finddir('.git', expand('%:p') . ';')
+    endif
+    return lsc#uri#documentUri(fnamemodify(marker, ':p:h'))
+  endfunction
+
+  let g:lsc_server_commands['cpp'] = {
+    \ 'command': 'ccls',
+    \ 'suppress_stderr': v:true,
+    \ 'message_hooks': {
+    \   'initialize': {
+    \     'initializationOptions': {'cache': {'directory': '/tmp/ccls-cache'}},
+    \     'rootUri': {m, p -> FindProjectRoot()}
+    \     },
+    \   },
     \ }
-
-  let g:ledger_bin = 'ledger'
-  let g:ledger_date_format = '%Y-%m-%d'
-  let g:ledger_extra_options = '--pedantic --explicit --price-db prices.db --date-format '.g:ledger_date_format
-  let g:ledger_align_at = 45
-  let g:ledger_default_commodity = '₴'
-  let g:ledger_commodity_before = 0
-  let g:ledger_commodity_sep = ' '
-  let g:ledger_fold_blanks = 1
-
-  let g:ale_virtualtext_cursor = 1
-  let g:ale_linters = {'cpp': []}  "Disable ALE linters for c++, YCM will do the job.
-
-  let g:lsc_auto_map = {'defaults': v:true, 'Completion': 'omnifunc'}
-  let g:lsc_enable_autocomplete = v:false
-  let g:lsc_enable_diagnostics = v:false
-  let g:lsc_server_commands = {}
-  if executable('ccls')
-    function! FindProjectRoot()
-      let marker = findfile('compile_commands.json', expand('%:p') . ';')
-      if !marker
-        let marker = findfile('.ccls', expand('%:p') . ';')
-      endif
-      if !marker
-        let marker = finddir('.git', expand('%:p') . ';')
-      endif
-      return lsc#uri#documentUri(fnamemodify(marker, ':p:h'))
-    endfunction
-
-    let g:lsc_server_commands['cpp'] = {
-      \ 'command': 'ccls',
-      \ 'suppress_stderr': v:true,
-      \ 'message_hooks': {
-      \   'initialize': {
-      \     'initializationOptions': {'cache': {'directory': '/tmp/ccls-cache'}},
-      \     'rootUri': {m, p -> FindProjectRoot()}
-      \     },
-      \   },
-      \ }
-  endif
-  if executable('pyls')
-    let g:lsc_server_commands['python'] = {
-      \ 'command': 'pyls',
-      \ 'suppress_stderr': v:true,
-      \ }
-  endif
-  if executable('php-language-server')
-    let g:lsc_server_commands['php'] = {
-      \ 'command': 'php-language-server',
-      \ 'suppress_stderr': v:true,
-      \ }
-  endif
+endif
+if executable('pyls')
+  let g:lsc_server_commands['python'] = {
+    \ 'command': 'pyls',
+    \ 'suppress_stderr': v:true,
+    \ }
+endif
+if executable('php-language-server')
+  let g:lsc_server_commands['php'] = {
+    \ 'command': 'php-language-server',
+    \ 'suppress_stderr': v:true,
+    \ }
+endif
 
 runtime! plugin/*.vim
 
@@ -237,12 +203,10 @@ let g:netrw_liststyle = 3
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if &t_Co == 256 || has("gui_running")
-  if has("autocmd")
-    augroup colors
-      au!
-      autocmd ColorScheme * hi Comment cterm=italic
-    augroup END
-  endif
+  augroup colors
+    au!
+    autocmd ColorScheme * hi Comment cterm=italic
+  augroup END
   colors zenburn
   hi Comment cterm=italic
 endif
