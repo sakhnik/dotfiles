@@ -29,3 +29,5 @@ function! LedgerEvaluateExpr(type, ...)
 endfunction
 
 noremap <buffer> <silent> <leader>ll :call ledger#transaction_state_toggle(line('.'), ' *')<CR>
+
+setlocal completeopt-=noinsert,noselect
