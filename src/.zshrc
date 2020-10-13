@@ -33,7 +33,7 @@ PURE_GIT_UP_ARROW='↑'
 PURE_GIT_DOWN_ARROW='↓'
 
 # Assume fzf can be installed by other means (like vim)
-zplug "$zshrc_dir/.vim/plugged/fzf/shell", from:local, use:'*.zsh'
+zplug "$zshrc_dir/.vim/pack/minpac/start/fzf/shell", from:local, use:'*.zsh'
 
 zplug check || zplug install
 zplug load
