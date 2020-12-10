@@ -2,7 +2,7 @@
 " YouCompleteMe stuff
 " The plugin should be delpoyed by the script ycm-update.sh
 
-if exists("g:loaded_plugin_ycm")
+if exists("g:loaded_plugin_ycm") || !exists("g:vimdir")
     finish
 endif
 let g:loaded_plugin_ycm = 1
