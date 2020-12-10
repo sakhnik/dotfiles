@@ -32,6 +32,7 @@ EOF
 
   " Avoid showing message extra message when using completion
   setlocal shortmess+=c
+  setlocal signcolumn=yes
 
   let g:completion_matching_ignore_case = 1
   " possible value: "length", "alphabet", "none"
