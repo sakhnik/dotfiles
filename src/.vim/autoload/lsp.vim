@@ -1,12 +1,23 @@
-function! lsp#EnableLocal()
+function! lsp#Init()
 
   packadd nvim-lspconfig
   packadd completion-nvim
 
+  " Stop existing clients (useful to reload after crash)
+  "lua vim.lsp.stop_client(vim.lsp.buf_get_clients())
+
   lua << EOF
-require'lspconfig'.pyls.setup{}
-require'lspconfig'.clangd.setup{}
+require'lspconfig'.pyls.setup{on_attach = function() vim.call('lsp#ConfigureBuffer') end}
+require'lspconfig'.clangd.setup{on_attach = function() vim.call('lsp#ConfigureBuffer') end}
 EOF
+
+  let g:completion_matching_ignore_case = 1
+  " possible value: "length", "alphabet", "none"
+  let g:completion_sorting = "length"
+  let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
+endfunction
+
+function! lsp#ConfigureBuffer()
 
   setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
@@ -20,7 +31,7 @@ EOF
   nnoremap <silent><buffer> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
   nnoremap <silent><buffer> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 
-  " Use completion-nvim in every buffer
+  " Use completion-nvim in this buffer
   lua require'completion'.on_attach()
 
   " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -33,10 +44,5 @@ EOF
   " Avoid showing message extra message when using completion
   setlocal shortmess+=c
   setlocal signcolumn=yes
-
-  let g:completion_matching_ignore_case = 1
-  " possible value: "length", "alphabet", "none"
-  let g:completion_sorting = "length"
-  let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
 
 endfunction
