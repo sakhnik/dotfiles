@@ -46,3 +46,8 @@ function! lsp#ConfigureBuffer()
   setlocal signcolumn=yes
 
 endfunction
+
+function! lsp#ClearSigns()
+  call nvim_buf_clear_namespace(0, -1, 0, -1)
+  sign unplace * group=*
+endfunction
