@@ -77,7 +77,6 @@ function! PackInit() abort
   call minpac#add('mhinz/vim-grepper')
   call minpac#add('ledger/vim-ledger')
   call minpac#add('sakhnik/nvim-gdb')
-  call minpac#add('w0rp/ale')
   call minpac#add('neovim/nvim-lspconfig', {'type': 'opt'})
   call minpac#add('nvim-lua/completion-nvim', {'type': 'opt'})
 endfunction
@@ -131,9 +130,6 @@ let g:ledger_default_commodity = '₴'
 let g:ledger_commodity_before = 0
 let g:ledger_commodity_sep = ' '
 let g:ledger_fold_blanks = 1
-
-let g:ale_virtualtext_cursor = 1
-let g:ale_linters = {'cpp': []}  "Disable ALE linters for c++, YCM will do the job.
 
 runtime! plugin/*.vim
 
