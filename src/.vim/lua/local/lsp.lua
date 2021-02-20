@@ -33,6 +33,12 @@ end
 
 function C.init()
 
+  vim.g.completion_matching_ignore_case = 1
+
+  -- possible value: "length", "alphabet", "none"
+  vim.g.completion_sorting = "length"
+  vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy', 'all'}
+
   vim.cmd("packadd nvim-lspconfig")
   vim.cmd("packadd completion-nvim")
 
@@ -41,12 +47,33 @@ function C.init()
 
   require'lspconfig'.pyls.setup{on_attach = configureBuffer}
   require'lspconfig'.clangd.setup{on_attach = configureBuffer}
+  require'lspconfig'.sumneko_lua.setup {
+    cmd = {"/usr/bin/lua-language-server"},
 
-  vim.g.completion_matching_ignore_case = 1
+    settings = {
+      Lua = {
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT',
+          -- Setup your lua path
+          path = vim.split(package.path, ';'),
+        },
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = {'vim'},
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = {
+            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+          },
+        },
+      },
+    },
 
-  -- possible value: "length", "alphabet", "none"
-  vim.g.completion_sorting = "length"
-  vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy', 'all'}
+    on_attach = configureBuffer,
+  }
 end
 
 function C.clearSigns()
