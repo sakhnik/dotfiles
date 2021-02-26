@@ -3,8 +3,7 @@
 if &compatible   " Beware of side effects, the check is necessary before set nocp
   set nocompatible
 endif
-set fileencodings=ucs-bom,utf-8,cp1251,default
-set nobackup backupdir=.
+set fileencodings=utf-8,cp1251,default
 set wildmode=longest,list,full
 set diffopt+=iwhite
 set ignorecase smartcase
@@ -140,9 +139,7 @@ runtime! plugin/*.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 
-set novb t_vb=    " Не бікати взагалі ніколи
 set showbreak=\\  "↪
-set modeline
 if has('persistent_undo')
   set undofile
   set undodir=/tmp/vim_undo-$USER
