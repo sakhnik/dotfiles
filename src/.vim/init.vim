@@ -59,8 +59,6 @@ function! PackInit() abort
   call minpac#init()
   " minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
   call minpac#add('k-takata/minpac', {'type': 'opt'})
-  call minpac#add('junegunn/fzf')
-  call minpac#add('junegunn/fzf.vim')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-eunuch')            " :SudoWrite
   call minpac#add('tpope/vim-repeat')            " Repeat mapping with .
@@ -78,20 +76,23 @@ function! PackInit() abort
   call minpac#add('andymass/vim-matchup')
   call minpac#add('majutsushi/tagbar')
   call minpac#add('Kris2k/A.vim')
-  call minpac#add('mhinz/vim-grepper')
   call minpac#add('ledger/vim-ledger')
   call minpac#add('sakhnik/nvim-gdb')
   call minpac#add('neovim/nvim-lspconfig', {'type': 'opt'})
   call minpac#add('nvim-lua/completion-nvim', {'type': 'opt'})
+  call minpac#add('nvim-lua/popup.nvim')
+  call minpac#add('nvim-lua/plenary.nvim')
+  call minpac#add('nvim-telescope/telescope.nvim')
 endfunction
 
 command! PackUpdate call PackInit() | call minpac#update()
 command! PackClean  call PackInit() | call minpac#clean()
 command! PackStatus call PackInit() | call minpac#status()
 
-nmap <leader>ff :Files<cr>
-nmap <leader>fg :GitFiles<cr>
-nmap <leader>ft :Tags<cr>
+nmap <leader>ff :Telescope find_files<cr>
+nmap <leader>fg :Telescope git_files<cr>
+nmap <leader>f<space> :Telescope builtin<cr>
+nmap <leader>gg :Telescope live_grep<cr>
 
 augroup git
   au!
@@ -118,13 +119,6 @@ let g:alternateExtensions_cc = "hh,h,hpp"
 let g:alternateExtensions_hh = "cc"
 let g:alternateExtensions_hxx = "cxx"
 let g:alternateExtensions_cxx = "hxx,h"
-
-nnoremap <leader>gG :Grepper -tool git<cr>
-nnoremap <leader>ga :Grepper -tool ag<cr>
-nnoremap <leader>gg :Grepper -tool rg<cr>
-let g:grepper = {
-  \ 'tools': ['rg', 'git', 'grep'],
-  \ }
 
 let g:ledger_bin = 'ledger'
 let g:ledger_date_format = '%Y-%m-%d'

@@ -33,7 +33,7 @@ PURE_GIT_UP_ARROW='↑'
 PURE_GIT_DOWN_ARROW='↓'
 
 # Assume fzf can be installed by other means (like vim)
-zplug "$zshrc_dir/.vim/pack/minpac/start/fzf/shell", from:local, use:'*.zsh'
+zplug "/usr/share/fzf", from:local, use:'*.zsh'
 
 zplug check || zplug install
 zplug load
@@ -56,16 +56,6 @@ if [[ -d $zshrc_dir/.bin ]]; then
         *) export PATH=$zshrc_dir/.bin:$PATH ;;
     esac
 fi
-
-local fzf_dir=$zshrc_dir/.vim/plugged/fzf/bin
-if [[ -d $fzf_dir ]]; then
-    case "$PATH" in
-        *$fzf_dir*) ;;
-        *) export PATH=$PATH:$fzf_dir ;;
-    esac
-fi
-unset fzf_dir
-
 
 # Let ctest output error on test failure
 export CTEST_OUTPUT_ON_FAILURE=1
