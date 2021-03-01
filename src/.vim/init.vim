@@ -96,13 +96,13 @@ nmap <leader>gg :Telescope live_grep<cr>
 
 augroup git
   au!
-  autocmd BufWinEnter * if exists(":Gblame") | nmap <buffer> <leader>gb :Gblame<cr>| endif
+  autocmd BufWinEnter * if exists(":Git") | nmap <buffer> <leader>gb :Git blame<cr>| endif
   autocmd BufWinEnter * if exists(":Gwrite") | nmap <buffer> <leader>gw :Gwrite<cr>| endif
-  autocmd BufWinEnter * if exists(":Gdiff") | nmap <buffer> <leader>gd :Gdiff<cr>| endif
-  autocmd BufWinEnter * if exists(":Gvdiff") | nmap <buffer> <leader>gD :Gvdiff<cr>| endif
-  autocmd BufWinEnter * if exists(":Gstatus") | nmap <buffer> <leader>gs :Gstatus<cr>| endif
-  autocmd BufWinEnter * if exists(":Gcommit") | nmap <buffer> <leader>gc :Gcommit<cr>| endif
-  autocmd BufWinEnter * if exists(":Gpush") | nmap <buffer> <leader>gp :Gpush<cr>| endif
+  autocmd BufWinEnter * if exists(":Gdiffsplit") | nmap <buffer> <leader>gd :Gdiffsplit<cr>| endif
+  autocmd BufWinEnter * if exists(":Gvdiffsplit") | nmap <buffer> <leader>gD :Gvdiffsplit<cr>| endif
+  autocmd BufWinEnter * if exists(":Git") | nmap <buffer> <leader>gs :Git<cr>| endif
+  autocmd BufWinEnter * if exists(":Git") | nmap <buffer> <leader>gc :Git commit<cr>| endif
+  autocmd BufWinEnter * if exists(":Git") | nmap <buffer> <leader>gp :Git push<cr>| endif
 augroup END
 
 let g:targets_aiAI = 'aIAi'
