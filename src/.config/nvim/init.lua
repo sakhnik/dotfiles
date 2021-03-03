@@ -56,7 +56,7 @@ vim.g.ledger_fold_blanks = 1
 vim.o.showbreak = '\\'  --↪
 vim.o.undofile = true
 vim.o.undodir = '/tmp/nvim_undo-' .. vim.env.USER
-vim.loop.fs_mkdir(vim.o.undodir, 0700)
+vim.loop.fs_mkdir(vim.o.undodir, 7 * 8 * 8)  -- 0700
 
 -- Forget about ex mode
 set_keymap('', 'Q', '<nop>', {})
