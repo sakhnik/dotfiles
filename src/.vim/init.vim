@@ -78,21 +78,11 @@ function! PackInit() abort
   call minpac#add('Kris2k/A.vim')
   call minpac#add('ledger/vim-ledger')
   call minpac#add('sakhnik/nvim-gdb')
-  call minpac#add('neovim/nvim-lspconfig', {'type': 'opt'})
-  call minpac#add('nvim-lua/completion-nvim', {'type': 'opt'})
-  call minpac#add('nvim-lua/popup.nvim')
-  call minpac#add('nvim-lua/plenary.nvim')
-  call minpac#add('nvim-telescope/telescope.nvim')
 endfunction
 
 command! PackUpdate call PackInit() | call minpac#update()
 command! PackClean  call PackInit() | call minpac#clean()
 command! PackStatus call PackInit() | call minpac#status()
-
-nmap <leader>ff :Telescope find_files<cr>
-nmap <leader>fg :Telescope git_files<cr>
-nmap <leader>f<space> :Telescope builtin<cr>
-nmap <leader>gg :Telescope live_grep<cr>
 
 augroup git
   au!
