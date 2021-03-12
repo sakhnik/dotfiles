@@ -19,3 +19,5 @@
 [diff]
 	submodule = log
 	tool = vimdiff
+[pull]
+	ff = only
