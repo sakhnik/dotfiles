@@ -48,6 +48,7 @@ function C.init()
   -- Stop existing clients (useful to reload after crash)
   --vim.lsp.stop_client(vim.lsp.buf_get_clients())
 
+  require'lspconfig'.bashls.setup{on_attach = configureBuffer}
   require'lspconfig'.pyls.setup{on_attach = configureBuffer}
   require'lspconfig'.clangd.setup{on_attach = configureBuffer}
   require'lspconfig'.sumneko_lua.setup {
