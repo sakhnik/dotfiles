@@ -20,6 +20,9 @@ vim.o.mouse = 'a'
 vim.o.termguicolors = true
 vim.o.completeopt = 'menu,preview'
 vim.o.shortmess = 'ac'
+if vim.fn.has('win32') == 1 then
+  vim.o.shellslash = true
+end
 
 cmd [[let mapleader = ' ']]
 cmd [[let maplocalleader = ' ']]
