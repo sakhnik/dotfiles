@@ -49,6 +49,7 @@ function C.init()
   --vim.lsp.stop_client(vim.lsp.buf_get_clients())
 
   require'lspconfig'.bashls.setup{on_attach = configureBuffer}
+  require'lspconfig'.vala_ls.setup{on_attach = configureBuffer}
   require'lspconfig'.pyls.setup{on_attach = configureBuffer}
   require'lspconfig'.clangd.setup{on_attach = configureBuffer}
   require'lspconfig'.sumneko_lua.setup {
