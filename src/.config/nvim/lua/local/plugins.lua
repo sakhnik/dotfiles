@@ -40,14 +40,17 @@ paq {'nvim-lua/completion-nvim', opt = true}
 paq {'nvim-lua/popup.nvim'}
 paq {'nvim-lua/plenary.nvim'}
 paq {'nvim-telescope/telescope.nvim'}
+paq {'nvim-telescope/telescope-project.nvim'}
 
 
 local keymap = vim.api.nvim_set_keymap
 
-keymap('n', '<leader>ff', ':Telescope find_files<cr>', {})
-keymap('n', '<leader>fg', ':Telescope git_files<cr>', {})
-keymap('n', '<leader>f<space>', ':Telescope builtin<cr>', {})
-keymap('n', '<leader>gg', ':Telescope live_grep<cr>', {})
+local noremap_silent = {noremap = true, silent = true}
+keymap('n', '<leader>ff', ':Telescope find_files<cr>', noremap_silent)
+keymap('n', '<leader>fg', ':Telescope git_files<cr>', noremap_silent)
+keymap('n', '<leader>f<space>', ':Telescope builtin<cr>', noremap_silent)
+keymap('n', '<leader>gg', ':Telescope live_grep<cr>', noremap_silent)
+keymap('n', '<leader>fp', ":lua require'telescope'.extensions.project.project{}<CR>", noremap_silent)
 
 vim.g.ledger_bin = 'ledger'
 vim.g.ledger_date_format = '%Y-%m-%d'
