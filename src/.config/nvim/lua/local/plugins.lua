@@ -50,6 +50,7 @@ keymap('n', '<leader>ff', ':Telescope find_files<cr>', noremap_silent)
 keymap('n', '<leader>fg', ':Telescope git_files<cr>', noremap_silent)
 keymap('n', '<leader>f<space>', ':Telescope builtin<cr>', noremap_silent)
 keymap('n', '<leader>gg', ':Telescope live_grep<cr>', noremap_silent)
+keymap('n', '<leader>fc', ':Telescope current_buffer_fuzzy_find<cr>', noremap_silent)
 keymap('n', '<leader>fp', ":lua require'telescope'.extensions.project.project{}<CR>", noremap_silent)
 
 vim.g.ledger_bin = 'ledger'
