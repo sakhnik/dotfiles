@@ -39,6 +39,7 @@ paq {'neovim/nvim-lspconfig', opt = true}
 paq {'nvim-lua/completion-nvim', opt = true}
 paq {'nvim-lua/popup.nvim'}
 paq {'nvim-lua/plenary.nvim'}
+
 paq {'nvim-telescope/telescope.nvim'}
 paq {'nvim-telescope/telescope-project.nvim'}
 
@@ -61,3 +62,5 @@ vim.g.ledger_default_commodity = '₴'
 vim.g.ledger_commodity_before = 0
 vim.g.ledger_commodity_sep = ' '
 vim.g.ledger_fold_blanks = 1
+
+vim.g.polyglot_disabled = {'sensible'}
