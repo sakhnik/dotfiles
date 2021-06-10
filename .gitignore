@@ -8,3 +8,4 @@ src/.bash_history
 .ropeproject/
 src/.vim/autoload/plug.vim
 src/.vim/pack
+src/.config/nvim/spell/*add*
