@@ -1,0 +1,4 @@
+#!/bin/bash -e
+
+/usr/bin/brillo "$@"
+py3-cmd refresh backlight
