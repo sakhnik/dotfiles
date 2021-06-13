@@ -238,7 +238,7 @@ bindsym --release {
 # The bar and the inputs
 
 bar {
-    status_command python ~/.config/i3/status.py
+    status_command py3status -c ~/.config/sway/py3status
     position top
     mode hide
     hidden_state hide

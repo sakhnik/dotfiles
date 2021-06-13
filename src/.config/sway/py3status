@@ -1,0 +1,35 @@
+# vim: set ft=config sw=4 ts=4 et:
+
+order += "backlight"
+backlight {
+    format = '☼{level}%'
+}
+
+order += "volume_status"
+volume_status {
+    format = '[\?if=is_input 😮|♪]{percentage}%'
+}
+
+order += "networkmanager"
+networkmanager {
+    format_device = '[\?if=general_connection {general_device} [\?soft ][\?color=ap_signal {ap_ssid} {ap_signal}%][\?soft ] [\?color=good {ip4_address1}]]'
+}
+
+order += "battery_level"
+battery_level {
+    format = 'BAT: {percent}%'
+    notification = True
+}
+
+order += "sysdata"
+sysdata {
+    format = "CPU {format_cpu}"
+    format_cpu = "[\?color=cpu_used_percent \?min_length=3 [\?color=used_percent {used_percent:.0f}%]]"
+    cache_timeout = 2
+}
+
+order += "clock"
+clock {
+   format = "{Local}"
+   format_time = "%a %-d %b %H:%M:%S"
+}
