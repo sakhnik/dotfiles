@@ -22,6 +22,9 @@ utils.create_augroup('misc', {
   -- For all text files set 'textwidth' to 78 characters.
   [[FileType text setlocal textwidth=78 lbr]],
   [[FileType gitcommit setlocal spell]],
+
+  -- Highlight yanked text briefly
+  [[TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=true}]],
 })
 
 return M
