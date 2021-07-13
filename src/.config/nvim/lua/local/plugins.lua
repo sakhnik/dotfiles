@@ -2,47 +2,47 @@
 --
 
 local cmd = vim.api.nvim_command
+local fn = vim.fn
 
-local paqpath = vim.fn.stdpath('data') .. '/site/pack/paqs/opt/paq-nvim'
-local stat = vim.loop.fs_stat(paqpath)
-if stat == nil then
-  vim.fn.mkdir(paqpath, 'p')
-  cmd("!git clone https://github.com/savq/paq-nvim.git " .. paqpath)
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+
+if vim.loop.fs_stat(install_path) == nil then
+  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+  cmd 'packadd packer.nvim'
 end
 
-cmd 'packadd paq-nvim'             -- Load package
-local paq = require'paq-nvim'.paq  -- Import module and bind `paq` function
-paq {'savq/paq-nvim', opt=true}    -- Let Paq manage itself
+require'packer'.startup(function()
+  use 'wbthomason/packer.nvim'  -- Manager packer itself
 
-paq {'jnurmine/zenburn'}
+  use 'jnurmine/zenburn'
 
-paq {'tpope/vim-fugitive'}
-paq {'tpope/vim-eunuch'}            -- :SudoWrite
-paq {'tpope/vim-repeat'}            -- Repeat mapping with .
-paq {'tpope/vim-sleuth'}            -- Set buffer options euristically
-paq {'tpope/vim-unimpaired'}        -- ]q, ]a etc
-paq {'tpope/vim-surround'}          -- Movements s', s(
-paq {'tpope/vim-vinegar'}
-paq {'bronson/vim-visual-star-search'}
-paq {'raimondi/delimitmate'}
-paq {'wellle/targets.vim'}
-paq {'sheerun/vim-polyglot'}
-paq {'mh21/errormarker.vim'}
-paq {'sirtaj/vim-openscad'}
-paq {'plasticboy/vim-markdown'}
-paq {'andymass/vim-matchup'}
-paq {'majutsushi/tagbar'}
-paq {'Kris2k/A.vim'}
-paq {'ledger/vim-ledger'}
-paq {'sakhnik/nvim-gdb'}
-paq {'neovim/nvim-lspconfig', opt = true}
-paq {'nvim-lua/completion-nvim', opt = true}
-paq {'nvim-lua/popup.nvim'}
-paq {'nvim-lua/plenary.nvim'}
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-eunuch'            -- :SudoWrite
+  use 'tpope/vim-repeat'            -- Repeat mapping with .
+  use 'tpope/vim-sleuth'            -- Set buffer options euristically
+  use 'tpope/vim-unimpaired'        -- ]q, ]a etc
+  use 'tpope/vim-surround'          -- Movements s', s(
+  use 'tpope/vim-vinegar'
+  use 'bronson/vim-visual-star-search'
+  use 'raimondi/delimitmate'
+  use 'wellle/targets.vim'
+  use 'sheerun/vim-polyglot'
+  use 'mh21/errormarker.vim'
+  use 'sirtaj/vim-openscad'
+  use 'plasticboy/vim-markdown'
+  use 'andymass/vim-matchup'
+  use 'majutsushi/tagbar'
+  use 'Kris2k/A.vim'
+  use 'ledger/vim-ledger'
+  use 'sakhnik/nvim-gdb'
+  use {'neovim/nvim-lspconfig', opt = true}
+  use {'nvim-lua/completion-nvim', opt = true}
+  use 'nvim-lua/popup.nvim'
+  use 'nvim-lua/plenary.nvim'
 
-paq {'nvim-telescope/telescope.nvim'}
-paq {'nvim-telescope/telescope-project.nvim'}
-
+  use 'nvim-telescope/telescope.nvim'
+  use 'nvim-telescope/telescope-project.nvim'
+end)
 
 local keymap = vim.api.nvim_set_keymap
 
@@ -64,3 +64,9 @@ vim.g.ledger_commodity_sep = ' '
 vim.g.ledger_fold_blanks = 1
 
 vim.g.polyglot_disabled = {'sensible'}
+
+local utils = require'local.utils'
+utils.create_augroup('plugins', {
+  -- Recompile packer configuration automatically
+  [[BufWritePost plugins.lua source <afile> | PackerCompile]],
+})
