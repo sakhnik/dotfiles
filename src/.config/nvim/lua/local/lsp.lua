@@ -50,7 +50,7 @@ function C.init()
 
   require'lspconfig'.bashls.setup{on_attach = configureBuffer}
   require'lspconfig'.vala_ls.setup{on_attach = configureBuffer}
-  require'lspconfig'.pyls.setup{on_attach = configureBuffer}
+  require'lspconfig'.pylsp.setup{on_attach = configureBuffer}
   require'lspconfig'.clangd.setup{on_attach = configureBuffer}
   require'lspconfig'.sumneko_lua.setup {
     cmd = {"/usr/bin/lua-language-server"},
