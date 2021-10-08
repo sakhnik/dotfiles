@@ -39,9 +39,11 @@ paq {'neovim/nvim-lspconfig', opt = true}
 paq {'nvim-lua/completion-nvim', opt = true}
 paq {'nvim-lua/popup.nvim'}
 paq {'nvim-lua/plenary.nvim'}
+paq {url = 'https://gitlab.com/yorickpeterse/nvim-pqf'}  -- pretty quickfix
 
 paq {'nvim-telescope/telescope.nvim'}
 paq {'nvim-telescope/telescope-project.nvim'}
+
 
 
 local keymap = vim.api.nvim_set_keymap
@@ -64,3 +66,5 @@ vim.g.ledger_commodity_sep = ' '
 vim.g.ledger_fold_blanks = 1
 
 vim.g.polyglot_disabled = {'sensible'}
+
+require('pqf').setup()  -- pretty quickfix
