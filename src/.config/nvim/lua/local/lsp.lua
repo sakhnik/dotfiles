@@ -18,40 +18,32 @@ local function configureBuffer()
   set_keymap(buf, 'n', 'g0', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
   set_keymap(buf, 'n', 'gW', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
 
-  -- Use completion-nvim in this buffer
-  require'completion'.on_attach()
-
-  -- Use <Tab> and <S-Tab> to navigate through popup menu
-  opts = {noremap = true, silent = true, expr = true}
-  set_keymap(buf, 'i', '<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]], opts)
-  set_keymap(buf, 'i', '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], opts)
-
   -- Set completeopt to have a better completion experience
-  cmd "setlocal completeopt=menuone,noinsert,noselect"
+  cmd "setlocal completeopt=menu,menuone,noselect"
 
   -- Avoid showing message extra message when using completion
   cmd "setlocal shortmess+=c"
   vim.wo.signcolumn = 'yes'
 end
 
+local function get_caps()
+  return require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+end
+
 function C.init()
 
-  vim.g.completion_matching_ignore_case = 1
-
-  -- possible value: "length", "alphabet", "none"
-  vim.g.completion_sorting = "length"
-  vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy', 'all'}
-
   cmd "packadd nvim-lspconfig"
-  cmd "packadd completion-nvim"
+  cmd "packadd cmp-nvim-lsp"
+  cmd "packadd cmp-buffer"
+  cmd "packadd nvim-cmp"
 
   -- Stop existing clients (useful to reload after crash)
   --vim.lsp.stop_client(vim.lsp.buf_get_clients())
 
-  require'lspconfig'.bashls.setup{on_attach = configureBuffer}
-  require'lspconfig'.vala_ls.setup{on_attach = configureBuffer}
-  require'lspconfig'.pylsp.setup{on_attach = configureBuffer}
-  require'lspconfig'.clangd.setup{on_attach = configureBuffer}
+  require'lspconfig'.bashls.setup{on_attach = configureBuffer, capabilities = get_caps()}
+  require'lspconfig'.vala_ls.setup{on_attach = configureBuffer, capabilities = get_caps()}
+  require'lspconfig'.pylsp.setup{on_attach = configureBuffer, capabilities = get_caps()}
+  require'lspconfig'.clangd.setup{on_attach = configureBuffer, capabilities = get_caps()}
   require'lspconfig'.sumneko_lua.setup {
     cmd = {"/usr/bin/lua-language-server"},
 
@@ -78,7 +70,54 @@ function C.init()
     },
 
     on_attach = configureBuffer,
+    capabilities = get_caps(),
   }
+
+  -- Setup nvim-cmp.
+  local cmp = require'cmp'
+
+  cmp.setup({
+    -- snippet = {
+    --   expand = function(args)
+    --     -- For `vsnip` user.
+    --     vim.fn["vsnip#anonymous"](args.body)
+
+    --     -- For `luasnip` user.
+    --     -- require('luasnip').lsp_expand(args.body)
+
+    --     -- For `ultisnips` user.
+    --     -- vim.fn["UltiSnips#Anon"](args.body)
+    --   end,
+    -- },
+    mapping = {
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.close(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ['<Tab>'] = function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          fallback()
+        end
+      end
+    },
+    sources = {
+      { name = 'nvim_lsp' },
+
+      -- For vsnip user.
+      -- { name = 'vsnip' },
+
+      -- For luasnip user.
+      -- { name = 'luasnip' },
+
+      -- For ultisnips user.
+      -- { name = 'ultisnips' },
+
+      { name = 'buffer' },
+    },
+  })
 end
 
 function C.clearSigns()

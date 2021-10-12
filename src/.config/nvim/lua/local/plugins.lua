@@ -36,14 +36,16 @@ paq {'Kris2k/A.vim'}
 paq {'ledger/vim-ledger'}
 paq {'sakhnik/nvim-gdb'}
 paq {'neovim/nvim-lspconfig', opt = true}
-paq {'nvim-lua/completion-nvim', opt = true}
+paq {'hrsh7th/cmp-nvim-lsp', opt = true}
+paq {'hrsh7th/cmp-buffer', opt = true}
+paq {'hrsh7th/nvim-cmp', opt = true}
+
 paq {'nvim-lua/popup.nvim'}
 paq {'nvim-lua/plenary.nvim'}
 paq {url = 'https://gitlab.com/yorickpeterse/nvim-pqf'}  -- pretty quickfix
 
 paq {'nvim-telescope/telescope.nvim'}
 paq {'nvim-telescope/telescope-project.nvim'}
-
 
 
 local keymap = vim.api.nvim_set_keymap
@@ -54,6 +56,7 @@ keymap('n', '<leader>fg', ':Telescope git_files<cr>', noremap_silent)
 keymap('n', '<leader>f<space>', ':Telescope builtin<cr>', noremap_silent)
 keymap('n', '<leader>gg', ':Telescope live_grep<cr>', noremap_silent)
 keymap('n', '<leader>fc', ':Telescope current_buffer_fuzzy_find<cr>', noremap_silent)
+keymap('n', '<leader>fh', ':Telescope command_history<cr>', noremap_silent)
 keymap('n', '<leader>fp', ":lua require'telescope'.extensions.project.project{}<CR>", noremap_silent)
 
 vim.g.ledger_bin = 'ledger'
@@ -68,3 +71,5 @@ vim.g.ledger_fold_blanks = 1
 vim.g.polyglot_disabled = {'sensible'}
 
 require('pqf').setup()  -- pretty quickfix
+
+require('local/lsp').init()  -- initialize LSP completion immediately
