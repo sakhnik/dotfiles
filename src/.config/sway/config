@@ -33,6 +33,12 @@ exec --no-startup-id udiskie -ans
 exec /usr/bin/mako
 exec /usr/bin/foot
 
+# Gtk applications take 20 seconds to start.
+# Alternative suggestion is to run them with GTK_USE_PORTAL=0, but it didn't work for me.
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
 # Shutdown displays when idle
 
 exec_always swayidle -w \
