@@ -77,6 +77,15 @@ function C.init()
   local cmp = require'cmp'
 
   cmp.setup({
+    enabled = function()
+      if vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt' then
+        return false
+      end
+      if vim.api.nvim_buf_get_option(0, 'filetype') == 'ledger' then
+        return false
+      end
+      return true
+    end,
     -- snippet = {
     --   expand = function(args)
     --     -- For `vsnip` user.
