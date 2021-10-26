@@ -48,28 +48,10 @@ paq {'nvim-telescope/telescope.nvim'}
 paq {'nvim-telescope/telescope-project.nvim'}
 
 
-local keymap = vim.api.nvim_set_keymap
-
-local noremap_silent = {noremap = true, silent = true}
-keymap('n', '<leader>ff', ':Telescope find_files<cr>', noremap_silent)
-keymap('n', '<leader>fg', ':Telescope git_files<cr>', noremap_silent)
-keymap('n', '<leader>f<space>', ':Telescope builtin<cr>', noremap_silent)
-keymap('n', '<leader>gg', ':Telescope live_grep<cr>', noremap_silent)
-keymap('n', '<leader>fc', ':Telescope current_buffer_fuzzy_find<cr>', noremap_silent)
-keymap('n', '<leader>fh', ':Telescope command_history<cr>', noremap_silent)
-keymap('n', '<leader>fp', ":lua require'telescope'.extensions.project.project{}<CR>", noremap_silent)
-
-vim.g.ledger_bin = 'ledger'
-vim.g.ledger_date_format = '%Y-%m-%d'
-vim.g.ledger_extra_options = '--pedantic --explicit --price-db prices.db --date-format ' .. vim.g.ledger_date_format
-vim.g.ledger_align_at = 45
-vim.g.ledger_default_commodity = '₴'
-vim.g.ledger_commodity_before = 0
-vim.g.ledger_commodity_sep = ' '
-vim.g.ledger_fold_blanks = 1
-
 vim.g.polyglot_disabled = {'sensible'}
 
 require('pqf').setup()  -- pretty quickfix
 
-require('local/lsp').init()  -- initialize LSP completion immediately
+require'local/lsp'.setup()  -- initialize LSP completion immediately
+require'local/telescope'.setup()
+require'local/ledger'.setup()

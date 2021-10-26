@@ -43,18 +43,8 @@ cmd 'colors zenburn'
 
 -- Initialize nvim-lsp. Not calling this will allow using YouCompleteMe,
 -- for example.
-set_keymap('n', '<leader>ll', '<cmd>lua require"local.lsp".init()<cr>', {})
+set_keymap('n', '<leader>ll', '<cmd>lua require"local.lsp".setup()<cr>', {})
 set_keymap('n', '<leader>lc', '<cmd>lua require"local.lsp".clearSigns()<cr>', {})
-
--- Configure vim-ledger
-vim.g.ledger_bin = 'ledger'
-vim.g.ledger_date_format = '%Y-%m-%d'
-vim.g.ledger_extra_options = '--pedantic --explicit --price-db prices.db --date-format ' .. vim.g.ledger_date_format
-vim.g.ledger_align_at = 45
-vim.g.ledger_default_commodity = '₴'
-vim.g.ledger_commodity_before = 0
-vim.g.ledger_commodity_sep = ' '
-vim.g.ledger_fold_blanks = 1
 
 vim.o.showbreak = '\\'  --↪
 vim.o.undofile = true

@@ -30,7 +30,7 @@ local function get_caps()
   return require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 end
 
-function C.init()
+function C.setup()
 
   cmd "packadd nvim-lspconfig"
   cmd "packadd cmp-nvim-lsp"
