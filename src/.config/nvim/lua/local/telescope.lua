@@ -14,7 +14,8 @@ function C.setup()
 
   require'telescope'.setup{
     defaults = {
-      path_display = {shorten = 4, 'truncate'}
+      path_display = {shorten = 4, 'truncate'},
+      file_ignore_patterns = {'%.class'},
     },
   }
 end
