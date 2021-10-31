@@ -36,13 +36,7 @@ paq {'Kris2k/A.vim'}
 paq {'ledger/vim-ledger'}
 paq {'sakhnik/nvim-gdb'}
 
-paq {'nvim-lua/popup.nvim'}
-paq {'nvim-lua/plenary.nvim'}
 paq {url = 'https://gitlab.com/yorickpeterse/nvim-pqf'}  -- pretty quickfix
-
-paq {'nvim-telescope/telescope.nvim'}
-paq {'nvim-telescope/telescope-project.nvim'}
-
 
 vim.g.polyglot_disabled = {'sensible'}
 
