@@ -35,10 +35,6 @@ paq {'majutsushi/tagbar'}
 paq {'Kris2k/A.vim'}
 paq {'ledger/vim-ledger'}
 paq {'sakhnik/nvim-gdb'}
-paq {'neovim/nvim-lspconfig', opt = true}
-paq {'hrsh7th/cmp-nvim-lsp', opt = true}
-paq {'hrsh7th/cmp-buffer', opt = true}
-paq {'hrsh7th/nvim-cmp', opt = true}
 
 paq {'nvim-lua/popup.nvim'}
 paq {'nvim-lua/plenary.nvim'}
