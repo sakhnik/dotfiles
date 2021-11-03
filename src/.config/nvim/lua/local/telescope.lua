@@ -24,6 +24,11 @@ function C.setup()
       path_display = {shorten = 4, 'truncate'},
       file_ignore_patterns = {'%.class'},
     },
+    pickers = {
+      find_files = {
+        no_ignore = true,
+      },
+    },
   }
 end
 
