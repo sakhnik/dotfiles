@@ -9,7 +9,7 @@ set diffopt+=iwhite
 set ignorecase smartcase
 set tabstop=4
 set cindent shiftwidth=4
-set cinoptions=:0,=1s,g0,(0,M1,U0,u0
+set cinoptions=:0,=1s,g0,M1,U0,u0,N-s
 set copyindent
 set expandtab
 set hidden

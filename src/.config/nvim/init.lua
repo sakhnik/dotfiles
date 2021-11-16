@@ -12,7 +12,7 @@ vim.o.smartcase = true
 vim.o.tabstop = 4
 vim.o.cindent = true
 vim.o.shiftwidth = 4
-vim.o.cinoptions = ":0,=1s,g0,(0,M1,U0,u0"
+vim.o.cinoptions = ":0,=1s,g0,M1,U0,u0,N-s"
 vim.o.copyindent = true
 vim.o.expandtab = true
 vim.o.hidden = true
