@@ -28,7 +28,7 @@ cmd [[let mapleader = ' ']]
 cmd [[let maplocalleader = ' ']]
 
 vim.o.lazyredraw = true
-vim.o.laststatus = 1
+vim.o.laststatus = 2
 
 require 'local.plugins'
 require 'local.digraphs'
