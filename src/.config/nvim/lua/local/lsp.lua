@@ -175,6 +175,13 @@ function C.setup()
       { name = 'buffer' },
     },
   })
+
+  vim.diagnostic.config({
+    underline = false,
+    virtual_text = false,
+    signs = true,
+    severity_sort = true,
+  })
 end
 
 function C.clearSigns()
