@@ -10,6 +10,17 @@ paq {'saadparwaiz1/cmp_luasnip'}
 
 local cmd = vim.api.nvim_command
 
+function C.show_line_diagnostics()
+  local opts = {
+    focusable = false,
+    close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+    border = 'rounded',
+    source = 'always',  -- show source in diagnostic popup window
+    prefix = ' '
+  }
+  vim.diagnostic.open_float(nil, opts)
+end
+
 local function configureBuffer()
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
@@ -25,6 +36,14 @@ local function configureBuffer()
   set_keymap(buf, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   set_keymap(buf, 'n', 'g0', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
   set_keymap(buf, 'n', 'gW', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
+  set_keymap(buf, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+  set_keymap(buf, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+  set_keymap(buf, "n", "<space>q", "<cmd>lua vim.diagnostic.setqflist({open = true})<CR>", opts)
+  set_keymap(buf, "n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+
+  vim.cmd([[
+    autocmd CursorHold <buffer> lua require('local.lsp').show_line_diagnostics()
+  ]])
 
   -- Set completeopt to have a better completion experience
   cmd "setlocal completeopt=menu,menuone,noselect"
