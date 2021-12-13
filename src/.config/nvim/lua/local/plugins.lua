@@ -10,33 +10,35 @@ if stat == nil then
   cmd("!git clone https://github.com/savq/paq-nvim.git " .. paqpath)
 end
 
-cmd 'packadd paq-nvim'             -- Load package
-local paq = require'paq-nvim'.paq  -- Import module and bind `paq` function
-paq {'savq/paq-nvim', opt=true}    -- Let Paq manage itself
+cmd 'packadd paq-nvim'              -- Load package
 
-paq {'jnurmine/zenburn'}
+require 'paq' {
+  {'savq/paq-nvim', opt=true};      -- Let Paq manage itself
 
-paq {'tpope/vim-fugitive'}
-paq {'tpope/vim-eunuch'}            -- :SudoWrite
-paq {'tpope/vim-repeat'}            -- Repeat mapping with .
-paq {'tpope/vim-sleuth'}            -- Set buffer options euristically
-paq {'tpope/vim-unimpaired'}        -- ]q, ]a etc
-paq {'tpope/vim-surround'}          -- Movements s', s(
-paq {'tpope/vim-vinegar'}
-paq {'bronson/vim-visual-star-search'}
-paq {'raimondi/delimitmate'}
-paq {'wellle/targets.vim'}
-paq {'sheerun/vim-polyglot'}
-paq {'mh21/errormarker.vim'}
-paq {'sirtaj/vim-openscad'}
-paq {'plasticboy/vim-markdown'}
-paq {'andymass/vim-matchup'}
-paq {'majutsushi/tagbar'}
-paq {'Kris2k/A.vim'}
-paq {'ledger/vim-ledger'}
-paq {'sakhnik/nvim-gdb'}
+  'jnurmine/zenburn';
 
-paq {url = 'https://gitlab.com/yorickpeterse/nvim-pqf'}  -- pretty quickfix
+  'tpope/vim-fugitive';
+  'tpope/vim-eunuch';               -- :SudoWrite
+  'tpope/vim-repeat';               -- Repeat mapping with .
+  'tpope/vim-sleuth';               -- Set buffer options euristically
+  'tpope/vim-unimpaired';           -- ]q, ]a etc
+  'tpope/vim-surround';             -- Movements s', s(
+  'tpope/vim-vinegar';
+  'bronson/vim-visual-star-search';
+  'raimondi/delimitmate';
+  'wellle/targets.vim';
+  'sheerun/vim-polyglot';
+  'mh21/errormarker.vim';
+  'sirtaj/vim-openscad';
+  'plasticboy/vim-markdown';
+  'andymass/vim-matchup';
+  'majutsushi/tagbar';
+  'Kris2k/A.vim';
+  'ledger/vim-ledger';
+  'sakhnik/nvim-gdb';
+
+  {url = 'https://gitlab.com/yorickpeterse/nvim-pqf'};  -- pretty quickfix
+}
 
 vim.g.polyglot_disabled = {'sensible'}
 

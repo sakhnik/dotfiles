@@ -1,12 +1,13 @@
 local C = {}
 
-local paq = require'paq-nvim'.paq  -- Import module and bind `paq` function
-paq {'neovim/nvim-lspconfig'}
-paq {'hrsh7th/cmp-nvim-lsp'}
-paq {'hrsh7th/cmp-buffer'}
-paq {'hrsh7th/nvim-cmp'}
-paq {'L3MON4D3/LuaSnip'}
-paq {'saadparwaiz1/cmp_luasnip'}
+require 'paq' {
+  'neovim/nvim-lspconfig';
+  'hrsh7th/cmp-nvim-lsp';
+  'hrsh7th/cmp-buffer';
+  'hrsh7th/nvim-cmp';
+  'L3MON4D3/LuaSnip';
+  'saadparwaiz1/cmp_luasnip';
+}
 
 local cmd = vim.api.nvim_command
 

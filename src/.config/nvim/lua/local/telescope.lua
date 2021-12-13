@@ -1,11 +1,11 @@
 local C = {}
 
-local paq = require'paq-nvim'.paq  -- Import module and bind `paq` function
-
-paq {'nvim-lua/popup.nvim'}
-paq {'nvim-lua/plenary.nvim'}
-paq {'nvim-telescope/telescope.nvim'}
-paq {'nvim-telescope/telescope-project.nvim'}
+require 'paq' {
+  'nvim-lua/popup.nvim';
+  'nvim-lua/plenary.nvim';
+  'nvim-telescope/telescope.nvim';
+  'nvim-telescope/telescope-project.nvim';
+}
 
 function C.setup()
   local keymap = vim.api.nvim_set_keymap
