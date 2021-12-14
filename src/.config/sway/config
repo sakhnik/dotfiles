@@ -15,9 +15,9 @@ set $right semicolon
 
 set $ws1 "1:term"
 set $ws2 "2:web"
-set $ws3 3
-set $ws4 4
-set $ws5 5
+set $ws3 "3:work"
+set $ws4 "4:misc"
+set $ws5 "5:other"
 set $ws6 6
 set $ws7 7
 set $ws8 8
@@ -239,15 +239,21 @@ bindsym --release {
     $mod+Print exec "~/.bin/i3-printscreen-focused.sh"
 }
 
+# Toggle waybar
+bindsym $mod+grave exec killall -USR1 waybar
+
+# Send signal 1 to waybar when changing keyboard layout
+bindsym Mod1+space exec "pkill --signal SIGRTMIN+1 waybar"
 
 ####################################################
 # The bar and the inputs
 
 bar {
-    status_command py3status -c ~/.config/sway/py3status
-    position top
-    mode hide
-    hidden_state hide
+    swaybar_command waybar
+    #status_command py3status -c ~/.config/sway/py3status
+    #position top
+    #mode hide
+    #hidden_state hide
 }
 
 output "eDP-1" scale 2
