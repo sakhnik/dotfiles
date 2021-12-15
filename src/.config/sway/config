@@ -247,7 +247,7 @@ bindsym --release {
 bindsym $mod+grave exec killall -USR1 waybar
 
 # Send signal 1 to waybar when changing keyboard layout
-bindsym Mod1+space exec "pkill --signal SIGRTMIN+1 waybar"
+bindsym --release Mod1+space exec "pkill --signal SIGRTMIN+1 waybar"
 
 ####################################################
 # The bar and the inputs
