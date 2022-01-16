@@ -66,7 +66,11 @@ function C.setup()
   require'lspconfig'.bashls.setup{on_attach = configureBuffer, capabilities = get_caps()}
   require'lspconfig'.vala_ls.setup{on_attach = configureBuffer, capabilities = get_caps()}
   require'lspconfig'.pylsp.setup{on_attach = configureBuffer, capabilities = get_caps()}
-  require'lspconfig'.clangd.setup{on_attach = configureBuffer, capabilities = get_caps()}
+  require'lspconfig'.clangd.setup {
+    cmd = { "clangd", "--completion-style=detailed" },
+    on_attach = configureBuffer,
+    capabilities = get_caps()
+  }
   require'lspconfig'.sumneko_lua.setup {
     cmd = {"/usr/bin/lua-language-server"},
 
