@@ -1,6 +1,6 @@
 local C = {}
 
-require 'paq' {
+C.plugins = {
   'nvim-lua/popup.nvim';
   'nvim-lua/plenary.nvim';
   'nvim-telescope/telescope.nvim';

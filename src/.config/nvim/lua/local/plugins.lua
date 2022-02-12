@@ -12,7 +12,7 @@ end
 
 cmd 'packadd paq-nvim'              -- Load package
 
-require 'paq' {
+require'paq' {
   {'savq/paq-nvim', opt=true};      -- Let Paq manage itself
 
   'jnurmine/zenburn';
@@ -38,6 +38,10 @@ require 'paq' {
   'sakhnik/nvim-gdb';
 
   {url = 'https://gitlab.com/yorickpeterse/nvim-pqf'};  -- pretty quickfix
+
+  -- It's necessary to declare all plugins in one place in Windows
+  unpack(require'local/telescope'.plugins);
+  unpack(require'local/lsp'.plugins);
 }
 
 vim.g.polyglot_disabled = {'sensible'}
