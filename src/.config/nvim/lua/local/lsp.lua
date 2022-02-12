@@ -2,6 +2,7 @@ local C = {}
 
 C.plugins = {
   'neovim/nvim-lspconfig';
+  'williamboman/nvim-lsp-installer';
   'hrsh7th/cmp-nvim-lsp';
   'hrsh7th/cmp-buffer';
   'hrsh7th/nvim-cmp';
@@ -63,42 +64,45 @@ function C.setup()
   -- Stop existing clients (useful to reload after crash)
   --vim.lsp.stop_client(vim.lsp.buf_get_clients())
 
-  require'lspconfig'.bashls.setup{on_attach = configureBuffer, capabilities = get_caps()}
-  require'lspconfig'.vala_ls.setup{on_attach = configureBuffer, capabilities = get_caps()}
-  require'lspconfig'.pylsp.setup{on_attach = configureBuffer, capabilities = get_caps()}
-  require'lspconfig'.clangd.setup {
-    cmd = { "clangd", "--completion-style=detailed" },
-    on_attach = configureBuffer,
-    capabilities = get_caps()
-  }
-  require'lspconfig'.sumneko_lua.setup {
-    cmd = {"/usr/bin/lua-language-server"},
+  local lsp_installer = require("nvim-lsp-installer")
 
-    settings = {
-      Lua = {
-        runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-          version = 'LuaJIT',
-          -- Setup your lua path
-          path = vim.split(package.path, ';'),
-        },
-        diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = {'vim'},
-        },
-        workspace = {
-          -- Make the server aware of Neovim runtime files
-          library = {
-            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+  -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
+  -- or if the server is already installed).
+  lsp_installer.on_server_ready(function(server)
+    local opts = {on_attach = configureBuffer, capabilities = get_caps()}
+
+    -- (optional) Customize the options passed to the server
+    if server.name == "clangd" then
+      opts.cmd = { "clangd", "--completion-style=detailed" }
+    elseif server.name == "sumneko_lua" then
+      opts.settings = {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT',
+            -- Setup your lua path
+            path = vim.split(package.path, ';'),
+          },
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = {'vim'},
+          },
+          workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = {
+              [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+              [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+            },
           },
         },
-      },
-    },
+      }
+    end
 
-    on_attach = configureBuffer,
-    capabilities = get_caps(),
-  }
+    -- This setup() function will take the provided server configuration and decorate it with the necessary properties
+    -- before passing it onwards to lspconfig.
+    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+    server:setup(opts)
+  end)
 
   -- Setup nvim-cmp.
   local has_words_before = function()
