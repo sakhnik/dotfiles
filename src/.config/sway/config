@@ -32,6 +32,8 @@ set $ws10 10
 exec udiskie -ans
 # Bluetooth device manager
 exec blueman-applet
+# Switch to bluetooth headset automatically
+exec pactl load-module module-switch-on-connect
 # Wayland notification daemon
 exec mako
 # Wayland terminal
@@ -261,6 +263,9 @@ bar {
 }
 
 output "eDP-1" scale 2
+xwayland force scale 2
+exec xsettingsd
+exec xrdb -load ~/.Xresources
 
 input "1267:123:Elan_Touchpad" {
     tap enabled
