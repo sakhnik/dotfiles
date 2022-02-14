@@ -40,7 +40,7 @@ require'paq' {
   {url = 'https://gitlab.com/yorickpeterse/nvim-pqf'};  -- pretty quickfix
 
   -- It's necessary to declare all plugins in one place in Windows
-  unpack(require'local/telescope'.plugins);
+  unpack(require'local/mytelescope'.plugins);
   unpack(require'local/lsp'.plugins);
 }
 
@@ -49,5 +49,5 @@ vim.g.polyglot_disabled = {'sensible'}
 require('pqf').setup()  -- pretty quickfix
 
 require'local/lsp'.setup()  -- initialize LSP completion immediately
-require'local/telescope'.setup()
+require'local/mytelescope'.setup()
 require'local/ledger'.setup()
