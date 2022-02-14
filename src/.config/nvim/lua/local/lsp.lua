@@ -1,15 +1,5 @@
 local C = {}
 
-C.plugins = {
-  'neovim/nvim-lspconfig';
-  'williamboman/nvim-lsp-installer';
-  'hrsh7th/cmp-nvim-lsp';
-  'hrsh7th/cmp-buffer';
-  'hrsh7th/nvim-cmp';
-  'L3MON4D3/LuaSnip';
-  'saadparwaiz1/cmp_luasnip';
-}
-
 local cmd = vim.api.nvim_command
 
 function C.show_line_diagnostics()

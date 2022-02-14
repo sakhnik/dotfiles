@@ -39,9 +39,21 @@ require'paq' {
 
   {url = 'https://gitlab.com/yorickpeterse/nvim-pqf'};  -- pretty quickfix
 
-  -- It's necessary to declare all plugins in one place in Windows
-  unpack(require'local/mytelescope'.plugins);
-  unpack(require'local/lsp'.plugins);
+  -- It's necessary to declare all plugins in one place
+  -- telescope
+  'nvim-lua/popup.nvim';
+  'nvim-lua/plenary.nvim';
+  'nvim-telescope/telescope.nvim';
+  'nvim-telescope/telescope-project.nvim';
+
+  -- lsp
+  'neovim/nvim-lspconfig';
+  'williamboman/nvim-lsp-installer';
+  'hrsh7th/cmp-nvim-lsp';
+  'hrsh7th/cmp-buffer';
+  'hrsh7th/nvim-cmp';
+  'L3MON4D3/LuaSnip';
+  'saadparwaiz1/cmp_luasnip';
 }
 
 vim.g.polyglot_disabled = {'sensible'}

@@ -1,12 +1,5 @@
 local C = {}
 
-C.plugins = {
-  'nvim-lua/popup.nvim';
-  'nvim-lua/plenary.nvim';
-  'nvim-telescope/telescope.nvim';
-  'nvim-telescope/telescope-project.nvim';
-}
-
 function C.setup()
   local keymap = vim.api.nvim_set_keymap
 
