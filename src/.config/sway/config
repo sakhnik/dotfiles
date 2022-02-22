@@ -230,6 +230,10 @@ bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
 bindsym XF86MonBrightnessUp exec "~/.bin/brillo -A 4"
 bindsym XF86MonBrightnessDown exec "~/.bin/brillo -U 3"
 
+# Decrease window opacity on demand
+bindsym $mod+Shift+h opacity minus 0.1
+bindsym $mod+Ctrl+Shift+h opacity 1
+
 # Lock screen manually
 bindsym --to-code Control+$mod+l exec swayidle -w \
     timeout 1 'swaymsg "output * dpms off"' \
