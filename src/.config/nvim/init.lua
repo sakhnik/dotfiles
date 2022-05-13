@@ -34,9 +34,11 @@ require 'local.digraphs'
 require 'local.autocmds'
 
 -- Configure colorscheme zenburn
-local utils = require'local.utils'
-utils.create_augroup('colors', {
-  [[ColorScheme * hi Comment cterm=italic gui=italic]]
+local augid = vim.api.nvim_create_augroup('colors', {clear = true})
+vim.api.nvim_create_autocmd('ColorScheme', {
+  group = augid,
+  pattern = "*",
+  command = "hi Comment cterm=italic gui=italic",
 })
 cmd 'colors zenburn'
 
