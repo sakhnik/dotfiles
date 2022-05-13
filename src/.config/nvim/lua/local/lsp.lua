@@ -16,26 +16,25 @@ end
 local function configureBuffer()
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
-  local set_keymap = vim.api.nvim_buf_set_keymap
-  local buf = vim.api.nvim_get_current_buf()
-  local opts = {noremap = true, silent = true}
-  set_keymap(buf, 'n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  set_keymap(buf, 'n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  set_keymap(buf, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  set_keymap(buf, 'n', 'gD', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  set_keymap(buf, 'n', '<c-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  set_keymap(buf, 'n', '1gD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  set_keymap(buf, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  set_keymap(buf, 'n', 'g0', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
-  set_keymap(buf, 'n', 'gW', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
-  set_keymap(buf, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-  set_keymap(buf, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-  set_keymap(buf, "n", "<space>q", "<cmd>lua vim.diagnostic.setqflist({open = true})<CR>", opts)
-  set_keymap(buf, "n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+  local opts = {noremap = true, silent = true, buffer = true}
+  vim.keymap.set('n', 'gd', vim.lsp.buf.declaration, opts)
+  vim.keymap.set('n', '<c-]>', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', 'gD', vim.lsp.buf.implementation, opts)
+  vim.keymap.set('n', '<c-k>', vim.lsp.buf.signature_help, opts)
+  vim.keymap.set('n', '1gD', vim.lsp.buf.type_definition, opts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+  vim.keymap.set('n', 'g0', vim.lsp.buf.document_symbol, opts)
+  vim.keymap.set('n', 'gW', vim.lsp.buf.workspace_symbol, opts)
+  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", "<space>q", function() vim.diagnostic.setqflist({open = true}) end, opts)
+  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts)
 
-  vim.cmd([[
-    autocmd CursorHold <buffer> lua require('local.lsp').show_line_diagnostics()
-  ]])
+  vim.api.nvim_create_autocmd("CursorHold", {
+    callback = function() require('local.lsp').show_line_diagnostics() end,
+    buffer = vim.api.nvim_get_current_buf(),
+  })
 
   -- Set completeopt to have a better completion experience
   cmd "setlocal completeopt=menu,menuone,noselect"

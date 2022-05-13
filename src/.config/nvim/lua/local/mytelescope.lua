@@ -1,16 +1,15 @@
 local C = {}
 
 function C.setup()
-  local keymap = vim.api.nvim_set_keymap
-
   local noremap_silent = {noremap = true, silent = true}
-  keymap('n', '<leader>ff', ':Telescope find_files<cr>', noremap_silent)
-  keymap('n', '<leader>fg', ':Telescope git_files<cr>', noremap_silent)
-  keymap('n', '<leader>f<space>', ':Telescope builtin<cr>', noremap_silent)
-  keymap('n', '<leader>gg', ':Telescope live_grep<cr>', noremap_silent)
-  keymap('n', '<leader>fc', ':Telescope current_buffer_fuzzy_find<cr>', noremap_silent)
-  keymap('n', '<leader>fh', ':Telescope command_history<cr>', noremap_silent)
-  keymap('n', '<leader>fp', ":lua require'telescope'.extensions.project.project{}<CR>", noremap_silent)
+  local tsbi = require('telescope.builtin')
+  vim.keymap.set('n', '<leader>ff', tsbi.find_files, noremap_silent)
+  vim.keymap.set('n', '<leader>fg', tsbi.git_files, noremap_silent)
+  vim.keymap.set('n', '<leader>f<space>', tsbi.builtin, noremap_silent)
+  vim.keymap.set('n', '<leader>gg', tsbi.live_grep, noremap_silent)
+  vim.keymap.set('n', '<leader>fc', tsbi.current_buffer_fuzzy_find, noremap_silent)
+  vim.keymap.set('n', '<leader>fh', tsbi.command_history, noremap_silent)
+  vim.keymap.set('n', '<leader>fp', function() require'telescope'.extensions.project.project{} end, noremap_silent)
 
   require'telescope'.setup{
     defaults = {

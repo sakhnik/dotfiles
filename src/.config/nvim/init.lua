@@ -2,7 +2,6 @@
 --
 
 local cmd = vim.api.nvim_command
-local set_keymap = vim.api.nvim_set_keymap
 
 vim.o.fileencodings = 'utf-8,cp1251,default'
 vim.o.wildmode = 'longest,list,full'
@@ -43,17 +42,17 @@ cmd 'colors zenburn'
 
 -- Initialize nvim-lsp. Not calling this will allow using YouCompleteMe,
 -- for example.
-set_keymap('n', '<leader>ll', '<cmd>lua require"local.lsp".setup()<cr>', {})
-set_keymap('n', '<leader>lc', '<cmd>lua require"local.lsp".clearSigns()<cr>', {})
+vim.keymap.set('n', '<leader>ll', function() require"local.lsp".setup() end, {})
+vim.keymap.set('n', '<leader>lc', function() require"local.lsp".clearSigns() end, {})
 
 vim.o.showbreak = '\\'  --↪
 vim.o.undofile = true
 
 -- Forget about ex mode
-set_keymap('', 'Q', '<nop>', {})
+vim.keymap.set('', 'Q', function() end, {})
 
 -- Find tailing white spaces
-set_keymap('n', '<Leader><space>', [[/\s\+$\\| \+\ze\t<cr>]], {noremap = true})
+vim.keymap.set('n', '<Leader><space>', [[/\s\+$\\| \+\ze\t<cr>]], {noremap = true})
 
 -- NetRW
 vim.g.netrw_liststyle = 3
