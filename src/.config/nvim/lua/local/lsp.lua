@@ -43,6 +43,8 @@ local function configureBuffer()
   -- Avoid showing message extra message when using completion
   cmd "setlocal shortmess+=c"
   vim.wo.signcolumn = 'yes'
+
+  require "lsp_signature".on_attach()
 end
 
 local function get_caps()
