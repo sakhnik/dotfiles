@@ -16,6 +16,9 @@ require'paq' {
   {'savq/paq-nvim', opt=true};      -- Let Paq manage itself
 
   'jnurmine/zenburn';
+  'mhartington/oceanic-next';
+  'savq/melange';
+  'ellisonleao/gruvbox.nvim';
 
   'tpope/vim-fugitive';
   'tpope/vim-eunuch';               -- :SudoWrite
@@ -35,7 +38,7 @@ require'paq' {
   'majutsushi/tagbar';
   'Kris2k/A.vim';
   'ledger/vim-ledger';
-  'sakhnik/nvim-gdb';
+  {'sakhnik/nvim-gdb', branch="devel"};
 
   {url = 'https://gitlab.com/yorickpeterse/nvim-pqf'};  -- pretty quickfix
 
@@ -55,6 +58,9 @@ require'paq' {
   'L3MON4D3/LuaSnip';
   'saadparwaiz1/cmp_luasnip';
   'ray-x/lsp_signature.nvim';
+
+  -- TreeSitter
+  {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'};
 }
 
 vim.g.polyglot_disabled = {'sensible'}
