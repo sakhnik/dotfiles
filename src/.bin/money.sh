@@ -24,4 +24,6 @@ for dir in /run/media/"$USER"/sakhnik*; do
 done
 
 # Copy to other stations
-rsync -raP --delete ~/.Private home:~
+(rsync -raP --delete ~/.Private home-rpi4:~) &
+(rsync -raP --delete ~/.Private home:~) &
+wait
