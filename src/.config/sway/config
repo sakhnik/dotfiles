@@ -267,7 +267,7 @@ bar {
 }
 
 output "eDP-1" scale 2
-xwayland force scale 2
+#xwayland force scale 2
 exec xsettingsd
 exec xrdb -load ~/.Xresources
 
