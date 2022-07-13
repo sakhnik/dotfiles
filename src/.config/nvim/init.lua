@@ -40,7 +40,8 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   pattern = "*",
   command = "hi Comment cterm=italic gui=italic",
 })
-cmd 'colors zenburn'
+vim.o.background = 'light'
+cmd 'colors gruvbox'
 
 -- Initialize nvim-lsp. Not calling this will allow using YouCompleteMe,
 -- for example.
