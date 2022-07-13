@@ -70,3 +70,4 @@ require('pqf').setup()  -- pretty quickfix
 require'local/lsp'.setup()  -- initialize LSP completion immediately
 require'local/mytelescope'.setup()
 require'local/ledger'.setup()
+require'local/treesitter'.setup()
