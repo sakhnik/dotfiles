@@ -13,7 +13,7 @@ function C.show_line_diagnostics()
   vim.diagnostic.open_float(nil, opts)
 end
 
-local function configureBuffer()
+local function configureBuffer() --(client, bufnr)
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
   local opts = {noremap = true, silent = true, buffer = true}
@@ -55,17 +55,25 @@ function C.setup()
   -- Stop existing clients (useful to reload after crash)
   --vim.lsp.stop_client(vim.lsp.buf_get_clients())
 
-  local lsp_installer = require("nvim-lsp-installer")
+  require("mason").setup()
+  require("mason-lspconfig").setup()
 
   -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
   -- or if the server is already installed).
-  lsp_installer.on_server_ready(function(server)
-    local opts = {on_attach = configureBuffer, capabilities = get_caps()}
+  local opts = {on_attach = configureBuffer, capabilities = get_caps()}
+  local lspconfig = require'lspconfig'
 
-    -- (optional) Customize the options passed to the server
-    if server.name == "clangd" then
+  require("mason-lspconfig").setup_handlers {
+    function (server_name)
+      lspconfig[server_name].setup(opts)
+    end,
+
+    ['clangd'] = function()
       opts.cmd = { "clangd", "--completion-style=detailed" }
-    elseif server.name == "sumneko_lua" then
+      lspconfig.clangd.setup(opts)
+    end,
+
+    ['sumneko_lua'] = function()
       opts.settings = {
         Lua = {
           runtime = {
@@ -87,13 +95,9 @@ function C.setup()
           },
         },
       }
-    end
-
-    -- This setup() function will take the provided server configuration and decorate it with the necessary properties
-    -- before passing it onwards to lspconfig.
-    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    server:setup(opts)
-  end)
+      lspconfig.sumneko_lua.setup(opts)
+    end,
+  }
 
   -- Setup nvim-cmp.
   local has_words_before = function()

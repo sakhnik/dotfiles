@@ -50,8 +50,9 @@ require'paq' {
   'nvim-telescope/telescope-project.nvim';
 
   -- lsp
+  'williamboman/mason.nvim';
+  'williamboman/mason-lspconfig.nvim';
   'neovim/nvim-lspconfig';
-  'williamboman/nvim-lsp-installer';
   'hrsh7th/cmp-nvim-lsp';
   'hrsh7th/cmp-buffer';
   'hrsh7th/nvim-cmp';
