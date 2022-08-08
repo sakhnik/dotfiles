@@ -13,7 +13,7 @@ function C.show_line_diagnostics()
   vim.diagnostic.open_float(nil, opts)
 end
 
-local function configureBuffer() --(client, bufnr)
+function C.configureBuffer() --(client, bufnr)
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
   local opts = {noremap = true, silent = true, buffer = true}
@@ -60,20 +60,22 @@ function C.setup()
 
   -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
   -- or if the server is already installed).
-  local opts = {on_attach = configureBuffer, capabilities = get_caps()}
   local lspconfig = require'lspconfig'
 
   require("mason-lspconfig").setup_handlers {
     function (server_name)
+      local opts = {on_attach = C.configureBuffer, capabilities = get_caps()}
       lspconfig[server_name].setup(opts)
     end,
 
     ['clangd'] = function()
+      local opts = {on_attach = C.configureBuffer, capabilities = get_caps()}
       opts.cmd = { "clangd", "--completion-style=detailed" }
       lspconfig.clangd.setup(opts)
     end,
 
     ['sumneko_lua'] = function()
+      local opts = {on_attach = C.configureBuffer, capabilities = get_caps()}
       opts.settings = {
         Lua = {
           runtime = {
@@ -191,6 +193,26 @@ end
 function C.clearSigns()
   vim.api.nvim_buf_clear_namespace(0, -1, 0, -1)
   cmd "sign unplace * group=*"
+end
+
+function C.java()
+  local lspconfig = require'lspconfig'
+  local jars = {}
+  for jar in io.lines('.jars') do
+    jars[#jars + 1] = jar
+  end
+  local opts = {
+    on_attach = C.configureBuffer,
+    capabilities = get_caps(),
+    cmd = { "java-language-server" },
+    --cmd = { "e:/java-language-server/dist/lang_server_windows.cmd" },
+    settings = {
+      java = {
+        classPath = jars
+      }
+    }
+  }
+  lspconfig.java_language_server.setup(opts)
 end
 
 return C
