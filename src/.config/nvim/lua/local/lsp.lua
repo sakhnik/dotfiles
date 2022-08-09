@@ -50,6 +50,32 @@ local function get_caps()
   return require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 end
 
+-- Launch Java language server automatically
+local function setup_java()
+  if C.setup_java_cmd == nil then
+    C.setup_java_cmd = vim.api.nvim_create_autocmd("FileType", {
+      pattern = "java",
+      callback = function()
+        -- LSP clients are attached on FileType too. So we may need to restart the LSP
+        -- after reconfiguring if it was running before.
+        local clients = vim.lsp.buf_get_clients()
+        local jls_client_id = nil
+        for id, client in ipairs(clients) do
+          if client.name == "java-language-server" then
+            jls_client_id = id
+            break
+          end
+        end
+        -- Configure JLS
+        C.java()
+        if jls_client_id ~= nil then
+          vim.api.nvim_command("LspRestart " .. jls_client_id)
+        end
+      end
+    })
+  end
+end
+
 function C.setup()
 
   -- Stop existing clients (useful to reload after crash)
@@ -198,6 +224,8 @@ function C.setup()
     signs = true,
     severity_sort = true,
   })
+
+  setup_java()
 end
 
 function C.clearSigns()
@@ -206,11 +234,23 @@ function C.clearSigns()
 end
 
 function C.java()
-  local lspconfig = require'lspconfig'
-  local jars = {}
-  for jar in io.lines('.jars') do
-    jars[#jars + 1] = jar
+  local jls = "java-language-server"
+  -- local jls = "e:/java-language-server/dist/lang_server_windows.cmd"
+  if 0 == vim.fn.executable(jls) then
+    print("The executable for java-language-server not found: " .. jls)
+    print("Consider installing it and tweaking stdpath('config')/lua/local/lsp.lua")
+    return
   end
+
+  local jars = {}
+  if 0 == vim.fn.filereadable('.jars') then
+    print("JAR dependencies can be specified in .jars (one JAR per line)")
+  else
+    for jar in io.lines('.jars') do
+      jars[#jars + 1] = jar
+    end
+  end
+
   local opts = {
     on_attach = C.configureBuffer,
     capabilities = get_caps(),
@@ -222,6 +262,7 @@ function C.java()
       }
     }
   }
+  local lspconfig = require'lspconfig'
   lspconfig.java_language_server.setup(opts)
 end
 
