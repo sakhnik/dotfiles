@@ -254,8 +254,7 @@ function C.java()
   local opts = {
     on_attach = C.configureBuffer,
     capabilities = get_caps(),
-    cmd = { "java-language-server" },
-    --cmd = { "e:/java-language-server/dist/lang_server_windows.cmd" },
+    cmd = { jls },
     settings = {
       java = {
         classPath = jars
