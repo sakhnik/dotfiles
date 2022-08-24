@@ -41,6 +41,7 @@ require'paq' {
   {'sakhnik/nvim-gdb', branch="devel"};
 
   {url = 'https://gitlab.com/yorickpeterse/nvim-pqf'};  -- pretty quickfix
+  'numToStr/FTerm.nvim';
 
   -- It's necessary to declare all plugins in one place
   -- telescope
@@ -72,3 +73,18 @@ require'local/lsp'.setup()  -- initialize LSP completion immediately
 require'local/mytelescope'.setup()
 require'local/ledger'.setup()
 require'local/treesitter'.setup()
+
+-- require'FTerm'.setup({
+--     border = 'double',
+--     dimensions  = {
+--         height = 0.9,
+--         width = 0.9,
+--     },
+-- })
+
+-- Example keybindings
+vim.keymap.set('n', '<A-i>', function() require("FTerm").toggle() end, {})
+vim.keymap.set('t', '<A-i>', function()
+  vim.api.nvim_input('<C-\\><C-n>')
+  require("FTerm").toggle()
+end, {})
