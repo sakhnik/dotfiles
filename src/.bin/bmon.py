@@ -38,7 +38,7 @@ while True:
     time.sleep(10)
     charge = cur_charge()
     level = calc_level(charge)
-    print(f"charge={charge} level={level}")
+    # print(f"charge={charge} level={level}")
 
     if level != prev_level:
         notify_send(f"Battery: {charge}", 5000 if charge > 30 else None)
