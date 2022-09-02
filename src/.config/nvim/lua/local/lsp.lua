@@ -242,9 +242,14 @@ function C.java()
     return
   end
 
+  local deps = {}
   local jars = {}
-  if 0 == vim.fn.filereadable('.jars') then
-    print("JAR dependencies can be specified in .jars (one JAR per line)")
+  if 0 == vim.fn.filereadable('.deps') then
+    for dep in io.lines('.deps') do
+      deps[#deps + 1] = dep
+    end
+  elseif 0 == vim.fn.filereadable('.jars') then
+    print("Neither .deps (from gradle dependencies) nor .jars (one JAR per line) are found")
   else
     for jar in io.lines('.jars') do
       jars[#jars + 1] = jar
@@ -257,6 +262,7 @@ function C.java()
     cmd = { jls },
     settings = {
       java = {
+        externalDependencies = deps,
         classPath = jars
       }
     }
