@@ -244,7 +244,7 @@ function C.java()
 
   local deps = {}
   local jars = {}
-  if 0 == vim.fn.filereadable('.deps') then
+  if 0 ~= vim.fn.filereadable('.deps') then
     for dep in io.lines('.deps') do
       deps[#deps + 1] = dep
     end
