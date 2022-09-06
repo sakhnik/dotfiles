@@ -101,7 +101,7 @@ function C.setup()
       local opts = {
         on_attach = C.configureBuffer,
         capabilities = get_caps(),
-        cmd = { "clangd", "--completion-style=detailed" }
+        cmd = { "clangd", "--completion-style=detailed", "--enable-config" }
       }
       lspconfig.clangd.setup(opts)
     end,
