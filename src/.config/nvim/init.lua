@@ -20,9 +20,9 @@ vim.o.termguicolors = true
 vim.o.completeopt = 'menu,preview'
 vim.o.shortmess = 'ac'
 if vim.fn.has('win32') == 1 then
-  -- 'shellslash' is necessary for lsp to detect workspace directories
+  -- 'shellslash' may be necessary for lsp to detect workspace directories
   -- (for lua specifically)
-  vim.o.shellslash = true
+  vim.o.shellslash = false
 end
 
 cmd [[let mapleader = ' ']]
