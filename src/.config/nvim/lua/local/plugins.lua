@@ -75,13 +75,16 @@ require'local/mytelescope'.setup()
 require'local/ledger'.setup()
 require'local/treesitter'.setup()
 
--- require'FTerm'.setup({
---     border = 'double',
---     dimensions  = {
---         height = 0.9,
---         width = 0.9,
---     },
--- })
+local function get_shell()
+  if vim.fn.has('win32') == 1 then
+    return "powershell"
+  end
+  return os.getenv('SHELL')
+end
+
+require'FTerm'.setup({
+    cmd = get_shell(),
+})
 
 -- Example keybindings
 vim.keymap.set('n', '<A-i>', function() require("FTerm").toggle() end, {})
