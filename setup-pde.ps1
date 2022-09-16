@@ -61,3 +61,9 @@ if (!(Test-CommandExists gcc))
     Reload-Path
 }
 gcc --version
+
+if (!(Test-CommandExists rg))
+{
+    choco install -y ripgrep
+}
+& rg --version
