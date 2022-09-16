@@ -28,7 +28,8 @@ if (!(Test-CommandExists git))
     choco install -y git
     Reload-Path
 }
-& git --version
+git --version
+git config --global core.autocrlf true
 
 if (!(Test-CommandExists nvim))
 {
