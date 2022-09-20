@@ -14,7 +14,8 @@ vim.o.shiftwidth = 4
 vim.o.cinoptions = ":0,=1s,g0,M1,U0,u0,N-s"
 vim.o.copyindent = true
 vim.o.expandtab = true
-vim.o.hidden = true
+vim.o.hidden = false
+vim.o.autowrite = true
 vim.o.mouse = 'a'
 vim.o.termguicolors = true
 vim.o.completeopt = 'menu,preview'
