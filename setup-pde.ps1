@@ -10,7 +10,7 @@ Function Test-CommandExists
     Finally {$ErrorActionPreference=$oldPreference}
 } #end function test-CommandExists
 
-Function Reload-Path
+Function Reset-PathFromRegistry
 {
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
 }
@@ -27,7 +27,7 @@ choco feature enable -n=allowGlobalConfirmation
 if (!(Test-CommandExists git))
 {
     choco install -y git
-    Reload-Path
+    Reset-PathFromRegistry
 }
 git --version
 git config --global core.autocrlf true
@@ -35,7 +35,7 @@ git config --global core.autocrlf true
 if (!(Test-CommandExists nvim))
 {
     choco install -y neovim FiraCode
-    Reload-Path
+    Reset-PathFromRegistry
 }
 & nvim --version
 
@@ -48,7 +48,7 @@ if (!(Test-Path -Path $HOME/AppData/Local/nvim/init.lua -PathType Leaf))
 if (!(Test-CommandExists msys2))
 {
     choco install -y msys2
-    Reload-Path
+    Reset-PathFromRegistry
     # TODO: update msys2.ini
 }
 
@@ -60,7 +60,7 @@ if (!(Test-CommandExists gcc))
     $local:path = (Get-ItemProperty -Path $local:rpath -Name path).path
     $local:path  =  "$local:path;c:\tools\msys64\mingw64\bin"
     Set-ItemProperty -Path $local:rpath -Name path -Value $local:path
-    Reload-Path
+    Reset-PathFromRegistry
 }
 gcc --version
 
