@@ -62,7 +62,7 @@ require'paq' {
   'ray-x/lsp_signature.nvim';
 
   -- TreeSitter
-  {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'};
+  {'nvim-treesitter/nvim-treesitter', run=function() vim.cmd('TSUpdate') end};
   { 'nvim-treesitter/playground' };
 }
 
