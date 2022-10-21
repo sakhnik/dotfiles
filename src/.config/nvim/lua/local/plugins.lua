@@ -63,7 +63,7 @@ require'paq' {
 
   -- TreeSitter
   {'nvim-treesitter/nvim-treesitter', run=function() vim.cmd('TSUpdate') end};
-  { 'nvim-treesitter/playground' };
+  'nvim-treesitter/playground';
 }
 
 vim.g.polyglot_disabled = {'sensible'}
