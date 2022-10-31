@@ -25,7 +25,7 @@ require'paq' {
   'tpope/vim-repeat';               -- Repeat mapping with .
   'tpope/vim-sleuth';               -- Set buffer options euristically
   'tpope/vim-unimpaired';           -- ]q, ]a etc
-  'tpope/vim-surround';             -- Movements s', s(
+  'kylechui/nvim-surround';         -- Movements s', s(
   'tpope/vim-vinegar';
   'bronson/vim-visual-star-search';
   'raimondi/delimitmate';
@@ -68,7 +68,8 @@ require'paq' {
 
 vim.g.polyglot_disabled = {'sensible'}
 
-require('pqf').setup()  -- pretty quickfix
+require'nvim-surround'.setup()
+require'pqf'.setup()  -- pretty quickfix
 
 require'local/lsp'.setup()  -- initialize LSP completion immediately
 require'local/mytelescope'.setup()
