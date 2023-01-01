@@ -20,10 +20,10 @@ if [[ "$XDG_SESSION_TYPE" == wayland ]]; then
     #export QT_WAYLAND_FORCE_DPI=140
     export XDG_CURRENT_DESKTOP=Unity
     export SDL_VIDEODRIVER=wayland
-    export XCURSOR_SIZE=48
+    #export XCURSOR_SIZE=48
 else
-    export GDK_SCALE=2
-    export GDK_DPI_SCALE=0.5
+#    export GDK_SCALE=2
+#    export GDK_DPI_SCALE=0.5
     export MOZ_X11_EGL=1
 fi
 

@@ -70,11 +70,13 @@ if command -v nvim >/dev/null 2>&1; then
     [[ -n "$PS1" ]] && echo "$green(I)$reset  Neovim is the default editor"
     # Use nvim as man pager
     export MANPAGER='nvim +Man!'
+    export AUR_PAGER=nvim
 else
     export EDITOR=vim
     [[ -n "$PS1" ]] && echo "$green(I)$reset  Vim is the default editor"
     # Use vim as man pager
     export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
+    export AUR_PAGER=vim
 fi
 
 if [[ -f $zshrc_dir/../pystartup.py ]]; then
