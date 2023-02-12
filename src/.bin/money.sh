@@ -1,9 +1,8 @@
 #!/bin/bash -e
 
-this_dir=$(dirname "${BASH_SOURCE[0]}")
-
 (
-    encfs --extpass "$this_dir"/data.passwd.sh ~/.Private ~/Private
+    (DISPLAY= pass Encfs/data) | \
+        encfs --stdinpass ~/.Private ~/Private
 
     finish()
     {
