@@ -106,7 +106,7 @@ function C.setup()
       lspconfig.clangd.setup(opts)
     end,
 
-    ['sumneko_lua'] = function()
+    ['lua_ls'] = function()
       local opts = {
         on_attach = C.configureBuffer,
         capabilities = get_caps(),
@@ -133,7 +133,7 @@ function C.setup()
           },
         }
       }
-      lspconfig.sumneko_lua.setup(opts)
+      lspconfig.lua_ls.setup(opts)
     end,
   }
 
