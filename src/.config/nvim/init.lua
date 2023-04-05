@@ -58,7 +58,7 @@ vim.o.undofile = true
 vim.keymap.set('', 'Q', function() end, {})
 
 -- Find tailing white spaces
-vim.keymap.set('n', '<Leader><space>', [[/\s\+$\\| \+\ze\t<cr>]], {noremap = true})
+vim.keymap.set('n', '<Leader><space>', [[/\s\+$\| \+\ze\t<cr>]], {noremap = true})
 
 -- NetRW
 vim.g.netrw_liststyle = 3
