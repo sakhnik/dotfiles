@@ -62,7 +62,3 @@ vim.keymap.set('n', '<Leader><space>', [[/\s\+$\| \+\ze\t<cr>]], {noremap = true
 
 -- NetRW
 vim.g.netrw_liststyle = 3
-
-if 0 < vim.fn.exists(":GuiRenderLigatures") then
-  vim.cmd("GuiRenderLigatures 1")
-end
