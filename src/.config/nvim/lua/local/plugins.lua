@@ -65,9 +65,15 @@ require'paq' {
   -- TreeSitter
   {'nvim-treesitter/nvim-treesitter', run=function() vim.cmd('TSUpdate') end};
   'nvim-treesitter/playground';
+
+  'nvim-tree/nvim-tree.lua';
+  'nvim-tree/nvim-web-devicons';
 }
 
 vim.g.polyglot_disabled = {'sensible'}
+
+require("nvim-tree").setup()
+vim.keymap.set('n', '<leader>nn', function() require("nvim-tree.api").tree.toggle() end, {})
 
 require'nvim-surround'.setup()
 require'pqf'.setup()  -- pretty quickfix

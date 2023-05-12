@@ -1,6 +1,10 @@
 -- vim: set et ts=2 sw=2:
 --
 
+-- disable netrw in favour of nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 local cmd = vim.api.nvim_command
 
 vim.o.fileencodings = 'utf-8,cp1251,default'
