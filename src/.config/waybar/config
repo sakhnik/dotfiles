@@ -45,7 +45,7 @@
         // Connected to AC
         "format": " {icon} {capacity}%", // Icon: bolt
         // Not connected to AC
-        "format-discharging": "{icon}  {capacity}%",
+        "format-discharging": "{icon}   {capacity}%",
         "format-icons": [
             "", // Icon: battery-full
             "", // Icon: battery-three-quarters
@@ -58,7 +58,7 @@
 
     "clock#time": {
         "interval": 1,
-        "format": " {:%H:%M:%S}",
+        "format": "   {:%H:%M:%S}",
         "tooltip-format": "{:%e %B %Y}"
     },
 
@@ -70,7 +70,7 @@
 
     "cpu": {
         "interval": 5,
-        "format": " {usage:2d}% ({load:.2f})", // Icon: microchip
+        "format": "   {usage:2d}% ({load:.2f})", // Icon: microchip
         "states": {
           "warning": 70,
           "critical": 90
@@ -98,7 +98,7 @@
 
     "network": {
         "interval": 5,
-        "format-wifi": " {essid} ({signalStrength}%)", // Icon: wifi
+        "format-wifi": "   {essid} ({signalStrength}%)", // Icon: wifi
         "format-ethernet": " {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
         "format-disconnected": "⚠ Disconnected",
         "tooltip-format": "{ifname}: {ipaddr}"
@@ -138,8 +138,8 @@
 
     "pulseaudio": {
         //"scroll-step": 1,
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}%",
+        "format": "{icon}   {volume}%",
+        "format-bluetooth": "{icon}   {volume}%",
         "format-muted": "",
         "format-icons": {
             "headphones": "",
