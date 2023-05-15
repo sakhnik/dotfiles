@@ -37,7 +37,7 @@ exec pactl load-module module-switch-on-connect
 # Wayland notification daemon
 exec mako
 # Wayland terminal
-exec qterminal
+exec kitty
 
 # Gtk applications take 20 seconds to start.
 # Alternative suggestion is to run them with GTK_USE_PORTAL=0, but it didn't work for me.
@@ -161,7 +161,7 @@ bindsym --to-code {
 }
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1; exec [ $(pidof -s qterminal | wc -l) = 0 ] && qterminal
+bindsym $mod+1 workspace $ws1; exec [ $(pidof -s kitty | wc -l) = 0 ] && kitty
 bindsym $mod+2 workspace $ws2; exec [ $(pidof -s firefox | wc -l) = 0 ] && firefox
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
