@@ -79,6 +79,11 @@ else
     export AUR_PAGER=vim
 fi
 
+# Prefer "doas" before "sudo"
+if command -v doas >/dev/null 2>&1; then
+    alias sudo=doas
+fi
+
 if [[ -f $zshrc_dir/../pystartup.py ]]; then
     export PYTHONSTARTUP=$zshrc_dir/../pystartup.py
 else
