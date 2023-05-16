@@ -43,7 +43,7 @@
             "critical": 15
         },
         // Connected to AC
-        "format": " {icon} {capacity}%", // Icon: bolt
+        "format": " {icon}   {capacity}%", // Icon: bolt
         // Not connected to AC
         "format-discharging": "{icon}   {capacity}%",
         "format-icons": [
@@ -123,7 +123,7 @@
     "sway/workspaces": {
         "all-outputs": false,
         "disable-scroll": true,
-        "format": "{icon} {name}",
+        "format": "{icon}   {name}",
         "format-icons": {
             "1:term": "", // Icon: terminal
             "2:web": "", // Icon: firefox-browser
