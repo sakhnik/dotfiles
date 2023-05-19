@@ -50,36 +50,77 @@ local function get_caps()
   return require('cmp_nvim_lsp').default_capabilities()
 end
 
--- Launch Java language server automatically
-local function setup_java()
-  if C.setup_java_cmd == nil then
-    C.setup_java_cmd = vim.api.nvim_create_autocmd("FileType", {
-      pattern = "java",
-      callback = function()
-        -- LSP clients are attached on FileType too. So we may need to restart the LSP
-        -- after reconfiguring if it was running before.
-        local clients = vim.lsp.buf_get_clients()
-        local jls_client_id = nil
-        for id, client in ipairs(clients) do
-          if client.name == "java-language-server" then
-            jls_client_id = id
-            break
-          end
-        end
-        -- Configure JLS
-        C.java()
-        if jls_client_id ~= nil then
-          vim.api.nvim_command("LspRestart " .. jls_client_id)
-        end
-      end
-    })
+local function setup_java_ls()
+  local deps = {}
+  local jars = {}
+  if 0 ~= vim.fn.filereadable('.deps') then
+    for dep in io.lines('.deps') do
+      deps[#deps + 1] = dep
+    end
+  elseif 0 == vim.fn.filereadable('.jars') then
+    print("Neither .deps (from gradle dependencies) nor .jars (one JAR per line) are found")
+  else
+    for jar in io.lines('.jars') do
+      jars[#jars + 1] = jar
+    end
   end
+
+  local opts = {
+    on_attach = C.configureBuffer,
+    capabilities = get_caps(),
+    cmd = { "java-language-server" },
+    root_dir = function() return vim.fs.dirname(vim.fs.find({'.git', '.hg'}, { upward = true })[1]) end,
+    settings = {
+      java = {
+        externalDependencies = deps,
+        classPath = jars
+      }
+    }
+  }
+  local lspconfig = require'lspconfig'
+  lspconfig.java_language_server.setup(opts)
+end
+
+local function setup_lua_ls()
+  local opts = {
+    on_attach = C.configureBuffer,
+    capabilities = get_caps(),
+    cmd = { "lua-language-server" },
+    settings = {
+      Lua = {
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT',
+          -- Setup your lua path
+          path = vim.split(package.path, ';'),
+        },
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = {'vim'},
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = {
+            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+          },
+        },
+      },
+    }
+  }
+  require'lspconfig'.lua_ls.setup(opts)
+end
+
+local function setup_clangd()
+  local opts = {
+    on_attach = C.configureBuffer,
+    capabilities = get_caps(),
+    cmd = { "clangd", "--completion-style=detailed", "--enable-config" }
+  }
+  require'lspconfig'.clangd.setup(opts)
 end
 
 function C.setup()
-
-  -- Stop existing clients (useful to reload after crash)
-  --vim.lsp.stop_client(vim.lsp.buf_get_clients())
 
   require("mason").setup()
   require("mason-lspconfig").setup()
@@ -97,44 +138,9 @@ function C.setup()
       lspconfig[server_name].setup(opts)
     end,
 
-    ['clangd'] = function()
-      local opts = {
-        on_attach = C.configureBuffer,
-        capabilities = get_caps(),
-        cmd = { "clangd", "--completion-style=detailed", "--enable-config" }
-      }
-      lspconfig.clangd.setup(opts)
-    end,
-
-    ['lua_ls'] = function()
-      local opts = {
-        on_attach = C.configureBuffer,
-        capabilities = get_caps(),
-        cmd = { "lua-language-server" },
-        settings = {
-          Lua = {
-            runtime = {
-              -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-              version = 'LuaJIT',
-              -- Setup your lua path
-              path = vim.split(package.path, ';'),
-            },
-            diagnostics = {
-              -- Get the language server to recognize the `vim` global
-              globals = {'vim'},
-            },
-            workspace = {
-              -- Make the server aware of Neovim runtime files
-              library = {
-                [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-              },
-            },
-          },
-        }
-      }
-      lspconfig.lua_ls.setup(opts)
-    end,
+    clangd = setup_clangd,
+    java_language_server = setup_java_ls,
+    lua_ls = setup_lua_ls,
   }
 
   -- Setup nvim-cmp.
@@ -224,51 +230,11 @@ function C.setup()
     signs = true,
     severity_sort = true,
   })
-
-  setup_java()
 end
 
 function C.clearSigns()
   vim.api.nvim_buf_clear_namespace(0, -1, 0, -1)
   cmd "sign unplace * group=*"
-end
-
-function C.java()
-  local jls = "java-language-server"
-  -- local jls = "e:/java-language-server/dist/lang_server_windows.cmd"
-  if 0 == vim.fn.executable(jls) then
-    print("The executable for java-language-server not found: " .. jls)
-    print("Consider installing it and tweaking stdpath('config')/lua/local/lsp.lua")
-    return
-  end
-
-  local deps = {}
-  local jars = {}
-  if 0 ~= vim.fn.filereadable('.deps') then
-    for dep in io.lines('.deps') do
-      deps[#deps + 1] = dep
-    end
-  elseif 0 == vim.fn.filereadable('.jars') then
-    print("Neither .deps (from gradle dependencies) nor .jars (one JAR per line) are found")
-  else
-    for jar in io.lines('.jars') do
-      jars[#jars + 1] = jar
-    end
-  end
-
-  local opts = {
-    on_attach = C.configureBuffer,
-    capabilities = get_caps(),
-    cmd = { jls },
-    settings = {
-      java = {
-        externalDependencies = deps,
-        classPath = jars
-      }
-    }
-  }
-  local lspconfig = require'lspconfig'
-  lspconfig.java_language_server.setup(opts)
 end
 
 return C
