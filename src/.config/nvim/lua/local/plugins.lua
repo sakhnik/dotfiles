@@ -61,6 +61,7 @@ require'paq' {
   'L3MON4D3/LuaSnip';
   'saadparwaiz1/cmp_luasnip';
   'ray-x/lsp_signature.nvim';
+  'mfussenegger/nvim-jdtls';
 
   -- TreeSitter
   {'nvim-treesitter/nvim-treesitter', run=function() vim.cmd('TSUpdate') end};

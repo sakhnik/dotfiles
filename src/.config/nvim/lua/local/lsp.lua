@@ -57,9 +57,8 @@ local function setup_java_ls()
     for dep in io.lines('.deps') do
       deps[#deps + 1] = dep
     end
-  elseif 0 == vim.fn.filereadable('.jars') then
-    print("Neither .deps (from gradle dependencies) nor .jars (one JAR per line) are found")
-  else
+  end
+  if 0 ~= vim.fn.filereadable('.jars') then
     for jar in io.lines('.jars') do
       jars[#jars + 1] = jar
     end
@@ -111,6 +110,11 @@ local function setup_lua_ls()
   require'lspconfig'.lua_ls.setup(opts)
 end
 
+local function setup_jdtls()
+  -- Don't setup, jdtls will be handled by the dedicated plugin.
+  --require'lspconfig'.jdtls.setup(opts)
+end
+
 local function setup_clangd()
   local opts = {
     on_attach = C.configureBuffer,
@@ -141,6 +145,7 @@ function C.setup()
     clangd = setup_clangd,
     java_language_server = setup_java_ls,
     lua_ls = setup_lua_ls,
+    jdtls = setup_jdtls,
   }
 
   -- Setup nvim-cmp.
