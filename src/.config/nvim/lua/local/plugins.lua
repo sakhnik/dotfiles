@@ -50,6 +50,9 @@ require'paq' {
   'nvim-telescope/telescope.nvim';
   'nvim-telescope/telescope-project.nvim';
   'nvim-telescope/telescope-live-grep-args.nvim';
+  -- ChatGPT
+  "MunifTanjim/nui.nvim";
+  "jackMort/ChatGPT.nvim";
 
   -- lsp
   'williamboman/mason.nvim';
@@ -101,3 +104,8 @@ vim.keymap.set('t', '<A-i>', function()
   vim.api.nvim_input('<C-\\><C-n>')
   require("FTerm").toggle()
 end, {})
+
+require("chatgpt").setup({
+    --api_key_cmd = "gpg --decrypt ~/.openai.txt.gpg 2>/dev/null",
+    api_key_cmd = "cat ~/.openai.txt 2>/dev/null",
+})
