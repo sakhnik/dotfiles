@@ -26,7 +26,6 @@ require'paq' {
   'tpope/vim-sleuth';               -- Set buffer options euristically
   'tpope/vim-unimpaired';           -- ]q, ]a etc
   'kylechui/nvim-surround';         -- Movements s', s(
-  'tpope/vim-vinegar';
   'bronson/vim-visual-star-search';
   'raimondi/delimitmate';
   'wellle/targets.vim';
@@ -72,6 +71,7 @@ require'paq' {
 
   'nvim-tree/nvim-tree.lua';
   'nvim-tree/nvim-web-devicons';
+  'stevearc/oil.nvim';
 }
 
 vim.g.polyglot_disabled = {'sensible'}
@@ -109,3 +109,6 @@ require("chatgpt").setup({
     --api_key_cmd = "gpg --decrypt ~/.openai.txt.gpg 2>/dev/null",
     api_key_cmd = "cat ~/.openai.txt 2>/dev/null",
 })
+
+require("oil").setup()
+vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
