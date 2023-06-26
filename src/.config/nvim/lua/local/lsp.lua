@@ -230,9 +230,6 @@ function C.setup()
   })
 
   vim.diagnostic.config({
-    underline = false,
-    virtual_text = false,
-    signs = true,
     severity_sort = true,
   })
 end
