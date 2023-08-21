@@ -99,6 +99,10 @@ return function()
     'nvim-tree/nvim-tree.lua';
     'nvim-tree/nvim-web-devicons';
     'stevearc/oil.nvim';
+
+    -- Keystroke analysis and hints
+    "MunifTanjim/nui.nvim";
+    "m4xshen/hardtime.nvim";
   }
 
   -- Detect if plugin installation is required
@@ -163,8 +167,11 @@ return function()
     require("FTerm").toggle()
   end, {})
 
-  require("oil").setup()
+  require"oil".setup()
   vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
+
+  -- Keystroke analysis and hints
+  require"hardtime".setup()
 
   -- Restore the original module loading, no more automatic plugin installation
   require = orig_require
