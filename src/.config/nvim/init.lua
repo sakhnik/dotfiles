@@ -4,6 +4,7 @@
 -- disable netrw in favour of nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.netrw_liststyle = 3
 
 local cmd = vim.api.nvim_command
 
@@ -45,29 +46,12 @@ vim.keymap.set('', 'Q', function() end, {})
 -- Find tailing white spaces
 vim.keymap.set('n', '<Leader><space>', [[/\s\+$\| \+\ze\t<cr>]], {noremap = true})
 
--- NetRW
-vim.g.netrw_liststyle = 3
+require'local.digraphs'
+require'local.autocmds'
 
--- Do the rest asynchronously because plugins may be required
+-- Do the rest asynchronously because plugin downloading may be required
 local function async_part()
   require'local.plugins'()
-  require'local.digraphs'
-  require'local.autocmds'
-
-  -- Configure colorscheme zenburn
-  local augid = vim.api.nvim_create_augroup('colors', {clear = true})
-  vim.api.nvim_create_autocmd('ColorScheme', {
-    group = augid,
-    pattern = "*",
-    command = "hi Comment cterm=italic gui=italic",
-  })
-  vim.o.background = 'light'
-  cmd 'colors gruvbox'
-
-  -- Initialize nvim-lsp. Not calling this will allow using YouCompleteMe,
-  -- for example.
-  vim.keymap.set('n', '<leader>ll', function() require"local.lsp".setup() end, {})
-  vim.keymap.set('n', '<leader>lc', function() require"local.lsp".clearSigns() end, {})
 end
 
 local co = coroutine.create(function()

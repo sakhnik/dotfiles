@@ -1,5 +1,13 @@
 local C = {}
 
+C.plugins = {
+  'nvim-lua/popup.nvim';
+  'nvim-lua/plenary.nvim';
+  'nvim-telescope/telescope.nvim';
+  'nvim-telescope/telescope-project.nvim';
+  'nvim-telescope/telescope-live-grep-args.nvim';
+}
+
 function C.setup()
   local noremap_silent = {noremap = true, silent = true}
   local tsbi = require('telescope.builtin')

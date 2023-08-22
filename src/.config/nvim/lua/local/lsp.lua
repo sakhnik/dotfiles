@@ -2,6 +2,19 @@ local C = {}
 
 local cmd = vim.api.nvim_command
 
+C.plugins = {
+  'williamboman/mason.nvim';
+  'williamboman/mason-lspconfig.nvim';
+  'neovim/nvim-lspconfig';
+  'hrsh7th/cmp-nvim-lsp';
+  'hrsh7th/cmp-buffer';
+  'hrsh7th/nvim-cmp';
+  'L3MON4D3/LuaSnip';
+  'saadparwaiz1/cmp_luasnip';
+  'ray-x/lsp_signature.nvim';
+  'mfussenegger/nvim-jdtls';
+}
+
 function C.show_line_diagnostics()
   local opts = {
     focusable = false,
@@ -81,6 +94,16 @@ local function setup_java_ls()
 end
 
 local function setup_lua_ls()
+  local library = {}
+  -- Exclude the locally installed plugins
+  for _, path in ipairs(vim.api.nvim_get_runtime_file("", true)) do
+    if not path:find("%.local/share/nvim") then
+      library[#library+1] = path
+    end
+  end
+  library[#library + 1] = '/home/sakhnik/work/nvim-gdb/./lua_modules/share/lua/5.1/?.lua'
+  library[#library + 1] = '/home/sakhnik/work/nvim-gdb/./lua_modules/share/lua/5.1/?/init.lua'
+
   local opts = {
     on_attach = C.configureBuffer,
     capabilities = get_caps(),
@@ -95,14 +118,11 @@ local function setup_lua_ls()
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global
-          globals = {'vim'},
+          globals = {'vim', 'nvim', 'describe', 'it'},
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
-          library = {
-            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-          },
+          library = library,
         },
       },
     }
@@ -232,6 +252,9 @@ function C.setup()
   vim.diagnostic.config({
     severity_sort = true,
   })
+
+  vim.keymap.set('n', '<leader>ll', function() require"local.lsp".setup() end, {})
+  vim.keymap.set('n', '<leader>lc', function() require"local.lsp".clearSigns() end, {})
 end
 
 function C.clearSigns()
