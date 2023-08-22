@@ -5,6 +5,17 @@ local cmd = vim.api.nvim_command
 
 return function()
 
+  local modules = {
+    require'local.modules.color',
+    require'local.modules.vim',
+    require'local.modules.telescope',
+    require'local.modules.fs',
+    require'local.modules.lsp',
+    require'local.modules.treesitter',
+    require'local.modules.term',
+    require'local.modules.quickfix',
+  }
+
   local paqpath = vim.fn.stdpath('data') .. '/site/pack/paqs/opt/paq-nvim'
   local stat = vim.loop.fs_stat(paqpath .. '/lua')
   if stat == nil then
@@ -47,17 +58,6 @@ return function()
     {'sakhnik/nvim-gdb', branch="devel"};
   }
 
-  local modules = {
-    require'local.color',
-    require'local.vim',
-    require'local.telescope',
-    require'local.fs',
-    require'local.lsp',
-    require'local.treesitter',
-    require'local.term',
-    require'local.quickfix',
-  }
-
   -- collect plugins from the modules
   do
     local plugin_map = {}
@@ -92,6 +92,7 @@ return function()
     if module:find("mason%-lspconfig%.server_configurations") or module:find("jsregexp") then
       return res
     end
+    print("Installing plugins for " .. module)
     local co = coroutine.running()
     local auid = vim.api.nvim_create_autocmd('User', {
       pattern = 'PaqDoneInstall',

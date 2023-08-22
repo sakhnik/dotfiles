@@ -45,7 +45,7 @@ function C.configureBuffer() --(client, bufnr)
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts)
 
   vim.api.nvim_create_autocmd("CursorHold", {
-    callback = function() require('local.lsp').show_line_diagnostics() end,
+    callback = function() require'local.modules.lsp'.show_line_diagnostics() end,
     buffer = vim.api.nvim_get_current_buf(),
   })
 
@@ -56,11 +56,11 @@ function C.configureBuffer() --(client, bufnr)
   cmd "setlocal shortmess+=c"
   vim.wo.signcolumn = 'yes'
 
-  require "lsp_signature".on_attach()
+  require"lsp_signature".on_attach()
 end
 
 local function get_caps()
-  return require('cmp_nvim_lsp').default_capabilities()
+  return require'cmp_nvim_lsp'.default_capabilities()
 end
 
 local function setup_java_ls()
@@ -146,14 +146,14 @@ end
 
 function C.setup()
 
-  require("mason").setup()
-  require("mason-lspconfig").setup()
+  require"mason".setup()
+  require"mason-lspconfig".setup()
 
   -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
   -- or if the server is already installed).
   local lspconfig = require'lspconfig'
 
-  require("mason-lspconfig").setup_handlers {
+  require"mason-lspconfig".setup_handlers {
     function (server_name)
       local opts = {
         on_attach = C.configureBuffer,
@@ -174,7 +174,7 @@ function C.setup()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
 
-  local luasnip = require("luasnip")
+  local luasnip = require"luasnip"
   local cmp = require'cmp'
 
   cmp.setup({
@@ -193,7 +193,7 @@ function C.setup()
         --vim.fn["vsnip#anonymous"](args.body)
 
         -- For `luasnip` user.
-        require('luasnip').lsp_expand(args.body)
+        require'luasnip'.lsp_expand(args.body)
 
         -- For `ultisnips` user.
         -- vim.fn["UltiSnips#Anon"](args.body)
@@ -253,8 +253,8 @@ function C.setup()
     severity_sort = true,
   })
 
-  vim.keymap.set('n', '<leader>ll', function() require"local.lsp".setup() end, {})
-  vim.keymap.set('n', '<leader>lc', function() require"local.lsp".clearSigns() end, {})
+  vim.keymap.set('n', '<leader>ll', function() require"local.modules.lsp".setup() end, {})
+  vim.keymap.set('n', '<leader>lc', function() require"local.modules.lsp".clearSigns() end, {})
 end
 
 function C.clearSigns()
