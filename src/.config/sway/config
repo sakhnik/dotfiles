@@ -61,7 +61,7 @@ workspace_layout tabbed
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Monospace 12
+font pango:Monospace 24
 
 # Don't use borders when one window per workspace
 hide_edge_borders --i3 smart
@@ -284,7 +284,9 @@ bar {
     #hidden_state hide
 }
 
-output "eDP-1" scale 2
+seat * xcursor_theme Adwaita 48
+
+output "eDP-1" scale 1
 #xwayland force scale 2
 exec xsettingsd
 exec xrdb -load ~/.Xresources
@@ -292,6 +294,9 @@ exec xrdb -load ~/.Xresources
 input "1267:123:Elan_Touchpad" {
     tap enabled
     natural_scroll enabled
+    scroll_factor 0.3
+    accel_profile adaptive
+    pointer_accel 0.1
 }
 
 input * xkb_layout "us,ua"
