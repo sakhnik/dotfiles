@@ -70,7 +70,7 @@
 
     "cpu": {
         "interval": 5,
-        "format": "   {usage:2d}% ({load:.2f})", // Icon: microchip
+        "format": "  {usage:2d}% ({load:.2f})", // Icon: microchip
         "states": {
           "warning": 70,
           "critical": 90
@@ -81,7 +81,7 @@
       "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4 | cut -f1 -d' '",
       // Interval set only as a fallback, as the value is updated by signal
       "interval": 30,
-      "format": " {}", // Icon: keyboard
+      "format": "   {}", // Icon: keyboard
       // Signal sent by Sway key binding (~/.config/sway/key-bindings)
       "signal": 1, // SIGHUP
       "tooltip": false
@@ -106,7 +106,7 @@
 
     "backlight": {
         "device": "intel_backlight",
-        "format": "{icon} {percent}%",
+        "format": "{icon}  {percent}%",
         "format-icons": ["", ""]
     },
 
