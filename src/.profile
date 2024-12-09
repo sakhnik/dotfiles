@@ -14,7 +14,8 @@ if [[ -x /usr/bin/luarocks-5.1 ]]; then
     eval "$(luarocks-5.1 path)"
 fi
 
-if [[ "$XDG_SESSION_TYPE" == wayland ]]; then
+set_hidpi_wayland()
+{
     export MOZ_ENABLE_WAYLAND=1
     export MOZ_DISABLE_RDD_SANDBOX=1
     #export QT_WAYLAND_FORCE_DPI=140
@@ -23,14 +24,23 @@ if [[ "$XDG_SESSION_TYPE" == wayland ]]; then
 
     export _JAVA_AWT_WM_NONREPARENTING=1
     export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
-    export GDK_SCALE=2
-    export GDK_DPI_SCALE=2
-    export QT_SCALE_FACTOR=2
-    export XCURSOR_SIZE=48
+    export GDK_SCALE=1.5
+    export GDK_DPI_SCALE=1.5
+    export QT_SCALE_FACTOR=1.5
+    export XCURSOR_SIZE=32
+}
+
+if [[ "$XDG_SESSION_TYPE" == wayland ]]; then
+    set_hidpi_wayland
 else
 #    export GDK_SCALE=2
 #    export GDK_DPI_SCALE=0.5
     export MOZ_X11_EGL=1
+fi
+
+if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then                                                                                   
+    set_hidpi_wayland
+    exec sway                                                                                                                                   
 fi
 
 mesg n || true
@@ -38,4 +48,6 @@ mesg n || true
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/sakhnik/.sdkman"
 [[ -s "/home/sakhnik/.sdkman/bin/sdkman-init.sh" ]] && source "/home/sakhnik/.sdkman/bin/sdkman-init.sh"
-. "$HOME/.cargo/env"
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+
+. ~/.bashrc
