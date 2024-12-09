@@ -37,7 +37,7 @@ exec pactl load-module module-switch-on-connect
 # Wayland notification daemon
 exec mako
 # Wayland terminal
-exec kitty
+exec contour
 
 # Gtk applications take 20 seconds to start.
 # Alternative suggestion is to run them with GTK_USE_PORTAL=0, but it didn't work for me.
@@ -61,7 +61,7 @@ workspace_layout tabbed
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Monospace 24
+font pango:Monospace 18
 
 # Don't use borders when one window per workspace
 hide_edge_borders --i3 smart
@@ -161,7 +161,7 @@ bindsym --to-code {
 }
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1; exec [ $(pidof -s kitty | wc -l) = 0 ] && kitty
+bindsym $mod+1 workspace $ws1; exec [ $(pidof -s contour | wc -l) = 0 ] && contour
 bindsym $mod+2 workspace $ws2; exec [ $(pidof -s firefox | wc -l) = 0 ] && firefox
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
@@ -241,14 +241,6 @@ bindsym --to-code Control+$mod+l exec swayidle -w \
     resume 'swaymsg "output * dpms on"; pkill -nx swayidle' \
     before-sleep 'swaylock -f -c 777777'
 
-bindsym --release {
-    # Multi-screen screenshots with ImageMagick
-    Print exec "~/.bin/i3-printscreen.sh"
-    # OSX-like area selection screenshots
-    Shift+Print exec "~/.bin/i3-printscreen-select.sh"
-    $mod+Print exec "~/.bin/i3-printscreen-focused.sh"
-}
-
 # Toggle waybar
 bindsym $mod+grave exec killall -USR1 waybar
 
@@ -284,14 +276,15 @@ bar {
     #hidden_state hide
 }
 
-seat * xcursor_theme Adwaita 48
+seat * xcursor_theme Adwaita 32
 
 output "eDP-1" scale 1
 #xwayland force scale 2
 exec xsettingsd
 exec xrdb -load ~/.Xresources
 
-input "1267:123:Elan_Touchpad" {
+input type:touchpad {
+    dwt enabled
     tap enabled
     natural_scroll enabled
     scroll_factor 0.3
