@@ -12,7 +12,7 @@
     trap finish EXIT
 
     pushd ~/Private/money
-    LEDGER_FILE=~/Private/money/cur.dat zsh
+    LEDGER_FILE=~/Private/money/cur.dat $SHELL
 )
 
 # Copy to the backup drives is mounted
@@ -23,7 +23,7 @@ for dir in /run/media/"$USER"/sakhnik*; do
 done
 
 # Copy to other stations
-(rsync -raP --delete ~/.Private home-rpi4:/home/sakhnik) &
+#(rsync -raP --delete ~/.Private home-rpi4:/home/sakhnik) &
 (rsync -raP --delete ~/.Private home:/home/sakhnik) &
 (rsync -raP --delete ~/.Private iryska:/root) &
 wait
