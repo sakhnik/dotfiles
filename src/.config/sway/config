@@ -295,4 +295,4 @@ input type:touchpad {
 input * xkb_layout "us,ua"
 input * xkb_variant "altgr-intl,"
 input * xkb_options "grp:alt_space_toggle,lv3:ralt_switch,compose:rctrl-altgr"
-input "1:1:AT_Translated_Set_2_keyboard" xkb_model "chromebook"
+#input "1:1:AT_Translated_Set_2_keyboard" xkb_model "chromebook"
