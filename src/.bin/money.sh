@@ -24,6 +24,6 @@ done
 
 # Copy to other stations
 #(rsync -raP --delete ~/.Private home-rpi4:/home/sakhnik) &
-(rsync -raP --delete ~/.Private home:/home/sakhnik) &
+(rsync -raP --delete ~/.Private wg-rpi4:/home/sakhnik) &
 (rsync -raP --delete ~/.Private iryska:/root) &
 wait
