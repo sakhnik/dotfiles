@@ -37,7 +37,7 @@ exec pactl load-module module-switch-on-connect
 # Wayland notification daemon
 exec mako
 # Wayland terminal
-exec ghostty
+exec SHELL=/usr/bin/fish ghostty
 
 # Gtk applications take 20 seconds to start.
 # Alternative suggestion is to run them with GTK_USE_PORTAL=0, but it didn't work for me.
@@ -161,7 +161,7 @@ bindsym --to-code {
 }
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1; exec [ $(pidof -s ghostty | wc -l) = 0 ] && ghostty
+bindsym $mod+1 workspace $ws1; exec [ $(pidof -s ghostty | wc -l) = 0 ] && SHELL=/usr/bin/fish ghostty
 bindsym $mod+2 workspace $ws2; exec [ $(pidof -s firefox | wc -l) = 0 ] && firefox
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
@@ -292,7 +292,9 @@ input type:touchpad {
     pointer_accel 0.1
 }
 
-input * xkb_layout "us,ua"
-input * xkb_variant "altgr-intl,"
-input * xkb_options "grp:alt_space_toggle,lv3:ralt_switch,compose:rctrl-altgr"
-#input "1:1:AT_Translated_Set_2_keyboard" xkb_model "chromebook"
+input * {
+    xkb_layout "us,ua"
+    xkb_variant "altgr-intl,"
+    xkb_options "grp:alt_space_toggle,lv3:ralt_switch,compose:rctrl-altgr"
+}
+input "1:1:AT_Translated_Set_2_keyboard" xkb_model "asus_laptop"
