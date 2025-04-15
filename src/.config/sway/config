@@ -152,6 +152,9 @@ for_window [class="[vV]lc"] floating enable, sticky enable
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+bindsym $mod+m exec "swaymsg input type:touchpad events enabled"
+bindsym $mod+Shift+m exec "swaymsg input type:touchpad events disabled"
+
 bindsym --to-code {
     # focus the parent container
     $mod+a focus parent
