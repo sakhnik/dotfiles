@@ -298,6 +298,6 @@ input type:touchpad {
 input * {
     xkb_layout "us,ua"
     xkb_variant "altgr-intl,"
-    xkb_options "grp:alt_space_toggle,lv3:ralt_switch,compose:rctrl-altgr"
+    xkb_options "grp:alt_space_toggle,lv3:ralt_switch,compose:lwin-altgr"
 }
 input "1:1:AT_Translated_Set_2_keyboard" xkb_model "asus_laptop"
