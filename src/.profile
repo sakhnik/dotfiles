@@ -26,7 +26,7 @@ set_hidpi_wayland()
     export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
     export GDK_SCALE=1.5
     export GDK_DPI_SCALE=1.5
-    export QT_SCALE_FACTOR=1.5
+    #export QT_SCALE_FACTOR=1.5
     export QT_FONT_DPI=140
     export XCURSOR_SIZE=32
 }
