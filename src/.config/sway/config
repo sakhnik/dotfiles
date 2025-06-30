@@ -92,6 +92,8 @@ bindsym --to-code $mod+Shift+q kill
 # start a program selected with fzf (a program launcher)
 bindsym --to-code $mod+d exec foot --title=fzf-launcher "$home/.bin/sway-fzf-launch.sh"
 for_window [app_id="foot" title="fzf-launcher"] floating enable, border none
+# select a program to start
+bindsym --to-code $mod+shift+d exec fuzzel
 
 bindsym Control+Shift+1 [class="^.*"] border toggle
 
