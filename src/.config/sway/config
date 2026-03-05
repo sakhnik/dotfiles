@@ -37,7 +37,7 @@ exec pactl load-module module-switch-on-connect
 # Wayland notification daemon
 exec mako
 # Wayland terminal
-exec SHELL=/usr/bin/fish ghostty
+exec SHELL=/usr/bin/fish kitty
 
 # Gtk applications take 20 seconds to start.
 # Alternative suggestion is to run them with GTK_USE_PORTAL=0, but it didn't work for me.
@@ -94,6 +94,7 @@ bindsym --to-code $mod+d exec foot --title=fzf-launcher "$home/.bin/sway-fzf-lau
 for_window [app_id="foot" title="fzf-launcher"] floating enable, border none
 # select a program to start
 bindsym --to-code $mod+shift+d exec fuzzel
+bindsym --to-code $mod+shift+w exec 'iwmenu --launcher fuzzel'
 
 bindsym Control+Shift+1 [class="^.*"] border toggle
 
@@ -166,8 +167,8 @@ bindsym --to-code {
 }
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1; exec [ $(pidof -s ghostty | wc -l) = 0 ] && SHELL=/usr/bin/fish ghostty
-bindsym $mod+2 workspace $ws2; exec [ $(pidof -s firefox | wc -l) = 0 ] && firefox
+bindsym $mod+1 workspace $ws1; exec [ $(pidof -s kitty | wc -l) = 0 ] && SHELL=/usr/bin/fish kitty
+bindsym $mod+2 workspace $ws2; exec [ $(pidof -s firefox | wc -l) = 0 ] && firefox >/tmp/firefox.log 2>&1
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
@@ -299,6 +300,7 @@ input type:touchpad {
     scroll_factor 0.3
     accel_profile adaptive
     pointer_accel 0.1
+    drag_lock disabled
 }
 
 input * {

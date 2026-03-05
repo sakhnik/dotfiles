@@ -1,3 +1,4 @@
 font-family = VictorMono NF
-theme = GruvboxLight
+theme = Gruvbox Light
 window-decoration = false
+command = /usr/bin/fish --login --interactive
